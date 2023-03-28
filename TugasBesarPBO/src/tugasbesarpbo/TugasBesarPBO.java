@@ -26,6 +26,9 @@ public class TugasBesarPBO {
     public static void main(String[] args) {
         //Scanner scan = new Scanner (System.in);
         // TODO code application logic here
+        System.out.println("Helluuuu....");
+        
+        
     }
 
 }
