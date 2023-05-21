@@ -95,8 +95,9 @@ public class StafDAO {
         String sql = "SELECT * FROM staf WHERE "
                 + "(id_staf LIKE '%"+query+"%'"
                 + "OR nama_staf LIKE '%"+query+"%'"
-                + "OR harga_staf LIKE '%"+query+"%'"
-                + "OR stok_staf LIKE '%"+query+"%')"
+                + "OR no_telepon_staf LIKE '%"+query+"%'"
+                + "OR tanggal_mulai_kerja LIKE '%"+query+"%'"
+                + "OR jabatan_staf LIKE '%"+query+"%')"
                 ;
         System.out.println("Mengambil data staf ...");
         

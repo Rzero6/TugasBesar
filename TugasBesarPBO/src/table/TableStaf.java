@@ -1,22 +1,23 @@
-package table;
-
-
-import java.util.List;
-import javax.swing.table.AbstractTableModel;
-import model.Obat;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+package table;
+
+import java.util.List;
+import javax.swing.table.AbstractTableModel;
+import model.Staf;
+
 /**
  *
  * @author VICTUS
  */
-public class TableObat extends AbstractTableModel {
-    private List<Obat> list;
-    public TableObat(List<Obat> list){
+public class TableStaf extends AbstractTableModel {
+        
+    private List<Staf> list;
+    
+    public TableStaf(List<Staf> list){
         this.list = list;
     }
     
@@ -25,7 +26,7 @@ public class TableObat extends AbstractTableModel {
     }
     
     public int getColumnCount(){
-        return 4;
+        return 5;
     }
     
     public Object getValueAt(int rowIndex, int columnIndex){
@@ -33,11 +34,14 @@ public class TableObat extends AbstractTableModel {
             case 0:
                 return list.get(rowIndex).getId();
             case 1:
-                return list.get(rowIndex).getNama();
+                return list.get(rowIndex).getJabatan(); 
             case 2:
-                return list.get(rowIndex).getHarga();
+                return list.get(rowIndex).getNama();
             case 3:
-                return list.get(rowIndex).getStok();
+                return list.get(rowIndex).getNo_telepon();
+            case 4:
+                return list.get(rowIndex).getTanggal_bergabung();
+             
             default:
                 return null;
         }
@@ -48,11 +52,13 @@ public class TableObat extends AbstractTableModel {
             case 0:
                 return "ID";
             case 1:
-                return "Nama";
+                return "Jabatan";
             case 2:
-                return "Harga";
+                return "Nama";
             case 3:
-                return "Stok";
+                return "No Telepon";
+            case 4:
+                return "Tanggal Bergabung";
             default:
                 return null;
         }
