@@ -5,10 +5,14 @@
 package view;
 
 import control.ObatControl;
+import exception.InputKosongException;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import model.Obat;
+import table.TableObat;
 
 /**
  *
@@ -57,6 +61,8 @@ public class ObatView extends javax.swing.JFrame {
         deleteBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         obatTable = new javax.swing.JTable();
+        searchBtn = new javax.swing.JButton();
+        searchInput = new javax.swing.JTextField();
 
         dataInputFrame.setType(java.awt.Window.Type.POPUP);
 
@@ -123,6 +129,12 @@ public class ObatView extends javax.swing.JFrame {
         containerLayout.setHorizontalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(containerLayout.createSequentialGroup()
+                .addContainerGap(122, Short.MAX_VALUE)
+                .addComponent(cancelBtn)
+                .addGap(18, 18, 18)
+                .addComponent(saveBtn)
+                .addContainerGap(116, Short.MAX_VALUE))
+            .addGroup(containerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(namaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -133,12 +145,6 @@ public class ObatView extends javax.swing.JFrame {
                     .addComponent(stokObatInput, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                     .addComponent(popupLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(containerLayout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
-                .addComponent(cancelBtn)
-                .addGap(30, 30, 30)
-                .addComponent(saveBtn)
-                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         containerLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelBtn, saveBtn});
@@ -160,11 +166,11 @@ public class ObatView extends javax.swing.JFrame {
                 .addComponent(stokLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(stokObatInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(40, 40, 40)
                 .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtn)
                     .addComponent(cancelBtn))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout dataInputFrameLayout = new javax.swing.GroupLayout(dataInputFrame.getContentPane());
@@ -175,7 +181,9 @@ public class ObatView extends javax.swing.JFrame {
         );
         dataInputFrameLayout.setVerticalGroup(
             dataInputFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(dataInputFrameLayout.createSequentialGroup()
+                .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -234,6 +242,19 @@ public class ObatView extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(obatTable);
 
+        searchBtn.setText("Cari");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
+
+        searchInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchInputKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout containerPanelLayout = new javax.swing.GroupLayout(containerPanel);
         containerPanel.setLayout(containerPanelLayout);
         containerPanelLayout.setHorizontalGroup(
@@ -248,7 +269,10 @@ public class ObatView extends javax.swing.JFrame {
                         .addComponent(editBtn)
                         .addGap(18, 18, 18)
                         .addComponent(deleteBtn)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchBtn)))
                 .addContainerGap())
         );
 
@@ -261,7 +285,9 @@ public class ObatView extends javax.swing.JFrame {
                 .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addBtn)
                     .addComponent(editBtn)
-                    .addComponent(deleteBtn))
+                    .addComponent(deleteBtn)
+                    .addComponent(searchBtn)
+                    .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
@@ -300,6 +326,21 @@ public class ObatView extends javax.swing.JFrame {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Apakah yakin ingin menghapus data? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        switch(getAnswer){
+            case 0:
+                try{
+                    obatControl.deleteObat(selectedId);
+                    clearText();
+                    showObat();
+                    setEditDeleteBtn(false);
+                }catch(Exception e){
+                    System.out.println("Error: "+e.getMessage());
+                }
+                break;
+            case 1:
+                break;
+        }
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
@@ -315,11 +356,30 @@ public class ObatView extends javax.swing.JFrame {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
+        setEditDeleteBtn(false);
+        clearText();
         dataInputFrame.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
+        try{
+            InputKosongException();
+            if(action.equals("Tambah")){
+                Obat o = new Obat(namaObatInput.getText(), Double.parseDouble(hargaObatInput.getText()), Integer.parseInt(stokObatInput.getText()));
+                obatControl.insertDataObat(o);
+            }else{
+                Obat o = new Obat(selectedId,namaObatInput.getText(), Double.parseDouble(hargaObatInput.getText()), Integer.parseInt(stokObatInput.getText()));
+                obatControl.updateDataObat(o);
+            }
+            clearText();
+            showObat();
+            setEditDeleteBtn(false);
+        }catch(InputKosongException e){
+            JOptionPane.showMessageDialog(this, e.message());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Input Harga dan Stok harus Angka !");
+        }
         dataInputFrame.dispose();
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -344,6 +404,29 @@ public class ObatView extends javax.swing.JFrame {
         dataInputFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         dataInputFrame.setVisible(true);
     }//GEN-LAST:event_editBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        // TODO add your handling code here:
+        setEditDeleteBtn(false);
+        try{
+            TableObat obat = obatControl.showDataObat(searchInput.getText());
+            if(obat.getRowCount() == 0){
+                clearText();
+                setEditDeleteBtn(false);
+                JOptionPane.showConfirmDialog(null, "Data tidak ditemukan", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
+            }else{
+                obatTable.setModel(obat);
+            }
+            clearText();
+        }catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void searchInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInputKeyPressed
+        // TODO add your handling code here:
+        enterKeyPressed(evt);
+    }//GEN-LAST:event_searchInputKeyPressed
 
     /**
      * @param args the command line arguments
@@ -397,6 +480,8 @@ public class ObatView extends javax.swing.JFrame {
     private javax.swing.JTable obatTable;
     private javax.swing.JLabel popupLabel;
     private javax.swing.JButton saveBtn;
+    private javax.swing.JButton searchBtn;
+    private javax.swing.JTextField searchInput;
     private javax.swing.JLabel stokLabel;
     private javax.swing.JTextField stokObatInput;
     // End of variables declaration//GEN-END:variables
@@ -414,5 +499,17 @@ public class ObatView extends javax.swing.JFrame {
     private void setEditDeleteBtn(boolean value) {
         editBtn.setEnabled(value);
         deleteBtn.setEnabled(value);
+    }
+
+    private void InputKosongException() throws InputKosongException{
+        if(namaObatInput.getText().isEmpty() || hargaObatInput.getText().isEmpty() || stokObatInput.getText().isEmpty()){
+            throw new InputKosongException();
+        }
+    }
+    
+    public void enterKeyPressed(KeyEvent e){
+        if(e.getKeyCode() == KeyEvent.VK_ENTER){
+            searchBtn.doClick();
+        }
     }
 }

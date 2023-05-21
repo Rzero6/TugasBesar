@@ -28,8 +28,8 @@ public class ObatControl {
         oDao.insertObat(o);
     }
     
-    public void updateDataCustome(Obat c){
-        oDao.updateObat(c);
+    public void updateDataObat(Obat o){
+        oDao.updateObat(o);
     }
     
     public void deleteObat(int id){
