@@ -425,7 +425,7 @@ public class ObatView extends javax.swing.JFrame {
 
     private void searchInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInputKeyPressed
         // TODO add your handling code here:
-        enterKeyPressed(evt);
+        searchEnterKeyPressed(evt);
     }//GEN-LAST:event_searchInputKeyPressed
 
     /**
@@ -507,7 +507,7 @@ public class ObatView extends javax.swing.JFrame {
         }
     }
     
-    public void enterKeyPressed(KeyEvent e){
+    public void searchEnterKeyPressed(KeyEvent e){
         if(e.getKeyCode() == KeyEvent.VK_ENTER){
             searchBtn.doClick();
         }
