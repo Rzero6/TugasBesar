@@ -5,18 +5,14 @@
 
 package tugasbesarpbo;
 
-//import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-//import java.util.ArrayList;
 /**
   
  *
  * @author VICTUS
-    Reynold Kunarto             210711015   C
-    Febiola Ika Putri Wibowo    210711023   C
  */
 public class TugasBesarPBO {
 

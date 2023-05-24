@@ -5,28 +5,32 @@
 
 package model;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author VICTUS
  */
 public class Customer extends Orang {
-    private int usia;
+    private String tanggal_lahir;
     private String alamat;
 
-    public Customer(int id, String nama, String no_telepon, String tanggal_bergabung,int usia, String alamat) {
+    public Customer(int id, String nama, String no_telepon, String tanggal_bergabung,String tanggal_lahir, String alamat) {
         super(id, nama, no_telepon, tanggal_bergabung);
-        this.usia = usia;
+        this.tanggal_lahir = tanggal_lahir;
         this.alamat = alamat;
     }
 
-    public Customer(String nama, String no_telepon, String tanggal_bergabung,int usia, String alamat) {
+    public Customer(String nama, String no_telepon, String tanggal_bergabung,String tanggal_lahir, String alamat) {
         super(nama, no_telepon, tanggal_bergabung);
-        this.usia = usia;
+        this.tanggal_lahir = tanggal_lahir;
         this.alamat = alamat;
     }
 
-    public int getUsia() {
-        return usia;
+    public String getTanggal_lahir() {
+        return tanggal_lahir;
     }
 
     public String getAlamat() {
@@ -49,8 +53,8 @@ public class Customer extends Orang {
         return tanggal_bergabung;
     }
 
-    public void setUsia(int usia) {
-        this.usia = usia;
+    public void setTanggal_lahir(String tanggal_lahir) {
+        this.tanggal_lahir = tanggal_lahir;
     }
 
     public void setAlamat(String alamat) {
@@ -72,6 +76,14 @@ public class Customer extends Orang {
     public void setTanggal_bergabung(String tanggal_bergabung) {
         this.tanggal_bergabung = tanggal_bergabung;
     }
-
+    
+    public int getUmur(){
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate born;
+        LocalDate current = LocalDate.now();
+        born = LocalDate.parse(tanggal_lahir,format);
+        Period age = Period.between(born, current);
+        return (int) age.getYears();
+    }
     
 }

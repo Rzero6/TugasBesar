@@ -22,12 +22,12 @@ public class CustomerDAO {
     public void insertCustomer(Customer c){
         con = dbcon.makeConnection();
         
-        String sql = "INSERT INTO customer(nama_customer, no_telepon_customer, tanggal_bergabung, usia_customer, alamat_customer) "
+        String sql = "INSERT INTO customer(nama_customer, no_telepon_customer, tanggal_bergabung, tanggal_lahir_customer, alamat_customer) "
                 + "VALUES ('" 
                 + c.getNama()+ "', '"
                 + c.getNo_telepon() + "', '"
                 + c.getTanggal_bergabung() + "', '"
-                + c.getUsia() + "', '"
+                + c.getTanggal_lahir()+ "', '"
                 + c.getAlamat() + "')";
         
         System.out.println("Adding Customer ...");
@@ -51,7 +51,7 @@ public class CustomerDAO {
            String sql = "UPDATE customer SET nama_customer = '" + c.getNama()+ "', "
                 + "no_telepon_customer = '" + c.getNo_telepon() + "', "
                 + "tanggal_bergabung = '" + c.getTanggal_bergabung() + "', "
-                + "usia_customer = '" + c.getUsia() + "', "
+                + "usia_customer = '" + c.getTanggal_lahir()+ "', "
                 + "alamat_customer = '" + c.getAlamat() + "'"
                 + "WHERE (id_customer = '" + c.getId() + "')"; 
            System.out.println("Editing Customer ...");
@@ -95,8 +95,9 @@ public class CustomerDAO {
         String sql = "SELECT * FROM customer WHERE "
                 + "(id_customer LIKE '%"+query+"%'"
                 + "OR nama_customer LIKE '%"+query+"%'"
-                + "OR harga_customer LIKE '%"+query+"%'"
-                + "OR stok_customer LIKE '%"+query+"%')"
+                + "OR no_telepon_customer LIKE '%"+query+"%'"
+                + "OR tanggal_lahir_customer LIKE '%"+query+"%'"
+                + "OR alamat_customer LIKE '%"+query+"%')"
                 ;
         System.out.println("Mengambil data customer ...");
         
@@ -113,7 +114,7 @@ public class CustomerDAO {
                             rs.getString("nama_customer"),
                             rs.getString("no_telepon_customer"),
                             rs.getString("tanggal_bergabung"),
-                            rs.getInt("usia_customer"),
+                            rs.getString("tanggal_lahir_customer"),
                             rs.getString("alamat_customer")
                     );
                     list.add(c);

@@ -24,12 +24,14 @@ public class StafDAO {
         con = dbcon.makeConnection();
         
         String sql = "INSERT INTO staf "
-                + "(nama_staf, no_telepon_staf, tanggal_mulai_kerja, jabatan_staf) "
+                + "(nama_staf, no_telepon_staf, tanggal_mulai_kerja, jabatan_staf, username_staf, password_staf) "
                 + "VALUES ('" 
                 + s.getNama()+ "', '"
                 + s.getNo_telepon() + "', '"
                 + s.getTanggal_bergabung() + "', '"
-                + s.getJabatan() + "')";
+                + s.getJabatan() + "', '"
+                + s.getUsername() + "', '"
+                + s.getPassword() + "')";
         
         System.out.println("Adding Staf ...");
         
@@ -52,7 +54,9 @@ public class StafDAO {
            String sql = "UPDATE staf SET nama_staf = '" + s.getNama()+ "', "
                 + "no_telepon_staf = '" + s.getNo_telepon() + "', "
                 + "tanggal_mulai_kerja = '" + s.getTanggal_bergabung() + "', "
-                + "jabatan_staf = '" + s.getJabatan() + "'"
+                + "jabatan_staf = '" + s.getJabatan() + "', "
+                + "username_staf = '" + s.getUsername() + "', "
+                + "password_staf = '" + s.getPassword()+ "'"
                 + "WHERE (id_staf = '" + s.getId() + "')"; 
            System.out.println("Editing Staf ...");
                 
@@ -114,7 +118,9 @@ public class StafDAO {
                             rs.getString("nama_staf"),
                             rs.getString("no_telepon_staf"),
                             rs.getString("tanggal_mulai_kerja"),
-                            rs.getString("jabatan_staf")
+                            rs.getString("jabatan_staf"),
+                            rs.getString("username_staf"),
+                            rs.getString("password_staf")
                     );
                     list.add(s);
                 }

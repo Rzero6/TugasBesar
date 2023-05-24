@@ -26,7 +26,7 @@ public class TableStaf extends AbstractTableModel {
     }
     
     public int getColumnCount(){
-        return 5;
+        return 7;
     }
     
     public Object getValueAt(int rowIndex, int columnIndex){
@@ -41,7 +41,10 @@ public class TableStaf extends AbstractTableModel {
                 return list.get(rowIndex).getNo_telepon();
             case 4:
                 return list.get(rowIndex).getTanggal_bergabung();
-             
+            case 5:
+                return list.get(rowIndex).getUsername();
+            case 6:
+                return list.get(rowIndex).getPassword();
             default:
                 return null;
         }
@@ -59,6 +62,10 @@ public class TableStaf extends AbstractTableModel {
                 return "No Telepon";
             case 4:
                 return "Tanggal Bergabung";
+            case 5:
+                return "Username";
+            case 6:
+                return "Password";
             default:
                 return null;
         }

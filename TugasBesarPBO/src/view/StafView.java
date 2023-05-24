@@ -59,6 +59,10 @@ public class StafView extends javax.swing.JFrame {
         cancelBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
         tanggalMulaiKerja = new com.toedter.calendar.JDateChooser();
+        usernameLabel = new javax.swing.JLabel();
+        usernameInput = new javax.swing.JTextField();
+        passwordLabel = new javax.swing.JLabel();
+        passwordInput = new javax.swing.JTextField();
         headerPanel = new javax.swing.JPanel();
         containerPanel = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
@@ -133,38 +137,74 @@ public class StafView extends javax.swing.JFrame {
             }
         });
 
+        tanggalMulaiKerja.setBackground(new java.awt.Color(255, 255, 255));
+
+        usernameLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(51, 51, 51));
+        usernameLabel.setText("Username");
+
+        usernameInput.setBackground(new java.awt.Color(255, 255, 255));
+        usernameInput.setForeground(new java.awt.Color(51, 51, 51));
+        usernameInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameInputActionPerformed(evt);
+            }
+        });
+
+        passwordLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        passwordLabel.setForeground(new java.awt.Color(51, 51, 51));
+        passwordLabel.setText("Password");
+
+        passwordInput.setBackground(new java.awt.Color(255, 255, 255));
+        passwordInput.setForeground(new java.awt.Color(51, 51, 51));
+        passwordInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordInputActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
         container.setLayout(containerLayout);
         containerLayout.setHorizontalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(containerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(popupLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                    .addComponent(tanggalMulaiKerjaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(noTeleponInput, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                    .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(tanggalMulaiKerja, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(usernameInput, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                    .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                    .addComponent(passwordInput, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                     .addComponent(jabatanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jabatanInput, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                     .addComponent(namaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(namaStafInput)
                     .addComponent(hargaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(noTeleponInput, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(tanggalMulaiKerjaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tanggalMulaiKerja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(containerLayout.createSequentialGroup()
-                .addContainerGap(92, Short.MAX_VALUE)
+                    .addComponent(jabatanInput)
+                    .addComponent(popupLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelBtn)
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
                 .addComponent(saveBtn)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         containerLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelBtn, saveBtn});
+
+        containerLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {hargaLabel, noTeleponInput, passwordInput, passwordLabel, tanggalMulaiKerja, tanggalMulaiKerjaLabel, usernameInput, usernameLabel});
 
         containerLayout.setVerticalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(popupLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jabatanLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jabatanInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(namaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -177,15 +217,19 @@ public class StafView extends javax.swing.JFrame {
                 .addComponent(tanggalMulaiKerjaLabel)
                 .addGap(12, 12, 12)
                 .addComponent(tanggalMulaiKerja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(usernameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jabatanLabel)
+                .addComponent(usernameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(passwordLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jabatanInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtn)
                     .addComponent(cancelBtn))
-                .addGap(20, 20, 20))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout dataInputFrameLayout = new javax.swing.GroupLayout(dataInputFrame.getContentPane());
@@ -290,6 +334,9 @@ public class StafView extends javax.swing.JFrame {
                         .addComponent(searchBtn)))
                 .addContainerGap())
         );
+
+        containerPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addBtn, deleteBtn, editBtn});
+
         containerPanelLayout.setVerticalGroup(
             containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(containerPanelLayout.createSequentialGroup()
@@ -377,7 +424,8 @@ public class StafView extends javax.swing.JFrame {
         noTeleponInput.setText(tableModel.getValueAt(clickedRow, 3).toString());
         String sqlDate = tableModel.getValueAt(clickedRow, 4).toString();
         tanggalMulaiKerja.setDate(stringToDate(sqlDate));
-        
+        usernameInput.setText(tableModel.getValueAt(clickedRow, 5).toString());
+        passwordInput.setText(tableModel.getValueAt(clickedRow, 6).toString());
     }//GEN-LAST:event_stafTableMouseClicked
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
@@ -423,10 +471,10 @@ public class StafView extends javax.swing.JFrame {
         try{
             InputKosongException();
             if(action.equals("Tambah")){
-                Staf s = new Staf(namaStafInput.getText(), noTeleponInput.getText(), dateToString(tanggalMulaiKerja.getDate()), jabatanInput.getText());
+                Staf s = new Staf(namaStafInput.getText(), noTeleponInput.getText(), dateToString(tanggalMulaiKerja.getDate()), jabatanInput.getText(), usernameInput.getText(), passwordInput.getText());
                 stafControl.insertDataStaf(s);
             }else{
-                Staf s = new Staf(selectedId,namaStafInput.getText(), noTeleponInput.getText(), dateToString(tanggalMulaiKerja.getDate()), jabatanInput.getText());
+                Staf s = new Staf(selectedId,namaStafInput.getText(), noTeleponInput.getText(), dateToString(tanggalMulaiKerja.getDate()), jabatanInput.getText(), usernameInput.getText(), passwordInput.getText());
                 stafControl.updateDataStaf(s);
             }
             clearText();
@@ -434,11 +482,17 @@ public class StafView extends javax.swing.JFrame {
             setEditDeleteBtn(false);
         }catch(InputKosongException e){
             JOptionPane.showMessageDialog(this, e.message());
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "Input Harga dan Stok harus Angka !");
         }
         dataInputFrame.dispose();
     }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void usernameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameInputActionPerformed
+
+    private void passwordInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordInputActionPerformed
 
     private void jabatanInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jabatanInputActionPerformed
         // TODO add your handling code here:
@@ -495,6 +549,8 @@ public class StafView extends javax.swing.JFrame {
     private javax.swing.JLabel namaLabel;
     private javax.swing.JTextField namaStafInput;
     private javax.swing.JTextField noTeleponInput;
+    private javax.swing.JTextField passwordInput;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel popupLabel;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
@@ -502,12 +558,16 @@ public class StafView extends javax.swing.JFrame {
     private javax.swing.JTable stafTable;
     private com.toedter.calendar.JDateChooser tanggalMulaiKerja;
     private javax.swing.JLabel tanggalMulaiKerjaLabel;
+    private javax.swing.JTextField usernameInput;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 
     private void clearText(){
         namaStafInput.setText("");
         noTeleponInput.setText("");
         jabatanInput.setText("");
+        usernameInput.setText("");
+        passwordInput.setText("");
         tanggalMulaiKerja.setDate(new Date());
     }
 
@@ -517,7 +577,8 @@ public class StafView extends javax.swing.JFrame {
     }
 
     private void InputKosongException() throws InputKosongException{
-        if(namaStafInput.getText().isEmpty() || noTeleponInput.getText().isEmpty() || jabatanInput.getText().isEmpty()){
+        if(namaStafInput.getText().isEmpty() || noTeleponInput.getText().isEmpty() 
+        || jabatanInput.getText().isEmpty() || usernameInput.getText().isEmpty() || passwordInput.getText().isEmpty() ){
             throw new InputKosongException();
         }
     }

@@ -12,15 +12,37 @@ package model;
 public class Staf extends Orang {
     
     private String jabatan;
+    private String username;
+    private String password;
 
-    public Staf(int id, String nama, String no_telepon, String tanggal_bergabung,String jabatan) {
+    public Staf(int id, String nama, String no_telepon, String tanggal_bergabung,String jabatan,  String username, String password) {
         super(id, nama, no_telepon, tanggal_bergabung);
         this.jabatan = jabatan;
+        this.username = username;
+        this.password = password;
     }
 
-    public Staf(String nama, String no_telepon, String tanggal_bergabung,String jabatan) {
+    public Staf(String nama, String no_telepon, String tanggal_bergabung,String jabatan, String username, String password) {
         super(nama, no_telepon, tanggal_bergabung);
         this.jabatan = jabatan;
+        this.username = username;
+        this.password = password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getJabatan() {
