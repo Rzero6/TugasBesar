@@ -15,27 +15,31 @@ import table.TableStaf;
  * @author VICTUS
  */
 public class StafControl {
-    private StafDAO oDao = new StafDAO();
+    private StafDAO sDao = new StafDAO();
     
     public void insertDataStaf(Staf s){
-        oDao.insertStaf(s);
+        sDao.insertStaf(s);
     }
     
     public void updateDataStaf(Staf s){
-        oDao.updateStaf(s);
+        sDao.updateStaf(s);
     }
     
     public void deleteStaf(int id){
-        oDao.deleteStaf(id);
+        sDao.deleteStaf(id);
     }
     
     public List<Staf> showListStaf(String query){
-        List<Staf> dataStaf = oDao.showStafBySearch(query);
+        List<Staf> dataStaf = sDao.showStafBySearch(query);
         return dataStaf;
     }
     public TableStaf showDataStaf(String query){
-        List<Staf> dataStaf = oDao.showStafBySearch(query);
+        List<Staf> dataStaf = sDao.showStafBySearch(query);
         TableStaf tableStaf = new TableStaf(dataStaf);
         return tableStaf;
+    }
+    
+    public Staf loginStaf(String username, String password){
+        return sDao.loginStaf(username, password);
     }
 }

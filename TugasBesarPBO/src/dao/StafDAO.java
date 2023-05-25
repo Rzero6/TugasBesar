@@ -135,4 +135,36 @@ public class StafDAO {
         
         return list;
     }
+    
+    public Staf loginStaf(String username, String password){
+        con = dbcon.makeConnection();
+        Staf dataStaf = null;
+        String sql = "SELECT * FROM staf WHERE "
+                + "username_staf = '"+username+"' AND "
+                + "password_staf = '"+password+"'";
+        System.out.println("Mencari data staf ...");
+        try{
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            if(rs.next()){
+                dataStaf = new Staf(
+                            rs.getInt("id_staf"),
+                            rs.getString("nama_staf"),
+                            rs.getString("no_telepon_staf"),
+                            rs.getString("tanggal_mulai_kerja"),
+                            rs.getString("jabatan_staf"),
+                            rs.getString("username_staf"),
+                            rs.getString("password_staf")
+                    );
+            }
+            rs.close();
+            statement.close();
+        }catch(Exception e){
+            System.out.println("Error reading database ...");
+            System.out.println(e);
+        }
+        dbcon.closeConnection();
+        
+        return dataStaf;
+    }
 }
