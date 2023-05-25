@@ -28,6 +28,7 @@ public class TugasBesarPBO {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String sqlDateTime = currentDateTime.format(formatter);
         System.out.println("Current date and time: " + sqlDateTime);
+        System.out.println("Halooo");
 
     }
 
