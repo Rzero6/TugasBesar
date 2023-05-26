@@ -94,7 +94,7 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
             .addGroup(containerLayout.createSequentialGroup()
                 .addContainerGap(72, Short.MAX_VALUE)
                 .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usernameInput)
                     .addComponent(passwordInput)
                     .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -109,7 +109,8 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
         containerLayout.setVerticalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(containerLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -120,7 +121,7 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
                 .addComponent(jLabel2)
                 .addGap(2, 2, 2)
                 .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addComponent(loginBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -145,30 +146,29 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
             Staf loginData;
             String password = new String(passwordInput.getPassword());
             inputKosongException(password);
-            if(usernameInput.getText().equals("admin") && password.equals("admin")){
-                MasterView mv = new MasterView();
-                mv.setLocationRelativeTo(null);
-                this.dispose();
-                mv.setVisible(true);
-            }else{
-                loginData = stafControl.loginStaf(usernameInput.getText(), password);
-                if(loginData != null){
-                    switch(loginData.getJabatan().toLowerCase()){
-                        case "dokter":
+            loginData = stafControl.loginStaf(usernameInput.getText(), password);
+            if(loginData != null){
+                switch(loginData.getJabatan().toLowerCase()){
+                    case "dokter":
 
-                            break;
-                        case "kasir":
-                            ObatView ov = new ObatView();
-                            ov.setLocationRelativeTo(null);
-                            this.dispose();
-                            ov.setVisible(true);
-                            break;
-                        default:
-                        JOptionPane.showConfirmDialog(this, "Role tidak diketahui !", "Konfirmasi", JOptionPane.DEFAULT_OPTION);    
-                    }
-                }else{
-                    JOptionPane.showConfirmDialog(this, "Username/Password salah !","Konfirmasi", JOptionPane.DEFAULT_OPTION);
+                        break;
+                    case "kasir":
+                        ObatView ov = new ObatView();
+                        ov.setLocationRelativeTo(null);
+                        this.dispose();
+                        ov.setVisible(true);
+                        break;
+                    case "admin":
+                        MasterView mv = new MasterView();
+                        mv.setLocationRelativeTo(null);
+                        this.dispose();
+                        mv.setVisible(true);
+                        break;
+                    default:
+                    JOptionPane.showConfirmDialog(this, "Role tidak diketahui !", "Konfirmasi", JOptionPane.DEFAULT_OPTION);    
                 }
+            }else{
+                JOptionPane.showConfirmDialog(this, "Username/Password salah !","Konfirmasi", JOptionPane.DEFAULT_OPTION);
             }
         } catch (InputKosongException e) {
             JOptionPane.showMessageDialog(this, e.message());

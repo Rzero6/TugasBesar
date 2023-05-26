@@ -41,7 +41,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace pref="72" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel1" pref="255" max="32767" attributes="0"/>
+                      <Component id="jLabel1" alignment="1" min="-2" pref="255" max="-2" attributes="0"/>
                       <Component id="usernameInput" alignment="0" max="32767" attributes="0"/>
                       <Component id="passwordInput" alignment="0" max="32767" attributes="0"/>
                       <Component id="logo" max="32767" attributes="0"/>
@@ -60,7 +60,8 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jLabel1" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="logo" min="-2" pref="85" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -71,7 +72,7 @@
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                   <Component id="passwordInput" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="loginBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
