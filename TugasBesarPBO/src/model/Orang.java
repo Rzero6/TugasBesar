@@ -26,5 +26,8 @@ public abstract class Orang {
         this.no_telepon = no_telepon;
         this.tanggal_bergabung = tanggal_bergabung;
     }
-    
+    @Override
+    public String toString(){
+        return nama;
+    }
 }

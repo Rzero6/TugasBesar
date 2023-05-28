@@ -153,10 +153,10 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
 
                         break;
                     case "kasir":
-                        ObatView ov = new ObatView();
-                        ov.setLocationRelativeTo(null);
+                        KasirView kasirView = new KasirView(loginData);
+                        kasirView.setLocationRelativeTo(null);
                         this.dispose();
-                        ov.setVisible(true);
+                        kasirView.setVisible(true);
                         break;
                     case "admin":
                         MasterView mv = new MasterView();

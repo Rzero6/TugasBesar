@@ -374,8 +374,11 @@ public class StafView extends javax.swing.JFrame {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
         action = "Tambah";
+        setEditDeleteBtn(false);
+        stafTable.clearSelection();
         clearText();
         popupLabel.setText("Tambah Staf");
+        tanggalMulaiKerja.setEnabled(true);
         dataInputFrame.setLocationRelativeTo(null);
         dataInputFrame.pack();
         dataInputFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -386,6 +389,7 @@ public class StafView extends javax.swing.JFrame {
         // TODO add your handling code here:
         action = "Ubah";
         popupLabel.setText("Ubah Staf");
+        tanggalMulaiKerja.setEnabled(false);
         dataInputFrame.setLocationRelativeTo(null);
         dataInputFrame.pack();
         dataInputFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

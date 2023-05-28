@@ -53,7 +53,6 @@ public class StafDAO {
         
            String sql = "UPDATE staf SET nama_staf = '" + s.getNama()+ "', "
                 + "no_telepon_staf = '" + s.getNo_telepon() + "', "
-                + "tanggal_mulai_kerja = '" + s.getTanggal_bergabung() + "', "
                 + "jabatan_staf = '" + s.getJabatan() + "', "
                 + "username_staf = '" + s.getUsername() + "', "
                 + "password_staf = '" + s.getPassword()+ "'"

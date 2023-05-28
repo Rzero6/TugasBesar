@@ -50,8 +50,7 @@ public class CustomerDAO {
         
            String sql = "UPDATE customer SET nama_customer = '" + c.getNama()+ "', "
                 + "no_telepon_customer = '" + c.getNo_telepon() + "', "
-                + "tanggal_bergabung = '" + c.getTanggal_bergabung() + "', "
-                + "usia_customer = '" + c.getTanggal_lahir()+ "', "
+                + "tanggal_lahir_customer = '" + c.getTanggal_lahir()+ "', "
                 + "alamat_customer = '" + c.getAlamat() + "'"
                 + "WHERE (id_customer = '" + c.getId() + "')"; 
            System.out.println("Editing Customer ...");
