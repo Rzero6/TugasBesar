@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package view;
+package view.kasir;
 
 import control.CustomerControl;
 import exception.InputKosongException;
@@ -400,6 +400,7 @@ public class CustomerView extends javax.swing.JInternalFrame {
 
     private void tableCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCustomerMouseClicked
         // TODO add your handling code here:
+        
         setEditDeleteBtn(true);
         int clickRow = tableCustomer.getSelectedRow();
         TableModel tableModel = tableCustomer.getModel();

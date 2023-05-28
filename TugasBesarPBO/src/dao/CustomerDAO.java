@@ -129,4 +129,33 @@ public class CustomerDAO {
         
         return list;
     }
+    
+    public Customer searchCustomerByID(int id){
+        con = dbcon.makeConnection();
+        String sql = "SELECT * FROM customer WHERE id_customer = '" + id + "'";
+        System.out.println("Mengambil data Customer ....");
+        Customer data = null;
+        try{
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            if(rs.next()){
+                Customer c = new Customer(
+                            rs.getInt("id_customer"),
+                            rs.getString("nama_customer"),
+                            rs.getString("no_telepon_customer"),
+                            rs.getString("tanggal_bergabung"),
+                            rs.getString("tanggal_lahir_customer"),
+                            rs.getString("alamat_customer")
+                    );
+                data = c;
+            }
+            rs.close();
+            statement.close();
+        }catch(Exception e){
+            System.out.println("Error reading database ...");
+            System.out.println(e);
+        }
+        dbcon.closeConnection();
+        return data;
+    }
 }

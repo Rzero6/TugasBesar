@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view;
+package view.kasir;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import model.Staf;
+import view.LoginView;
 
 /**
  *
@@ -53,6 +54,7 @@ public class KasirView extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 153, 51));
 
         header.setBackground(new java.awt.Color(255, 153, 51));
+        header.setPreferredSize(new java.awt.Dimension(1200, 100));
 
         Title.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Title.setForeground(new java.awt.Color(255, 255, 255));
@@ -81,25 +83,25 @@ public class KasirView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(credential, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
                 .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
                 .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoutBtn)
                     .addComponent(Title)
                     .addComponent(credential))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         menuBar.setBackground(new java.awt.Color(0, 0, 102));
-        menuBar.setPreferredSize(new java.awt.Dimension(200, 0));
+        menuBar.setPreferredSize(new java.awt.Dimension(200, 620));
 
         periksaMenu.setBackground(new java.awt.Color(0, 0, 102));
         periksaMenu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -214,13 +216,13 @@ public class KasirView extends javax.swing.JFrame {
         menuBarLayout.setVerticalGroup(
             menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuBarLayout.createSequentialGroup()
-                .addContainerGap(157, Short.MAX_VALUE)
+                .addContainerGap(206, Short.MAX_VALUE)
                 .addComponent(periksaMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(bayarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(CustomerMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         menuBarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {CustomerMenu, bayarMenu, periksaMenu});
@@ -231,7 +233,7 @@ public class KasirView extends javax.swing.JFrame {
         containerView.setLayout(containerViewLayout);
         containerViewLayout.setHorizontalGroup(
             containerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
         containerViewLayout.setVerticalGroup(
             containerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,6 +245,7 @@ public class KasirView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
                 .addComponent(menuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(containerView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -252,11 +255,11 @@ public class KasirView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(menuBar, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
-                    .addComponent(containerView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(containerView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
 

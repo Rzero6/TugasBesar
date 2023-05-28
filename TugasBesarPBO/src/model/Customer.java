@@ -78,7 +78,7 @@ public class Customer extends Orang {
     }
     
     public int getUmur(){
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate born;
         LocalDate current = LocalDate.now();
         born = LocalDate.parse(tanggal_lahir,format);

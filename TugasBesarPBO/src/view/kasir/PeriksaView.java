@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package view;
+package view.kasir;
 
 import control.CustomerControl;
 import control.StafControl;
@@ -64,6 +64,9 @@ public class PeriksaView extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        keluhanInput = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
 
         setBorder(null);
 
@@ -120,6 +123,14 @@ public class PeriksaView extends javax.swing.JInternalFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Dokter");
 
+        keluhanInput.setColumns(20);
+        keluhanInput.setRows(5);
+        jScrollPane2.setViewportView(keluhanInput);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Keluhan/Gejala");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -139,10 +150,12 @@ public class PeriksaView extends javax.swing.JInternalFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(addBtn))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pasienDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dokterDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(pasienDropdown, 0, 240, Short.MAX_VALUE)
+                                    .addComponent(dokterDropdown, 0, 240, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -172,7 +185,11 @@ public class PeriksaView extends javax.swing.JInternalFrame {
                         .addComponent(jLabel3)
                         .addGap(2, 2, 2)
                         .addComponent(dokterDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)
+                        .addGap(1, 1, 1)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(addBtn)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -201,7 +218,7 @@ public class PeriksaView extends javax.swing.JInternalFrame {
         Customer selectedCustomer = listCustomer.get(selectedIndexCustomer);
         int selectedIndexDokter = dokterDropdown.getSelectedIndex();
         Staf selectedDokter = listDokter.get(selectedIndexDokter);
-        Transaksi t = new Transaksi(selectedCustomer, selectedDokter);
+        Transaksi t = new Transaksi(selectedCustomer, selectedDokter,keluhanInput.getText());
         transaksiControl.insertDataTransaksi(t);
         showPeriksa();
     }//GEN-LAST:event_addBtnActionPerformed
@@ -233,8 +250,11 @@ public class PeriksaView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea keluhanInput;
     private javax.swing.JComboBox<Customer> pasienDropdown;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;

@@ -26,7 +26,7 @@ public class TablePeriksa extends AbstractTableModel {
     }
     
     public int getColumnCount(){
-        return 3;
+        return 4;
     }
 
     @Override
@@ -39,9 +39,7 @@ public class TablePeriksa extends AbstractTableModel {
             case 2:
                 return list.get(rowIndex).getStatus();
             case 3:
-                return list.get(rowIndex).getTime();
-            case 4:
-                return list.get(rowIndex).getDate();
+                return list.get(rowIndex).getKeluhan();
             default:
                 return null;
         }
@@ -55,9 +53,7 @@ public class TablePeriksa extends AbstractTableModel {
             case 2:
                 return "Status";
             case 3: 
-                return "Jam";
-            case 4:
-                return "Tanggal";
+                return "Keluhan";
             default:
                 return null;
         }

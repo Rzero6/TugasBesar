@@ -36,4 +36,7 @@ public class CustomerControl {
         TableCustomer tableCustomer = new TableCustomer(dataCustomer);
         return tableCustomer;
     }
+    public Customer searchCustomerByID(int id){
+        return cDao.searchCustomerByID(id);
+    }
 }

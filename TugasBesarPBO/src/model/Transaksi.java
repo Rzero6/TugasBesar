@@ -22,22 +22,36 @@ public class Transaksi {
     private String tanggalTransaksi;
     private double biaya_klinik;
     private String status;
+    private String keluhan;
+    private String diagnosis;
     
-    public Transaksi(Customer pasien, Staf dokter) {
+    public Transaksi(Customer pasien, Staf dokter,String keluhan) {
         this.pasien = pasien;
         this.dokter = dokter;
         this.tanggalTransaksi = dateTimeNowinString();
         this.biaya_klinik = 0;
         this.status = "Menunggu";
+        this.keluhan = keluhan;
+        this.diagnosis = "Belum";
     }
 
-    public Transaksi(int id, Customer pasien, Staf dokter, String tanggalTransaksi, double biaya_klinik, String status) {
+    public Transaksi(int id, Customer pasien, Staf dokter, String tanggalTransaksi, double biaya_klinik, String status, String keluhan, String diagnosis) {
         this.id = id;
         this.pasien = pasien;
         this.dokter = dokter;
         this.tanggalTransaksi = tanggalTransaksi;
         this.biaya_klinik = biaya_klinik;
         this.status = status;
+        this.keluhan = keluhan;
+        this.diagnosis = diagnosis;
+    }
+
+    public Transaksi(int id, String tanggalTransaksi, double biaya_klinik, String status, String diagnosis) {
+        this.id = id;
+        this.tanggalTransaksi = tanggalTransaksi;
+        this.biaya_klinik = biaya_klinik;
+        this.status = status;
+        this.diagnosis = diagnosis;
     }
 
     public int getId() {
@@ -64,6 +78,14 @@ public class Transaksi {
         return status;
     }
 
+    public String getKeluhan() {
+        return keluhan;
+    }
+
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -87,6 +109,15 @@ public class Transaksi {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public void setKeluhan(String keluhan) {
+        this.keluhan = keluhan;
+    }
+
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+    
     public String dateTimeNowinString(){
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

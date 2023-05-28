@@ -4,6 +4,7 @@
  */
 package view;
 
+import view.kasir.KasirView;
 import control.StafControl;
 import exception.InputKosongException;
 import java.awt.event.KeyEvent;
@@ -12,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Staf;
+import view.dokter.DokterView;
 
 /**
  *
@@ -150,7 +152,10 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
             if(loginData != null){
                 switch(loginData.getJabatan().toLowerCase()){
                     case "dokter":
-
+                        DokterView dokterView = new DokterView(loginData);
+                        dokterView.setLocationRelativeTo(null);
+                        this.dispose();
+                        dokterView.setVisible(true);
                         break;
                     case "kasir":
                         KasirView kasirView = new KasirView(loginData);

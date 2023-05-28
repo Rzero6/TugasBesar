@@ -26,12 +26,14 @@ public class TransaksiDAO {
     public void insertTransaksi(Transaksi t){
         con = dbcon.makeConnection();
         
-        String sql = "INSERT INTO transaksi(id_customer, id_dokter, tanggal_transaksi, biaya_klinik, status)"
+        String sql = "INSERT INTO transaksi(id_customer, id_dokter, tanggal_transaksi, biaya_klinik, status, keluhan, diagnosis)"
                 + "VALUES ('"+t.getPasien().getId()
                 + "', '"+t.getDokter().getId()
                 + "', '"+t.getTanggalTransaksi()
                 + "', '"+t.getBiaya_klinik()
-                + "', '"+t.getStatus()+"')";
+                + "', '"+t.getStatus()
+                + "', '"+t.getKeluhan()
+                + "', '"+t.getDiagnosis()+"')";
         System.out.println("Adding Transaksi");
         try{
             Statement statement = con.createStatement();
@@ -52,7 +54,10 @@ public class TransaksiDAO {
                 + " WHERE (c.nama_customer LIKE '%" + query + "%'"
                 + " OR s.nama_staf LIKE '%" + query + "%'"
                 + " OR t.tanggal_transaksi LIKE '%" + query + "%'"
-                + " AND t.status LIKE '%" + status + "%')";
+                + " OR t.keluhan LIKE '%" + query + "%'"
+                + " OR t.diagnosis LIKE '%" + query + "%'"
+                + " OR t.biaya_klinik LIKE '%" + query + "%')"
+                + " AND t.status LIKE '%" + status + "%'";
         System.out.println("Mengambil data Transaksi ...");
         
         List<Transaksi> list = new ArrayList();
@@ -82,7 +87,9 @@ public class TransaksiDAO {
                            s,
                            rs.getString("t.tanggal_transaksi"),
                            rs.getDouble("t.biaya_klinik"),
-                           rs.getString("t.status")
+                           rs.getString("t.status"),
+                           rs.getString("t.keluhan"),
+                           rs.getString("t.diagnosis")
                    );
                    list.add(t);
                }
@@ -100,6 +107,7 @@ public class TransaksiDAO {
         con = dbcon.makeConnection();
         String sql = "UPDATE transaksi SET status = '"+t.getStatus()+"', "
                 + "biaya_klinik = '"+t.getBiaya_klinik()+"', "
+                + "diagnosis = '"+t.getDiagnosis()+"', "
                 + "tanggal_transaksi = '"+t.getTanggalTransaksi()+"' "
                 + "WHERE id_transaksi = '"+t.getId()+"'";
         System.out.println("Editing transaksi ...");

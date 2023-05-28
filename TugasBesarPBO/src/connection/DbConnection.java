@@ -19,6 +19,23 @@ public class DbConnection {
     public static final String URL = "jdbc:mysql://";
     public static final String PATH = "localhost:3306/tugas_besar_klinik";
     
+//    public static final String URL = "jdbc:mysql://sql12.freesqldatabase.com:3306/sql12621975";
+//    public static final String username = "sql12621975";
+//    public static final String password = "9Qgl7daCkx";
+//    
+//    public Connection makeConnection(){
+//        System.out.println("Opening database..");
+//        try {
+//            CON = DriverManager.getConnection(URL, username, password);
+//            System.out.println("success!");
+//        } catch (Exception e) {
+//            System.out.println("Error opening database..");
+//            System.out.println(e);
+//        }
+//        
+//        return CON;
+//    }
+    
     public Connection makeConnection(){
         System.out.println("Opening database..");
         try {
