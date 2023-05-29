@@ -24,5 +24,7 @@ public abstract class Perawatan {
         this.nama = nama;
         this.harga = harga;
     }
-    
+    public String toString(){
+        return nama;
+    }
 }

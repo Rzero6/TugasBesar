@@ -4,12 +4,19 @@
  */
 package view.dokter;
 
+import control.CustomerControl;
+import control.ObatControl;
+import control.TindakanControl;
 import control.TransaksiControl;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.TableModel;
+import model.Customer;
+import model.Obat;
 import model.Staf;
+import model.Tindakan;
 import model.Transaksi;
 
 /**
@@ -22,11 +29,19 @@ public class TindakanView extends javax.swing.JInternalFrame {
      * Creates new form PeriksaView
      */
     TransaksiControl transaksiControl = new TransaksiControl();
+    //DetailTransaksiControl detailTransaksiControl = new DetailTransaksiControl();
+    ObatControl obatControl = new ObatControl();
+    TindakanControl tindakanControl = new TindakanControl();
+    CustomerControl customerControl = new CustomerControl();
     Staf loginData = null;
-    String namaPasien = null;
+    Customer pasien = null;
     Transaksi temp=null;
     int selectedId = 0;
+    
     List<Transaksi> listTransaksi;
+    //List<DetailTransaksi> listDetailTransaksi;
+    List<Obat> listObat;
+    List<Tindakan> listTindakan;
     
     public TindakanView(Staf loginData) {
         initComponents();
@@ -34,8 +49,14 @@ public class TindakanView extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
         transaksiControl = new TransaksiControl();
+        //detailTransaksiControl = new DetailTransaksiControl();
+        obatControl = new ObatControl();
+        tindakanControl = new TindakanControl();
+        customerControl = new CustomerControl();
         this.loginData = loginData;
         showPasien();
+        setObatToDropdown();
+        setTindakanToDropdown();
     }
 
     /**
@@ -47,11 +68,163 @@ public class TindakanView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PerawatanMenu = new javax.swing.JFrame();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        namaPasienLabel = new javax.swing.JLabel();
+        umurPasienLabel = new javax.swing.JLabel();
+        checkoutBtn = new javax.swing.JButton();
+        obatDropdown = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jumlahObatInput = new javax.swing.JTextField();
+        obatAddBtn = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        tindakanDropdown = new javax.swing.JComboBox<>();
+        tindakanAddBtn = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableKeranjang = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePasien = new javax.swing.JTable();
         checkBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("PERAWATAN");
+
+        namaPasienLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        namaPasienLabel.setForeground(new java.awt.Color(0, 0, 0));
+        namaPasienLabel.setText("Nama Pasien");
+
+        umurPasienLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        umurPasienLabel.setForeground(new java.awt.Color(0, 0, 0));
+        umurPasienLabel.setText("Umur Pasien");
+
+        checkoutBtn.setText("Checkout");
+        checkoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkoutBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Obat");
+
+        jumlahObatInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jumlahObatInput.setText("0");
+
+        obatAddBtn.setText("Tambah");
+        obatAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                obatAddBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Tindakan");
+
+        tindakanAddBtn.setText("Tambah");
+        tindakanAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tindakanAddBtnActionPerformed(evt);
+            }
+        });
+
+        tableKeranjang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tableKeranjang);
+
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Keranjang");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 895, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(umurPasienLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namaPasienLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(checkoutBtn)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tindakanDropdown, javax.swing.GroupLayout.Alignment.LEADING, 0, 250, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(obatDropdown, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jumlahObatInput, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(obatAddBtn)
+                                    .addComponent(tindakanAddBtn))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(namaPasienLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(umurPasienLabel)
+                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(obatDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jumlahObatInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(obatAddBtn))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tindakanDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tindakanAddBtn))
+                        .addGap(63, 63, 63)
+                        .addComponent(checkoutBtn))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout PerawatanMenuLayout = new javax.swing.GroupLayout(PerawatanMenu.getContentPane());
+        PerawatanMenu.getContentPane().setLayout(PerawatanMenuLayout);
+        PerawatanMenuLayout.setHorizontalGroup(
+            PerawatanMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        PerawatanMenuLayout.setVerticalGroup(
+            PerawatanMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setBorder(null);
 
@@ -129,9 +302,7 @@ public class TindakanView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int clickedRow = tablePasien.getSelectedRow();
         TableModel tableModel =tablePasien.getModel();
-        int indexPasien = -1;
-        int indexDokter = -1;
-        namaPasien = tableModel.getValueAt(clickedRow, 1).toString();
+        pasien = customerControl.searchCustomerByID(Integer.parseInt(tableModel.getValueAt(clickedRow, 8).toString()));
         selectedId = Integer.parseInt(tableModel.getValueAt(clickedRow, 6).toString());
         String keluhan = tableModel.getValueAt(clickedRow, 3).toString();
         String tanggal = tableModel.getValueAt(clickedRow, 7).toString();
@@ -146,26 +317,85 @@ public class TindakanView extends javax.swing.JInternalFrame {
 
     private void checkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBtnActionPerformed
         // TODO add your handling code here:
-        int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Periksa "+namaPasien+"? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Periksa "+pasien.getNama()+"? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         switch(getAnswer){
             case 0:
-            
+            namaPasienLabel.setText("Nama\t: "+pasien.getNama());
+            umurPasienLabel.setText("Umur\t: "+Integer.toString(pasien.getUmur())+" Tahun");
+            Transaksi t = new Transaksi(temp.getId(), temp.getTanggalTransaksi(), temp.getBiaya_klinik(), temp.getStatus(), temp.getKeluhan());
+            transaksiControl.updateStatusDataTransaksi(t);
+            PerawatanMenu.setLocationRelativeTo(null);
+            PerawatanMenu.pack();
+            PerawatanMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            PerawatanMenu.setVisible(true);
             break;
             case 1:
             break;
         }
     }//GEN-LAST:event_checkBtnActionPerformed
 
+    private void checkoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutBtnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_checkoutBtnActionPerformed
+
+    private void obatAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obatAddBtnActionPerformed
+        // TODO add your handling code here:
+        try{
+            if(Integer.parseInt(jumlahObatInput.getText())>0){
+                
+            }else{
+                JOptionPane.showConfirmDialog(null, "Tidak Boleh Dibawah 0","Warning",JOptionPane.ERROR_MESSAGE);
+            }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_obatAddBtnActionPerformed
+
+    private void tindakanAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tindakanAddBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tindakanAddBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame PerawatanMenu;
     private javax.swing.JButton checkBtn;
+    private javax.swing.JButton checkoutBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jumlahObatInput;
+    private javax.swing.JLabel namaPasienLabel;
+    private javax.swing.JButton obatAddBtn;
+    private javax.swing.JComboBox<Obat> obatDropdown;
+    private javax.swing.JTable tableKeranjang;
     private javax.swing.JTable tablePasien;
+    private javax.swing.JButton tindakanAddBtn;
+    private javax.swing.JComboBox<Tindakan> tindakanDropdown;
+    private javax.swing.JLabel umurPasienLabel;
     // End of variables declaration//GEN-END:variables
 
     private void showPasien() {
         tablePasien.setModel(transaksiControl.showDataPasienPerDokter(loginData.getNama(), "Diperiksa"));
+    }
+
+    private void setObatToDropdown() {
+        listObat = obatControl.showListObat("");
+        for(int i=0; i<listObat.size(); i++){
+            obatDropdown.addItem(listObat.get(i));
+        }
+    }
+
+    private void setTindakanToDropdown() {
+        listTindakan = tindakanControl.showTindakanBySearch("");
+        for(int i=0; i<listTindakan.size();i++){
+            tindakanDropdown.addItem(listTindakan.get(i));
+        }
     }
 }

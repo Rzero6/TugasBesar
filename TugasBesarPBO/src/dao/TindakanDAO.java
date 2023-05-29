@@ -90,8 +90,7 @@ public class TindakanDAO {
         String sql = "SELECT * FROM tindakan WHERE "
                 + "(id_tindakan LIKE '%"+query+"%'"
                 + "OR nama_tindakan LIKE '%"+query+"%'"
-                + "OR harga_tindakan LIKE '%"+query+"%'"
-                + "OR stok_tindakan LIKE '%"+query+"%')"
+                + "OR harga_tindakan LIKE '%"+query+"%')"
                 ;
         System.out.println("Mengambil data tindakan ...");
         
