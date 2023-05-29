@@ -10,23 +10,23 @@ package model;
 
 public class DetailTransaksi {
     private int id_detail_transaksi;
-    private int id_transaksi;
-    private int id_obat;
-    private int id_tindakan;
+    private Transaksi transaksi;
+    private Obat obat;
+    private Tindakan tindakan;
     private int jumlah_obat;
 
-    public DetailTransaksi(int id_detail_transaksi, int id_transaksi, int id_obat, int id_tindakan, int jumlah_obat) {
+    public DetailTransaksi(int id_detail_transaksi, Transaksi transaksi, Obat obat, Tindakan tindakan, int jumlah_obat) {
         this.id_detail_transaksi = id_detail_transaksi;
-        this.id_transaksi = id_transaksi;
-        this.id_obat = id_obat;
-        this.id_tindakan = id_tindakan;
+        this.transaksi = transaksi;
+        this.obat = obat;
+        this.tindakan = tindakan;
         this.jumlah_obat = jumlah_obat;
     }
 
-    public DetailTransaksi(int id_transaksi, int id_obat, int id_tindakan, int jumlah_obat) {
-        this.id_transaksi = id_transaksi;
-        this.id_obat = id_obat;
-        this.id_tindakan = id_tindakan;
+    public DetailTransaksi(Transaksi transaksi, Obat obat, Tindakan tindakan, int jumlah_obat) {
+        this.transaksi = transaksi;
+        this.obat = obat;
+        this.tindakan = tindakan;
         this.jumlah_obat = jumlah_obat;
     }
 
@@ -38,30 +38,30 @@ public class DetailTransaksi {
         this.id_detail_transaksi = id_detail_transaksi;
     }
 
-    public int getId_transaksi() {
-        return id_transaksi;
+    public Transaksi getTransaksi() {
+        return transaksi;
     }
 
-    public void setId_transaksi(int id_transaksi) {
-        this.id_transaksi = id_transaksi;
+    public void setTransaksi(Transaksi transaksi) {
+        this.transaksi = transaksi;
     }
 
-    public int getId_obat() {
-        return id_obat;
+    public Obat getObat() {
+        return obat;
     }
 
-    public void setId_obat(int id_obat) {
-        this.id_obat = id_obat;
+    public void setObat(Obat obat) {
+        this.obat = obat;
     }
 
-    public int getId_tindakan() {
-        return id_tindakan;
+    public Tindakan getTindakan() {
+        return tindakan;
     }
 
-    public void setId_tindakan(int id_tindakan) {
-        this.id_tindakan = id_tindakan;
+    public void setTindakan(Tindakan tindakan) {
+        this.tindakan = tindakan;
     }
-    
+
     public int getJumlah_obat() {
         return jumlah_obat;
     }
@@ -69,5 +69,10 @@ public class DetailTransaksi {
     public void setJumlah_obat(int jumlah_obat) {
         this.jumlah_obat = jumlah_obat;
     }
+    
+    
+    
+
+    
     
 }
