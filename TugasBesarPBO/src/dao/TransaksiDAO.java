@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Customer;
+import model.DetailTransaksi;
 import model.Staf;
 import model.Transaksi;
 

@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
+import dao.Detail_TransaksiDAO;
 
 
 /**
@@ -24,6 +26,7 @@ public class Transaksi {
     private String status;
     private String keluhan;
     private String diagnosis;
+    private Detail_TransaksiDAO dtDAO;
     
     public Transaksi(Customer pasien, Staf dokter,String keluhan) {
         this.pasien = pasien;
@@ -128,5 +131,22 @@ public class Transaksi {
     }
     public String getTime(){
         return tanggalTransaksi.substring(11);
+    }
+    
+    public double totalHarga (int id){
+        double total=50000; 
+        List<DetailTransaksi> list = dtDAO.showDetailTransaksi("",id);
+        for(DetailTransaksi temp : list){
+            if(temp.getTransaksi().getId() == id && temp.getObat().getId() != 1 && temp.getTindakan().getId()!=1){
+                total += (temp.getObat().getHarga()*temp.getJumlah_obat()) + temp.getTindakan().getHarga();
+            }else if (temp.getTransaksi().getId() == id && temp.getObat().getId() == 1){
+                total += (0*temp.getJumlah_obat()) + temp.getTindakan().getHarga();
+            }else if (temp.getTransaksi().getId() == id && temp.getTindakan().getId()==1){
+                total += (temp.getObat().getHarga()*temp.getJumlah_obat()) + 0;
+            }else{
+                total = total;
+            }
+        }
+        return total;
     }
 }

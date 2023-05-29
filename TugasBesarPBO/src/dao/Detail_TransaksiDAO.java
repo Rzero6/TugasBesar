@@ -89,31 +89,6 @@ public class Detail_TransaksiDAO {
             
             if (rs!=null){
                 while(rs.next()){
-//                    Transaksi t = new Transaksi(
-//                            Integer.parseInt(rs.getString("t.id_transaksi")), 
-//                            rs.getString("t.tanggal_transaksi"), 
-//                            Double.parseDouble(rs.getString("t.biaya_klinik")), 
-//                            rs.getString("t.status"), 
-//                            rs.getString("t.diagnosis")
-//                    );
-//                    
-//                    Obat o = new Obat(Integer.parseInt(rs.getString("o.id_obat")),
-//                            rs.getString("o.nama_obat"), Double.parseDouble(rs.getString("o.harga_obat")),
-//                            Integer.parseInt(rs.getString("o.stok_obat"))
-//                            
-//                    );
-//                    
-//                    Tindakan td = new Tindakan (Integer.parseInt(rs.getString("td.id_tindakan")),
-//                            rs.getString("td.nama_tindakan"), 
-//                            Double.parseDouble(rs.getString("td.harga_tindakan"))
-//                    );
-//                    
-//                    DetailTransaksi dt = new DetailTransaksi(Integer.parseInt(rs.getString("dt.id_detail_transaksi"))
-//                            , t, 
-//                            o, 
-//                            td, 
-//                            Integer.parseInt(rs.getString("dt.jumlah_obat")));
-//                    list.add(dt);
                     Transaksi t = new Transaksi(
                             rs.getInt("t.id_transaksi"),
                             rs.getString("t.tanggal_transaksi"),

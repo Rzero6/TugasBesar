@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import model.Transaksi;
 
 /**
  *
@@ -28,7 +29,7 @@ public class TugasBesarPBO {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String sqlDateTime = currentDateTime.format(formatter);
         System.out.println("Current date and time: " + sqlDateTime);
-        System.out.println("Halooo");
+        System.out.println("Halooo");     
 
         System.out.println("ASASDA");
     }
