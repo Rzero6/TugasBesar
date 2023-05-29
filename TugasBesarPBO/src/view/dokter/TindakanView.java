@@ -5,6 +5,7 @@
 package view.dokter;
 
 import control.CustomerControl;
+import control.DetailTransaksiControl;
 import control.ObatControl;
 import control.TindakanControl;
 import control.TransaksiControl;
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.TableModel;
 import model.Customer;
+import model.DetailTransaksi;
 import model.Obat;
 import model.Staf;
 import model.Tindakan;
@@ -29,17 +31,17 @@ public class TindakanView extends javax.swing.JInternalFrame {
      * Creates new form PeriksaView
      */
     TransaksiControl transaksiControl = new TransaksiControl();
-    //DetailTransaksiControl detailTransaksiControl = new DetailTransaksiControl();
+    DetailTransaksiControl detailTransaksiControl = new DetailTransaksiControl();
     ObatControl obatControl = new ObatControl();
     TindakanControl tindakanControl = new TindakanControl();
     CustomerControl customerControl = new CustomerControl();
     Staf loginData = null;
     Customer pasien = null;
-    Transaksi temp=null;
+    Transaksi temp = null;
     int selectedId = 0;
     
     List<Transaksi> listTransaksi;
-    //List<DetailTransaksi> listDetailTransaksi;
+    List<DetailTransaksi> listDetailTransaksi;
     List<Obat> listObat;
     List<Tindakan> listTindakan;
     
@@ -49,7 +51,7 @@ public class TindakanView extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
         transaksiControl = new TransaksiControl();
-        //detailTransaksiControl = new DetailTransaksiControl();
+        detailTransaksiControl = new DetailTransaksiControl();
         obatControl = new ObatControl();
         tindakanControl = new TindakanControl();
         customerControl = new CustomerControl();
@@ -57,6 +59,7 @@ public class TindakanView extends javax.swing.JInternalFrame {
         showPasien();
         setObatToDropdown();
         setTindakanToDropdown();
+        
     }
 
     /**
@@ -84,6 +87,7 @@ public class TindakanView extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableKeranjang = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
+        deleteBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePasien = new javax.swing.JTable();
@@ -147,10 +151,17 @@ public class TindakanView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableKeranjang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableKeranjangMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tableKeranjang);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Keranjang");
+
+        deleteBtn.setText("Hapus");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -178,9 +189,12 @@ public class TindakanView extends javax.swing.JInternalFrame {
                                     .addComponent(obatAddBtn)
                                     .addComponent(tindakanAddBtn))))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(deleteBtn)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -192,10 +206,11 @@ public class TindakanView extends javax.swing.JInternalFrame {
                 .addComponent(namaPasienLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(umurPasienLabel)
-                .addGap(24, 24, 24)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(deleteBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -212,7 +227,7 @@ public class TindakanView extends javax.swing.JInternalFrame {
                         .addGap(63, 63, 63)
                         .addComponent(checkoutBtn))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PerawatanMenuLayout = new javax.swing.GroupLayout(PerawatanMenu.getContentPane());
@@ -306,7 +321,7 @@ public class TindakanView extends javax.swing.JInternalFrame {
         selectedId = Integer.parseInt(tableModel.getValueAt(clickedRow, 6).toString());
         String keluhan = tableModel.getValueAt(clickedRow, 3).toString();
         String tanggal = tableModel.getValueAt(clickedRow, 7).toString();
-        temp = new Transaksi(selectedId, tanggal, 0, "DiObati", "-");
+        temp = new Transaksi(selectedId, tanggal, 0, "DiObati", keluhan);
         if(evt.getClickCount()==2 && tablePasien.getSelectedRow()!=-1){
             checkBtn.setEnabled(true);
             checkBtn.doClick();
@@ -322,8 +337,9 @@ public class TindakanView extends javax.swing.JInternalFrame {
             case 0:
             namaPasienLabel.setText("Nama\t: "+pasien.getNama());
             umurPasienLabel.setText("Umur\t: "+Integer.toString(pasien.getUmur())+" Tahun");
-            Transaksi t = new Transaksi(temp.getId(), temp.getTanggalTransaksi(), temp.getBiaya_klinik(), temp.getStatus(), temp.getKeluhan());
-            transaksiControl.updateStatusDataTransaksi(t);
+            temp = new Transaksi(temp.getId(), temp.getTanggalTransaksi(), temp.getBiaya_klinik(), temp.getStatus(), temp.getKeluhan());
+            transaksiControl.updateStatusDataTransaksi(temp);
+            showKeranjang();
             PerawatanMenu.setLocationRelativeTo(null);
             PerawatanMenu.pack();
             PerawatanMenu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -343,9 +359,15 @@ public class TindakanView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try{
             if(Integer.parseInt(jumlahObatInput.getText())>0){
-                
+                int selectedIndexObat = obatDropdown.getSelectedIndex();
+                Obat selectedObat = listObat.get(selectedIndexObat);
+                int selectedIndexTindakan = tindakanDropdown.getSelectedIndex();
+                Tindakan selectedTindakan = listTindakan.get(selectedIndexTindakan);
+                DetailTransaksi dt = new DetailTransaksi(temp, selectedObat, selectedTindakan , Integer.parseInt(jumlahObatInput.getText()));
+                detailTransaksiControl.insertDetailTransaksi(dt);
+                showKeranjang();
             }else{
-                JOptionPane.showConfirmDialog(null, "Tidak Boleh Dibawah 0","Warning",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showConfirmDialog(null, "Tidak Boleh Dibawah 0","Warning",JOptionPane.DEFAULT_OPTION);
             }
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -356,11 +378,17 @@ public class TindakanView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tindakanAddBtnActionPerformed
 
+    private void tableKeranjangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeranjangMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tableKeranjangMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame PerawatanMenu;
     private javax.swing.JButton checkBtn;
     private javax.swing.JButton checkoutBtn;
+    private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -383,6 +411,10 @@ public class TindakanView extends javax.swing.JInternalFrame {
 
     private void showPasien() {
         tablePasien.setModel(transaksiControl.showDataPasienPerDokter(loginData.getNama(), "Diperiksa"));
+    }
+    
+    private void showKeranjang(){
+        tableKeranjang.setModel(detailTransaksiControl.showDataDetailTransaksi("",selectedId));
     }
 
     private void setObatToDropdown() {

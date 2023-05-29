@@ -16,7 +16,7 @@ import table.TableDetailTransaksi;
  *
  * @author USER
  */
-public class Detail_TransaksiContol {
+public class DetailTransaksiControl {
 
     private Detail_TransaksiDAO dtDAO = new Detail_TransaksiDAO();
 
@@ -28,13 +28,13 @@ public class Detail_TransaksiContol {
         dtDAO.deleteDetailTransaksi(id);
     }
 
-    public List<DetailTransaksi> showListDetailTransaksi(String query) {
-        List<DetailTransaksi> dataDetailTransaksi = dtDAO.showDetailTransaksi(query);
+    public List<DetailTransaksi> showListDetailTransaksi(String query, int id) {
+        List<DetailTransaksi> dataDetailTransaksi = dtDAO.showDetailTransaksi(query, id);
         return dataDetailTransaksi;
     }
 
-    public TableDetailTransaksi showDataDetailTransaksi(String query) {
-        List<DetailTransaksi> dataDetailTransaksi = dtDAO.showDetailTransaksi(query);
+    public TableDetailTransaksi showDataDetailTransaksi(String query, int id) {
+        List<DetailTransaksi> dataDetailTransaksi = dtDAO.showDetailTransaksi(query, id);
         TableDetailTransaksi tableDetailTransaksi = new TableDetailTransaksi(dataDetailTransaksi);
         return tableDetailTransaksi;
     }
