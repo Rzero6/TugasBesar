@@ -6,15 +6,15 @@ package view.dokter;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import listener.IButtonClickListener;
 import model.Staf;
 import view.LoginView;
-import view.kasir.PeriksaView;
 
 /**
  *
  * @author VICTUS
  */
-public class DokterView extends javax.swing.JFrame {
+public class DokterView extends javax.swing.JFrame implements IButtonClickListener {
 
     /**
      * Creates new form DokterView
@@ -258,9 +258,12 @@ public class DokterView extends javax.swing.JFrame {
         // TODO add your handling code here:
         pasienMenu.setBackground(selectedColor);
         diagnosisMenu.setBackground(defaultColor);
-        PasienView pasienView = new PasienView(loginData);
+//        PasienView pasienView = new PasienView(loginData);
+//        containerView.removeAll();
+//        containerView.add(pasienView).setVisible(true);
+        RawatView rawatView = new RawatView(loginData,this);
         containerView.removeAll();
-        containerView.add(pasienView).setVisible(true);
+        containerView.add(rawatView).setVisible(true);
     }//GEN-LAST:event_pasienMenuMouseClicked
 
     private void pasienMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pasienMenuMousePressed
@@ -328,4 +331,9 @@ public class DokterView extends javax.swing.JFrame {
     private javax.swing.JLabel logoutBtn;
     private javax.swing.JPanel pasienMenu;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void buttonClicked(boolean value) {
+        setEnabled(value);
+    }
 }

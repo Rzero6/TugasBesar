@@ -35,4 +35,7 @@ public class TransaksiControl {
         TablePasien tablePasien = new TablePasien(dataPasien);
         return tablePasien;
     }
+    public Transaksi searchTransaksi(int id){
+        return tDao.searchTransaksi(id);
+    }
 }

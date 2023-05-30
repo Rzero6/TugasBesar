@@ -124,4 +124,54 @@ public class TransaksiDAO {
         dbcon.closeConnection();
     }
     
+    public Transaksi searchTransaksi(int id){
+        con = dbcon.makeConnection();
+        String sql = "SELECT t.*,s.*,c.* FROM transaksi as t"
+                + " JOIN staf as s ON t.id_dokter = s.id_staf"
+                + " JOIN customer as c ON t.id_customer = c.id_customer"
+                + " WHERE (t.id_transaksi = "+id+")";
+        System.out.println("Mengambil data Transaksi ...");
+        
+        Transaksi transaksi = null;
+        try{
+           Statement statement = con.createStatement();
+           ResultSet rs = statement.executeQuery(sql);
+           if(rs.next()){
+                Customer c = new Customer(
+                        rs.getInt("c.id_customer"), 
+                        rs.getString("c.nama_customer"),
+                        rs.getString("c.no_telepon_customer"),
+                        rs.getString("c.tanggal_bergabung"), 
+                        rs.getString("c.tanggal_lahir_customer"), 
+                        rs.getString("c.alamat_customer"));
+                Staf s = new Staf(
+                        rs.getInt("s.id_staf"), 
+                        rs.getString("s.nama_staf"),
+                        rs.getString("s.no_telepon_staf"),
+                        rs.getString("s.tanggal_mulai_kerja"), 
+                        rs.getString("s.jabatan_staf"), 
+                        rs.getString("s.username_staf"),
+                        rs.getString("s.password_staf"));
+                Transaksi t = new Transaksi(
+                        rs.getInt("t.id_transaksi"),
+                        c,
+                        s,
+                        rs.getString("t.tanggal_transaksi"),
+                        rs.getDouble("t.biaya_klinik"),
+                        rs.getString("t.status"),
+                        rs.getString("t.keluhan"),
+                        rs.getString("t.diagnosis")
+                );
+                transaksi = t;
+               
+           }
+           rs.close();
+           statement.close();
+        }catch(Exception e){
+            System.out.println("Error reading database ...");
+            System.out.println(e);
+        }
+        dbcon.closeConnection();
+        return transaksi;
+    }
 }

@@ -35,7 +35,7 @@ public class Transaksi {
         this.biaya_klinik = 50000;
         this.status = "Menunggu";
         this.keluhan = keluhan;
-        this.diagnosis = "Belum";
+        this.diagnosis = "Belum ada";
     }
 
     public Transaksi(int id, Customer pasien, Staf dokter, String tanggalTransaksi, double biaya_klinik, String status, String keluhan, String diagnosis) {

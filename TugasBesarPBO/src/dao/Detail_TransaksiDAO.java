@@ -8,6 +8,8 @@ package dao;
 import connection.DbConnection;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.DetailTransaksi;
@@ -19,9 +21,6 @@ import model.Transaksi;
 /**
  *
  * @author dendy
- * Kelompok 14
- * Ryan Pratama Wijaya     | 210711008 | C
- * I Kadek Dendy Pramartha | 210711095 | C
  */
 public class Detail_TransaksiDAO {
     private DbConnection dbcon = new DbConnection();
@@ -49,17 +48,17 @@ public class Detail_TransaksiDAO {
         dbcon.closeConnection();
     }
     
-    public void deleteDetailTransaksi(int id) {
+    public void deleteAllDetailTransaksiFromIDTransaksi(int idTransaksi) {
 
         con = dbcon.makeConnection();
         
-        String sql = "DELETE FROM detail_transaksi WHERE id_transaksi = '" + id + "'";
+        String sql = "DELETE FROM detail_transaksi WHERE id_transaksi = '" + idTransaksi + "'";
         System.out.println("Deleting Detail Transaksi ...");
         
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(sql);
-            System.out.println("Delete " + result + " Detail Transaksi " + id);
+            System.out.println("Delete " + result + " Detail Transaksi " + idTransaksi);
             statement.close();
         } catch (Exception e) {
             System.out.println("Error deleting Detail Transaksi...");
@@ -76,10 +75,10 @@ public class Detail_TransaksiDAO {
              "LEFT JOIN detail_transaksi AS dt ON t.id_transaksi = dt.id_transaksi " +
              "LEFT JOIN obat AS o ON dt.id_obat = o.id_obat " +
              "LEFT JOIN tindakan AS td ON dt.id_tindakan = td.id_tindakan " +
-             "WHERE (t.id_transaksi = " + id + ") " +
-             "OR o.nama_obat LIKE '%" + query + "%' " +
+             "WHERE t.id_transaksi = " + id + " AND " +
+             "(o.nama_obat LIKE '%" + query + "%' " +
              "OR td.nama_tindakan LIKE '%" + query + "%' " +
-             "OR dt.jumlah_obat LIKE '%" + query + "%'";
+             "OR dt.jumlah_obat LIKE '%" + query + "%')";
         System.out.println("Mengambil data Detail Transaksi...");       
         List<DetailTransaksi> list = new ArrayList();
         
@@ -142,8 +141,6 @@ public class Detail_TransaksiDAO {
         
         return list;
     }
-    
-    
     
         
     
