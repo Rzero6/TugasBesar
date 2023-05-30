@@ -15,7 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.TableModel;
-import listener.IButtonClickListener;
 import model.DetailTransaksi;
 import model.Obat;
 import model.Staf;
@@ -33,7 +32,6 @@ public class RawatView extends javax.swing.JInternalFrame {
     DetailTransaksiControl detailTransaksiControl = new DetailTransaksiControl();
     ObatControl obatControl = new ObatControl();
     TindakanControl tindakanControl = new TindakanControl();
-    //CustomerControl customerControl = new CustomerControl();
     Staf loginData = null;
     Transaksi transaksi = null;
     int selectedId = 0;
@@ -49,6 +47,7 @@ public class RawatView extends javax.swing.JInternalFrame {
         initRawatDataInput();
         this.dokterView = dokterView;
         this.loginData = loginData;
+        
         transaksiControl = new TransaksiControl();
         detailTransaksiControl = new DetailTransaksiControl();
         obatControl = new ObatControl();
@@ -282,6 +281,7 @@ public class RawatView extends javax.swing.JInternalFrame {
         setBorder(null);
         setResizable(true);
         setFocusable(false);
+        setPreferredSize(new java.awt.Dimension(1050, 620));
 
         tablePasien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tablePasien.setModel(new javax.swing.table.DefaultTableModel(

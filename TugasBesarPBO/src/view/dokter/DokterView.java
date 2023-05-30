@@ -191,7 +191,7 @@ public class DokterView extends javax.swing.JFrame implements IButtonClickListen
         containerView.setLayout(containerViewLayout);
         containerViewLayout.setHorizontalGroup(
             containerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGap(0, 1050, Short.MAX_VALUE)
         );
         containerViewLayout.setVerticalGroup(
             containerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,13 +202,13 @@ public class DokterView extends javax.swing.JFrame implements IButtonClickListen
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1050, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(containerView))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 620, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(containerView))
         );
