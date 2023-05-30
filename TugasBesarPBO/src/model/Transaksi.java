@@ -32,7 +32,7 @@ public class Transaksi {
         this.pasien = pasien;
         this.dokter = dokter;
         this.tanggalTransaksi = dateTimeNowinString();
-        this.biaya_klinik = 0;
+        this.biaya_klinik = 50000;
         this.status = "Menunggu";
         this.keluhan = keluhan;
         this.diagnosis = "Belum";

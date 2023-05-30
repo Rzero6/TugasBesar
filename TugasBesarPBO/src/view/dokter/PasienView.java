@@ -238,7 +238,8 @@ public class PasienView extends javax.swing.JInternalFrame {
         selectedId = Integer.parseInt(tableModel.getValueAt(clickedRow, 6).toString());
         String keluhan = tableModel.getValueAt(clickedRow, 3).toString();
         String tanggal = tableModel.getValueAt(clickedRow, 7).toString();
-        temp = new Transaksi(selectedId, tanggal, 0, "Diperiksa", "");
+        double biaya_klinik = Double.parseDouble(tableModel.getValueAt(clickedRow, 10).toString());
+        temp = new Transaksi(selectedId, tanggal, biaya_klinik, "Diperiksa", keluhan);
         if(evt.getClickCount()==2 && tablePasien.getSelectedRow()!=-1){
             checkBtn.setEnabled(true);
             checkBtn.doClick();
@@ -249,7 +250,7 @@ public class PasienView extends javax.swing.JInternalFrame {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
-        Transaksi t = new Transaksi(temp.getId(), temp.getTanggalTransaksi(), 50000, temp.getStatus(), diagonosisInput.getText());
+        Transaksi t = new Transaksi(temp.getId(), temp.getTanggalTransaksi(), temp.getBiaya_klinik(), temp.getStatus(), diagonosisInput.getText());
         transaksiControl.updateStatusDataTransaksi(t);
         showPasien();
         DiagnosisMenu.dispose();

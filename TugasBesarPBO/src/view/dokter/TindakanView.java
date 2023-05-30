@@ -321,7 +321,7 @@ public class TindakanView extends javax.swing.JInternalFrame {
         selectedId = Integer.parseInt(tableModel.getValueAt(clickedRow, 6).toString());
         String keluhan = tableModel.getValueAt(clickedRow, 3).toString();
         String tanggal = tableModel.getValueAt(clickedRow, 7).toString();
-        temp = new Transaksi(selectedId, tanggal, 0, "DiObati", keluhan);
+        temp = new Transaksi(selectedId, tanggal, 50000, "DiObati", keluhan);
         if(evt.getClickCount()==2 && tablePasien.getSelectedRow()!=-1){
             checkBtn.setEnabled(true);
             checkBtn.doClick();

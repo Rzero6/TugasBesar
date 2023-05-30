@@ -49,6 +49,8 @@ public class TablePasien extends AbstractTableModel {
                 return list.get(rowIndex).getPasien().getId();
             case 9:
                 return list.get(rowIndex).getDokter().getId();
+            case 10:
+                return list.get(rowIndex).getBiaya_klinik();
             default:
                 return null;
         }
