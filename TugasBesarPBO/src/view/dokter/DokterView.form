@@ -61,7 +61,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="pasienMenu" max="32767" attributes="0"/>
-              <Component id="diagnosisMenu" max="32767" attributes="0"/>
+              <Component id="riwayatMenu" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -70,7 +70,7 @@
                   <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
                   <Component id="pasienMenu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="diagnosisMenu" min="-2" max="-2" attributes="0"/>
+                  <Component id="riwayatMenu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="350" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -126,15 +126,15 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="diagnosisMenu">
+        <Container class="javax.swing.JPanel" name="riwayatMenu">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="diagnosisMenuMouseClicked"/>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="diagnosisMenuMousePressed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="riwayatMenuMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="riwayatMenuMousePressed"/>
           </Events>
 
           <Layout>
@@ -170,7 +170,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Diagnosis"/>
+                <Property name="text" type="java.lang.String" value="Riwayat"/>
               </Properties>
             </Component>
           </SubComponents>

@@ -13,7 +13,6 @@ import exception.InputKosongException;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.TableModel;
 import listener.IButtonClickListener;
@@ -30,7 +29,6 @@ import model.Transaksi;
 public class RawatView extends javax.swing.JInternalFrame {
 
     private DokterView dokterView;
-    private IButtonClickListener listener;
     TransaksiControl transaksiControl = new TransaksiControl();
     DetailTransaksiControl detailTransaksiControl = new DetailTransaksiControl();
     ObatControl obatControl = new ObatControl();
@@ -49,7 +47,6 @@ public class RawatView extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
         initRawatDataInput();
-        this.listener = dokterView;
         this.dokterView = dokterView;
         this.loginData = loginData;
         transaksiControl = new TransaksiControl();
@@ -373,7 +370,7 @@ public class RawatView extends javax.swing.JInternalFrame {
                     RawatDataInput.setVisible(true);
                     showKeranjangObat();
                     showKeranjangTindakan();
-                    listener.buttonClicked(false);
+                    dokterView.buttonClicked(false);
                     break;
                 case 1:
                     break;
@@ -501,7 +498,7 @@ public class RawatView extends javax.swing.JInternalFrame {
         jumlahObatInput.setText("0");
         diagnosisInput.setText("");
         showPasien();
-        listener.buttonClicked(true);
+        dokterView.buttonClicked(true);
         RawatDataInput.setVisible(false);
     }
     

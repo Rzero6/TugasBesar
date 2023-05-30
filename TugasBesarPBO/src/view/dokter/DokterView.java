@@ -41,7 +41,7 @@ public class DokterView extends javax.swing.JFrame implements IButtonClickListen
         jPanel1 = new javax.swing.JPanel();
         pasienMenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        diagnosisMenu = new javax.swing.JPanel();
+        riwayatMenu = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         credential = new javax.swing.JLabel();
@@ -88,13 +88,13 @@ public class DokterView extends javax.swing.JFrame implements IButtonClickListen
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        diagnosisMenu.setBackground(new java.awt.Color(0, 0, 102));
-        diagnosisMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+        riwayatMenu.setBackground(new java.awt.Color(0, 0, 102));
+        riwayatMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                diagnosisMenuMouseClicked(evt);
+                riwayatMenuMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                diagnosisMenuMousePressed(evt);
+                riwayatMenuMousePressed(evt);
             }
         });
 
@@ -102,20 +102,20 @@ public class DokterView extends javax.swing.JFrame implements IButtonClickListen
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Diagnosis");
+        jLabel2.setText("Riwayat");
 
-        javax.swing.GroupLayout diagnosisMenuLayout = new javax.swing.GroupLayout(diagnosisMenu);
-        diagnosisMenu.setLayout(diagnosisMenuLayout);
-        diagnosisMenuLayout.setHorizontalGroup(
-            diagnosisMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, diagnosisMenuLayout.createSequentialGroup()
+        javax.swing.GroupLayout riwayatMenuLayout = new javax.swing.GroupLayout(riwayatMenu);
+        riwayatMenu.setLayout(riwayatMenuLayout);
+        riwayatMenuLayout.setHorizontalGroup(
+            riwayatMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, riwayatMenuLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        diagnosisMenuLayout.setVerticalGroup(
-            diagnosisMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(diagnosisMenuLayout.createSequentialGroup()
+        riwayatMenuLayout.setVerticalGroup(
+            riwayatMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(riwayatMenuLayout.createSequentialGroup()
                 .addContainerGap(12, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap(13, Short.MAX_VALUE))
@@ -126,7 +126,7 @@ public class DokterView extends javax.swing.JFrame implements IButtonClickListen
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pasienMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(diagnosisMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(riwayatMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +134,7 @@ public class DokterView extends javax.swing.JFrame implements IButtonClickListen
                 .addGap(138, 138, 138)
                 .addComponent(pasienMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(diagnosisMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(riwayatMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(350, Short.MAX_VALUE))
         );
 
@@ -257,10 +257,7 @@ public class DokterView extends javax.swing.JFrame implements IButtonClickListen
     private void pasienMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pasienMenuMouseClicked
         // TODO add your handling code here:
         pasienMenu.setBackground(selectedColor);
-        diagnosisMenu.setBackground(defaultColor);
-//        PasienView pasienView = new PasienView(loginData);
-//        containerView.removeAll();
-//        containerView.add(pasienView).setVisible(true);
+        riwayatMenu.setBackground(defaultColor);
         RawatView rawatView = new RawatView(loginData,this);
         containerView.removeAll();
         containerView.add(rawatView).setVisible(true);
@@ -270,18 +267,13 @@ public class DokterView extends javax.swing.JFrame implements IButtonClickListen
         // TODO add your handling code here:
     }//GEN-LAST:event_pasienMenuMousePressed
 
-    private void diagnosisMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diagnosisMenuMouseClicked
+    private void riwayatMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_riwayatMenuMouseClicked
         // TODO add your handling code here:
-        pasienMenu.setBackground(defaultColor);
-        diagnosisMenu.setBackground(selectedColor);
-        TindakanView tindakanView = new TindakanView(loginData);
-        containerView.removeAll();
-        containerView.add(tindakanView).setVisible(true);
-    }//GEN-LAST:event_diagnosisMenuMouseClicked
+    }//GEN-LAST:event_riwayatMenuMouseClicked
 
-    private void diagnosisMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diagnosisMenuMousePressed
+    private void riwayatMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_riwayatMenuMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_diagnosisMenuMousePressed
+    }//GEN-LAST:event_riwayatMenuMousePressed
 
     /**
      * @param args the command line arguments
@@ -322,7 +314,6 @@ public class DokterView extends javax.swing.JFrame implements IButtonClickListen
     private javax.swing.JLabel Title;
     private javax.swing.JDesktopPane containerView;
     private javax.swing.JLabel credential;
-    private javax.swing.JPanel diagnosisMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -330,6 +321,7 @@ public class DokterView extends javax.swing.JFrame implements IButtonClickListen
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel logoutBtn;
     private javax.swing.JPanel pasienMenu;
+    private javax.swing.JPanel riwayatMenu;
     // End of variables declaration//GEN-END:variables
 
     @Override
