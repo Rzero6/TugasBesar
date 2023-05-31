@@ -32,16 +32,18 @@ public class TableKeranjangTindakan extends AbstractTableModel{
     }
     
     public int getColumnCount() {
-        return 2;
+        return 3;
     }
     
     public Object getValueAt(int rowIndex, int columnIndex){
         switch (columnIndex) {
             case 0 :
+                return rowIndex+1;
+            case 1 :
                 return list.get(rowIndex).getTindakan().getNama();
-            case 1: 
+            case 2: 
                 return list.get(rowIndex).getTindakan().getHarga();
-            case 2 :
+            case 3 :
                 return list.get(rowIndex).getId_detail_transaksi();
             default :
                 return null;
@@ -51,8 +53,10 @@ public class TableKeranjangTindakan extends AbstractTableModel{
     public String getColumnName(int column){
         switch (column) {
             case 0:
-                return "Nama Tindakan";
+                return "No";
             case 1:
+                return "Nama Tindakan";
+            case 2:
                 return "Harga Tindakan";
             default :
                return null;

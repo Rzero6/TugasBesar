@@ -26,7 +26,13 @@ public class DetailTransaksiControl {
     public void insertDetailTransaksi(DetailTransaksi dt) {
         dtDAO.insertDetailTransaksi(dt);
     }
-
+    public void updateDetailTransaksi(DetailTransaksi dt) {
+        dtDAO.updateDetailTransaksi(dt);
+    }
+    
+    public void deleteDetailTransaksi(int idDetailTransaksi){
+        dtDAO.deleteDetailTransaksi(idDetailTransaksi);
+    }
     public void deleteAllDetailTransaksiFromIDTransaksi(int idTransaksi) {
         dtDAO.deleteAllDetailTransaksiFromIDTransaksi(idTransaksi);
     }
@@ -63,6 +69,11 @@ public class DetailTransaksiControl {
         }
         TableKeranjangTindakan tableDetailTransaksiTindakan = new TableKeranjangTindakan(filteredData);
         return tableDetailTransaksiTindakan;
+    }
+    
+    //Digunain waktu beli obat/tindakan agar bisa ngecek apakah sudah ada detail transaksi yang memiliki id obat / id tindakan yang sama
+    public int checkDetailSama(int idTransaksi, int idPerawatan,String jenis){
+        return dtDAO.checkDetailSama(idTransaksi, idPerawatan, jenis);
     }
 
 }

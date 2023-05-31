@@ -20,7 +20,7 @@ import model.DetailTransaksi;
  *
  * @author VICTUS
  */
-public class TableKeranjangObat extends AbstractTableModel {
+public class TableKeranjangObat extends AbstractTableModel{
     private List<DetailTransaksi> list;
 
     public TableKeranjangObat(List<DetailTransaksi> list) {
@@ -32,18 +32,20 @@ public class TableKeranjangObat extends AbstractTableModel {
     }
     
     public int getColumnCount() {
-        return 3;
+        return 4;
     }
     
     public Object getValueAt(int rowIndex, int columnIndex){
         switch (columnIndex) {
             case 0 :
-                return list.get(rowIndex).getObat().getNama();
+                return rowIndex+1;
             case 1 :
+                return list.get(rowIndex).getObat().getNama();
+            case 2 :
                 return list.get(rowIndex).getJumlah_obat();
-            case 2: 
+            case 3: 
                 return list.get(rowIndex).getObat().getHarga();
-            case 3 :
+            case 4 :
                 return list.get(rowIndex).getId_detail_transaksi();
             default :
                 return null;
@@ -53,10 +55,12 @@ public class TableKeranjangObat extends AbstractTableModel {
     public String getColumnName(int column){
         switch (column) {
             case 0:
-                return "Nama Obat";
+                return "No";
             case 1:
-                return "Jumlah Obat";
+                return "Nama Obat";
             case 2:
+                return "Jumlah Obat";
+            case 3:
                 return "Harga Obat";
             default :
                return null;

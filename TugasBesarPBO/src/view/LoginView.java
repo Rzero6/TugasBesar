@@ -76,7 +76,8 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
 
         usernameInput.setBackground(new java.awt.Color(255, 255, 255));
         usernameInput.setForeground(new java.awt.Color(51, 51, 51));
-        usernameInput.setPreferredSize(new java.awt.Dimension(75, 25));
+        usernameInput.setCaretColor(new java.awt.Color(0, 0, 102));
+        usernameInput.setPreferredSize(new java.awt.Dimension(75, 29));
         usernameInput.setSelectedTextColor(new java.awt.Color(0, 0, 102));
         usernameInput.setSelectionColor(new java.awt.Color(255, 153, 51));
         usernameInput.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -92,7 +93,8 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
 
         passwordInput.setBackground(new java.awt.Color(255, 255, 255));
         passwordInput.setForeground(new java.awt.Color(51, 51, 51));
-        passwordInput.setPreferredSize(new java.awt.Dimension(75, 25));
+        passwordInput.setCaretColor(new java.awt.Color(0, 0, 102));
+        passwordInput.setPreferredSize(new java.awt.Dimension(75, 29));
         passwordInput.setSelectedTextColor(new java.awt.Color(0, 0, 102));
         passwordInput.setSelectionColor(new java.awt.Color(255, 153, 51));
         passwordInput.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +111,7 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
         loginBtn.setBackground(new java.awt.Color(255, 153, 51));
         loginBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         loginBtn.setForeground(new java.awt.Color(255, 255, 255));
-        loginBtn.setText("Login");
+        loginBtn.setText("LOGIN");
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginBtnActionPerformed(evt);
@@ -131,7 +133,6 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
         passwordShow.setBackground(new java.awt.Color(255, 255, 255));
         passwordShow.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         passwordShow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/iconHide.png"))); // NOI18N
-        passwordShow.setPreferredSize(new java.awt.Dimension(25, 25));
         passwordShow.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 passwordShowMouseClicked(evt);
@@ -180,7 +181,7 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
                     .addComponent(passwordInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(passwordShow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordShow)
                     .addComponent(profile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(containerLayout.createSequentialGroup()
@@ -193,25 +194,25 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(containerLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(usernameInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(profile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usernameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(2, 2, 2)
-                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(passwordShow, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(passwordShow, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(loginBtn)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -5,11 +5,13 @@
 package view.dokter;
 
 
+import assets.RoundPanel;
 import control.DetailTransaksiControl;
 import control.ObatControl;
 import control.TindakanControl;
 import control.TransaksiControl;
 import exception.InputKosongException;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -34,7 +36,9 @@ public class RawatView extends javax.swing.JInternalFrame {
     TindakanControl tindakanControl = new TindakanControl();
     Staf loginData = null;
     Transaksi transaksi = null;
-    int selectedId = 0;
+    int selectedIdTransaksi = 0;
+    int selectedIdDetailTransaksi = 0;
+    String jenisPerawatan="";
     List<Transaksi> listTransaksi;
     List<Obat> listObat;
     List<Tindakan> listTindakan;
@@ -69,7 +73,6 @@ public class RawatView extends javax.swing.JInternalFrame {
 
         RawatDataInput = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         namaPasienLabel = new javax.swing.JLabel();
         umurPasienLabel = new javax.swing.JLabel();
         diagnosisLabel = new javax.swing.JLabel();
@@ -87,6 +90,10 @@ public class RawatView extends javax.swing.JInternalFrame {
         tableKeranjangObat = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         tableKeranjangTindakan = new javax.swing.JTable();
+        deletePanel = new RoundPanel();
+        DeleteBtn = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePasien = new javax.swing.JTable();
         rawatBtn = new javax.swing.JButton();
@@ -102,11 +109,6 @@ public class RawatView extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 102)));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("PERAWATAN");
 
         namaPasienLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         namaPasienLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -136,9 +138,11 @@ public class RawatView extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Tindakan");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Obat");
 
@@ -170,6 +174,17 @@ public class RawatView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableKeranjangObat.setRowHeight(30);
+        tableKeranjangObat.setSelectionBackground(new java.awt.Color(255, 153, 51));
+        tableKeranjangObat.setSelectionForeground(new java.awt.Color(0, 0, 102));
+        tableKeranjangObat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableKeranjangObatMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tableKeranjangObatMousePressed(evt);
+            }
+        });
         jScrollPane4.setViewportView(tableKeranjangObat);
 
         tableKeranjangTindakan.setModel(new javax.swing.table.DefaultTableModel(
@@ -183,23 +198,102 @@ public class RawatView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableKeranjangTindakan.setRowHeight(25);
+        tableKeranjangTindakan.setSelectionBackground(new java.awt.Color(255, 153, 51));
+        tableKeranjangTindakan.setSelectionForeground(new java.awt.Color(0, 0, 102));
+        tableKeranjangTindakan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableKeranjangTindakanMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tableKeranjangTindakanMousePressed(evt);
+            }
+        });
         jScrollPane5.setViewportView(tableKeranjangTindakan);
+
+        deletePanel.setBackground(new java.awt.Color(204, 204, 204));
+        deletePanel.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        DeleteBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DeleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons8-delete-30.png"))); // NOI18N
+        DeleteBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        DeleteBtn.setPreferredSize(new java.awt.Dimension(40, 40));
+        DeleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DeleteBtnMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                DeleteBtnMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                DeleteBtnMouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout deletePanelLayout = new javax.swing.GroupLayout(deletePanel);
+        deletePanel.setLayout(deletePanelLayout);
+        deletePanelLayout.setHorizontalGroup(
+            deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deletePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(DeleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        deletePanelLayout.setVerticalGroup(
+            deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deletePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(DeleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 102));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("PERAWATAN");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(diagnosisLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                .addComponent(diagnosisInput, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(umurPasienLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(namaPasienLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cancelBtn)
                                 .addGap(18, 18, 18)
                                 .addComponent(okBtn))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +304,9 @@ public class RawatView extends javax.swing.JInternalFrame {
                                             .addComponent(jumlahObatInput, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(addObatBtn))))
-                                .addGap(50, 50, 50)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(deletePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -218,16 +314,8 @@ public class RawatView extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(addTindakanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                        .addContainerGap(45, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(diagnosisLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                .addComponent(diagnosisInput, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(umurPasienLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(namaPasienLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap(50, Short.MAX_VALUE))))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelBtn, okBtn});
@@ -235,9 +323,9 @@ public class RawatView extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(namaPasienLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(umurPasienLabel)
@@ -256,15 +344,20 @@ public class RawatView extends javax.swing.JInternalFrame {
                     .addComponent(obatDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addObatBtn)
                     .addComponent(jumlahObatInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(deletePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn)
                     .addComponent(okBtn))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout RawatDataInputLayout = new javax.swing.GroupLayout(RawatDataInput.getContentPane());
@@ -294,7 +387,15 @@ public class RawatView extends javax.swing.JInternalFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tablePasien.setRowHeight(40);
         tablePasien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -302,6 +403,9 @@ public class RawatView extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tablePasien);
+        if (tablePasien.getColumnModel().getColumnCount() > 0) {
+            tablePasien.getColumnModel().getColumn(3).setPreferredWidth(10);
+        }
 
         rawatBtn.setText("Rawat");
         rawatBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -345,7 +449,7 @@ public class RawatView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int clickedRow = tablePasien.getSelectedRow();
         TableModel tableModel =tablePasien.getModel();
-        selectedId = Integer.parseInt(tableModel.getValueAt(clickedRow, 6).toString());
+        selectedIdTransaksi = Integer.parseInt(tableModel.getValueAt(clickedRow, 6).toString());
         
         if(evt.getClickCount()==2 && tablePasien.getSelectedRow()!=-1){
             rawatBtn.setEnabled(true);
@@ -357,7 +461,7 @@ public class RawatView extends javax.swing.JInternalFrame {
 
     private void rawatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rawatBtnActionPerformed
         // TODO add your handling code here:
-        transaksi = transaksiControl.searchTransaksi(selectedId);
+        transaksi = transaksiControl.searchTransaksi(selectedIdTransaksi);
         if(transaksi!=null){
             int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Periksa "+transaksi.getPasien().getNama()+"? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             switch(getAnswer){
@@ -385,7 +489,7 @@ public class RawatView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try{
             inputKosongException();
-            transaksi = new Transaksi(selectedId, transaksi.getTanggalTransaksi(), transaksi.getBiaya_klinik(), "Bayar", diagnosisInput.getText());
+            transaksi = new Transaksi(selectedIdTransaksi, transaksi.getTanggalTransaksi(), transaksi.getBiaya_klinik(), "Bayar", diagnosisInput.getText());
             transaksiControl.updateStatusDataTransaksi(transaksi);
             backToRawatView();
         }catch(InputKosongException e){
@@ -401,7 +505,13 @@ public class RawatView extends javax.swing.JInternalFrame {
                 Obat selectedObat = listObat.get(selectedIndexObat);
                 Tindakan tindakan = new Tindakan(1, "", 0);
                 DetailTransaksi dt = new DetailTransaksi(transaksi, selectedObat, tindakan, Integer.parseInt(jumlahObatInput.getText()));
-                detailTransaksiControl.insertDetailTransaksi(dt);
+                int idDetailTransaksi = detailTransaksiControl.checkDetailSama(transaksi.getId(), selectedObat.getId(), "obat");
+                if(idDetailTransaksi==0){//cek jika belum ada detail transaksi dengan obat sama
+                    detailTransaksiControl.insertDetailTransaksi(dt);
+                }else{
+                    dt.setId_detail_transaksi(idDetailTransaksi);
+                    detailTransaksiControl.updateDetailTransaksi(dt);
+                }
                 jumlahObatInput.setText("0");
                 showKeranjangObat();
             }else if(Integer.parseInt(jumlahObatInput.getText()) < 1){
@@ -421,7 +531,13 @@ public class RawatView extends javax.swing.JInternalFrame {
             Tindakan selectedTindakan = listTindakan.get(selectedIndexTindakan);
             Obat obat = new Obat(1, "", 0, 0);
             DetailTransaksi dt = new DetailTransaksi(transaksi, obat, selectedTindakan, 0);
-            detailTransaksiControl.insertDetailTransaksi(dt);
+            int idDetailTransaksi = detailTransaksiControl.checkDetailSama(transaksi.getId(), selectedTindakan.getId(), "tindakan");
+                if(idDetailTransaksi==0){//cek jika belum ada detail transaksi dengan tindakan sama
+                    detailTransaksiControl.insertDetailTransaksi(dt);
+                }else{
+                    dt.setId_detail_transaksi(idDetailTransaksi);
+                    detailTransaksiControl.updateDetailTransaksi(dt);
+                }
             showKeranjangTindakan();
         }else{
             errorDialog("Pilih Tindakan yang benar");
@@ -430,22 +546,85 @@ public class RawatView extends javax.swing.JInternalFrame {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
-        detailTransaksiControl.deleteAllDetailTransaksiFromIDTransaksi(selectedId);
+        detailTransaksiControl.deleteAllDetailTransaksiFromIDTransaksi(selectedIdTransaksi);
         backToRawatView();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    private void tableKeranjangObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeranjangObatMouseClicked
+        // TODO add your handling code here:
+        showDeleteBtn(true);
+        int clickedRow = tableKeranjangObat.getSelectedRow();
+        TableModel tableModel =tableKeranjangObat.getModel();
+        selectedIdDetailTransaksi = Integer.parseInt(tableModel.getValueAt(clickedRow, 4).toString());
+        jenisPerawatan = tableModel.getValueAt(clickedRow, 1).toString();
+    }//GEN-LAST:event_tableKeranjangObatMouseClicked
+
+    private void tableKeranjangTindakanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeranjangTindakanMouseClicked
+        // TODO add your handling code here:
+        showDeleteBtn(true);
+        int clickedRow = tableKeranjangTindakan.getSelectedRow();
+        TableModel tableModel =tableKeranjangTindakan.getModel();
+        selectedIdDetailTransaksi = Integer.parseInt(tableModel.getValueAt(clickedRow, 3).toString());
+        jenisPerawatan = tableModel.getValueAt(clickedRow, 1).toString();
+    }//GEN-LAST:event_tableKeranjangTindakanMouseClicked
+
+    private void tableKeranjangObatMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeranjangObatMousePressed
+        // TODO add your handling code here:
+        tableKeranjangTindakan.clearSelection();
+    }//GEN-LAST:event_tableKeranjangObatMousePressed
+
+    private void tableKeranjangTindakanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeranjangTindakanMousePressed
+        // TODO add your handling code here:
+        tableKeranjangObat.clearSelection();
+    }//GEN-LAST:event_tableKeranjangTindakanMousePressed
+
+    private void DeleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteBtnMouseClicked
+        // TODO add your handling code here:
+        if(!jenisPerawatan.isEmpty()){
+            int getAnswer = JOptionPane.showConfirmDialog(RawatDataInput,"Hapus "+jenisPerawatan+"? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            switch(getAnswer){
+                case 0:
+                    detailTransaksiControl.deleteDetailTransaksi(selectedIdDetailTransaksi);
+                    showKeranjangObat();
+                    showKeranjangTindakan();
+                    showDeleteBtn(false);
+                    selectedIdDetailTransaksi=0;
+                    jenisPerawatan="";
+                    break;
+                case 1:
+                    break;
+            }
+        }else{
+            errorDialog("Pilih yang ingin dihapus terlebih dahulu");
+        }
+        
+    }//GEN-LAST:event_DeleteBtnMouseClicked
+
+    private void DeleteBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteBtnMousePressed
+        // TODO add your handling code here:
+        deletePanel.setBackground(new Color(255,153,51));
+    }//GEN-LAST:event_DeleteBtnMousePressed
+
+    private void DeleteBtnMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteBtnMouseReleased
+        // TODO add your handling code here:
+        deletePanel.setBackground(new Color(204,204,204));
+    }//GEN-LAST:event_DeleteBtnMouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel DeleteBtn;
     private javax.swing.JFrame RawatDataInput;
     private javax.swing.JButton addObatBtn;
     private javax.swing.JButton addTindakanBtn;
     private javax.swing.JButton cancelBtn;
+    private javax.swing.JPanel deletePanel;
     private javax.swing.JTextField diagnosisInput;
     private javax.swing.JLabel diagnosisLabel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -467,13 +646,15 @@ public class RawatView extends javax.swing.JInternalFrame {
     }
 
     private void showKeranjangObat() {
-        tableKeranjangObat.setModel(detailTransaksiControl.showDataKeranjangObat("", selectedId));
+        tableKeranjangObat.setModel(detailTransaksiControl.showDataKeranjangObat("", selectedIdTransaksi));
     }
 
     private void showKeranjangTindakan() {
-        tableKeranjangTindakan.setModel(detailTransaksiControl.showDataKeranjangTindakan("", selectedId));
+        tableKeranjangTindakan.setModel(detailTransaksiControl.showDataKeranjangTindakan("", selectedIdTransaksi));
     }
-
+    private void showDeleteBtn(boolean value){
+        deletePanel.setEnabled(value);
+    }
     private void setObatDropdown() {
         listObat = obatControl.showListObat("");
         for(int i=0; i<listObat.size();i++){
@@ -492,6 +673,7 @@ public class RawatView extends javax.swing.JInternalFrame {
         RawatDataInput.setLocationRelativeTo(null);
         RawatDataInput.pack();
         RawatDataInput.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        showDeleteBtn(false);
     }
     
     private void backToRawatView(){
