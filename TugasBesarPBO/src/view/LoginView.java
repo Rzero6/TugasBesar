@@ -67,14 +67,13 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
         setUndecorated(true);
         setResizable(false);
 
-        container.setBackground(new java.awt.Color(0, 0, 102));
+        container.setBackground(new java.awt.Color(219, 223, 234));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(130, 148, 196));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LOGIN");
 
-        usernameInput.setBackground(new java.awt.Color(255, 255, 255));
         usernameInput.setForeground(new java.awt.Color(51, 51, 51));
         usernameInput.setCaretColor(new java.awt.Color(0, 0, 102));
         usernameInput.setPreferredSize(new java.awt.Dimension(75, 29));
@@ -91,7 +90,6 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
             }
         });
 
-        passwordInput.setBackground(new java.awt.Color(255, 255, 255));
         passwordInput.setForeground(new java.awt.Color(51, 51, 51));
         passwordInput.setCaretColor(new java.awt.Color(0, 0, 102));
         passwordInput.setPreferredSize(new java.awt.Dimension(75, 29));
@@ -141,7 +139,7 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
 
         profile.setPreferredSize(new java.awt.Dimension(25, 25));
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 51));
+        jPanel1.setBackground(new java.awt.Color(130, 148, 196));
 
         closeBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         closeBtn.setForeground(new java.awt.Color(255, 255, 255));
