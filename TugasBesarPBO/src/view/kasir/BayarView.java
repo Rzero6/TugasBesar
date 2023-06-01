@@ -4,7 +4,16 @@
  */
 package view.kasir;
 
+import control.CustomerControl;
+import control.StafControl;
+import control.TransaksiControl;
+import java.awt.event.KeyEvent;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import model.Customer;
+import model.Staf;
+import table.TableBayar;
 
 /**
  *
@@ -15,11 +24,21 @@ public class BayarView extends javax.swing.JInternalFrame {
     /**
      * Creates new form PeriksaView
      */
+    private StafControl stafControl;
+    private CustomerControl customerControl;
+    private TransaksiControl transaksiControl;
+    String action = null;
+    List<Customer> listCustomer;
+    List<Staf> listDokter;
     public BayarView() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
+        stafControl = new StafControl();
+        customerControl = new CustomerControl();
+        transaksiControl = new TransaksiControl();
+        showPembayaran();
     }
 
     /**
@@ -31,23 +50,176 @@ public class BayarView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablePembayaran = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        searchInput = new javax.swing.JTextField();
+        searchBtn = new javax.swing.JButton();
+        bayarBtn = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 838, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 536, Short.MAX_VALUE)
+        );
+
         setBorder(null);
+
+        TablePembayaran.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        TablePembayaran.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablePembayaranMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TablePembayaran);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("PEMBAYARAN CUSTOMER");
+
+        searchInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchInputKeyPressed(evt);
+            }
+        });
+
+        searchBtn.setText("Cari");
+        searchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchBtnMouseClicked(evt);
+            }
+        });
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
+
+        bayarBtn.setText("Bayar");
+        bayarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bayarBtnMouseClicked(evt);
+            }
+        });
+        bayarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bayarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(51, 51, 51)
+                        .addComponent(searchInput)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(searchBtn)
+                    .addComponent(bayarBtn))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 596, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(searchBtn)
+                            .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(bayarBtn)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void showPembayaran() {
+        TablePembayaran.setModel(transaksiControl.showDataPembayaranCustomer("", "Bayar"));
+    }
+    
+    public void searchEnterKeyPressed(KeyEvent e){
+        if(e.getKeyCode() == KeyEvent.VK_ENTER){
+            searchBtn.doClick();
+        }
+    }
+        
+    private void TablePembayaranMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablePembayaranMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_TablePembayaranMouseClicked
+
+    private void searchInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInputKeyPressed
+        // TODO add your handling code here:
+        searchEnterKeyPressed(evt);
+    }//GEN-LAST:event_searchInputKeyPressed
+
+    private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_searchBtnMouseClicked
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        // TODO add your handling code here:
+        try{
+            TableBayar bayar = transaksiControl.showDataPembayaranCustomer(searchInput.getText(), "Bayar");
+            if(bayar.getRowCount() == 0){
+                searchInput.setText("");
+                JOptionPane.showConfirmDialog(null, "Data tidak ditemukan", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
+            }else{
+                TablePembayaran.setModel(bayar);
+            }
+        }catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void bayarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bayarBtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bayarBtnMouseClicked
+
+    private void bayarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bayarBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablePembayaran;
+    private javax.swing.JButton bayarBtn;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton searchBtn;
+    private javax.swing.JTextField searchInput;
     // End of variables declaration//GEN-END:variables
 }

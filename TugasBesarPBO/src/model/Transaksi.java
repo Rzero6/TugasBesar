@@ -23,7 +23,7 @@ public class Transaksi {
     private String status;
     private String keluhan;
     private String diagnosis;
-    private Detail_TransaksiDAO dtDAO;
+    private Detail_TransaksiDAO dtDAO = new Detail_TransaksiDAO();
     private List<DetailTransaksi> detailTransaksiList;
 
     public Transaksi(Customer pasien, Staf dokter, String keluhan) {

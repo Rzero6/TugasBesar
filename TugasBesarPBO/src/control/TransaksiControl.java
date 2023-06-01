@@ -8,6 +8,7 @@ package control;
 import dao.TransaksiDAO;
 import java.util.List;
 import model.Transaksi;
+import table.TableBayar;
 import table.TablePasien;
 import table.TablePeriksa;
 
@@ -34,6 +35,12 @@ public class TransaksiControl {
         List<Transaksi> dataPasien = tDao.showTransaksi(query, status);
         TablePasien tablePasien = new TablePasien(dataPasien);
         return tablePasien;
+    }
+    
+    public TableBayar showDataPembayaranCustomer (String query, String status){
+        List<Transaksi> dataPembayaran = tDao.showTransaksi(query, status);
+        TableBayar tablePembayaran = new TableBayar(dataPembayaran);
+        return tablePembayaran;
     }
     public Transaksi searchTransaksi(int id){
         return tDao.searchTransaksi(id);
