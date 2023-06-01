@@ -9,10 +9,13 @@ import control.StafControl;
 import control.TransaksiControl;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.TableModel;
 import model.Customer;
 import model.Staf;
+import model.Transaksi;
 import table.TableBayar;
 
 /**
@@ -30,6 +33,8 @@ public class BayarView extends javax.swing.JInternalFrame {
     String action = null;
     List<Customer> listCustomer;
     List<Staf> listDokter;
+    int selectedIdTransaksi = 0;
+    
     public BayarView() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
@@ -39,6 +44,9 @@ public class BayarView extends javax.swing.JInternalFrame {
         customerControl = new CustomerControl();
         transaksiControl = new TransaksiControl();
         showPembayaran();
+        notaView.setLocationRelativeTo(null);
+        notaView.pack();
+        notaView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -50,7 +58,13 @@ public class BayarView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFrame1 = new javax.swing.JFrame();
+        notaView = new javax.swing.JFrame();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txaNota = new javax.swing.JTextArea();
+        cancelBtn = new javax.swing.JButton();
+        lastBayarBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablePembayaran = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -58,15 +72,77 @@ public class BayarView extends javax.swing.JInternalFrame {
         searchBtn = new javax.swing.JButton();
         bayarBtn = new javax.swing.JButton();
 
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 838, Short.MAX_VALUE)
+        notaView.setBackground(new java.awt.Color(0, 0, 102));
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
+
+        txaNota.setEditable(false);
+        txaNota.setBackground(new java.awt.Color(255, 255, 255));
+        txaNota.setColumns(20);
+        txaNota.setRows(5);
+        jScrollPane2.setViewportView(txaNota);
+
+        cancelBtn.setText("Batal");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
+        lastBayarBtn.setText("Bayar");
+        lastBayarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lastBayarBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("NOTA PEMBAYARAN");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(lastBayarBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cancelBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 536, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelBtn)
+                    .addComponent(lastBayarBtn))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout notaViewLayout = new javax.swing.GroupLayout(notaView.getContentPane());
+        notaView.getContentPane().setLayout(notaViewLayout);
+        notaViewLayout.setHorizontalGroup(
+            notaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        notaViewLayout.setVerticalGroup(
+            notaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         setBorder(null);
@@ -148,12 +224,10 @@ public class BayarView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(searchBtn)
                             .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -176,6 +250,10 @@ public class BayarView extends javax.swing.JInternalFrame {
         
     private void TablePembayaranMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablePembayaranMouseClicked
         // TODO add your handling code here:
+        
+        int clickedRow = TablePembayaran.getSelectedRow();
+        TableModel tableModel = TablePembayaran.getModel();
+        selectedIdTransaksi = Integer.parseInt(tableModel.getValueAt(clickedRow, 0).toString());
 
     }//GEN-LAST:event_TablePembayaranMouseClicked
 
@@ -210,16 +288,47 @@ public class BayarView extends javax.swing.JInternalFrame {
 
     private void bayarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayarBtnActionPerformed
         // TODO add your handling code here:
+        Transaksi transaksi = transaksiControl.searchTransaksi(selectedIdTransaksi);
+        if(transaksi!=null){
+            int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Bayar "+transaksi.getPasien().getNama()+"? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            switch(getAnswer){
+                case 0:
+                    txaNota.setText(transaksi.showNota(selectedIdTransaksi));
+                    notaView.setLocationRelativeTo(null);
+                    notaView.pack();
+                    notaView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    notaView.setVisible(true);
+                    break;
+                case 1 :
+                    break;
+            }
+        }
     }//GEN-LAST:event_bayarBtnActionPerformed
+
+    private void lastBayarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastBayarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lastBayarBtnActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // TODO add your handling code here:
+        notaView.setVisible(false);
+
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablePembayaran;
     private javax.swing.JButton bayarBtn;
-    private javax.swing.JFrame jFrame1;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton lastBayarBtn;
+    private javax.swing.JFrame notaView;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
+    private javax.swing.JTextArea txaNota;
     // End of variables declaration//GEN-END:variables
 }

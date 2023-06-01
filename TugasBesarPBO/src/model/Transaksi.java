@@ -25,6 +25,8 @@ public class Transaksi {
     private String diagnosis;
     private Detail_TransaksiDAO dtDAO = new Detail_TransaksiDAO();
     private List<DetailTransaksi> detailTransaksiList;
+    
+    String stringBuilder = "";
 
     public Transaksi(Customer pasien, Staf dokter, String keluhan) {
         this.pasien = pasien;
@@ -150,39 +152,39 @@ public class Transaksi {
         return total;
     }
 
-    public void showNota(int id) {
+    public String showNota(int id) {
         List<DetailTransaksi> list = dtDAO.showDetailTransaksi("", id);
-        System.out.println("===============================");
-        System.out.println("Atma Universal Clinic");
-        System.out.println("Jl.Seturan Raya 0567, Kab. Sleman, DI Yogyakarta");
-        System.out.println("Telp: 081227212892");
-        System.out.println("===============================");
-//        System.out.println("No. Struk: " + receiptNumber);
-        System.out.println("Tanggal: " + getDate() + "\t\t\t" + getTime());
-        System.out.println(getId());
-        System.out.println("===============================");
-        System.out.println("Pelanggan: " + getPasien().getNama());
-        System.out.println("Dokter: " + getDokter());
-        System.out.println("Diagnosis: " + getDiagnosis());
-        System.out.println("===============================");
-        System.out.println("Perawatan :");
-        System.out.println("Obat\t\tJumlah\tHarga\t\tTotal");
-        System.out.println("-----------------------------");
+        String text = "";
+        text+="=====================================================\n";
+        text+="\t\tAtma Universal Clinic\n";
+        text+="\tJl.Seturan Raya 0567, Kab. Sleman, DI Yogyakarta\n";
+        text+="\t\tTelp: 081227212892\n";
+        text+="=====================================================\n";
+//        text+="No. Struk: " + receiptNumber);
+        text+="Tanggal: " + getDate() + "  " + getTime() + "\n";
+//        text+=getId());
+        text+="=====================================================\n";
+        text+="Pelanggan: " + getPasien().getNama() + "\n";
+        text+="Dokter: " + getDokter() + "\n";
+        text+="Diagnosis: " + getDiagnosis() + "\n";
+        text+="=====================================================\n";
+        text+="Perawatan :\n";
+        text+="Obat\tHarga\tTotal\n";
+        text+="------------------------------------------------------------------------------------------------\n";
         for (DetailTransaksi temp : list) {
 
-            System.out.println(temp.getObat().getNama() + "\t" + temp.getJumlah_obat() + "\t" + temp.getObat().getHarga() + "\t\t" + temp.getObat().getHarga() * temp.getJumlah_obat());
-            System.out.println("-----------------------------");
-            System.out.println("Tindakan\t\t\t");
-            System.out.println("-----------------------------");
+            text+=temp.getObat().getNama() + "\t" + temp.getJumlah_obat() + " x " + temp.getObat().getHarga() + "\tRp " + temp.getObat().getHarga() * temp.getJumlah_obat() +"\n";
+            text+="------------------------------------------------------------------------------------------------\n";
         }
-        System.out.println("Tindakan\t\t\t");
-        System.out.println("-----------------------------");
+        text+="Tindakan:\t\t\t\n";
+        text+="------------------------------------------------------------------------------------------------\n";
         for (DetailTransaksi temp : list) {
 
-            System.out.println(temp.getTindakan().getNama() + "\t" + temp.getTindakan().getHarga());
-            System.out.println("-----------------------------");
-            System.out.println("Tindakan\t\t\t");
-            System.out.println("-----------------------------");
+            text+=temp.getTindakan().getNama() + "\t\tRp " + temp.getTindakan().getHarga()+ "\n";
+            text+="------------------------------------------------------------------------------------------------\n";
         }
+        text+= "Biaya Klinik \t\tRp "+biaya_klinik;
+        text+= "\n\nTotal Harga \t\tRp "+totalHarga(id);
+        return text;
     }
 }

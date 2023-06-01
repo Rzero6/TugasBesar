@@ -111,15 +111,12 @@ public class RawatView extends javax.swing.JInternalFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         namaPasienLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        namaPasienLabel.setForeground(new java.awt.Color(0, 0, 0));
         namaPasienLabel.setText("Nama Pasien");
 
         umurPasienLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        umurPasienLabel.setForeground(new java.awt.Color(0, 0, 0));
         umurPasienLabel.setText("Umur Pasien");
 
         diagnosisLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        diagnosisLabel.setForeground(new java.awt.Color(0, 0, 0));
         diagnosisLabel.setText("Diagnosis      ");
 
         diagnosisInput.setPreferredSize(new java.awt.Dimension(648, 22));
@@ -139,11 +136,9 @@ public class RawatView extends javax.swing.JInternalFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Tindakan");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Obat");
 
         jumlahObatInput.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -415,6 +410,11 @@ public class RawatView extends javax.swing.JInternalFrame {
         });
 
         riwayatBtn.setText("Riwayat");
+        riwayatBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                riwayatBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -609,6 +609,10 @@ public class RawatView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         deletePanel.setBackground(new Color(204,204,204));
     }//GEN-LAST:event_DeleteBtnMouseReleased
+
+    private void riwayatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_riwayatBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_riwayatBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
