@@ -7,6 +7,7 @@ package view.kasir;
 import control.CustomerControl;
 import control.StafControl;
 import control.TransaksiControl;
+import exception.InputKosongException;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -214,13 +215,24 @@ public class PeriksaView extends javax.swing.JInternalFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
-        int selectedIndexCustomer = pasienDropdown.getSelectedIndex();
-        Customer selectedCustomer = listCustomer.get(selectedIndexCustomer);
-        int selectedIndexDokter = dokterDropdown.getSelectedIndex();
-        Staf selectedDokter = listDokter.get(selectedIndexDokter);
-        Transaksi t = new Transaksi(selectedCustomer, selectedDokter,keluhanInput.getText());
-        transaksiControl.insertDataTransaksi(t);
-        showPeriksa();
+        try{
+            InputKosongException();
+            int selectedIndexCustomer = pasienDropdown.getSelectedIndex();
+            Customer selectedCustomer = listCustomer.get(selectedIndexCustomer);
+            String cek = transaksiControl.checkTransaksiForMultipleUndoneTransaction(selectedCustomer.getId());
+            if(cek.equalsIgnoreCase("aman")){
+                int selectedIndexDokter = dokterDropdown.getSelectedIndex();
+                Staf selectedDokter = listDokter.get(selectedIndexDokter);
+                Transaksi t = new Transaksi(selectedCustomer, selectedDokter,keluhanInput.getText());
+                transaksiControl.insertDataTransaksi(t);
+                showPeriksa();
+            }else{
+                JOptionPane.showConfirmDialog(this, cek, "Error", JOptionPane.DEFAULT_OPTION);
+            }
+        }catch(InputKosongException e){
+            JOptionPane.showConfirmDialog(this, e.message(),"Warning",JOptionPane.DEFAULT_OPTION);
+        }
+        
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
@@ -280,6 +292,12 @@ public class PeriksaView extends javax.swing.JInternalFrame {
     public void searchEnterKeyPressed(KeyEvent e){
         if(e.getKeyCode() == KeyEvent.VK_ENTER){
             searchBtn.doClick();
+        }
+    }
+
+    private void InputKosongException() throws InputKosongException{
+        if(keluhanInput.getText().isEmpty()){
+            throw new InputKosongException();
         }
     }
 }
