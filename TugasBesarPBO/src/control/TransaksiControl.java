@@ -11,6 +11,7 @@ import model.Transaksi;
 import table.TableBayar;
 import table.TablePasien;
 import table.TablePeriksa;
+import table.TableRiwayat;
 
 /**
  *
@@ -42,6 +43,13 @@ public class TransaksiControl {
         TableBayar tablePembayaran = new TableBayar(dataPembayaran);
         return tablePembayaran;
     }
+    
+    public TableRiwayat showRiwayatTransaksiDokter (String query, String status){
+        List<Transaksi> dataRiwayat = tDao.showTransaksi(query, status);
+        TableRiwayat tableRiwayatDokter = new TableRiwayat(dataRiwayat);
+        return tableRiwayatDokter;
+    }
+        
     public Transaksi searchTransaksi(int id){
         return tDao.searchTransaksi(id);
     }

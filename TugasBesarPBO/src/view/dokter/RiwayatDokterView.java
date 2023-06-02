@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package view;
+package view.dokter;
 
-import control.StafControl;
 import control.TransaksiControl;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -14,38 +13,38 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.TableModel;
 import model.Staf;
 import model.Transaksi;
-import table.TableBayar;
+import table.TableRiwayat;
 
 /**
  *
- * @author USER
+ * @author dendy
  */
-public class TransaksiAdminView extends javax.swing.JInternalFrame {
+public class RiwayatDokterView extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form TransaksiAdminView
+     * Creates new form RiwayatDokterView
      */
     
     private TransaksiControl transaksiControl = null;
     String action = null;
-    List<Staf> listStaf;
+    Staf loginData = null;
     int selectedId = 0;
-    
-    public TransaksiAdminView() {
+    public RiwayatDokterView(Staf loginData) {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
         transaksiControl = new TransaksiControl();
+        this.loginData = loginData;
         notaView.setLocationRelativeTo(null);
         notaView.pack();
         notaView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        showTransaksi();
+        showRiwayat();
         detailBtn.setEnabled(false);
     }
     
-    private void showTransaksi() {
-        tabelTransaksiAdmin.setModel(transaksiControl.showDataPembayaranCustomer("", "Selesai"));
+    public void showRiwayat(){
+        tabelRiwayat.setModel(transaksiControl.showRiwayatTransaksiDokter(loginData.getNama(), "Selesai"));
     }
     
     public void searchEnterKeyPressed(KeyEvent e){
@@ -69,14 +68,13 @@ public class TransaksiAdminView extends javax.swing.JInternalFrame {
         txaNota = new javax.swing.JTextArea();
         cancelBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        containerPanel = new javax.swing.JPanel();
         headerPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelTransaksiAdmin = new javax.swing.JTable();
         detailBtn = new javax.swing.JButton();
-        searchBtn = new javax.swing.JButton();
         searchInput = new javax.swing.JTextField();
+        searchBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelRiwayat = new javax.swing.JTable();
 
         notaView.setBackground(new java.awt.Color(0, 0, 102));
 
@@ -145,16 +143,16 @@ public class TransaksiAdminView extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Riwayat Transaksi");
+        jLabel1.setText("Riwayat Transaksi Dokter");
 
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerPanelLayout.createSequentialGroup()
-                .addGap(306, 306, 306)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addGap(199, 199, 199)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,33 +162,18 @@ public class TransaksiAdminView extends javax.swing.JInternalFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        tabelTransaksiAdmin.setAutoCreateRowSorter(true);
-        tabelTransaksiAdmin.setBackground(new java.awt.Color(255, 188, 66));
-        tabelTransaksiAdmin.setForeground(new java.awt.Color(255, 255, 255));
-        tabelTransaksiAdmin.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tabelTransaksiAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelTransaksiAdminMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tabelTransaksiAdmin);
-
         detailBtn.setBackground(new java.awt.Color(0, 107, 166));
         detailBtn.setForeground(new java.awt.Color(255, 255, 255));
         detailBtn.setText("Detail");
         detailBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 detailBtnActionPerformed(evt);
+            }
+        });
+
+        searchInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchInputKeyPressed(evt);
             }
         });
 
@@ -206,59 +189,63 @@ public class TransaksiAdminView extends javax.swing.JInternalFrame {
             }
         });
 
-        searchInput.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                searchInputKeyPressed(evt);
+        tabelRiwayat.setAutoCreateRowSorter(true);
+        tabelRiwayat.setBackground(new java.awt.Color(255, 188, 66));
+        tabelRiwayat.setForeground(new java.awt.Color(255, 255, 255));
+        tabelRiwayat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabelRiwayat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelRiwayatMouseClicked(evt);
             }
         });
+        jScrollPane1.setViewportView(tabelRiwayat);
 
-        javax.swing.GroupLayout containerPanelLayout = new javax.swing.GroupLayout(containerPanel);
-        containerPanel.setLayout(containerPanelLayout);
-        containerPanelLayout.setHorizontalGroup(
-            containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(containerPanelLayout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(detailBtn)
                         .addGap(489, 489, 489)
-                        .addComponent(searchInput)
+                        .addComponent(searchInput, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(searchBtn))
                     .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
-        containerPanelLayout.setVerticalGroup(
-            containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerPanelLayout.createSequentialGroup()
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(containerPanelLayout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(detailBtn)
                         .addGap(6, 6, 6))
-                    .addGroup(containerPanelLayout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(searchBtn)
                             .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -272,31 +259,22 @@ public class TransaksiAdminView extends javax.swing.JInternalFrame {
             int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Show Tagihan "+transaksi.getPasien().getNama()+"? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             switch(getAnswer){
                 case 0:
-                    txaNota.setText(transaksi.showNota(selectedId));
-                    notaView.setLocationRelativeTo(null);
-                    notaView.pack();
-                    notaView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    notaView.setVisible(true);
-                    break;
+                txaNota.setText(transaksi.showNota(selectedId));
+                notaView.setLocationRelativeTo(null);
+                notaView.pack();
+                notaView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                notaView.setVisible(true);
+                break;
                 case 1 :
-                    break;
+                break;
             }
         }
     }//GEN-LAST:event_detailBtnActionPerformed
 
-    private void tabelTransaksiAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelTransaksiAdminMouseClicked
+    private void searchInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInputKeyPressed
         // TODO add your handling code here:
-        int clickedRow = tabelTransaksiAdmin.getSelectedRow();
-        TableModel tableModel = tabelTransaksiAdmin.getModel();
-        selectedId= Integer.parseInt(tableModel.getValueAt(clickedRow, 0).toString()); 
-        if(evt.getClickCount()==2 && tabelTransaksiAdmin.getSelectedRow()!=-1){
-            detailBtn.setEnabled(true);
-            detailBtn.doClick();
-        }else if(tabelTransaksiAdmin.getSelectedRow()!=-1){
-            detailBtn.setEnabled(true);
-        }
-        
-    }//GEN-LAST:event_tabelTransaksiAdminMouseClicked
+        searchEnterKeyPressed(evt);
+    }//GEN-LAST:event_searchInputKeyPressed
 
     private void searchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseClicked
         // TODO add your handling code here:
@@ -305,31 +283,40 @@ public class TransaksiAdminView extends javax.swing.JInternalFrame {
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
         try{
-            TableBayar transaksi = transaksiControl.showDataPembayaranCustomer(searchInput.getText(), "Selesai");
-            if(transaksi.getRowCount() == 0){
+            TableRiwayat riwayat = transaksiControl.showRiwayatTransaksiDokter(searchInput.getText(), "Selesai");
+            if(riwayat.getRowCount() == 0){
                 searchInput.setText("");
                 JOptionPane.showConfirmDialog(null, "Data tidak ditemukan", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
             }else{
-                tabelTransaksiAdmin.setModel(transaksi);
+                tabelRiwayat.setModel(riwayat);
             }
         }catch(Exception e){
             System.out.println("Error: "+e.getMessage());
         }
     }//GEN-LAST:event_searchBtnActionPerformed
 
-    private void searchInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInputKeyPressed
+    private void tabelRiwayatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelRiwayatMouseClicked
         // TODO add your handling code here:
-        searchEnterKeyPressed(evt);
-    }//GEN-LAST:event_searchInputKeyPressed
+        int clickedRow = tabelRiwayat.getSelectedRow();
+        TableModel tableModel = tabelRiwayat.getModel();
+        selectedId= Integer.parseInt(tableModel.getValueAt(clickedRow, 0).toString());
+        if(evt.getClickCount()==2 && tabelRiwayat.getSelectedRow()!=-1){
+            detailBtn.setEnabled(true);
+            detailBtn.doClick();
+        }else if(tabelRiwayat.getSelectedRow()!=-1){
+            detailBtn.setEnabled(true);
+        }
+
+    }//GEN-LAST:event_tabelRiwayatMouseClicked
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
         notaView.setVisible(false);
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
-    private javax.swing.JPanel containerPanel;
     private javax.swing.JButton detailBtn;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel1;
@@ -340,10 +327,7 @@ public class TransaksiAdminView extends javax.swing.JInternalFrame {
     private javax.swing.JFrame notaView;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
-    private javax.swing.JTable tabelTransaksiAdmin;
+    private javax.swing.JTable tabelRiwayat;
     private javax.swing.JTextArea txaNota;
     // End of variables declaration//GEN-END:variables
-
-    
-
 }

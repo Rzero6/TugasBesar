@@ -22,7 +22,7 @@ public class TableRiwayat extends AbstractTableModel {
     
    @Override
     public int getColumnCount(){
-        return 8;
+        return 6;
     }
 
     @Override

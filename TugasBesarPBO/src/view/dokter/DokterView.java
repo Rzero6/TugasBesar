@@ -275,6 +275,11 @@ public class DokterView extends javax.swing.JFrame implements IButtonClickListen
 
     private void riwayatMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_riwayatMenuMouseClicked
         // TODO add your handling code here:
+        RiwayatDokterView riwayat = new RiwayatDokterView(loginData);
+        containerView.removeAll();
+        containerView.add(riwayat).setVisible(true);
+        containerView.setBackground(null);
+        
     }//GEN-LAST:event_riwayatMenuMouseClicked
 
     private void riwayatMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_riwayatMenuMousePressed
