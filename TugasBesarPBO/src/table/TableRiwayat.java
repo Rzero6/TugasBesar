@@ -7,7 +7,7 @@ package table;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.Transaksi;
-
+ 
 public class TableRiwayat extends AbstractTableModel {
    private List<Transaksi> list;
     

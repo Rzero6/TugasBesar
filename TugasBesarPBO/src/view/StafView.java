@@ -256,7 +256,7 @@ public class StafView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        headerPanel.setBackground(new java.awt.Color(0, 0, 153));
+        headerPanel.setBackground(new java.awt.Color(0, 107, 166));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -316,7 +316,7 @@ public class StafView extends javax.swing.JFrame {
                 .addContainerGap(93, Short.MAX_VALUE))
         );
 
-        containerPanel.setBackground(new java.awt.Color(255, 255, 255));
+        containerPanel.setBackground(new java.awt.Color(255, 188, 66));
 
         addBtn.setText("Tambah");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
