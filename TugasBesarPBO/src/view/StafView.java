@@ -323,6 +323,7 @@ public class StafView extends javax.swing.JInternalFrame {
             }
         });
 
+        stafTable.setBackground(new java.awt.Color(255, 188, 66));
         stafTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

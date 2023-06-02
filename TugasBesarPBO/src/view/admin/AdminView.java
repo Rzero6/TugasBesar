@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import view.ObatView;
 import view.StafView;
 import view.TindakanView;
+import view.TransaksiAdminView;
 
 /**
  *
@@ -340,6 +341,10 @@ public class AdminView extends javax.swing.JFrame {
         setBtnDefaultColor();
         selectedViewBtn = transaksiBtn;
         transaksiBtn.setBackground(selectedColor);
+        TransaksiAdminView transaksiView = new TransaksiAdminView();
+        container.removeAll();
+        container.add(transaksiView).setVisible(true);
+        container.setBackground(null);
     }//GEN-LAST:event_transaksiBtnMouseClicked
 
     private void mutasiBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mutasiBtnMouseClicked
