@@ -24,14 +24,17 @@ public class TableDetailTransaksi extends AbstractTableModel {
         this.list = list;
     }
     
+    @Override
     public int getRowCount(){
         return list.size();
     }
     
+    @Override
     public int getColumnCount() {
         return 3;
     }
     
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex){
         switch (columnIndex) {
             case 0 :
