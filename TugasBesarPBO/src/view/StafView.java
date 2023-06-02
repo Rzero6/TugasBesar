@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.TableModel;
 import model.Staf;
 import table.TableStaf;
@@ -32,11 +33,20 @@ public class StafView extends javax.swing.JFrame {
     
     public StafView() {
         initComponents();
+//        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+//        BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
+//        ui.setNorthPane(null);
         stafControl = new StafControl();
         setEditDeleteBtn(false);
         showStaf();
     }
 
+//     private void setJabatanDropdown() {
+//        listStaf = stafControl.showListStaf("")
+//        for(int i=0; i<listStaf.size();i++){
+//            tindakanDropdown.addItem(listTindakan.get(i));
+//        }
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,7 +64,6 @@ public class StafView extends javax.swing.JFrame {
         hargaLabel = new javax.swing.JLabel();
         noTeleponInput = new javax.swing.JTextField();
         tanggalMulaiKerjaLabel = new javax.swing.JLabel();
-        jabatanInput = new javax.swing.JTextField();
         jabatanLabel = new javax.swing.JLabel();
         cancelBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
@@ -63,7 +72,12 @@ public class StafView extends javax.swing.JFrame {
         usernameInput = new javax.swing.JTextField();
         passwordLabel = new javax.swing.JLabel();
         passwordInput = new javax.swing.JTextField();
+        jabatanDropDown = new javax.swing.JComboBox<>();
         headerPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         containerPanel = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
@@ -87,7 +101,6 @@ public class StafView extends javax.swing.JFrame {
         namaLabel.setForeground(new java.awt.Color(51, 51, 51));
         namaLabel.setText("Nama");
 
-        namaStafInput.setBackground(new java.awt.Color(255, 255, 255));
         namaStafInput.setForeground(new java.awt.Color(51, 51, 51));
         namaStafInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +112,6 @@ public class StafView extends javax.swing.JFrame {
         hargaLabel.setForeground(new java.awt.Color(51, 51, 51));
         hargaLabel.setText("No Telepon");
 
-        noTeleponInput.setBackground(new java.awt.Color(255, 255, 255));
         noTeleponInput.setForeground(new java.awt.Color(51, 51, 51));
         noTeleponInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,14 +122,6 @@ public class StafView extends javax.swing.JFrame {
         tanggalMulaiKerjaLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tanggalMulaiKerjaLabel.setForeground(new java.awt.Color(51, 51, 51));
         tanggalMulaiKerjaLabel.setText("Tanggal Mulai Kerja");
-
-        jabatanInput.setBackground(new java.awt.Color(255, 255, 255));
-        jabatanInput.setForeground(new java.awt.Color(51, 51, 51));
-        jabatanInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jabatanInputActionPerformed(evt);
-            }
-        });
 
         jabatanLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jabatanLabel.setForeground(new java.awt.Color(51, 51, 51));
@@ -143,7 +147,6 @@ public class StafView extends javax.swing.JFrame {
         usernameLabel.setForeground(new java.awt.Color(51, 51, 51));
         usernameLabel.setText("Username");
 
-        usernameInput.setBackground(new java.awt.Color(255, 255, 255));
         usernameInput.setForeground(new java.awt.Color(51, 51, 51));
         usernameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,11 +158,17 @@ public class StafView extends javax.swing.JFrame {
         passwordLabel.setForeground(new java.awt.Color(51, 51, 51));
         passwordLabel.setText("Password");
 
-        passwordInput.setBackground(new java.awt.Color(255, 255, 255));
         passwordInput.setForeground(new java.awt.Color(51, 51, 51));
         passwordInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordInputActionPerformed(evt);
+            }
+        });
+
+        jabatanDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dokter", "Kasir" }));
+        jabatanDropDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jabatanDropDownActionPerformed(evt);
             }
         });
 
@@ -168,28 +177,27 @@ public class StafView extends javax.swing.JFrame {
         containerLayout.setHorizontalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(containerLayout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
-                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tanggalMulaiKerjaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(noTeleponInput, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                    .addComponent(tanggalMulaiKerja, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                    .addComponent(usernameInput, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(passwordInput, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                    .addComponent(jabatanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(namaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(namaStafInput)
-                    .addComponent(hargaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jabatanInput)
-                    .addComponent(popupLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(38, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelBtn)
-                .addGap(38, 38, 38)
-                .addComponent(saveBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addComponent(saveBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelBtn))
+                    .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(tanggalMulaiKerjaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(noTeleponInput, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                        .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                        .addComponent(tanggalMulaiKerja, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                        .addComponent(usernameInput, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                        .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                        .addComponent(passwordInput, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                        .addComponent(jabatanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(namaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(namaStafInput)
+                        .addComponent(hargaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(popupLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jabatanDropDown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         containerLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelBtn, saveBtn});
@@ -204,8 +212,8 @@ public class StafView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jabatanLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jabatanInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jabatanDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(namaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(namaStafInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,18 +254,66 @@ public class StafView extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         headerPanel.setBackground(new java.awt.Color(0, 0, 153));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setText("DAFTAR STAF");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setText("ATMA UNIVERSAL CLINIC");
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/AUC LOGO.png"))); // NOI18N
+        jLabel2.setText("ATMA UNIVERSAL CLINIC");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 424, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
+        );
 
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(headerPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         containerPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -340,16 +396,17 @@ public class StafView extends javax.swing.JFrame {
         containerPanelLayout.setVerticalGroup(
             containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(containerPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(24, 24, 24)
                 .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addBtn)
                     .addComponent(editBtn)
                     .addComponent(deleteBtn)
-                    .addComponent(searchBtn)
-                    .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                    .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(searchBtn)
+                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -363,7 +420,7 @@ public class StafView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -423,7 +480,12 @@ public class StafView extends javax.swing.JFrame {
         TableModel tableModel = stafTable.getModel();
 
         selectedId = Integer.parseInt(tableModel.getValueAt(clickedRow, 0).toString());
-        jabatanInput.setText(tableModel.getValueAt(clickedRow, 1).toString());
+        
+        if(tableModel.getValueAt(clickedRow, 1).toString().equalsIgnoreCase("Kasir")){
+             jabatanDropDown.setSelectedIndex(1);
+        }else{
+            jabatanDropDown.setSelectedIndex(0);
+        }        
         namaStafInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
         noTeleponInput.setText(tableModel.getValueAt(clickedRow, 3).toString());
         String sqlDate = tableModel.getValueAt(clickedRow, 4).toString();
@@ -474,11 +536,12 @@ public class StafView extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             InputKosongException();
+            int selectedIndexJabatan = jabatanDropDown.getSelectedIndex();
             if(action.equals("Tambah")){
-                Staf s = new Staf(namaStafInput.getText(), noTeleponInput.getText(), dateToString(tanggalMulaiKerja.getDate()), jabatanInput.getText(), usernameInput.getText(), passwordInput.getText());
+                Staf s = new Staf(namaStafInput.getText(), noTeleponInput.getText(), dateToString(tanggalMulaiKerja.getDate()), jabatanDropDown.getItemAt(selectedIndexJabatan), usernameInput.getText(), passwordInput.getText());
                 stafControl.insertDataStaf(s);
             }else{
-                Staf s = new Staf(selectedId,namaStafInput.getText(), noTeleponInput.getText(), dateToString(tanggalMulaiKerja.getDate()), jabatanInput.getText(), usernameInput.getText(), passwordInput.getText());
+                Staf s = new Staf(selectedId,namaStafInput.getText(), noTeleponInput.getText(), dateToString(tanggalMulaiKerja.getDate()), jabatanDropDown.getItemAt(selectedIndexJabatan), usernameInput.getText(), passwordInput.getText());
                 stafControl.updateDataStaf(s);
             }
             clearText();
@@ -498,9 +561,17 @@ public class StafView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordInputActionPerformed
 
-    private void jabatanInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jabatanInputActionPerformed
+    private void jabatanDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jabatanDropDownActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jabatanInputActionPerformed
+        int selectedIndexJabatan = jabatanDropDown.getSelectedIndex();
+        if(selectedIndexJabatan == 1){
+            usernameInput.setText("Kasir");
+            usernameInput.setEnabled(false);
+        }else{
+            usernameInput.setText("");
+            usernameInput.setEnabled(true);
+        }
+    }//GEN-LAST:event_jabatanDropDownActionPerformed
 
     /**
      * @param args the command line arguments
@@ -547,8 +618,12 @@ public class StafView extends javax.swing.JFrame {
     private javax.swing.JButton editBtn;
     private javax.swing.JLabel hargaLabel;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jabatanInput;
+    private javax.swing.JComboBox<String> jabatanDropDown;
     private javax.swing.JLabel jabatanLabel;
     private javax.swing.JLabel namaLabel;
     private javax.swing.JTextField namaStafInput;
@@ -569,7 +644,6 @@ public class StafView extends javax.swing.JFrame {
     private void clearText(){
         namaStafInput.setText("");
         noTeleponInput.setText("");
-        jabatanInput.setText("");
         usernameInput.setText("");
         passwordInput.setText("");
         tanggalMulaiKerja.setDate(new Date());
@@ -582,7 +656,7 @@ public class StafView extends javax.swing.JFrame {
 
     private void InputKosongException() throws InputKosongException{
         if(namaStafInput.getText().isEmpty() || noTeleponInput.getText().isEmpty() 
-        || jabatanInput.getText().isEmpty() || usernameInput.getText().isEmpty() || passwordInput.getText().isEmpty() ){
+        || usernameInput.getText().isEmpty() || passwordInput.getText().isEmpty() ){
             throw new InputKosongException();
         }
     }

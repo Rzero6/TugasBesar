@@ -191,10 +191,20 @@ public class ObatView extends javax.swing.JInternalFrame {
         saveBtn.setBackground(new java.awt.Color(0, 107, 166));
         saveBtn.setForeground(new java.awt.Color(0, 107, 166));
         saveBtn.setText("Simpan");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         cancelBtn.setBackground(new java.awt.Color(0, 107, 166));
         cancelBtn.setForeground(new java.awt.Color(0, 107, 166));
         cancelBtn.setText("Batal");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -217,7 +227,7 @@ public class ObatView extends javax.swing.JInternalFrame {
                                     .addComponent(stokObatInput, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 184, Short.MAX_VALUE)
+                                .addGap(0, 189, Short.MAX_VALUE)
                                 .addComponent(saveBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cancelBtn)
@@ -306,7 +316,47 @@ public class ObatView extends javax.swing.JInternalFrame {
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         // TODO add your handling code here:
+        action = "Ubah";
+        deleteBtn.setEnabled(false);
+        addBtn.setEnabled(false);
     }//GEN-LAST:event_editBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // TODO add your handling code here:
+        try {
+            InputKosongException();
+            
+            if(action.equalsIgnoreCase("Tambah")){
+                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menambahkan Obat ?","Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if(getAnswer == JOptionPane.YES_OPTION){
+                    Obat o = new Obat (namaObatInput.getText(), Double.parseDouble(hargaObatInput.getText()), Integer.parseInt(stokObatInput.getText()));
+                    obatControl.insertDataObat(o);
+                    JOptionPane.showMessageDialog(this, "Berhasil Menambah Obat");
+                }
+                
+            }else{
+                int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin Mengubah Obat ?","Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if(getAnswer == JOptionPane.YES_OPTION){
+                    Obat o = new Obat (selectedId,namaObatInput.getText(), Double.parseDouble(hargaObatInput.getText()), Integer.parseInt(stokObatInput.getText()));
+                    obatControl.updateDataObat(o);
+                    JOptionPane.showMessageDialog(this, "Berhasil Mengubah Obat");
+                }
+            }
+             clearText();
+             setEditDeleteBtn(false);
+             showObat();
+        } catch (InputKosongException e) {
+            JOptionPane.showMessageDialog(this, e.message());
+        }
+        
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // TODO add your handling code here:
+        clearText();
+        setEditDeleteBtn(false);
+        addBtn.setEnabled(true);
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;

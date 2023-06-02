@@ -84,7 +84,7 @@ public class Staf extends Orang {
     public void setTanggal_bergabung(String tanggal_bergabung) {
         this.tanggal_bergabung = tanggal_bergabung;
     }
-
+    
     
     
 }

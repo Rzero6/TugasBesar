@@ -73,6 +73,12 @@ public class PeriksaView extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        pasienDropdown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pasienDropdownActionPerformed(evt);
+            }
+        });
+
         TableTungguCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -112,16 +118,13 @@ public class PeriksaView extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PERIKSA");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Pasien");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Dokter");
 
         keluhanInput.setColumns(20);
@@ -129,7 +132,6 @@ public class PeriksaView extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(keluhanInput);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Keluhan/Gejala");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -254,11 +256,15 @@ public class PeriksaView extends javax.swing.JInternalFrame {
         searchEnterKeyPressed(evt);
     }//GEN-LAST:event_searchInputKeyPressed
 
+    private void pasienDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasienDropdownActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pasienDropdownActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableTungguCustomer;
     private javax.swing.JButton addBtn;
-    private javax.swing.JComboBox<Staf> dokterDropdown;
+    private javax.swing.JComboBox<model.Staf> dokterDropdown;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

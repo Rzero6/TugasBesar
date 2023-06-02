@@ -8,6 +8,7 @@ package control;
 import dao.TindakanDAO;
 import model.Tindakan;
 import java.util.List;
+import table.TableTindakan;
 
 
 public class TindakanControl {
@@ -28,5 +29,11 @@ public class TindakanControl {
     public List showTindakanBySearch(String query){
         List<Tindakan> dataTindakan = tDao.showTindakanBySearch(query);
         return dataTindakan;
+    }
+    
+    public TableTindakan showDataTindakan(String query) {
+        List<Tindakan> dataTindakan = tDao.showTindakanBySearch(query);
+        TableTindakan tableTindakan = new TableTindakan(dataTindakan);
+        return tableTindakan;
     }
 }
