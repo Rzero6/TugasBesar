@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.TableModel;
 import model.Obat;
 import table.TableObat;
 
@@ -23,7 +24,7 @@ public class ObatView extends javax.swing.JInternalFrame {
      * Creates new form ObatView
      */
     private ObatControl obatControl;
-    String action = null;
+    String action = "tambah";
     List<Obat> listObat;
     int selectedId = 0;
 
@@ -81,10 +82,10 @@ public class ObatView extends javax.swing.JInternalFrame {
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addGap(367, 367, 367)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(334, 334, 334))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,6 +181,11 @@ public class ObatView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        obatTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                obatTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(obatTable);
 
         namaObatLabel.setText("Nama Obat");
@@ -357,6 +363,19 @@ public class ObatView extends javax.swing.JInternalFrame {
         setEditDeleteBtn(false);
         addBtn.setEnabled(true);
     }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void obatTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_obatTableMouseClicked
+        // TODO add your handling code here:
+        setEditDeleteBtn(true);
+        int clickRow = obatTable.getSelectedRow();
+        TableModel tableModel = obatTable.getModel();
+        
+        selectedId= Integer.parseInt(tableModel.getValueAt(clickRow, 0).toString());
+        namaObatInput.setText(tableModel.getValueAt(clickRow, 1).toString());
+        hargaObatInput.setText(tableModel.getValueAt(clickRow, 2).toString());
+        stokObatInput.setText(tableModel.getValueAt(clickRow, 3).toString());
+        
+    }//GEN-LAST:event_obatTableMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
