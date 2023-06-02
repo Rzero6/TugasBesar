@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import view.ObatView;
 import view.StafView;
-//import view.TindakanView;
+import view.TindakanView;
 
 /**
  *
@@ -123,9 +123,9 @@ public class AdminView extends javax.swing.JFrame {
         dokterBtnLayout.setVerticalGroup(
             dokterBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dokterBtnLayout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap())
+                .addGap(15, 15, 15))
         );
 
         dashboard.add(dokterBtn);
@@ -330,9 +330,9 @@ public class AdminView extends javax.swing.JFrame {
         setBtnDefaultColor();
         selectedViewBtn = tindakanBtn;
         tindakanBtn.setBackground(selectedColor);
-//        TindakanView tindakanView = new TindakanView();
+        TindakanView tindakanView = new TindakanView();
         container.removeAll();
-//        container.add(tindakanView).setVisible(true);
+        container.add(tindakanView).setVisible(true);
         container.setBackground(null);
     }//GEN-LAST:event_tindakanBtnMouseClicked
 
