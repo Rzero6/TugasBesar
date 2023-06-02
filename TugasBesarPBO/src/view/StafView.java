@@ -1,8 +1,13 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package view;
+
+/**
+ *
+ * @author dendy
+ */
 
 import control.StafControl;
 import exception.InputKosongException;
@@ -17,36 +22,26 @@ import javax.swing.table.TableModel;
 import model.Staf;
 import table.TableStaf;
 
-/**
- *
- * @author VICTUS
- */
-public class StafView extends javax.swing.JFrame {
+public class StafView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form StafView
      */
-    private StafControl stafControl = new StafControl();
+     private StafControl stafControl = new StafControl();
     String action = null;
     List<Staf> listStaf;
     int selectedId = 0;
     
     public StafView() {
         initComponents();
-//        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
-//        BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
-//        ui.setNorthPane(null);
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
+        ui.setNorthPane(null);
         stafControl = new StafControl();
         setEditDeleteBtn(false);
         showStaf();
     }
 
-//     private void setJabatanDropdown() {
-//        listStaf = stafControl.showListStaf("")
-//        for(int i=0; i<listStaf.size();i++){
-//            tindakanDropdown.addItem(listTindakan.get(i));
-//        }
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,19 +68,17 @@ public class StafView extends javax.swing.JFrame {
         passwordLabel = new javax.swing.JLabel();
         passwordInput = new javax.swing.JTextField();
         jabatanDropDown = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
         headerPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        containerPanel = new javax.swing.JPanel();
-        addBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
-        deleteBtn = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        stafTable = new javax.swing.JTable();
         searchBtn = new javax.swing.JButton();
+        deleteBtn = new javax.swing.JButton();
+        addBtn = new javax.swing.JButton();
         searchInput = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        stafTable = new javax.swing.JTable();
 
         dataInputFrame.setType(java.awt.Window.Type.POPUP);
 
@@ -186,11 +179,11 @@ public class StafView extends javax.swing.JFrame {
                     .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(tanggalMulaiKerjaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(noTeleponInput, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                        .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                        .addComponent(tanggalMulaiKerja, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                        .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                        .addComponent(tanggalMulaiKerja, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                         .addComponent(usernameInput, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                         .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                        .addComponent(passwordInput, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                        .addComponent(passwordInput, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                         .addComponent(jabatanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(namaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(namaStafInput)
@@ -199,11 +192,6 @@ public class StafView extends javax.swing.JFrame {
                         .addComponent(jabatanDropDown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
-
-        containerLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelBtn, saveBtn});
-
-        containerLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {hargaLabel, noTeleponInput, passwordInput, passwordLabel, tanggalMulaiKerja, tanggalMulaiKerjaLabel, usernameInput, usernameLabel});
-
         containerLayout.setVerticalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
@@ -253,8 +241,7 @@ public class StafView extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+        setBackground(new java.awt.Color(255, 188, 66));
 
         headerPanel.setBackground(new java.awt.Color(0, 107, 166));
 
@@ -268,36 +255,12 @@ public class StafView extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("ATMA UNIVERSAL CLINIC");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/AUC LOGO.png"))); // NOI18N
-        jLabel2.setText("ATMA UNIVERSAL CLINIC");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 424, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
-        );
-
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(17, 17, 17)
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -306,24 +269,25 @@ public class StafView extends javax.swing.JFrame {
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerPanelLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(headerPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
-        containerPanel.setBackground(new java.awt.Color(255, 188, 66));
-
-        addBtn.setText("Tambah");
-        addBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBtnActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         editBtn.setText("Ubah");
         editBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -332,10 +296,30 @@ public class StafView extends javax.swing.JFrame {
             }
         });
 
+        searchBtn.setText("Cari");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
+
         deleteBtn.setText("Hapus");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteBtnActionPerformed(evt);
+            }
+        });
+
+        addBtn.setText("Tambah");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
+
+        searchInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchInputKeyPressed(evt);
             }
         });
 
@@ -355,30 +339,18 @@ public class StafView extends javax.swing.JFrame {
                 stafTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(stafTable);
+        jScrollPane2.setViewportView(stafTable);
 
-        searchBtn.setText("Cari");
-        searchBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBtnActionPerformed(evt);
-            }
-        });
-
-        searchInput.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                searchInputKeyPressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout containerPanelLayout = new javax.swing.GroupLayout(containerPanel);
-        containerPanel.setLayout(containerPanelLayout);
-        containerPanelLayout.setHorizontalGroup(
-            containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1188, Short.MAX_VALUE)
-                    .addGroup(containerPanelLayout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1090, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(addBtn)
                         .addGap(18, 18, 18)
                         .addComponent(editBtn)
@@ -390,39 +362,22 @@ public class StafView extends javax.swing.JFrame {
                         .addComponent(searchBtn)))
                 .addContainerGap())
         );
-
-        containerPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addBtn, deleteBtn, editBtn});
-
-        containerPanelLayout.setVerticalGroup(
-            containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerPanelLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(searchBtn)
                         .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(addBtn)
                         .addComponent(editBtn)
                         .addComponent(deleteBtn)))
                 .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(containerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -473,27 +428,10 @@ public class StafView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
 
-    private void stafTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stafTableMouseClicked
+    private void searchInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInputKeyPressed
         // TODO add your handling code here:
-        setEditDeleteBtn(true);
-        
-        int clickedRow = stafTable.getSelectedRow();
-        TableModel tableModel = stafTable.getModel();
-
-        selectedId = Integer.parseInt(tableModel.getValueAt(clickedRow, 0).toString());
-        
-        if(tableModel.getValueAt(clickedRow, 1).toString().equalsIgnoreCase("Kasir")){
-             jabatanDropDown.setSelectedIndex(1);
-        }else{
-            jabatanDropDown.setSelectedIndex(0);
-        }        
-        namaStafInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
-        noTeleponInput.setText(tableModel.getValueAt(clickedRow, 3).toString());
-        String sqlDate = tableModel.getValueAt(clickedRow, 4).toString();
-        tanggalMulaiKerja.setDate(stringToDate(sqlDate));
-        usernameInput.setText(tableModel.getValueAt(clickedRow, 5).toString());
-        passwordInput.setText(tableModel.getValueAt(clickedRow, 6).toString());
-    }//GEN-LAST:event_stafTableMouseClicked
+        searchEnterKeyPressed(evt);
+    }//GEN-LAST:event_searchInputKeyPressed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
@@ -513,10 +451,27 @@ public class StafView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_searchBtnActionPerformed
 
-    private void searchInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInputKeyPressed
+    private void stafTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stafTableMouseClicked
         // TODO add your handling code here:
-        searchEnterKeyPressed(evt);
-    }//GEN-LAST:event_searchInputKeyPressed
+        setEditDeleteBtn(true);
+
+        int clickedRow = stafTable.getSelectedRow();
+        TableModel tableModel = stafTable.getModel();
+
+        selectedId = Integer.parseInt(tableModel.getValueAt(clickedRow, 0).toString());
+
+        if(tableModel.getValueAt(clickedRow, 1).toString().equalsIgnoreCase("Kasir")){
+            jabatanDropDown.setSelectedIndex(1);
+        }else{
+            jabatanDropDown.setSelectedIndex(0);
+        }
+        namaStafInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
+        noTeleponInput.setText(tableModel.getValueAt(clickedRow, 3).toString());
+        String sqlDate = tableModel.getValueAt(clickedRow, 4).toString();
+        tanggalMulaiKerja.setDate(stringToDate(sqlDate));
+        usernameInput.setText(tableModel.getValueAt(clickedRow, 5).toString());
+        passwordInput.setText(tableModel.getValueAt(clickedRow, 6).toString());
+    }//GEN-LAST:event_stafTableMouseClicked
 
     private void namaStafInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaStafInputActionPerformed
         // TODO add your handling code here:
@@ -574,59 +529,20 @@ public class StafView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jabatanDropDownActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StafView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StafView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StafView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StafView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StafView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JPanel container;
-    private javax.swing.JPanel containerPanel;
     private javax.swing.JFrame dataInputFrame;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JLabel hargaLabel;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> jabatanDropDown;
     private javax.swing.JLabel jabatanLabel;
     private javax.swing.JLabel namaLabel;
@@ -644,7 +560,7 @@ public class StafView extends javax.swing.JFrame {
     private javax.swing.JTextField usernameInput;
     private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
-
+ 
     private void clearText(){
         namaStafInput.setText("");
         noTeleponInput.setText("");
@@ -688,4 +604,7 @@ public class StafView extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return (String) sdf.format(value);
     }
+
 }
+
+

@@ -113,9 +113,9 @@ public class MasterView extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        StafView sv = new StafView();
+//        StafVieww sv = new StafVieww();
         this.dispose();
-        sv.setVisible(true);
+//        sv.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
