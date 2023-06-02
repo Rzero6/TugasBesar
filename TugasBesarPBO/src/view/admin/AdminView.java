@@ -70,7 +70,7 @@ public class AdminView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        header.setBackground(new java.awt.Color(0, 0, 102));
+        header.setBackground(new java.awt.Color(0, 107, 166));
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
@@ -83,6 +83,8 @@ public class AdminView extends javax.swing.JFrame {
             .addGap(0, 175, Short.MAX_VALUE)
         );
 
+        container.setBackground(new java.awt.Color(255, 188, 66));
+
         javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
         container.setLayout(containerLayout);
         containerLayout.setHorizontalGroup(
@@ -94,12 +96,12 @@ public class AdminView extends javax.swing.JFrame {
             .addGap(0, 911, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 107, 166));
 
         dashboard.setBackground(new java.awt.Color(0, 0, 102));
         dashboard.setLayout(new java.awt.GridLayout(5, 0));
 
-        dokterBtn.setBackground(new java.awt.Color(0, 0, 102));
+        dokterBtn.setBackground(new java.awt.Color(0, 107, 166));
         dokterBtn.setPreferredSize(new java.awt.Dimension(208, 65));
         dokterBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -130,7 +132,7 @@ public class AdminView extends javax.swing.JFrame {
 
         dashboard.add(dokterBtn);
 
-        obatBtn.setBackground(new java.awt.Color(0, 0, 102));
+        obatBtn.setBackground(new java.awt.Color(0, 107, 166));
         obatBtn.setPreferredSize(new java.awt.Dimension(208, 65));
         obatBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -161,7 +163,7 @@ public class AdminView extends javax.swing.JFrame {
 
         dashboard.add(obatBtn);
 
-        tindakanBtn.setBackground(new java.awt.Color(0, 0, 102));
+        tindakanBtn.setBackground(new java.awt.Color(0, 107, 166));
         tindakanBtn.setPreferredSize(new java.awt.Dimension(208, 65));
         tindakanBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -192,7 +194,7 @@ public class AdminView extends javax.swing.JFrame {
 
         dashboard.add(tindakanBtn);
 
-        transaksiBtn.setBackground(new java.awt.Color(0, 0, 102));
+        transaksiBtn.setBackground(new java.awt.Color(0, 107, 166));
         transaksiBtn.setPreferredSize(new java.awt.Dimension(208, 65));
         transaksiBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -200,6 +202,7 @@ public class AdminView extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setBackground(new java.awt.Color(0, 107, 166));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Transaksi");
@@ -223,7 +226,7 @@ public class AdminView extends javax.swing.JFrame {
 
         dashboard.add(transaksiBtn);
 
-        mutasiBtn.setBackground(new java.awt.Color(0, 0, 102));
+        mutasiBtn.setBackground(new java.awt.Color(0, 107, 166));
         mutasiBtn.setPreferredSize(new java.awt.Dimension(208, 65));
         mutasiBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -280,24 +283,20 @@ public class AdminView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(container))
                     .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
