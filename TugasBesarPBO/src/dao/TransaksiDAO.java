@@ -59,7 +59,8 @@ public class TransaksiDAO {
                 + " OR t.keluhan LIKE '%" + query + "%'"
                 + " OR t.diagnosis LIKE '%" + query + "%'"
                 + " OR t.biaya_klinik LIKE '%" + query + "%')"
-                + " AND t.status LIKE '%" + status + "%'";
+                + " AND t.status LIKE '%" + status + "%'"
+                + " ORDER BY t.tanggal_transaksi ASC";
         System.out.println("Mengambil data Transaksi ...");
         
         List<Transaksi> list = new ArrayList();
@@ -174,5 +175,28 @@ public class TransaksiDAO {
         }
         dbcon.closeConnection();
         return transaksi;
+    }
+    public String checkTransaksiForMultipleUndoneTransaction(int id){//Untuk mengecek tidak terdapat multi pasien dalam transaksi
+        con = dbcon.makeConnection();
+        String sql = "SELECT t.*,c.* FROM transaksi as t"
+                + " JOIN customer as c ON t.id_customer = c.id_customer"
+                + " WHERE (t.id_customer = "+id+" AND t.status <> 'selesai')"
+                + " ORDER BY t.tanggal_transaksi DESC";
+        System.out.println("Mengambil data Transaksi ...");
+        String result="aman";
+        try{
+           Statement statement = con.createStatement();
+           ResultSet rs = statement.executeQuery(sql);
+           if(rs.next()){
+                result = "Tidak dapat menambah "+rs.getString("c.nama_customer")+". Dikarenakan memiliki Transaksi dalam Status "+rs.getString("t.status"); 
+           }
+           rs.close();
+           statement.close();
+        }catch(Exception e){
+            System.out.println("Error reading database ...");
+            System.out.println(e);
+        }
+        dbcon.closeConnection();
+        return result;
     }
 }

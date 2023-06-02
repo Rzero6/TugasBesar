@@ -47,6 +47,7 @@ public class BayarView extends javax.swing.JInternalFrame {
         notaView.setLocationRelativeTo(null);
         notaView.pack();
         notaView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        bayarBtn.setEnabled(false);
     }
 
     /**
@@ -63,8 +64,21 @@ public class BayarView extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txaNota = new javax.swing.JTextArea();
         cancelBtn = new javax.swing.JButton();
-        lastBayarBtn = new javax.swing.JButton();
+        checkOutBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        checkOutView = new javax.swing.JFrame();
+        mainPanel = new javax.swing.JPanel();
+        headerPanel = new javax.swing.JPanel();
+        titleText = new javax.swing.JLabel();
+        namaLbl = new javax.swing.JLabel();
+        totalLbl = new javax.swing.JLabel();
+        uangLbl = new javax.swing.JLabel();
+        inputUang = new javax.swing.JTextField();
+        cancelBtn1 = new javax.swing.JButton();
+        bayarFinishBtn = new javax.swing.JButton();
+        sidePanel = new javax.swing.JPanel();
+        iconPay = new javax.swing.JLabel();
+        paymentText = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablePembayaran = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -89,10 +103,10 @@ public class BayarView extends javax.swing.JInternalFrame {
             }
         });
 
-        lastBayarBtn.setText("Bayar");
-        lastBayarBtn.addActionListener(new java.awt.event.ActionListener() {
+        checkOutBtn.setText("Check Out");
+        checkOutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastBayarBtnActionPerformed(evt);
+                checkOutBtnActionPerformed(evt);
             }
         });
 
@@ -110,12 +124,12 @@ public class BayarView extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane2)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(129, 129, 129)
-                .addComponent(lastBayarBtn)
+                .addComponent(checkOutBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cancelBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -130,7 +144,7 @@ public class BayarView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn)
-                    .addComponent(lastBayarBtn))
+                    .addComponent(checkOutBtn))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -143,6 +157,157 @@ public class BayarView extends javax.swing.JInternalFrame {
         notaViewLayout.setVerticalGroup(
             notaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        headerPanel.setBackground(new java.awt.Color(0, 0, 102));
+
+        titleText.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        titleText.setForeground(new java.awt.Color(255, 255, 255));
+        titleText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleText.setText("ATMA UNIVERSAL CLINIC");
+
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
+        headerPanel.setLayout(headerPanelLayout);
+        headerPanelLayout.setHorizontalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titleText, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        headerPanelLayout.setVerticalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(titleText)
+                .addGap(18, 18, 18))
+        );
+
+        namaLbl.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        namaLbl.setText("Nama ");
+
+        totalLbl.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        totalLbl.setText("Total Harga");
+
+        uangLbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        uangLbl.setText("Masukkan Uang :");
+
+        inputUang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputUangActionPerformed(evt);
+            }
+        });
+        inputUang.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputUangKeyPressed(evt);
+            }
+        });
+
+        cancelBtn1.setText("Batal");
+        cancelBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtn1ActionPerformed(evt);
+            }
+        });
+
+        bayarFinishBtn.setText("Bayar");
+        bayarFinishBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bayarFinishBtnActionPerformed(evt);
+            }
+        });
+        bayarFinishBtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bayarFinishBtnKeyPressed(evt);
+            }
+        });
+
+        sidePanel.setBackground(new java.awt.Color(255, 153, 51));
+        sidePanel.setForeground(new java.awt.Color(255, 153, 51));
+
+        iconPay.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        iconPay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/checkout.png"))); // NOI18N
+
+        paymentText.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        paymentText.setForeground(new java.awt.Color(255, 255, 255));
+        paymentText.setText("Payment");
+
+        javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
+        sidePanel.setLayout(sidePanelLayout);
+        sidePanelLayout.setHorizontalGroup(
+            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(iconPay)
+                    .addComponent(paymentText))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        sidePanelLayout.setVerticalGroup(
+            sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidePanelLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(iconPay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(paymentText)
+                .addGap(51, 51, 51))
+        );
+
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addComponent(sidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addComponent(bayarFinishBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cancelBtn1))
+                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(uangLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(inputUang, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(namaLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(totalLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(namaLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(totalLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(uangLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inputUang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bayarFinishBtn)
+                            .addComponent(cancelBtn1))
+                        .addContainerGap())
+                    .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout checkOutViewLayout = new javax.swing.GroupLayout(checkOutView.getContentPane());
+        checkOutView.getContentPane().setLayout(checkOutViewLayout);
+        checkOutViewLayout.setHorizontalGroup(
+            checkOutViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        checkOutViewLayout.setVerticalGroup(
+            checkOutViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setBorder(null);
@@ -220,14 +385,12 @@ public class BayarView extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(searchBtn)
-                            .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchBtn)
+                    .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -247,13 +410,25 @@ public class BayarView extends javax.swing.JInternalFrame {
             searchBtn.doClick();
         }
     }
+    public void bayarEnterKeyPressed(KeyEvent e){
+        if(e.getKeyCode() == KeyEvent.VK_ENTER){
+            bayarFinishBtn.doClick();
+        }
+    }
         
     private void TablePembayaranMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablePembayaranMouseClicked
         // TODO add your handling code here:
-        
+
         int clickedRow = TablePembayaran.getSelectedRow();
         TableModel tableModel = TablePembayaran.getModel();
         selectedIdTransaksi = Integer.parseInt(tableModel.getValueAt(clickedRow, 0).toString());
+        System.out.println("id "+selectedIdTransaksi);
+        if(evt.getClickCount()==2 && TablePembayaran.getSelectedRow()!=-1){
+            bayarBtn.setEnabled(true);
+            bayarBtn.doClick();
+        }else if(TablePembayaran.getSelectedRow()!=-1){
+            bayarBtn.setEnabled(true);
+        }
 
     }//GEN-LAST:event_TablePembayaranMouseClicked
 
@@ -290,7 +465,7 @@ public class BayarView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Transaksi transaksi = transaksiControl.searchTransaksi(selectedIdTransaksi);
         if(transaksi!=null){
-            int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Bayar "+transaksi.getPasien().getNama()+"? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Show Tagihan "+transaksi.getPasien().getNama()+"? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             switch(getAnswer){
                 case 0:
                     txaNota.setText(transaksi.showNota(selectedIdTransaksi));
@@ -305,9 +480,24 @@ public class BayarView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_bayarBtnActionPerformed
 
-    private void lastBayarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastBayarBtnActionPerformed
+    private void checkOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOutBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lastBayarBtnActionPerformed
+        Transaksi transaksi = transaksiControl.searchTransaksi(selectedIdTransaksi);
+         if(transaksi!=null){
+            int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Check Out Tagihan "+transaksi.getPasien().getNama()+"? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            switch(getAnswer){
+                case 0:
+                    namaLbl.setText ("Nama                  : "+transaksi.getPasien().getNama());
+                    totalLbl.setText("Total Tagihan    : Rp "+transaksi.totalHarga(selectedIdTransaksi));
+                    checkOutView.setLocationRelativeTo(null);
+                    checkOutView.pack();
+                    checkOutView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    checkOutView.setVisible(true);
+                case 1 :
+                    break;
+            }
+         }  
+    }//GEN-LAST:event_checkOutBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
@@ -315,20 +505,74 @@ public class BayarView extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    private void inputUangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputUangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputUangActionPerformed
+
+    private void cancelBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtn1ActionPerformed
+        // TODO add your handling code here:
+        checkOutView.setVisible(false);
+    }//GEN-LAST:event_cancelBtn1ActionPerformed
+
+    private void bayarFinishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayarFinishBtnActionPerformed
+        // TODO add your handling code here:
+        Transaksi transaksi = transaksiControl.searchTransaksi(selectedIdTransaksi);
+
+        if(Integer.parseInt(inputUang.getText())<transaksi.totalHarga(selectedIdTransaksi)){
+            JOptionPane.showConfirmDialog(null, "Uang Anda Kurang", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
+        }else if(Integer.parseInt(inputUang.getText())>transaksi.totalHarga(selectedIdTransaksi)){
+            JOptionPane.showConfirmDialog(null, "Uang Kembalian : Rp "+ (Integer.parseInt(inputUang.getText()) - transaksi.totalHarga(selectedIdTransaksi))
+                    +"\nTerima Kasih\nSemoga Segera Sembuh", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
+            transaksi = new Transaksi(selectedIdTransaksi, transaksi.getTanggalTransaksi(), transaksi.getBiaya_klinik(), "Selesai", transaksi.getDiagnosis());
+            checkOutView.setVisible(false);
+            notaView.setVisible(false);
+        }else{
+            JOptionPane.showConfirmDialog(null, "Terima Kasih\nSemoga Segera Sembuh", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
+            transaksi = new Transaksi(selectedIdTransaksi, transaksi.getTanggalTransaksi(), transaksi.getBiaya_klinik(), "Selesai", transaksi.getDiagnosis());
+            checkOutView.setVisible(false);
+            notaView.setVisible(false);
+        }
+        transaksiControl.updateStatusDataTransaksi(transaksi);
+        showPembayaran();
+        inputUang.setText("");
+    }//GEN-LAST:event_bayarFinishBtnActionPerformed
+
+    private void bayarFinishBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bayarFinishBtnKeyPressed
+        // TODO add your handling code here: 
+    }//GEN-LAST:event_bayarFinishBtnKeyPressed
+
+    private void inputUangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputUangKeyPressed
+        // TODO add your handling code here:
+         bayarEnterKeyPressed(evt);
+    }//GEN-LAST:event_inputUangKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablePembayaran;
     private javax.swing.JButton bayarBtn;
+    private javax.swing.JButton bayarFinishBtn;
     private javax.swing.JButton cancelBtn;
+    private javax.swing.JButton cancelBtn1;
+    private javax.swing.JButton checkOutBtn;
+    private javax.swing.JFrame checkOutView;
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JLabel iconPay;
+    private javax.swing.JTextField inputUang;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton lastBayarBtn;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JLabel namaLbl;
     private javax.swing.JFrame notaView;
+    private javax.swing.JLabel paymentText;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
+    private javax.swing.JPanel sidePanel;
+    private javax.swing.JLabel titleText;
+    private javax.swing.JLabel totalLbl;
     private javax.swing.JTextArea txaNota;
+    private javax.swing.JLabel uangLbl;
     // End of variables declaration//GEN-END:variables
 }

@@ -45,4 +45,7 @@ public class TransaksiControl {
     public Transaksi searchTransaksi(int id){
         return tDao.searchTransaksi(id);
     }
+    public String checkTransaksiForMultipleUndoneTransaction(int id){//Untuk mengecek tidak terdapat multi pasien dalam transaksi
+        return tDao.checkTransaksiForMultipleUndoneTransaction(id);
+    }
 }
