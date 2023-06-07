@@ -27,7 +27,9 @@ public class PengadaanControl {
     public void insertDataPengadaan(Pengadaan p) {
         pDao.insertPengadaan(p);
     }
-
+    public Pengadaan searchDataPengadaan(String query){
+        return pDao.searchPengadaan(query);
+    }
     public List<Pengadaan> getListPengadaan(String query) {
         List<Pengadaan> dataPengadaan = pDao.getListPengadaan(query);
         return dataPengadaan;

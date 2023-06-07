@@ -26,23 +26,24 @@ public class MutasiDAO {
         con = dbcon.makeConnection();
         String sql="";
         if(m.getTipe().equalsIgnoreCase("pemasukan")){
-            sql = "INSERT INTO mutasi "
-                + "(id_transaksi, nominal, saldo, detail, tipe) "
+            sql = "INSERT INTO mutasi_dana "
+                + "(id_transaksi, nominal, saldo, detail, tipe, tanggal_mutasi) "
                 + "VALUES ('" 
                 + m.getIdTransaksi()+ "', '"
                 + m.getNominal() + "', '"
                 + m.getSaldo() + "', '"
-                + m.getDetail() + "', '"
-                + m.getTipe() + "')"; 
+                + m.getTipe() + "', '"
+                + m.getTanggal() + "')";
         }else{
-            sql = "INSERT INTO mutasi "
-                + "(id_pengadaan, nominal, saldo, detail, tipe) "
+            sql = "INSERT INTO mutasi_dana "
+                + "(id_pengadaan, nominal, saldo, detail, tipe, tanggal_mutasi) "
                 + "VALUES ('" 
                 + m.getIdPengadaan()+ "', '"
                 + m.getNominal() + "', '"
                 + m.getSaldo() + "', '"
                 + m.getDetail() + "', '"
-                + m.getTipe() + "')"; 
+                + m.getTipe() + "', '"
+                + m.getTanggal() + "')"; 
         }
         
         
@@ -59,11 +60,31 @@ public class MutasiDAO {
         }
         dbcon.closeConnection();
     }
-    
-    public List<Mutasi> showMutasi(String query){
+    public Double getSaldo(){
+        con = dbcon.makeConnection();
+        String sql = "SELECT saldo FROM mutasi_dana"
+                + " ORDER BY tanggal_mutasi ASC LIMIT 1";
+        System.out.println("Mengambil data mutasi ...");
+        double saldo = 0;
+        try{
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            if(rs.next()){
+                saldo = rs.getDouble("saldo");
+            }
+            rs.close();
+            statement.close();
+        }catch(Exception e){
+            System.out.println("Error reading database ...");
+            System.out.println(e);
+        }
+        dbcon.closeConnection();
+        return saldo;
+    }
+    public List<Mutasi> getListMutasi(String query){
         con = dbcon.makeConnection();
         
-        String sql = "SELECT * FROM mutasi WHERE "
+        String sql = "SELECT * FROM mutasi_dana WHERE "
                 + "(id_mutasi LIKE '%"+query+"%'"
                 + "OR id_pengadaan LIKE '%"+query+"%'"
                 + "OR id_transaksi LIKE '%"+query+"%'"
@@ -71,6 +92,7 @@ public class MutasiDAO {
                 + "OR saldo LIKE '%"+query+"%'"
                 + "OR detail LIKE '%"+query+"%'"
                 + "OR tipe LIKE '%"+query+"%')"
+                + "ORDER BY id_mutasi DESC"
                 ;
         System.out.println("Mengambil data mutasi ...");
         
@@ -91,7 +113,8 @@ public class MutasiDAO {
                             rs.getDouble("nominal"),
                             rs.getDouble("saldo"),
                             rs.getString("detail"),
-                            rs.getString("tipe")
+                            rs.getString("tipe"),
+                            rs.getString("tanggal_mutasi")
                         );
                     }else{
                         m = new Mutasi(
@@ -101,7 +124,8 @@ public class MutasiDAO {
                             rs.getDouble("nominal"),
                             rs.getDouble("saldo"),
                             rs.getString("detail"),
-                            rs.getString("tipe")
+                            rs.getString("tipe"),
+                            rs.getString("tanggal_mutasi")
                         );
                     }
                     

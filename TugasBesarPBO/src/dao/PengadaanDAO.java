@@ -48,6 +48,34 @@ public class PengadaanDAO {
         dbcon.closeConnection();
     }
     
+    public Pengadaan searchPengadaan(String query){
+        con = dbcon.makeConnection();
+        
+        String sql = "SELECT * FROM pengadaan WHERE "
+                + "(tanggal_pengadaan LIKE '"+query+"')"
+                ;
+        Pengadaan p = null;
+        try{
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            if(rs.next()){
+                p = new Pengadaan(
+                            rs.getInt("id_pengadaan"),
+                            rs.getInt("id_obat"),
+                            rs.getInt("id_supplier"),
+                            rs.getInt("jumlah_obat"),
+                            rs.getString("tanggal_pengadaan")
+                    );
+            }
+            rs.close();
+            statement.close();
+        }catch(Exception e){
+            System.out.println("Error reading database ...");
+            System.out.println(e);
+        }
+        return p;
+    }
+    
     public List<Pengadaan> getListPengadaan(String query){
         con = dbcon.makeConnection();
         

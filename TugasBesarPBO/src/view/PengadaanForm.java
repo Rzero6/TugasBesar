@@ -5,6 +5,7 @@
 package view;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import control.MutasiControl;
 import control.ObatControl;
 import control.PengadaanControl;
 import control.SupplierControl;
@@ -13,6 +14,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+import model.Mutasi;
 import model.Obat;
 import model.Pengadaan;
 import model.Supplier;
@@ -26,6 +29,7 @@ public class PengadaanForm extends javax.swing.JFrame {
     /**
      * Creates new form PengadaanForm
      */
+    private MutasiControl mutasiControl;
     private PengadaanControl pengadaanControl;
     private SupplierControl supplierControl;
     private ObatControl obatControl;
@@ -38,6 +42,7 @@ public class PengadaanForm extends javax.swing.JFrame {
     private int selectedIndexSupplier=0;
     public PengadaanForm() {
         initComponents();
+        mutasiControl = new MutasiControl();
         pengadaanControl = new PengadaanControl();
         supplierControl = new SupplierControl();
         obatControl = new ObatControl();
@@ -297,12 +302,25 @@ public class PengadaanForm extends javax.swing.JFrame {
             try{
                 int jumlah_obat = (int) jumlahObat.getValue();
                 if(jumlah_obat > 0){
-                   pengadaan = new Pengadaan(obat.getId(),supplier.getIdSupplier(),jumlah_obat, sqlDateTime);
+                    //add pengadaan obat
+                    pengadaan = new Pengadaan(obat.getId(),supplier.getIdSupplier(),jumlah_obat, sqlDateTime);
                     pengadaanControl.insertDataPengadaan(pengadaan);
+                    //Update Obat
                     Obat o = obatControl.searchObat(obat.getNama());
                     o.setStok(obat.getStok()+(int) jumlahObat.getValue());
                     obatControl.updateDataObat(o);
-                    setTablePengadaan(); 
+                    setTablePengadaan();
+                    //Add mutasi
+                    int lastRow = tablePengadaan.getRowCount()-1;
+                    TableModel tableModel = tablePengadaan.getModel();
+                    double nominal = o.getHarga() * pengadaan.getJumlah_obat();
+                    Mutasi m = new Mutasi(0, Integer.parseInt(tableModel.getValueAt(lastRow, 9).toString()), 
+                            nominal, 
+                            mutasiControl.getSaldo()+nominal, //ambil saldo yang terbaru
+                            "Pegadaan obat "+o.getNama()+" sebesar "+pengadaan.getJumlah_obat(), 
+                            "Pengeluaran", 
+                            sqlDateTime);
+                    mutasiControl.insertDataMutasi(m);
                 }else{
                     JOptionPane.showConfirmDialog(rootPane, "Jumlah obat harus angka diatas 0","Error",JOptionPane.DEFAULT_OPTION);
                 }
