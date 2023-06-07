@@ -33,7 +33,9 @@ public class ObatControl {
     public void deleteObat(int id) {
         oDao.deleteObat(id);
     }
-
+    public Obat searchObat(String query){
+        return oDao.searchObat(query);
+    }
     public List<Obat> showListObat(String query) {
         List<Obat> dataObat = oDao.showObatBySearch(query);
         return dataObat;

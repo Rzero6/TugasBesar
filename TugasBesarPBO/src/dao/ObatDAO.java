@@ -86,6 +86,33 @@ public class ObatDAO {
         dbcon.closeConnection();
     }
     
+    public Obat searchObat(String query){
+        con = dbcon.makeConnection();
+        
+        String sql = "SELECT * FROM obat WHERE "
+                + "(nama_obat LIKE '"+query+"')"
+                ;
+        Obat o = null;
+        try{
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            if(rs.next()){
+                o = new Obat(
+                            rs.getInt("id_obat"),
+                            rs.getString("nama_obat"),
+                            rs.getDouble("harga_obat"),
+                            rs.getInt("stok_obat")
+                    );
+            }
+            rs.close();
+            statement.close();
+        }catch(Exception e){
+            System.out.println("Error reading database ...");
+            System.out.println(e);
+        }
+        return o;
+    }
+    
     public List<Obat> showObatBySearch(String query){
         con = dbcon.makeConnection();
         
