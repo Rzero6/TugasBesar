@@ -46,4 +46,7 @@ public class ObatControl {
         TableObat tableObat = new TableObat(dataObat);
         return tableObat;
     }
+    public void updateJumlahObat(int id, int jumlah, String tipe){
+        oDao.updateJumlahObat(id, jumlah, tipe);
+    }
 }

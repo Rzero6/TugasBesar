@@ -233,10 +233,11 @@ public class PengadaanForm extends javax.swing.JFrame {
                     .addComponent(supplierTab)
                     .addComponent(ObatTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
-                .addGroup(inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addBtn)
-                    .addComponent(jLabel3)
-                    .addComponent(jumlahObat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jumlahObat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -306,18 +307,16 @@ public class PengadaanForm extends javax.swing.JFrame {
                     pengadaan = new Pengadaan(obat.getId(),supplier.getIdSupplier(),jumlah_obat, sqlDateTime);
                     pengadaanControl.insertDataPengadaan(pengadaan);
                     //Update Obat
-                    Obat o = obatControl.searchObat(obat.getNama());
-                    o.setStok(obat.getStok()+(int) jumlahObat.getValue());
-                    obatControl.updateDataObat(o);
+                    obatControl.updateJumlahObat(obat.getId(), jumlah_obat, "+");
                     setTablePengadaan();
                     //Add mutasi
                     int lastRow = tablePengadaan.getRowCount()-1;
                     TableModel tableModel = tablePengadaan.getModel();
-                    double nominal = o.getHarga() * pengadaan.getJumlah_obat();
+                    double nominal = obat.getHarga() * pengadaan.getJumlah_obat();
                     Mutasi m = new Mutasi(0, Integer.parseInt(tableModel.getValueAt(lastRow, 9).toString()), 
                             nominal, 
                             mutasiControl.getSaldo()+nominal, //ambil saldo yang terbaru
-                            "Pegadaan obat "+o.getNama()+" sebesar "+pengadaan.getJumlah_obat(), 
+                            "Pegadaan obat "+obat.getNama()+" sebesar "+pengadaan.getJumlah_obat(), 
                             "Pengeluaran", 
                             sqlDateTime);
                     mutasiControl.insertDataMutasi(m);

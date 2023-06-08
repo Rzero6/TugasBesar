@@ -151,4 +151,24 @@ public class ObatDAO {
         
         return list;
     }
+    public void updateJumlahObat(int id, int jumlah, String tipe){
+        con = dbcon.makeConnection();
+        
+           String sql = "UPDATE obat SET "
+                + "stok_obat = stok_obat "+tipe+" "+jumlah
+                + " WHERE (id_obat = '" + id + "')"; 
+           System.out.println("Editing Obat ...");
+                
+        try {
+            Statement statement = con.createStatement();
+            int result = statement.executeUpdate(sql);
+            System.out.println("Edited " + result + " Obat " + id);
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("Error editing Obat ...");
+            System.out.println(e);
+        }
+
+        dbcon.closeConnection();
+    }
 }
