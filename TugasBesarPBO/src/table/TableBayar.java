@@ -50,7 +50,7 @@ public class TableBayar extends AbstractTableModel {
             case 6 :
                 return list.get(rowIndex).getDiagnosis();
             case 7 :
-                return list.get(rowIndex).totalHarga(list.get(rowIndex).getId());
+                return list.get(rowIndex).totalHarga();
             default:
                 return null;
         }

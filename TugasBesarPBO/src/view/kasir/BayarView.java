@@ -5,6 +5,7 @@
 package view.kasir;
 
 import control.CustomerControl;
+import control.DetailTransaksiControl;
 import control.StafControl;
 import control.TransaksiControl;
 import java.awt.event.KeyEvent;
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.TableModel;
 import model.Customer;
+import model.DetailTransaksi;
 import model.Staf;
 import model.Transaksi;
 import table.TableBayar;
@@ -27,9 +29,8 @@ public class BayarView extends javax.swing.JInternalFrame {
     /**
      * Creates new form PeriksaView
      */
-    private StafControl stafControl;
-    private CustomerControl customerControl;
     private TransaksiControl transaksiControl;
+    private DetailTransaksiControl detailTransaksiControl;
     String action = null;
     List<Customer> listCustomer;
     List<Staf> listDokter;
@@ -40,9 +41,8 @@ public class BayarView extends javax.swing.JInternalFrame {
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,0,0,0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
-        stafControl = new StafControl();
-        customerControl = new CustomerControl();
         transaksiControl = new TransaksiControl();
+        detailTransaksiControl = new DetailTransaksiControl();
         showPembayaran();
         notaView.setLocationRelativeTo(null);
         notaView.pack();
@@ -475,7 +475,8 @@ public class BayarView extends javax.swing.JInternalFrame {
             int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Show Tagihan "+transaksi.getPasien().getNama()+"? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             switch(getAnswer){
                 case 0:
-                    txaNota.setText(transaksi.showNota(selectedIdTransaksi));
+                    transaksi.setDetailTransaksiList(detailTransaksiControl.getListDetailTransaksiByTransaksiID("", transaksi.getId()));
+                    txaNota.setText(transaksi.showNota());
                     notaView.setLocationRelativeTo(null);
                     notaView.pack();
                     notaView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -494,8 +495,9 @@ public class BayarView extends javax.swing.JInternalFrame {
             int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Check Out Tagihan "+transaksi.getPasien().getNama()+"? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             switch(getAnswer){
                 case 0:
+                    transaksi.setDetailTransaksiList(detailTransaksiControl.getListDetailTransaksiByTransaksiID("", transaksi.getId()));
                     namaLbl.setText ("Nama                  : "+transaksi.getPasien().getNama());
-                    totalLbl.setText("Total Tagihan    : Rp "+transaksi.totalHarga(selectedIdTransaksi));
+                    totalLbl.setText("Total Tagihan    : Rp "+transaksi.totalHarga());
                     checkOutView.setLocationRelativeTo(null);
                     checkOutView.pack();
                     checkOutView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -524,11 +526,11 @@ public class BayarView extends javax.swing.JInternalFrame {
     private void bayarFinishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayarFinishBtnActionPerformed
         // TODO add your handling code here:
         Transaksi transaksi = transaksiControl.searchTransaksi(selectedIdTransaksi);
-
-        if(Integer.parseInt(inputUang.getText())<transaksi.totalHarga(selectedIdTransaksi)){
+        transaksi.setDetailTransaksiList(detailTransaksiControl.getListDetailTransaksiByTransaksiID("", transaksi.getId()));
+        if(Integer.parseInt(inputUang.getText())<transaksi.totalHarga()){
             JOptionPane.showConfirmDialog(null, "Uang Anda Kurang", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
-        }else if(Integer.parseInt(inputUang.getText())>transaksi.totalHarga(selectedIdTransaksi)){
-            JOptionPane.showConfirmDialog(null, "Uang Kembalian : Rp "+ (Integer.parseInt(inputUang.getText()) - transaksi.totalHarga(selectedIdTransaksi))
+        }else if(Integer.parseInt(inputUang.getText())>transaksi.totalHarga()){
+            JOptionPane.showConfirmDialog(null, "Uang Kembalian : Rp "+ (Integer.parseInt(inputUang.getText()) - transaksi.totalHarga())
                     +"\nTerima Kasih\nSemoga Segera Sembuh", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
             transaksi = new Transaksi(selectedIdTransaksi, transaksi.getTanggalTransaksi(), transaksi.getBiaya_klinik(), "Selesai", transaksi.getDiagnosis());
             checkOutView.setVisible(false);

@@ -37,19 +37,19 @@ public class DetailTransaksiControl {
         dtDAO.deleteAllDetailTransaksiFromIDTransaksi(idTransaksi);
     }
 
-    public List<DetailTransaksi> showListDetailTransaksi(String query, int id) {
-        List<DetailTransaksi> dataDetailTransaksi = dtDAO.showDetailTransaksi(query, id);
+    public List<DetailTransaksi> getListDetailTransaksiByTransaksiID(String query, int id) {
+        List<DetailTransaksi> dataDetailTransaksi = dtDAO.getListDetailTransaksiByTransaksiID(query, id);
         return dataDetailTransaksi;
     }
 
-    public TableDetailTransaksi showDataDetailTransaksi(String query, int id) {
-        List<DetailTransaksi> dataDetailTransaksi = dtDAO.showDetailTransaksi(query, id);
+    public TableDetailTransaksi getTableDetailTransaksiByTransaksiID(String query, int id) {
+        List<DetailTransaksi> dataDetailTransaksi = dtDAO.getListDetailTransaksiByTransaksiID(query, id);
         TableDetailTransaksi tableDetailTransaksi = new TableDetailTransaksi(dataDetailTransaksi);
         return tableDetailTransaksi;
     }
     
     public TableKeranjangObat showDataKeranjangObat(String query, int id){
-        List<DetailTransaksi> dataDetailTransaksiObat = dtDAO.showDetailTransaksi(query, id);
+        List<DetailTransaksi> dataDetailTransaksiObat = dtDAO.getListDetailTransaksiByTransaksiID(query, id);
         List<DetailTransaksi> filteredData = new ArrayList<>();
         for (DetailTransaksi detailTransaksi : dataDetailTransaksiObat) {
             if (detailTransaksi.getObat().getId() != 1) {
@@ -60,7 +60,7 @@ public class DetailTransaksiControl {
         return tableDetailTransaksiObat;
     }
     public TableKeranjangTindakan showDataKeranjangTindakan(String query, int id){
-        List<DetailTransaksi> dataDetailTransaksiTindakan = dtDAO.showDetailTransaksi(query, id);
+        List<DetailTransaksi> dataDetailTransaksiTindakan = dtDAO.getListDetailTransaksiByTransaksiID(query, id);
         List<DetailTransaksi> filteredData = new ArrayList<>();
         for (DetailTransaksi detailTransaksi : dataDetailTransaksiTindakan) {
             if (detailTransaksi.getTindakan().getId() != 1) {

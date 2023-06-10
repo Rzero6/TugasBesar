@@ -4,6 +4,7 @@
  */
 package view;
 
+import control.DetailTransaksiControl;
 import control.StafControl;
 import control.TransaksiControl;
 import java.awt.event.KeyEvent;
@@ -27,6 +28,7 @@ public class TransaksiAdminView extends javax.swing.JInternalFrame {
      */
     
     private TransaksiControl transaksiControl = null;
+    private DetailTransaksiControl detailTransaksiControl;
     String action = null;
     List<Staf> listStaf;
     int selectedId = 0;
@@ -37,6 +39,7 @@ public class TransaksiAdminView extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
         transaksiControl = new TransaksiControl();
+        detailTransaksiControl = new DetailTransaksiControl();
         notaView.setLocationRelativeTo(null);
         notaView.pack();
         notaView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -272,7 +275,8 @@ public class TransaksiAdminView extends javax.swing.JInternalFrame {
             int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Show Tagihan "+transaksi.getPasien().getNama()+"? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             switch(getAnswer){
                 case 0:
-                    txaNota.setText(transaksi.showNota(selectedId));
+                    transaksi.setDetailTransaksiList(detailTransaksiControl.getListDetailTransaksiByTransaksiID("", transaksi.getId()));
+                    txaNota.setText(transaksi.showNota());
                     notaView.setLocationRelativeTo(null);
                     notaView.pack();
                     notaView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -23,10 +23,9 @@ public class Transaksi {
     private String status;
     private String keluhan;
     private String diagnosis;
-    private Detail_TransaksiDAO dtDAO = new Detail_TransaksiDAO();
     private List<DetailTransaksi> detailTransaksiList;
     
-    String stringBuilder = "";
+    //String stringBuilder = "";
 
     public Transaksi(Customer pasien, Staf dokter, String keluhan) {
         this.pasien = pasien;
@@ -89,6 +88,10 @@ public class Transaksi {
         return diagnosis;
     }
 
+    public List<DetailTransaksi> getDetailTransaksiList() {
+        return detailTransaksiList;
+    }
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -121,6 +124,10 @@ public class Transaksi {
         this.diagnosis = diagnosis;
     }
 
+    public void setDetailTransaksiList(List<DetailTransaksi> detailTransaksiList) {
+        this.detailTransaksiList = detailTransaksiList;
+    }
+
     public String dateTimeNowinString() {
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -135,25 +142,21 @@ public class Transaksi {
         return tanggalTransaksi.substring(11);
     }
 
-    public double totalHarga(int id) {
+    public double totalHarga() {
         double total = 50000;
-        List<DetailTransaksi> list = dtDAO.showDetailTransaksi("", id);
-        for (DetailTransaksi temp : list) {
+        for (DetailTransaksi temp : detailTransaksiList) {
             if (temp.getTransaksi().getId() == id && temp.getObat().getId() != 1 && temp.getTindakan().getId() != 1) {
                 total += (temp.getObat().getHarga() * temp.getJumlah_obat()) + temp.getTindakan().getHarga();
             } else if (temp.getTransaksi().getId() == id && temp.getObat().getId() == 1) {
                 total += (0 * temp.getJumlah_obat()) + temp.getTindakan().getHarga();
             } else if (temp.getTransaksi().getId() == id && temp.getTindakan().getId() == 1) {
                 total += (temp.getObat().getHarga() * temp.getJumlah_obat()) + 0;
-            } else {
-                total = total;
             }
         }
         return total;
     }
 
-    public String showNota(int id) {
-        List<DetailTransaksi> list = dtDAO.showDetailTransaksi("", id);
+    public String showNota() {
         String text = "";
         text+="===========================================================\n";
         text+="\t\tAtma Universal Clinic\n";
@@ -162,7 +165,6 @@ public class Transaksi {
         text+="===========================================================\n";
 //        text+="No. Struk: " + receiptNumber);
         text+="Tanggal: " + getDate() + "  " + getTime() + "\n";
-//        text+=getId());
         text+="===========================================================\n";
         text+="Pelanggan: " + getPasien().getNama() + "\n";
         text+="Dokter: " + getDokter() + "\n";
@@ -171,7 +173,7 @@ public class Transaksi {
         text+="Perawatan :\n";
         text+="Obat\tHarga\tTotal\n";
         text+="------------------------------------------------------------------------------------------------\n";
-        for (DetailTransaksi temp : list) {
+        for (DetailTransaksi temp : detailTransaksiList) {
             if(temp.getObat().getId() != 1){
                 text+=temp.getObat().getNama() + "\t" + temp.getJumlah_obat() + " x " + temp.getObat().getHarga() + "\tRp " + temp.getObat().getHarga() * temp.getJumlah_obat() +"\n";
                 text+="------------------------------------------------------------------------------------------------\n";
@@ -179,14 +181,14 @@ public class Transaksi {
         }
         text+="Tindakan:\t\t\t\n";
         text+="------------------------------------------------------------------------------------------------\n";
-        for (DetailTransaksi temp : list) {
+        for (DetailTransaksi temp : detailTransaksiList) {
             if(temp.getTindakan().getId() != 1){
                 text+=temp.getTindakan().getNama() + "\t\tRp " + temp.getTindakan().getHarga()+ "\n";
                 text+="------------------------------------------------------------------------------------------------\n";
             }
         }
         text+= "Biaya Klinik \t\tRp "+biaya_klinik;
-        text+= "\n\nTotal Harga \t\tRp "+totalHarga(id);
+        text+= "\n\nTotal Harga \t\tRp "+totalHarga();
         return text;
     }
 }

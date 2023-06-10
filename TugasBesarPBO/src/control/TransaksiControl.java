@@ -19,7 +19,7 @@ import table.TableRiwayat;
  */
 public class TransaksiControl {
     private TransaksiDAO tDao = new TransaksiDAO();
-    
+    private DetailTransaksiControl detailTransaksiControl = new DetailTransaksiControl();
     public void insertDataTransaksi(Transaksi t){
         tDao.insertTransaksi(t);
     }
@@ -40,6 +40,9 @@ public class TransaksiControl {
     
     public TableBayar showDataPembayaranCustomer (String query, String status){
         List<Transaksi> dataPembayaran = tDao.showTransaksi(query, status);
+        for(int i=0;i<dataPembayaran.size();i++){
+            dataPembayaran.get(i).setDetailTransaksiList(detailTransaksiControl.getListDetailTransaksiByTransaksiID("", dataPembayaran.get(i).getId()));
+        }
         TableBayar tablePembayaran = new TableBayar(dataPembayaran);
         return tablePembayaran;
     }

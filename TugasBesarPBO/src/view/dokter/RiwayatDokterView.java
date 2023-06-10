@@ -4,6 +4,7 @@
  */
 package view.dokter;
 
+import control.DetailTransaksiControl;
 import control.TransaksiControl;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -26,6 +27,7 @@ public class RiwayatDokterView extends javax.swing.JInternalFrame {
      */
     
     private TransaksiControl transaksiControl = null;
+    private DetailTransaksiControl detailTransaksiControl;
     String action = null;
     Staf loginData = null;
     int selectedId = 0;
@@ -35,6 +37,7 @@ public class RiwayatDokterView extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
         transaksiControl = new TransaksiControl();
+        detailTransaksiControl = new DetailTransaksiControl();
         this.loginData = loginData;
         notaView.setLocationRelativeTo(null);
         notaView.pack();
@@ -259,11 +262,12 @@ public class RiwayatDokterView extends javax.swing.JInternalFrame {
             int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Show Tagihan "+transaksi.getPasien().getNama()+"? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             switch(getAnswer){
                 case 0:
-                txaNota.setText(transaksi.showNota(selectedId));
-                notaView.setLocationRelativeTo(null);
-                notaView.pack();
-                notaView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                notaView.setVisible(true);
+                    transaksi.setDetailTransaksiList(detailTransaksiControl.getListDetailTransaksiByTransaksiID("", transaksi.getId()));
+                    txaNota.setText(transaksi.showNota());
+                    notaView.setLocationRelativeTo(null);
+                    notaView.pack();
+                    notaView.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    notaView.setVisible(true);
                 break;
                 case 1 :
                 break;

@@ -67,31 +67,4 @@ public class DetailTransaksi {
         this.jumlah_obat = jumlah_obat;
     }
 
-    public void showNota() {
-        System.out.println("===============================");
-        System.out.println("Atma Universal Clinic");
-        System.out.println("Jl.Seturan Raya 0567, Kab. Sleman, DI Yogyakarta");
-        System.out.println("Telp: 081227212892");
-        System.out.println("===============================");
-//        System.out.println("No. Struk: " + receiptNumber);
-        System.out.println("Tanggal: " + transaksi.getDate() + "\t\t\t" + transaksi.getTime());
-        System.out.println(transaksi.getId());
-        System.out.println("===============================");
-        System.out.println("Pelanggan: " + transaksi.getPasien().getNama());
-        System.out.println("Dokter: " + transaksi.getDokter());
-        System.out.println("Diagnosis: " + transaksi.getDiagnosis());
-        System.out.println("===============================");
-        System.out.println("Tindaka");
-        System.out.println("Obat\t\tJumlah\tHarga\t\tTotal");
-        System.out.println("-----------------------------");
-        System.out.println(obat.getNama() + "\t" + getJumlah_obat() + "\t" + obat.getHarga() + "\t\t" + obat.getHarga() * getJumlah_obat());
-        System.out.println("-----------------------------");
-        System.out.println("Tindakan\t\t\t");
-        System.out.println("-----------------------------");
-        System.out.println(getTindakan().getNama() + "\t\t\t\t\t" + getTindakan().getHarga());
-        System.out.println("Total:\t\t\t" + transaksi.totalHarga(transaksi.getId()));
-        System.out.println("===============================");
-
-    }
-
 }

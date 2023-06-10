@@ -106,7 +106,7 @@ public class Detail_TransaksiDAO {
         dbcon.closeConnection();
     }
     
-    public List<DetailTransaksi> showDetailTransaksi(String query, int id){
+    public List<DetailTransaksi> getListDetailTransaksiByTransaksiID(String query, int id){
         con = dbcon.makeConnection();
         
         String sql = "SELECT dt.*, t.*, o.*, td.* FROM transaksi AS t " +

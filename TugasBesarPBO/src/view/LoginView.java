@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.Staf;
+import view.admin.AdminView;
 import view.dokter.DokterView;
 
 /**
@@ -289,10 +290,10 @@ public class LoginView extends javax.swing.JFrame implements KeyListener{
                         kasirView.setVisible(true);
                         break;
                     case "admin":
-                        MasterView mv = new MasterView();
-                        mv.setLocationRelativeTo(null);
+                        AdminView av = new AdminView();
+                        av.setLocationRelativeTo(null);
                         this.dispose();
-                        mv.setVisible(true);
+                        av.setVisible(true);
                         break;
                     default:
                     JOptionPane.showConfirmDialog(this, "Role tidak diketahui !", "Konfirmasi", JOptionPane.DEFAULT_OPTION);    
