@@ -47,6 +47,26 @@ public class TransaksiDAO {
         }
         dbcon.closeConnection();
     }
+    public void deleteTransaksi(int id) {
+
+        con = dbcon.makeConnection();
+        
+        String sql = "DELETE FROM transaksi WHERE id_transaksi = '" + id + "'";
+        System.out.println("Deleting Transaksi ...");
+        
+        try {
+            Statement statement = con.createStatement();
+            int result = statement.executeUpdate(sql);
+            System.out.println("Delete " + result + " Transaksi " + id);
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("Error deleting Transaksi...");
+            System.out.println(e);
+        }
+
+        dbcon.closeConnection();
+    }
+    
     public List<Transaksi> showTransaksi(String query, String status){
         con = dbcon.makeConnection();
         String sql = "SELECT t.*,s.*,c.* FROM transaksi as t"

@@ -26,20 +26,24 @@ public class TablePeriksa extends AbstractTableModel {
     }
     
     public int getColumnCount(){
-        return 4;
+        return 5;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return list.get(rowIndex).getPasien().getNama();
+                return rowIndex+1;
             case 1:
-                return list.get(rowIndex).getDokter().getNama();
+                return list.get(rowIndex).getPasien().getNama();
             case 2:
-                return list.get(rowIndex).getStatus();
+                return list.get(rowIndex).getDokter().getNama();
             case 3:
+                return list.get(rowIndex).getStatus();
+            case 4:
                 return list.get(rowIndex).getKeluhan();
+            case 5:
+                return list.get(rowIndex).getId();
             default:
                 return null;
         }
@@ -47,12 +51,14 @@ public class TablePeriksa extends AbstractTableModel {
     public String getColumnName(int column){
         switch(column){
             case 0:
-                return "Pasien";
+                return "No";
             case 1:
-                return "Dokter";
+                return "Pasien";
             case 2:
+                return "Dokter";
+            case 3:
                 return "Status";
-            case 3: 
+            case 4: 
                 return "Keluhan";
             default:
                 return null;

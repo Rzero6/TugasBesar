@@ -5,7 +5,7 @@
 package view.dokter;
 
 
-import assets.RoundPanel;
+import utils.UtilPanelCurve;
 import control.DetailTransaksiControl;
 import control.ObatControl;
 import control.TindakanControl;
@@ -90,7 +90,7 @@ public class RawatView extends javax.swing.JInternalFrame {
         tableKeranjangObat = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         tableKeranjangTindakan = new javax.swing.JTable();
-        deletePanel = new RoundPanel();
+        deletePanel = new utils.UtilPanelCurve(50);
         DeleteBtn = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();

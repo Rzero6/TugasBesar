@@ -495,7 +495,7 @@ public class StafView extends javax.swing.JInternalFrame {
             InputKosongException();
             int selectedIndexJabatan = jabatanDropDown.getSelectedIndex();
             if(action.equals("Tambah")){
-                Staf s = new Staf(namaStafInput.getText(), noTeleponInput.getText(), dateToString(tanggalMulaiKerja.getDate()), jabatanDropDown.getItemAt(selectedIndexJabatan), usernameInput.getText(), passwordInput.getText());
+                Staf s = new Staf(namaStafInput.getText(), noTeleponInput.getText(), jabatanDropDown.getItemAt(selectedIndexJabatan), usernameInput.getText(), passwordInput.getText());
                 stafControl.insertDataStaf(s);
             }else{
                 Staf s = new Staf(selectedId,namaStafInput.getText(), noTeleponInput.getText(), dateToString(tanggalMulaiKerja.getDate()), jabatanDropDown.getItemAt(selectedIndexJabatan), usernameInput.getText(), passwordInput.getText());

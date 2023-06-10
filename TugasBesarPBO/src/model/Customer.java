@@ -22,9 +22,9 @@ public class Customer extends Orang {
         this.tanggal_lahir = tanggal_lahir;
         this.alamat = alamat;
     }
-
-    public Customer(String nama, String no_telepon, String tanggal_bergabung,String tanggal_lahir, String alamat) {
-        super(nama, no_telepon, tanggal_bergabung);
+    
+    public Customer(String nama, String no_telepon,String tanggal_lahir, String alamat) {
+        super(nama, no_telepon);
         this.tanggal_lahir = tanggal_lahir;
         this.alamat = alamat;
     }

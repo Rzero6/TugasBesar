@@ -364,7 +364,7 @@ public class CustomerView extends javax.swing.JInternalFrame {
         try{
             InputKosongException();
             if(action.equals("Tambah")){
-                Customer c = new Customer(namaInput.getText(), noTeleponInput.getText(), dateToString(new Date()),dateToString(tanggalLahir.getDate()), alamatInput.getText());
+                Customer c = new Customer(namaInput.getText(), noTeleponInput.getText(),dateToString(tanggalLahir.getDate()), alamatInput.getText());
                 customerControl.insertDataCustomer(c);
             }else{
                 Customer c = new Customer(selectedId,namaInput.getText(), noTeleponInput.getText(), dateToString(new Date()),dateToString(tanggalLahir.getDate()), alamatInput.getText());

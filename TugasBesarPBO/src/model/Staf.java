@@ -22,8 +22,8 @@ public class Staf extends Orang {
         this.password = password;
     }
 
-    public Staf(String nama, String no_telepon, String tanggal_bergabung,String jabatan, String username, String password) {
-        super(nama, no_telepon, tanggal_bergabung);
+    public Staf(String nama, String no_telepon,String jabatan, String username, String password) {
+        super(nama, no_telepon);
         this.jabatan = jabatan;
         this.username = username;
         this.password = password;
@@ -85,6 +85,9 @@ public class Staf extends Orang {
         this.tanggal_bergabung = tanggal_bergabung;
     }
     
-    
+    @Override
+    public String toString(){
+        return "Dokter "+nama;
+    }
     
 }

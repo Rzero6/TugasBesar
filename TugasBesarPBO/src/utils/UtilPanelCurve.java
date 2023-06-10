@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package assets;
+package utils;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -21,13 +21,14 @@ import javax.swing.JPanel;
  *
  * @author VICTUS
  */
-public class RoundPanel extends JPanel {
+public class UtilPanelCurve extends JPanel {
 
-    private static final int ARC_WIDTH = 50;
-    private static final int ARC_HEIGHT = 50;
+    private int ARC_WIDTH;
+    private int ARC_HEIGHT;
 
-    public RoundPanel() {
+    public UtilPanelCurve(int curve) {
         setOpaque(false);
+        ARC_WIDTH = ARC_HEIGHT = curve;
     }
 
     @Override
