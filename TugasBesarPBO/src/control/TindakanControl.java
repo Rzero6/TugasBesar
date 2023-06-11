@@ -26,7 +26,7 @@ public class TindakanControl {
         tDao.deleteTindakan(id);
     }
     
-    public List showTindakanBySearch(String query){
+    public List showListTindakan(String query){
         List<Tindakan> dataTindakan = tDao.showTindakanBySearch(query);
         return dataTindakan;
     }

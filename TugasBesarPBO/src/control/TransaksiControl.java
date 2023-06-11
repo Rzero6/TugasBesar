@@ -35,8 +35,8 @@ public class TransaksiControl {
         return tablePeriksa;
     }
     
-    public TablePasien showDataPasienPerDokter(String query, String status){
-        List<Transaksi> dataPasien = tDao.showTransaksi(query, status);
+    public TablePasien showDataPasienPerDokter(int idDokter, String status){
+        List<Transaksi> dataPasien = tDao.showTransaksiPerDokter(idDokter, status);
         TablePasien tablePasien = new TablePasien(dataPasien);
         return tablePasien;
     }

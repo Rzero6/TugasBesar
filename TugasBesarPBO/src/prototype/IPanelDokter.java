@@ -16,8 +16,6 @@ package prototype;
  * Nama : Febiola Ika Putri Wibowo
  * NPM : 210711023
  */
-public interface IPanel {
-    
+public interface IPanelDokter {
     public void refreshDataTable();
-
 }

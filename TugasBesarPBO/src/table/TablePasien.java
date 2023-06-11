@@ -23,7 +23,7 @@ public class TablePasien extends AbstractTableModel {
     }
     
     public int getColumnCount(){
-        return 6;
+        return 5;
     }
 
     @Override
@@ -68,8 +68,6 @@ public class TablePasien extends AbstractTableModel {
                 return "Keluhan";
             case 4:
                 return "Status";
-            case 5:
-                return "Diagnosis";
             default:
                 return null;
         }

@@ -27,7 +27,7 @@ import utils.UtilTable;
  *
  * @author VICTUS
  */
-public class PeriksaPanel extends javax.swing.JPanel implements IPanel{
+public class PeriksaPanel extends javax.swing.JPanel implements IPanelKasir{
     private TransaksiControl transaksiControl;
     private CustomerControl customerControl;
     private StafControl stafControl;
@@ -139,8 +139,7 @@ public class PeriksaPanel extends javax.swing.JPanel implements IPanel{
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         try{
             InputKosongException();
-            int selectedIndexCustomer = customerDropdown.getSelectedIndex();
-            Customer selectedCustomer = listCustomer.get(selectedIndexCustomer);
+            Customer selectedCustomer = (Customer) customerDropdown.getSelectedItem();
             String cek = transaksiControl.checkTransaksiForMultipleUndoneTransaction(selectedCustomer.getId());
             if(cek.equalsIgnoreCase("aman")){
                 int selectedIndexDokter = dokterDropdown.getSelectedIndex();

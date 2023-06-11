@@ -504,7 +504,7 @@ public class RawatView extends javax.swing.JInternalFrame {
             if(selectedIndexObat>0 && Integer.parseInt(jumlahObatInput.getText()) > 0){
                 Obat selectedObat = listObat.get(selectedIndexObat);
                 Tindakan tindakan = new Tindakan(1, "", 0);
-                DetailTransaksi dt = new DetailTransaksi(transaksi, selectedObat, tindakan, Integer.parseInt(jumlahObatInput.getText()));
+                DetailTransaksi dt = new DetailTransaksi(transaksi.getId(), selectedObat, tindakan, Integer.parseInt(jumlahObatInput.getText()));
                 int idDetailTransaksi = detailTransaksiControl.checkDetailSama(transaksi.getId(), selectedObat.getId(), "obat");
                 if(idDetailTransaksi==0){//cek jika belum ada detail transaksi dengan obat sama
                     detailTransaksiControl.insertDetailTransaksi(dt);
@@ -530,7 +530,7 @@ public class RawatView extends javax.swing.JInternalFrame {
         if(selectedIndexTindakan>0){
             Tindakan selectedTindakan = listTindakan.get(selectedIndexTindakan);
             Obat obat = new Obat(1, "", 0, 0);
-            DetailTransaksi dt = new DetailTransaksi(transaksi, obat, selectedTindakan, 0);
+            DetailTransaksi dt = new DetailTransaksi(transaksi.getId(), obat, selectedTindakan, 0);
             int idDetailTransaksi = detailTransaksiControl.checkDetailSama(transaksi.getId(), selectedTindakan.getId(), "tindakan");
                 if(idDetailTransaksi==0){//cek jika belum ada detail transaksi dengan tindakan sama
                     detailTransaksiControl.insertDetailTransaksi(dt);
@@ -646,7 +646,7 @@ public class RawatView extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void showPasien() {
-        tablePasien.setModel(transaksiControl.showDataPasienPerDokter(loginData.getNama(), "Menunggu"));
+        tablePasien.setModel(transaksiControl.showDataPasienPerDokter(loginData.getId(), "Menunggu"));
     }
 
     private void showKeranjangObat() {
@@ -667,7 +667,7 @@ public class RawatView extends javax.swing.JInternalFrame {
     }
 
     private void setTindakanDropdown() {
-        listTindakan = tindakanControl.showTindakanBySearch("");
+        listTindakan = tindakanControl.showListTindakan("");
         for(int i=0; i<listTindakan.size();i++){
             tindakanDropdown.addItem(listTindakan.get(i));
         }

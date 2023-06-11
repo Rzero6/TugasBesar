@@ -21,7 +21,7 @@ import model.Customer;
  *
  * @author VICTUS
  */
-public class CustomerPanel extends javax.swing.JPanel implements IPanel{
+public class CustomerPanel extends javax.swing.JPanel implements IPanelKasir{
 
     /**
      * Creates new form CustomerPanel

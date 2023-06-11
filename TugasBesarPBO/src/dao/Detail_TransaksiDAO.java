@@ -27,9 +27,8 @@ public class Detail_TransaksiDAO {
     public void insertDetailTransaksi (DetailTransaksi dt){
         con = dbcon.makeConnection();
         
-        String sql = "INSERT INTO detail_transaksi (id_detail_transaksi, id_transaksi, id_obat, id_tindakan, jumlah_obat)"
-                + "VALUES ('"+dt.getId_detail_transaksi()
-                + "', '"+dt.getTransaksi().getId()
+        String sql = "INSERT INTO detail_transaksi (id_transaksi, id_obat, id_tindakan, jumlah_obat)"
+                + "VALUES ('"+dt.getIdTransaksi()
                 + "', '"+dt.getObat().getId()
                 + "', '"+dt.getTindakan().getId()
                 + "', '"+dt.getJumlah_obat()+"')";

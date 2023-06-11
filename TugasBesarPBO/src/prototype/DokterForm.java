@@ -14,31 +14,33 @@ import java.util.List;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import model.Staf;
 
 
 /**
  *
  * @author VICTUS
  */
-public class KasirForm extends javax.swing.JFrame {
+public class DokterForm extends javax.swing.JFrame {
 
     /**
      * Creates new form KasirForm
      */
-    private List<IPanelKasir> panelList;
-    
-    public KasirForm() {
+    private List<IPanelDokter> panelList;
+    private Staf loginData;
+    public DokterForm(Staf loginData) {
+        this.loginData = loginData;
         initComponents();
         setLocationRelativeTo(null);
         containerTab.putClientProperty(TABBED_PANE_TAB_WIDTH_MODE, TABBED_PANE_TAB_WIDTH_MODE_COMPACT);
         containerTab.putClientProperty(TABBED_PANE_TAB_ALIGNMENT, SwingConstants.LEADING);
         containerTab.setIconAt(0, new FlatSVGIcon("assets/people-fill-svgrepo-com.svg",16,16));
-        containerTab.setIconAt(1, new FlatSVGIcon("assets/people-fill-svgrepo-com.svg",16,16));
-        containerTab.setIconAt(2, new FlatSVGIcon("assets/people-fill-svgrepo-com.svg",16,16));
+//        containerTab.setIconAt(1, new FlatSVGIcon("assets/people-fill-svgrepo-com.svg",16,16));
+//        containerTab.setIconAt(2, new FlatSVGIcon("assets/people-fill-svgrepo-com.svg",16,16));
         panelList = new ArrayList<>();
-        panelList.add(periksaPanel);
-        panelList.add(bayarPanel);
-        panelList.add(customerPanel);
+        panelList.add(rawatPanel);
+//        panelList.add(bayarPanel);
+//        panelList.add(customerPanel);
         
         setListener();
     }
@@ -53,9 +55,7 @@ public class KasirForm extends javax.swing.JFrame {
     private void initComponents() {
 
         containerTab = new javax.swing.JTabbedPane();
-        periksaPanel = new prototype.PeriksaPanel();
-        customerPanel = new prototype.CustomerPanel();
-        bayarPanel = new prototype.BayarPanel();
+        rawatPanel = new prototype.RawatPanel(loginData);
         jPanel2 = new javax.swing.JPanel();
         logoutBtn = new javax.swing.JButton();
         namaTxt = new javax.swing.JLabel();
@@ -64,9 +64,7 @@ public class KasirForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         containerTab.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        containerTab.addTab("Periksa", periksaPanel);
-        containerTab.addTab("Customer", customerPanel);
-        containerTab.addTab("Pembayaran", bayarPanel);
+        containerTab.addTab("Pasien", rawatPanel);
 
         jPanel2.setBackground(new java.awt.Color(51, 153, 255));
 
@@ -124,25 +122,24 @@ public class KasirForm extends javax.swing.JFrame {
         FlatMacLightLaf.setup();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new KasirForm().setVisible(true);
+                Staf loginData = new Staf(9, "Dendy", "089643938007", "2023-05-31", "Dokter", "dendy", "dendy");
+                new DokterForm(loginData).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private prototype.BayarPanel bayarPanel;
     private javax.swing.JTabbedPane containerTab;
-    private prototype.CustomerPanel customerPanel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JLabel namaTxt;
-    private prototype.PeriksaPanel periksaPanel;
+    private prototype.RawatPanel rawatPanel;
     // End of variables declaration//GEN-END:variables
 
     private void refreshData() {
         int selectedIndex = containerTab.getSelectedIndex();
-        IPanelKasir selectedPanel = panelList.get(selectedIndex);
+        IPanelDokter selectedPanel = panelList.get(selectedIndex);
         selectedPanel.refreshDataTable();
     }
 

@@ -25,7 +25,7 @@ import utils.UtilTable;
  *
  * @author VICTUS
  */
-public class BayarPanel extends javax.swing.JPanel implements IPanel {
+public class BayarPanel extends javax.swing.JPanel implements IPanelKasir {
 
     /**
      * Creates new form BayarPanel
