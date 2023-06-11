@@ -9,8 +9,6 @@ import control.CustomerControl;
 import control.StafControl;
 import control.TransaksiControl;
 import exception.InputKosongException;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -29,7 +27,7 @@ import utils.UtilTable;
  *
  * @author VICTUS
  */
-public class PeriksaPanel extends javax.swing.JPanel {
+public class PeriksaPanel extends javax.swing.JPanel implements IPanel{
     private TransaksiControl transaksiControl;
     private CustomerControl customerControl;
     private StafControl stafControl;
@@ -196,6 +194,7 @@ public class PeriksaPanel extends javax.swing.JPanel {
     private void setDokter() {
         listDokter = stafControl.showListStaf("Dokter");
         setupProperty(dokterDropdown);
+        dokterDropdown.removeAllItems();
         for(Staf s : listDokter){
             dokterDropdown.addItem(s);
         }
@@ -249,5 +248,12 @@ public class PeriksaPanel extends javax.swing.JPanel {
         });
         
         
+    }
+
+    @Override
+    public void refreshDataTable() {
+        setWaitingTable();
+        setCustomer();
+        setDokter();
     }
 }

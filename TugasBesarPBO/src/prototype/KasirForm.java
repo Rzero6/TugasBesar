@@ -9,7 +9,16 @@ import static com.formdev.flatlaf.FlatClientProperties.TABBED_PANE_TAB_WIDTH_MOD
 import static com.formdev.flatlaf.FlatClientProperties.TABBED_PANE_TAB_WIDTH_MODE_COMPACT;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import connection.DbUpdateChecker;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 
 /**
  *
@@ -20,6 +29,8 @@ public class KasirForm extends javax.swing.JFrame {
     /**
      * Creates new form KasirForm
      */
+    private List<IPanel> panelList;
+    
     public KasirForm() {
         initComponents();
         setLocationRelativeTo(null);
@@ -27,7 +38,13 @@ public class KasirForm extends javax.swing.JFrame {
         containerTab.putClientProperty(TABBED_PANE_TAB_ALIGNMENT, SwingConstants.LEADING);
         containerTab.setIconAt(0, new FlatSVGIcon("assets/people-fill-svgrepo-com.svg",16,16));
         containerTab.setIconAt(1, new FlatSVGIcon("assets/people-fill-svgrepo-com.svg",16,16));
+        containerTab.setIconAt(2, new FlatSVGIcon("assets/people-fill-svgrepo-com.svg",16,16));
+        panelList = new ArrayList<>();
+        panelList.add(periksaPanel);
+        panelList.add(bayarPanel);
+        panelList.add(customerPanel);
         
+        setListener();
     }
 
     /**
@@ -126,4 +143,19 @@ public class KasirForm extends javax.swing.JFrame {
     private javax.swing.JLabel namaTxt;
     private prototype.PeriksaPanel periksaPanel;
     // End of variables declaration//GEN-END:variables
+
+    private void refreshData() {
+        int selectedIndex = containerTab.getSelectedIndex();
+        IPanel selectedPanel = panelList.get(selectedIndex);
+        selectedPanel.refreshDataTable();
+    }
+
+    private void setListener() {
+        containerTab.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                refreshData();
+            }
+        });
+    }
 }

@@ -21,7 +21,7 @@ import model.Customer;
  *
  * @author VICTUS
  */
-public class CustomerPanel extends javax.swing.JPanel {
+public class CustomerPanel extends javax.swing.JPanel implements IPanel{
 
     /**
      * Creates new form CustomerPanel
@@ -177,7 +177,7 @@ public class CustomerPanel extends javax.swing.JPanel {
                     .addComponent(editBtn)
                     .addComponent(delBtn)
                     .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -285,18 +285,24 @@ public class CustomerPanel extends javax.swing.JPanel {
             }
 
             private void checkTextField() {
+                
+                String notelp = noTelpTxt.getText();
                 if(namaTxt.getText().isEmpty() 
-                        || alamatTxt.getText().isEmpty()
-                        || dateChooser.getDate()==null
-                        || noTelpTxt.getText().isEmpty()){
+                    || alamatTxt.getText().isEmpty()
+                    || dateChooser.getDate()==null
+                    || noTelpTxt.getText().isEmpty()
+                    || selectedID != 0
+                    || !notelp.matches("\\d+")){
                     addBtn.setEnabled(false);
                 }else{
                     addBtn.setEnabled(true);
                 }
+                
             }
         };
         namaTxt.getDocument().addDocumentListener(docListener);
         alamatTxt.getDocument().addDocumentListener(docListener);
+        noTelpTxt.getDocument().addDocumentListener(docListener);
         JTextField dateChooserTxt = (JTextField)dateChooser.getDateEditor().getUiComponent();
         dateChooserTxt.getDocument().addDocumentListener(docListener);
         
@@ -337,5 +343,12 @@ public class CustomerPanel extends javax.swing.JPanel {
         alamatTxt.setText("");
         noTelpTxt.setText("");
         dateChooser.setDate(null);
+        tableCustomer.clearSelection();
+        selectedID=0;
+    }
+
+    @Override
+    public void refreshDataTable() {
+        setTableCustomer("");
     }
 }

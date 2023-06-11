@@ -25,7 +25,7 @@ import utils.UtilTable;
  *
  * @author VICTUS
  */
-public class BayarPanel extends javax.swing.JPanel {
+public class BayarPanel extends javax.swing.JPanel implements IPanel {
 
     /**
      * Creates new form BayarPanel
@@ -361,6 +361,7 @@ public class BayarPanel extends javax.swing.JPanel {
 
     private void setTableBayar(String query) {
         tableBayar.setModel(transaksiControl.showDataPembayaranCustomer(query, "Bayar"));
+        selectedIDTransaksi=0;
     }
 
     private void setListener() {
@@ -430,5 +431,11 @@ public class BayarPanel extends javax.swing.JPanel {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String sqlDateandTime = currentDateTime.format(formatter);
         return sqlDateandTime;
+    }
+    
+    public void refreshDataTable(){
+        setTableBayar("");
+        setTableObat();
+        setTableTindakan();
     }
 }
