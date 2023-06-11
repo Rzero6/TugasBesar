@@ -4,7 +4,12 @@
  */
 package prototype;
 
+import static com.formdev.flatlaf.FlatClientProperties.TABBED_PANE_TAB_ALIGNMENT;
+import static com.formdev.flatlaf.FlatClientProperties.TABBED_PANE_TAB_WIDTH_MODE;
+import static com.formdev.flatlaf.FlatClientProperties.TABBED_PANE_TAB_WIDTH_MODE_COMPACT;
+import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -18,6 +23,11 @@ public class KasirForm extends javax.swing.JFrame {
     public KasirForm() {
         initComponents();
         setLocationRelativeTo(null);
+        containerTab.putClientProperty(TABBED_PANE_TAB_WIDTH_MODE, TABBED_PANE_TAB_WIDTH_MODE_COMPACT);
+        containerTab.putClientProperty(TABBED_PANE_TAB_ALIGNMENT, SwingConstants.LEADING);
+        containerTab.setIconAt(0, new FlatSVGIcon("assets/people-fill-svgrepo-com.svg",16,16));
+        containerTab.setIconAt(1, new FlatSVGIcon("assets/people-fill-svgrepo-com.svg",16,16));
+        
     }
 
     /**
@@ -30,8 +40,9 @@ public class KasirForm extends javax.swing.JFrame {
     private void initComponents() {
 
         containerTab = new javax.swing.JTabbedPane();
-        periksaPanel1 = new prototype.PeriksaPanel();
-        customerPanel1 = new prototype.CustomerPanel();
+        periksaPanel = new prototype.PeriksaPanel();
+        customerPanel = new prototype.CustomerPanel();
+        bayarPanel = new prototype.BayarPanel();
         jPanel2 = new javax.swing.JPanel();
         logoutBtn = new javax.swing.JButton();
         namaTxt = new javax.swing.JLabel();
@@ -40,8 +51,9 @@ public class KasirForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         containerTab.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        containerTab.addTab("Periksa", periksaPanel1);
-        containerTab.addTab("Customer", customerPanel1);
+        containerTab.addTab("Periksa", periksaPanel);
+        containerTab.addTab("Customer", customerPanel);
+        containerTab.addTab("Pembayaran", bayarPanel);
 
         jPanel2.setBackground(new java.awt.Color(51, 153, 255));
 
@@ -105,12 +117,13 @@ public class KasirForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private prototype.BayarPanel bayarPanel;
     private javax.swing.JTabbedPane containerTab;
-    private prototype.CustomerPanel customerPanel1;
+    private prototype.CustomerPanel customerPanel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JLabel namaTxt;
-    private prototype.PeriksaPanel periksaPanel1;
+    private prototype.PeriksaPanel periksaPanel;
     // End of variables declaration//GEN-END:variables
 }

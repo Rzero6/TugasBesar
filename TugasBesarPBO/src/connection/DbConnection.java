@@ -13,6 +13,7 @@ package connection;
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
+import javax.swing.JOptionPane;
 
 public class DbConnection {
     public static Connection CON;
@@ -44,6 +45,10 @@ public class DbConnection {
         } catch (Exception e) {
             System.out.println("Error opening database..");
             System.out.println(e);
+//            int confirm = JOptionPane.showConfirmDialog(null, "Tidak terkoneksi ke server","Error",JOptionPane.PLAIN_MESSAGE,JOptionPane.ERROR_MESSAGE);
+//            if(confirm==JOptionPane.OK_OPTION){
+//                System.exit(0);
+//            }
         }
         
         return CON;

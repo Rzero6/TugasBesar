@@ -8,8 +8,8 @@ package prototype;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import control.StafControl;
-import java.util.Arrays;
 import javax.swing.JOptionPane;
+import java.sql.SQLException;
 import model.Staf;
 
 /**
@@ -23,6 +23,9 @@ public class LoginForm extends javax.swing.JFrame {
     public LoginForm() {
         initComponents();
         setLocationRelativeTo(null);
+        containerPanel.putClientProperty(FlatClientProperties.STYLE, 
+                "background: tint(@background,50%);"
+                +"border: 16,16,16,16,shade(@background,10%),,10");
         loginBtn.putClientProperty(FlatClientProperties.STYLE, ""
                 +"borderWidth:0;"
                 + "focusWidth:0");
@@ -43,7 +46,7 @@ public class LoginForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        containerPanel = new javax.swing.JPanel();
         loginBtn = new javax.swing.JButton();
         passwordTxt = new javax.swing.JPasswordField();
         usernameTxt = new javax.swing.JTextField();
@@ -72,23 +75,23 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+        javax.swing.GroupLayout containerPanelLayout = new javax.swing.GroupLayout(containerPanel);
+        containerPanel.setLayout(containerPanelLayout);
+        containerPanelLayout.setHorizontalGroup(
+            containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(containerPanelLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(passwordTxt)
                     .addComponent(usernameTxt)
                     .addComponent(exitBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
+        containerPanelLayout.setVerticalGroup(
+            containerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(containerPanelLayout.createSequentialGroup()
+                .addGap(100, 100, 100)
                 .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -96,18 +99,24 @@ public class LoginForm extends javax.swing.JFrame {
                 .addComponent(loginBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(exitBtn)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(containerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(containerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
         );
 
         pack();
@@ -118,10 +127,11 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+
         String password = new String(this.passwordTxt.getPassword());
         Staf s = stafControl.loginStaf(usernameTxt.getText(), password);
         if(s==null){
-            JOptionPane.showConfirmDialog(rootPane, "Username atau Password salah","Error",JOptionPane.OK_OPTION,JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showConfirmDialog(rootPane, "Username atau Password salah","Error",JOptionPane.PLAIN_MESSAGE,JOptionPane.ERROR_MESSAGE);
         }else{
             switch(s.getJabatan().toLowerCase()){
                 case "kasir":
@@ -130,6 +140,7 @@ public class LoginForm extends javax.swing.JFrame {
                     break;
             }
         }
+        
     }//GEN-LAST:event_loginBtnActionPerformed
 
     /**
@@ -145,8 +156,8 @@ public class LoginForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel containerPanel;
     private javax.swing.JButton exitBtn;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton loginBtn;
     private javax.swing.JPasswordField passwordTxt;
     private javax.swing.JTextField usernameTxt;

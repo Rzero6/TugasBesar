@@ -32,6 +32,7 @@ public class MutasiDAO {
                 + m.getIdTransaksi()+ "', '"
                 + m.getNominal() + "', '"
                 + m.getSaldo() + "', '"
+                + m.getDetail() + "', '"
                 + m.getTipe() + "', '"
                 + m.getTanggal() + "')";
         }else{
@@ -63,7 +64,7 @@ public class MutasiDAO {
     public Double getSaldo(){
         con = dbcon.makeConnection();
         String sql = "SELECT saldo FROM mutasi_dana"
-                + " ORDER BY tanggal_mutasi ASC LIMIT 1";
+                + " ORDER BY tanggal_mutasi DESC LIMIT 1";
         System.out.println("Mengambil data mutasi ...");
         double saldo = 0;
         try{

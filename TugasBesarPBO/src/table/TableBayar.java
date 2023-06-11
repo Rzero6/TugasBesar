@@ -29,28 +29,28 @@ public class TableBayar extends AbstractTableModel {
     }
     
     public int getColumnCount(){
-        return 8;
+        return 7;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return list.get(rowIndex).getId();
+                return list.get(rowIndex).getTanggalTransaksi().substring(0,10);
             case 1:
                 return list.get(rowIndex).getPasien().getNama();
             case 2:
                 return list.get(rowIndex).getDokter().getNama();
             case 3 :
-                return list.get(rowIndex).getTanggalTransaksi();
-            case 4:
                 return list.get(rowIndex).getStatus();
-            case 5:
+            case 4:
                 return list.get(rowIndex).getKeluhan();
-            case 6 :
+            case 5:
                 return list.get(rowIndex).getDiagnosis();
-            case 7 :
+            case 6 :
                 return list.get(rowIndex).totalHarga();
+            case 7 :
+                return list.get(rowIndex).getId();
             default:
                 return null;
         }
@@ -58,20 +58,18 @@ public class TableBayar extends AbstractTableModel {
     public String getColumnName(int column){
         switch(column){
             case 0:
-                return "ID Transaksi";
+                return "Tanggal Periksa";
             case 1:
                 return "Pasien";
             case 2:
                 return "Dokter";
-            case 3 :
-                return "Tanggal Transaksi";
-            case 4:
+            case 3:
                 return "Status";
-            case 5: 
+            case 4: 
                 return "Keluhan";
-            case 6 :
+            case 5 :
                 return "Diagnosis";
-            case 7:
+            case 6:
                 return "Total Harga";
             default:
                 return null;

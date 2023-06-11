@@ -75,5 +75,7 @@ public class DetailTransaksiControl {
     public int checkDetailSama(int idTransaksi, int idPerawatan,String jenis){
         return dtDAO.checkDetailSama(idTransaksi, idPerawatan, jenis);
     }
-
+    public void updateJumlahObat(int id, int jumlah){
+        dtDAO.updateJumlahObat(id, jumlah);
+    }
 }

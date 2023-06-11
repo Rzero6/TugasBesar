@@ -8,8 +8,6 @@ package dao;
 import connection.DbConnection;
 import java.sql.Connection;
 import java.sql.Statement;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.DetailTransaksi;
@@ -194,5 +192,21 @@ public class Detail_TransaksiDAO {
         return idDetailTransaksi; 
     }
     
-    
+    public void updateJumlahObat(int id, int jumlah){
+        con = dbcon.makeConnection();
+        String sql = "UPDATE detail_transaksi set "
+                + " jumlah_obat = "+jumlah
+                + " WHERE (id_detail_transaksi = "+id+")";
+        System.out.println("Editing Detail Transaksi ...");
+        try {
+            Statement statement = con.createStatement();
+            int result = statement.executeUpdate(sql);
+            System.out.println("Edited " + result + " DetailTransaksi " + id);
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("Error editing Detail Transaksi ...");
+            System.out.println(e);
+        }
+        dbcon.closeConnection();
+    }
 }

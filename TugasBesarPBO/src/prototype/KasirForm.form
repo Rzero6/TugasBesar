@@ -45,7 +45,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Component class="prototype.PeriksaPanel" name="periksaPanel1">
+        <Component class="prototype.PeriksaPanel" name="periksaPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Periksa">
@@ -54,11 +54,20 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="prototype.CustomerPanel" name="customerPanel1">
+        <Component class="prototype.CustomerPanel" name="customerPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Customer">
                 <Property name="tabTitle" type="java.lang.String" value="Customer"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="prototype.BayarPanel" name="bayarPanel">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Pembayaran">
+                <Property name="tabTitle" type="java.lang.String" value="Pembayaran"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

@@ -143,7 +143,7 @@ public class Transaksi {
     }
 
     public double totalHarga() {
-        double total = 50000;
+        double total = biaya_klinik;
         for (DetailTransaksi temp : detailTransaksiList) {
             if (temp.getTransaksi().getId() == id && temp.getObat().getId() != 1 && temp.getTindakan().getId() != 1) {
                 total += (temp.getObat().getHarga() * temp.getJumlah_obat()) + temp.getTindakan().getHarga();
@@ -163,32 +163,34 @@ public class Transaksi {
         text+="\tJl.Seturan Raya 0567, Kab. Sleman, DI Yogyakarta\n";
         text+="\t\tTelp: 081227212892\n";
         text+="===========================================================\n";
-//        text+="No. Struk: " + receiptNumber);
-        text+="Tanggal: " + getDate() + "  " + getTime() + "\n";
+        text+="Tanggal\t: " + getDate() + "  " + getTime().substring(0,8) + "\n";
         text+="===========================================================\n";
-        text+="Pelanggan: " + getPasien().getNama() + "\n";
-        text+="Dokter: " + getDokter() + "\n";
-        text+="Diagnosis: " + getDiagnosis() + "\n";
+        text+="Pelanggan\t: " + getPasien().getNama() + "\n";
+        text+="Dokter\t: " + getDokter() + "\n";
+        text+="Diagnosis\t: " + getDiagnosis() + "\n";
         text+="===========================================================\n";
-        text+="Perawatan :\n";
-        text+="Obat\tHarga\tTotal\n";
-        text+="------------------------------------------------------------------------------------------------\n";
+        text+="\n------------------------------------------------------------------------------------------------";
+        text+="\nObat\tHarga\tTotal\n\n";
+        
         for (DetailTransaksi temp : detailTransaksiList) {
             if(temp.getObat().getId() != 1){
                 text+=temp.getObat().getNama() + "\t" + temp.getJumlah_obat() + " x " + temp.getObat().getHarga() + "\tRp " + temp.getObat().getHarga() * temp.getJumlah_obat() +"\n";
-                text+="------------------------------------------------------------------------------------------------\n";
+                //text+="------------------------------------------------------------------------------------------------\n";
             }
         }
-        text+="Tindakan:\t\t\t\n";
-        text+="------------------------------------------------------------------------------------------------\n";
+        text+="\n------------------------------------------------------------------------------------------------";
+        text+="\nTindakan\t\t\t\n\n";
+        
         for (DetailTransaksi temp : detailTransaksiList) {
             if(temp.getTindakan().getId() != 1){
                 text+=temp.getTindakan().getNama() + "\t\tRp " + temp.getTindakan().getHarga()+ "\n";
-                text+="------------------------------------------------------------------------------------------------\n";
+                //text+="------------------------------------------------------------------------------------------------\n";
             }
         }
-        text+= "Biaya Klinik \t\tRp "+biaya_klinik;
-        text+= "\n\nTotal Harga \t\tRp "+totalHarga();
+        text+="\n------------------------------------------------------------------------------------------------";
+        text+= "\nBiaya Klinik \t\tRp "+biaya_klinik;
+        text+="\n===========================================================\n";
+        text+= "\nTotal Harga \t\tRp "+totalHarga();
         return text;
     }
 }
