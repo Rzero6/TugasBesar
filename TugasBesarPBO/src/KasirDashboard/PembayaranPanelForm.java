@@ -20,6 +20,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 import model.Mutasi;
 import model.Transaksi;
+import utils.UtilTable;
 
 /**
  *
@@ -412,6 +413,7 @@ public class PembayaranPanelForm extends javax.swing.JPanel {
     }
     private void setTableBayar(String query) {
         PembayaranTable.setModel(transaksiControl.showDataPembayaranCustomer(query, "Bayar"));
+        UtilTable.tableResizeColumnWidth(PembayaranTable);
         selectedIDTransaksi=0;
     }
     private void setListener() {

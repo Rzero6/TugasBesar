@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.TableModel;
 import model.Staf;
+import utils.UtilTable;
 
 /**
  *
@@ -1260,6 +1261,7 @@ public class KasirView extends javax.swing.JFrame {
 
     private void setHomeTable() {
         homeTable.setModel(transaksiControl.showDataPeriksa("", ""));
+        UtilTable.tableResizeColumnWidth(homeTable);
     }
 
 }

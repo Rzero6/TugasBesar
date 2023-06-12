@@ -14,6 +14,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.TableModel;
 import model.Customer;
+import utils.UtilTable;
 
 /**
  *
@@ -332,6 +333,7 @@ public class PendaftaranPasienForm extends javax.swing.JPanel {
 
     private void setTableCustomer(String string) {
         PendaftaranTable.setModel(customerControl.showDataCustomer(string));
+        UtilTable.tableResizeColumnWidth(PendaftaranTable);
     }
     private void setListener() {
         DocumentListener docListener = new DocumentListener() {

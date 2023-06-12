@@ -20,6 +20,7 @@ import javax.swing.table.TableModel;
 import model.Customer;
 import model.Staf;
 import model.Transaksi;
+import utils.UtilTable;
 
 /**
  *
@@ -390,6 +391,7 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
 
     private void setTablePeriksa(String query) {
         PeriksaTable.setModel(transaksiControl.showDataPeriksa(query,"Menunggu"));
+        UtilTable.tableResizeColumnWidth(PeriksaTable);
     }
 
     private void setCustomer() {

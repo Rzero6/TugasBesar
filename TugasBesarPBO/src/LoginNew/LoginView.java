@@ -13,6 +13,8 @@ import com.formdev.flatlaf.util.Animator;
 import com.formdev.flatlaf.util.Animator.TimingTarget;
 import control.StafControl;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 //import java.awt.Graphics;
 //import java.awt.Graphics2D;
 //import java.awt.Insets;
@@ -56,6 +58,7 @@ public class LoginView extends javax.swing.JFrame {
     public LoginView() {
         initComponents();
         stafControl = new StafControl();
+        setListener();
         passwordInput.setEchoChar('*');
         jLabel15.setVisible(false);
         jLabel17.setVisible(false);
@@ -147,6 +150,27 @@ public class LoginView extends javax.swing.JFrame {
         animatorLoading.setResolution(1);
         
     }
+
+    private void setListener() {
+        KeyListener keyListener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                 if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    loginBtn.doClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        };
+        usernameInput.addKeyListener(keyListener);
+        passwordInput.addKeyListener(keyListener);
+    }
     
     class progressThread extends Thread{
 
@@ -176,11 +200,11 @@ public class LoginView extends javax.swing.JFrame {
                     }else if (i==85){
                         loadingLbl.setText("Launching System...");
                     }else if( i ==100){
+                        startbtn.doClick();
                         openingLbl.setText("Welcome Back");
                         loading.setVisible(false);
                         persenLbl.setVisible(false);
                         startbtn.setVisible(true);
-                        startbtn.doClick();
                     }
 
                 }
@@ -663,8 +687,9 @@ public class LoginView extends javax.swing.JFrame {
                 kh.setVisible(true);
                 break;
             case "dokter":
-                //DokterView dv = new DokterView(loginData);
-                //dv.setVisible(true);
+                DokterView dv = new DokterView(loginData);
+                this.dispose();
+                dv.setVisible(true);
                 break;
             case "admin":
                 break;
@@ -756,7 +781,6 @@ public class LoginView extends javax.swing.JFrame {
             @Override
             public void run() {
                new LoginView().setVisible(true);
-               
                 
             }
         });
