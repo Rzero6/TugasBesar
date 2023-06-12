@@ -4,6 +4,7 @@
  */
 package prototype;
 
+import com.formdev.flatlaf.FlatClientProperties;
 import control.StafControl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,7 +22,7 @@ import model.Staf;
  *
  * @author VICTUS
  */
-public class StafPanel extends javax.swing.JPanel {
+public class StafPanel extends javax.swing.JPanel implements IPanelAdmin {
 
     /**
      * Creates new form StafPanel
@@ -33,6 +34,7 @@ public class StafPanel extends javax.swing.JPanel {
     public StafPanel() {
         initComponents();
         stafControl = new StafControl();
+        searchInput.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
         setTableStaf("");
         setListener();
     }
@@ -290,13 +292,20 @@ public class StafPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_stafTableMouseClicked
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        
-        
+        Staf staf = new Staf(namaStafInput.getText(), noTeleponInput.getText(), (String)jabatanDropDown.getSelectedItem(), usernameInput.getText(), passwordInput.getText());
+        staf.setTanggal_bergabung(dateToString(tanggalMulaiKerja.getDate()));
+        stafControl.insertDataStaf(staf);
+        JOptionPane.showConfirmDialog(null, "Berhasil menambahkan "+staf.getNama()+" sebagai "+staf.getJabatan(),"Success",JOptionPane.PLAIN_MESSAGE);
+        setTableStaf("");
+        clearAll();
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-
-        
+        Staf staf = new Staf(selectedId, namaStafInput.getText(), noTeleponInput.getText(), dateToString(tanggalMulaiKerja.getDate()), (String) jabatanDropDown.getSelectedItem(), usernameInput.getText(), passwordInput.getText());
+        stafControl.updateDataStaf(staf);
+        JOptionPane.showConfirmDialog(null, "Berhasil memperbaharui "+staf.getNama()+" sebagai "+staf.getJabatan(),"Success",JOptionPane.PLAIN_MESSAGE);
+        setTableStaf("");
+        clearAll();
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -306,6 +315,7 @@ public class StafPanel extends javax.swing.JPanel {
             case 0:
             try{
                 stafControl.deleteStaf(selectedId);
+                JOptionPane.showConfirmDialog(null, "Berhasil menghapus data "+namaStafInput.getText(),"Success",JOptionPane.PLAIN_MESSAGE);
                 setTableStaf("");
                 clearAll();
             }catch(Exception e){
@@ -478,5 +488,10 @@ public class StafPanel extends javax.swing.JPanel {
     private void setEditDeleteBtn(boolean b){
         deleteBtn.setEnabled(b);
         editBtn.setEnabled(b);
+    }
+
+    @Override
+    public void refreshData() {
+        setTableStaf("");
     }
 }

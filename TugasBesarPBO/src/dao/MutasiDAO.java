@@ -89,6 +89,7 @@ public class MutasiDAO {
                 + "(id_mutasi LIKE '%"+query+"%'"
                 + "OR id_pengadaan LIKE '%"+query+"%'"
                 + "OR id_transaksi LIKE '%"+query+"%'"
+                + "OR tanggal_mutasi LIKE '%"+query+"%'"
                 + "OR nominal LIKE '%"+query+"%'"
                 + "OR saldo LIKE '%"+query+"%'"
                 + "OR detail LIKE '%"+query+"%'"

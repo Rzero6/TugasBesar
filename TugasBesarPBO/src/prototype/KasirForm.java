@@ -38,7 +38,7 @@ public class KasirForm extends javax.swing.JFrame {
         panelList = new ArrayList<>();
         panelList.add(periksaPanel);
         panelList.add(bayarPanel);
-        panelList.add(customerPanel);
+//        panelList.add(customerPanel);
         
         setListener();
     }

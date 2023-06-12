@@ -21,7 +21,7 @@ import model.Customer;
  *
  * @author VICTUS
  */
-public class CustomerPanel extends javax.swing.JPanel implements IPanelKasir{
+public class CustomerPanel extends javax.swing.JPanel implements IPanelAdmin{
 
     /**
      * Creates new form CustomerPanel
@@ -348,7 +348,7 @@ public class CustomerPanel extends javax.swing.JPanel implements IPanelKasir{
     }
 
     @Override
-    public void refreshDataTable() {
+    public void refreshData() {
         setTableCustomer("");
     }
 }

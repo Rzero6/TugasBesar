@@ -31,26 +31,28 @@ public class TableMutasi extends AbstractTableModel{
     }
     
     public int getColumnCount(){
-        return 5;
+        return 6;
     }
     
     public Object getValueAt(int rowIndex, int columnIndex){
         switch (columnIndex) {
             case 0:
-                return list.get(rowIndex).getTanggal();
+                return list.get(rowIndex).getTanggal().substring(0, 10);
             case 1:
-                return list.get(rowIndex).getTipe();
+                return list.get(rowIndex).getTanggal().substring(11, 19);
             case 2:
-                return list.get(rowIndex).getNominal();
+                return list.get(rowIndex).getTipe();
             case 3:
-                return list.get(rowIndex).getSaldo();
+                return list.get(rowIndex).getNominal();
             case 4:
-                return list.get(rowIndex).getDetail();
+                return list.get(rowIndex).getSaldo();
             case 5:
-                return list.get(rowIndex).getIdMutasi();
+                return list.get(rowIndex).getDetail();
             case 6:
-                return list.get(rowIndex).getIdPengadaan();
+                return list.get(rowIndex).getIdMutasi();
             case 7:
+                return list.get(rowIndex).getIdPengadaan();
+            case 8:
                 return list.get(rowIndex).getIdTransaksi();
             default: 
                 return null;
@@ -62,12 +64,14 @@ public class TableMutasi extends AbstractTableModel{
             case 0:
                 return "Tanggal";
             case 1:
-                return "Tipe";
+                return "Jam";
             case 2:
-                return "Nominal";
+                return "Tipe";
             case 3:
-                return "Saldo";
+                return "Nominal";
             case 4:
+                return "Saldo";
+            case 5:
                 return "Detail";
             default:
                 return null;

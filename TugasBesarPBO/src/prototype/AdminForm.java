@@ -5,6 +5,10 @@
 package prototype;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -15,8 +19,19 @@ public class AdminForm extends javax.swing.JFrame {
     /**
      * Creates new form AdminForm
      */
+    private List<IPanelAdmin> panelList;
+    
+    
     public AdminForm() {
         initComponents();
+        panelList = new ArrayList<>();
+        panelList.add(stafPanel1);
+        panelList.add(pengadaanPanel1);
+        panelList.add(mutasiPanel1);
+        panelList.add(customerPanel1);
+        panelList.add(supplierPanel1);
+        panelList.add(tindakanPanel1);
+        setListener();
     }
 
     /**
@@ -28,22 +43,32 @@ public class AdminForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        containerTab = new javax.swing.JTabbedPane();
         stafPanel1 = new prototype.StafPanel();
+        mutasiPanel1 = new prototype.MutasiPanel();
+        pengadaanPanel1 = new prototype.PengadaanPanel();
+        customerPanel1 = new prototype.CustomerPanel();
+        supplierPanel1 = new prototype.SupplierPanel();
+        tindakanPanel1 = new prototype.TindakanPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane1.addTab("Staff", stafPanel1);
+        containerTab.addTab("Staff", stafPanel1);
+        containerTab.addTab("Mutasi", mutasiPanel1);
+        containerTab.addTab("Pengadaan", pengadaanPanel1);
+        containerTab.addTab("Customer", customerPanel1);
+        containerTab.addTab("Supplier", supplierPanel1);
+        containerTab.addTab("Tindakan", tindakanPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(containerTab)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(containerTab)
         );
 
         pack();
@@ -63,7 +88,26 @@ public class AdminForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane containerTab;
+    private prototype.CustomerPanel customerPanel1;
+    private prototype.MutasiPanel mutasiPanel1;
+    private prototype.PengadaanPanel pengadaanPanel1;
     private prototype.StafPanel stafPanel1;
+    private prototype.SupplierPanel supplierPanel1;
+    private prototype.TindakanPanel tindakanPanel1;
     // End of variables declaration//GEN-END:variables
+    private void refreshData() {
+        int selectedIndex = containerTab.getSelectedIndex();
+        IPanelAdmin selectedPanel = panelList.get(selectedIndex);
+        selectedPanel.refreshData();
+    }
+
+    private void setListener() {
+        containerTab.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                refreshData();
+            }
+        });
+    }
 }
