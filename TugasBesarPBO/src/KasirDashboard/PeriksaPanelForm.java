@@ -269,6 +269,7 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
         action = "Add";
+        clearAll();
         addRawatPasien.setVisible(true);
         
     }//GEN-LAST:event_addBtnActionPerformed
@@ -455,5 +456,6 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
         PeriksaTable.clearSelection();
         editBtn.setEnabled(false);
         removeBtn.setEnabled(false);
+        searchTxt.setText("");
     }
 }

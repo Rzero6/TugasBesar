@@ -43,11 +43,7 @@ public class KasirView extends javax.swing.JFrame {
         transaksiControl = new TransaksiControl();
         
         init();
-        addRawatPasien.setSize(712,590);
-        addPasien.setSize(720, 548);
         checkOut.setSize(720, 493);
-        addRawatPasien.setLocationRelativeTo(null);
-        addPasien.setLocationRelativeTo(null);
         checkOut.setLocationRelativeTo(null);
         panelSlide1.setVisible(false);
     }
@@ -73,12 +69,12 @@ public class KasirView extends javax.swing.JFrame {
     public void init (){
         setStausTable(homeTable);
         //setStausTable(PeriksaTable);
-        setStausTable(PembayaranTable);
-        setStausTable(PendaftaranTable);
+        //setStausTable(PembayaranTable);
+        //setStausTable(PendaftaranTable);
         
         tableHomeScrollBar.setVerticalScrollBar(new ScrollBarCustom());
-        tablePembayaranScrollBar.setVerticalScrollBar(new ScrollBarCustom());
-        tablePendaftaranScrollBar.setVerticalScrollBar(new ScrollBarCustom());
+        //tablePembayaranScrollBar.setVerticalScrollBar(new ScrollBarCustom());
+        //tablePendaftaranScrollBar.setVerticalScrollBar(new ScrollBarCustom());
         //tablePeriksaScrollBar.setVerticalScrollBar(new ScrollBarCustom());
         HomePanel.setVisible(true);
         HomeLbl.setForeground(selectedColor);
@@ -139,32 +135,6 @@ public class KasirView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        addRawatPasien = new javax.swing.JFrame();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        cancelBtnInputPeriksa = new javax.swing.JButton();
-        saveBtnInputPeriksa = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
-        addPasien = new javax.swing.JFrame();
-        jPanel8 = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        cancelBtnInputPasien = new javax.swing.JButton();
-        saveBtnInputPasien = new javax.swing.JButton();
-        tanggalLahir = new com.toedter.calendar.JDateChooser();
-        textField1 = new KasirDashboard.CustomePalette.TextField();
-        textField2 = new KasirDashboard.CustomePalette.TextField();
-        textField3 = new KasirDashboard.CustomePalette.TextField();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         checkOut = new javax.swing.JFrame();
         jPanel10 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -221,27 +191,9 @@ public class KasirView extends javax.swing.JFrame {
         homeTable = new KasirDashboard.TableCustom();
         servicePembayaranPasien = new KasirDashboard.CustomePalette.innerDashboard();
         panelSlide = new KasirDashboard.CustomePalette.PanelSlide();
-        namaLbl13 = new javax.swing.JLabel();
-        namaLbl14 = new javax.swing.JLabel();
-        namaLbl15 = new javax.swing.JLabel();
-        namaLbl16 = new javax.swing.JLabel();
-        tablePembayaranScrollBar = new javax.swing.JScrollPane();
-        PembayaranTable = new KasirDashboard.TableCustom();
-        checkOutBtn = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jButton13 = new javax.swing.JButton();
+        pembayaranPanelForm1 = new KasirDashboard.PembayaranPanelForm();
         servicePendaftaranPasien = new KasirDashboard.CustomePalette.innerDashboard();
-        namaLbl9 = new javax.swing.JLabel();
-        namaLbl10 = new javax.swing.JLabel();
-        namaLbl11 = new javax.swing.JLabel();
-        namaLbl12 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jButton11 = new javax.swing.JButton();
-        tablePendaftaranScrollBar = new javax.swing.JScrollPane();
-        PendaftaranTable = new KasirDashboard.TableCustom();
+        pendaftaranPasienForm1 = new KasirDashboard.PendaftaranPasienForm();
         servicePeriksaPasien = new KasirDashboard.CustomePalette.innerDashboard();
         periksaPanelForm1 = new KasirDashboard.PeriksaPanelForm();
         aboutUs = new KasirDashboard.CustomePalette.innerDashboard();
@@ -251,167 +203,6 @@ public class KasirView extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         panelSlide2 = new KasirDashboard.CustomePalette.PanelSlide();
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel7.setBackground(new java.awt.Color(198, 231, 255));
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 313, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jPanel5.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 590));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(140, 140, 140));
-        jLabel1.setText("Nama Pasien");
-        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 154, 30));
-
-        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
-        jLabel10.setText("Periksa Pasien");
-        jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 360, 70));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel5.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 320, 30));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel5.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 320, 30));
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(140, 140, 140));
-        jLabel12.setText("Diagnosis");
-        jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 154, 30));
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(140, 140, 140));
-        jLabel13.setText("Nama Dokter");
-        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 154, 30));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-
-        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 320, 150));
-
-        cancelBtnInputPeriksa.setBackground(new java.awt.Color(3, 104, 218));
-        cancelBtnInputPeriksa.setForeground(new java.awt.Color(255, 255, 255));
-        cancelBtnInputPeriksa.setText("Batal");
-        cancelBtnInputPeriksa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelBtnInputPeriksaActionPerformed(evt);
-            }
-        });
-        jPanel5.add(cancelBtnInputPeriksa, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 490, -1, 30));
-
-        saveBtnInputPeriksa.setBackground(new java.awt.Color(3, 104, 218));
-        saveBtnInputPeriksa.setForeground(new java.awt.Color(255, 255, 255));
-        saveBtnInputPeriksa.setText("Simpan");
-        saveBtnInputPeriksa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveBtnInputPeriksaActionPerformed(evt);
-            }
-        });
-        jPanel5.add(saveBtnInputPeriksa, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 490, -1, 30));
-
-        jLabel17.setForeground(new java.awt.Color(140, 140, 140));
-        jLabel17.setText("Silahkan Input Data Diri Pasien yang akan diperiksa");
-        jPanel5.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 86, -1, 30));
-
-        javax.swing.GroupLayout addRawatPasienLayout = new javax.swing.GroupLayout(addRawatPasien.getContentPane());
-        addRawatPasien.getContentPane().setLayout(addRawatPasienLayout);
-        addRawatPasienLayout.setHorizontalGroup(
-            addRawatPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addRawatPasienLayout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
-        addRawatPasienLayout.setVerticalGroup(
-            addRawatPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel9.setBackground(new java.awt.Color(198, 231, 255));
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 313, Short.MAX_VALUE)
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jPanel8.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 590));
-
-        jLabel15.setFont(new java.awt.Font("Century Gothic", 1, 40)); // NOI18N
-        jLabel15.setText("Registrasi Pasien");
-        jPanel8.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 380, -1));
-
-        cancelBtnInputPasien.setBackground(new java.awt.Color(3, 104, 218));
-        cancelBtnInputPasien.setForeground(new java.awt.Color(255, 255, 255));
-        cancelBtnInputPasien.setText("Batal");
-        cancelBtnInputPasien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelBtnInputPasienActionPerformed(evt);
-            }
-        });
-        jPanel8.add(cancelBtnInputPasien, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 440, -1, 30));
-
-        saveBtnInputPasien.setBackground(new java.awt.Color(3, 104, 218));
-        saveBtnInputPasien.setForeground(new java.awt.Color(255, 255, 255));
-        saveBtnInputPasien.setText("Simpan");
-        saveBtnInputPasien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveBtnInputPasienActionPerformed(evt);
-            }
-        });
-        jPanel8.add(saveBtnInputPasien, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 440, -1, 30));
-
-        tanggalLahir.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel8.add(tanggalLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 330, -1));
-
-        textField1.setLabelText("Alamat");
-        jPanel8.add(textField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 330, 50));
-
-        textField2.setLabelText("Nama");
-        jPanel8.add(textField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 330, 50));
-
-        textField3.setLabelText("Nomor Telepon");
-        jPanel8.add(textField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 330, 50));
-
-        jLabel14.setForeground(new java.awt.Color(140, 140, 140));
-        jLabel14.setText("Silahkan Input Data Diri Pasien");
-        jPanel8.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 86, -1, 30));
-
-        jLabel16.setForeground(new java.awt.Color(140, 140, 140));
-        jLabel16.setText("Tanggal Lahir");
-        jPanel8.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, -1, -1));
-
-        javax.swing.GroupLayout addPasienLayout = new javax.swing.GroupLayout(addPasien.getContentPane());
-        addPasien.getContentPane().setLayout(addPasienLayout);
-        addPasienLayout.setHorizontalGroup(
-            addPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addPasienLayout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
-        addPasienLayout.setVerticalGroup(
-            addPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
 
         checkOut.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -971,130 +762,12 @@ public class KasirView extends javax.swing.JFrame {
         panelSlide.setBackground(new java.awt.Color(102, 204, 0));
         panelSlide.setForeground(new java.awt.Color(51, 255, 204));
         servicePembayaranPasien.add(panelSlide, new org.netbeans.lib.awtextra.AbsoluteConstraints(733, 0, 120, 720));
-
-        namaLbl13.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        namaLbl13.setForeground(new java.awt.Color(3, 104, 218));
-        namaLbl13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl13.setText("Dashboard> Services> ");
-        servicePembayaranPasien.add(namaLbl13, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 30, -1, 25));
-
-        namaLbl14.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
-        namaLbl14.setForeground(new java.awt.Color(3, 104, 218));
-        namaLbl14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl14.setText("Pembayaran Biaya Rawat");
-        servicePembayaranPasien.add(namaLbl14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 630, 50));
-
-        namaLbl15.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        namaLbl15.setForeground(new java.awt.Color(3, 104, 218));
-        namaLbl15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl15.setText("Pembayaran Pasien");
-        servicePembayaranPasien.add(namaLbl15, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 30, 210, 25));
-
-        namaLbl16.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
-        namaLbl16.setForeground(new java.awt.Color(3, 104, 218));
-        namaLbl16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl16.setText("Daftar Transaksi Pasien");
-        servicePembayaranPasien.add(namaLbl16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 570, 50));
-
-        PembayaranTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"a", "b", "c", "d", "f", "g", "h", null, "Menunggu"},
-                {"b", "c", "da", "f", "g", "g", "a", null, "Diperiksa"},
-                {"a", "s", "w", "r", "f", "a", "w", null, "Selesai"},
-                {"a", "f", "s", "FG", "G", "qw", "f", null, "Bayar"}
-            },
-            new String [] {
-                "1", "2", "Title 33", "4", "5", "6", "7", "9", "8"
-            }
-        ));
-        tablePembayaranScrollBar.setViewportView(PembayaranTable);
-
-        servicePembayaranPasien.add(tablePembayaranScrollBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 640, 330));
-
-        checkOutBtn.setBackground(new java.awt.Color(3, 104, 218));
-        checkOutBtn.setForeground(new java.awt.Color(255, 255, 255));
-        checkOutBtn.setText("+ Check Out");
-        checkOutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkOutBtnActionPerformed(evt);
-            }
-        });
-        servicePembayaranPasien.add(checkOutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, 30));
-        servicePembayaranPasien.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 200, -1));
-
-        jButton13.setBackground(new java.awt.Color(3, 104, 218));
-        jButton13.setForeground(new java.awt.Color(255, 255, 255));
-        jButton13.setText("Cari");
-        servicePembayaranPasien.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, 60, -1));
+        servicePembayaranPasien.add(pembayaranPanelForm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, -1));
 
         jPanel1.add(servicePembayaranPasien, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, -10, 850, 710));
 
         servicePendaftaranPasien.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        namaLbl9.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
-        namaLbl9.setForeground(new java.awt.Color(3, 104, 218));
-        namaLbl9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl9.setText("Dashboard> Services> ");
-        servicePendaftaranPasien.add(namaLbl9, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 30, -1, 25));
-
-        namaLbl10.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
-        namaLbl10.setForeground(new java.awt.Color(3, 104, 218));
-        namaLbl10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl10.setText("Pendaftaran Pasien");
-        servicePendaftaranPasien.add(namaLbl10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 514, 50));
-
-        namaLbl11.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        namaLbl11.setForeground(new java.awt.Color(3, 104, 218));
-        namaLbl11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl11.setText("Pendaftaran Pasien");
-        servicePendaftaranPasien.add(namaLbl11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 222, 25));
-
-        namaLbl12.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
-        namaLbl12.setForeground(new java.awt.Color(3, 104, 218));
-        namaLbl12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl12.setText("Daftar Pasien");
-        servicePendaftaranPasien.add(namaLbl12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 570, 50));
-
-        jButton8.setBackground(new java.awt.Color(3, 104, 218));
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("+ Add New");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        servicePendaftaranPasien.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, 30));
-
-        jButton9.setBackground(new java.awt.Color(3, 104, 218));
-        jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("Edit");
-        servicePendaftaranPasien.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, -1, 30));
-
-        jButton10.setBackground(new java.awt.Color(3, 104, 218));
-        jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("Remove");
-        servicePendaftaranPasien.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, 30));
-        servicePendaftaranPasien.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 200, -1));
-
-        jButton11.setBackground(new java.awt.Color(3, 104, 218));
-        jButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jButton11.setText("Cari");
-        servicePendaftaranPasien.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, 60, -1));
-
-        PendaftaranTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"a", "b", "c", "d", "f", "g", "h", null, "Menunggu"},
-                {"b", "c", "da", "f", "g", "g", "a", null, "Diperiksa"},
-                {"a", "s", "w", "r", "f", "a", "w", null, "Selesai"},
-                {"a", "f", "s", "FG", "G", "qw", "f", null, "Bayar"}
-            },
-            new String [] {
-                "1", "2", "Title 33", "4", "5", "6", "7", "9", "8"
-            }
-        ));
-        tablePendaftaranScrollBar.setViewportView(PendaftaranTable);
-
-        servicePendaftaranPasien.add(tablePendaftaranScrollBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 640, 330));
+        servicePendaftaranPasien.add(pendaftaranPasienForm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel1.add(servicePendaftaranPasien, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, -10, 850, 710));
 
@@ -1464,32 +1137,6 @@ public class KasirView extends javax.swing.JFrame {
         setMenuServicesActive(true, false, false);
     }//GEN-LAST:event_roundedPanel2MouseClicked
 
-    private void saveBtnInputPeriksaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnInputPeriksaActionPerformed
-        // TODO add your handling code here:
-        addRawatPasien.setVisible(false);
-    }//GEN-LAST:event_saveBtnInputPeriksaActionPerformed
-
-    private void cancelBtnInputPeriksaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnInputPeriksaActionPerformed
-        // TODO add your handling code here:
-        addRawatPasien.setVisible(false);
-    }//GEN-LAST:event_cancelBtnInputPeriksaActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-        addPasien.setVisible(true);
-        
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void cancelBtnInputPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnInputPasienActionPerformed
-        // TODO add your handling code here:
-        addPasien.setVisible(false);
-    }//GEN-LAST:event_cancelBtnInputPasienActionPerformed
-
-    private void saveBtnInputPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnInputPasienActionPerformed
-        // TODO add your handling code here:
-        addPasien.setVisible(false);
-    }//GEN-LAST:event_saveBtnInputPasienActionPerformed
-
     private void roundedPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedPanel3MouseClicked
         // TODO add your handling code here:
         setMenuServicesActive(false, true, false);
@@ -1499,11 +1146,6 @@ public class KasirView extends javax.swing.JFrame {
         // TODO add your handling code here:
         setMenuServicesActive(false, false, true);
     }//GEN-LAST:event_roundedPanel1MouseClicked
-
-    private void checkOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOutBtnActionPerformed
-        // TODO add your handling code here:
-        checkOut.setVisible(true);
-    }//GEN-LAST:event_checkOutBtnActionPerformed
 
     private void inputUangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputUangActionPerformed
         // TODO add your handling code here:
@@ -1654,42 +1296,20 @@ public class KasirView extends javax.swing.JFrame {
     private KasirDashboard.CustomePalette.PanelBodyTransparan HomePanel;
     private javax.swing.JLabel LogOut;
     private KasirDashboard.CustomePalette.PanelBodyTransparan LogoutPanel;
-    private KasirDashboard.TableCustom PembayaranTable;
-    private KasirDashboard.TableCustom PendaftaranTable;
     private javax.swing.JLabel ServicesLbl;
     private KasirDashboard.CustomePalette.PanelBodyTransparan ServicesPanel;
     private KasirDashboard.CustomePalette.innerDashboard aboutUs;
     private javax.swing.JLabel aboutUsIcon;
-    private javax.swing.JFrame addPasien;
-    private javax.swing.JFrame addRawatPasien;
     private javax.swing.JButton bayarBtn;
-    private javax.swing.JButton cancelBtnInputPasien;
-    private javax.swing.JButton cancelBtnInputPeriksa;
     private javax.swing.JButton cancelBtnPembayaran;
     private javax.swing.JFrame checkOut;
-    private javax.swing.JButton checkOutBtn;
     private javax.swing.JButton exitBtn;
     private KasirDashboard.CustomePalette.innerDashboard home;
     private javax.swing.JLabel homeIcon;
     private KasirDashboard.TableCustom homeTable;
     private KasirDashboard.CustomePalette.TextField inputUang;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -1704,40 +1324,26 @@ public class KasirView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel logOutIcon;
     private javax.swing.JLabel namaLbl;
     private javax.swing.JLabel namaLbl1;
-    private javax.swing.JLabel namaLbl10;
-    private javax.swing.JLabel namaLbl11;
-    private javax.swing.JLabel namaLbl12;
-    private javax.swing.JLabel namaLbl13;
-    private javax.swing.JLabel namaLbl14;
-    private javax.swing.JLabel namaLbl15;
-    private javax.swing.JLabel namaLbl16;
     private javax.swing.JLabel namaLbl17;
     private javax.swing.JLabel namaLbl18;
     private javax.swing.JLabel namaLbl19;
     private javax.swing.JLabel namaLbl2;
     private javax.swing.JLabel namaLbl3;
     private javax.swing.JLabel namaLbl4;
-    private javax.swing.JLabel namaLbl9;
     private KasirDashboard.CustomePalette.TextField namaPasien1;
     private KasirDashboard.CustomePalette.PanelBody panelBody2;
     private KasirDashboard.CustomePalette.PanelSlide panelSlide;
     private KasirDashboard.CustomePalette.PanelSlide panelSlide1;
     private KasirDashboard.CustomePalette.PanelSlide panelSlide2;
     private javax.swing.JLabel pembayaranLbl;
+    private KasirDashboard.PembayaranPanelForm pembayaranPanelForm1;
     private KasirDashboard.CustomePalette.roundedPanel pembayaranPasienPanel;
     private KasirDashboard.CustomePalette.roundedPanel pendaftaranKelasPanel;
+    private KasirDashboard.PendaftaranPasienForm pendaftaranPasienForm1;
     private javax.swing.JLabel pendaftaranPasienLbl;
     private KasirDashboard.PeriksaPanelForm periksaPanelForm1;
     private javax.swing.JLabel periksaPasienLbl;
@@ -1745,20 +1351,12 @@ public class KasirView extends javax.swing.JFrame {
     private KasirDashboard.CustomePalette.roundedPanel roundedPanel1;
     private KasirDashboard.CustomePalette.roundedPanel roundedPanel2;
     private KasirDashboard.CustomePalette.roundedPanel roundedPanel3;
-    private javax.swing.JButton saveBtnInputPasien;
-    private javax.swing.JButton saveBtnInputPeriksa;
     private KasirDashboard.CustomePalette.innerDashboard servicePembayaranPasien;
     private KasirDashboard.CustomePalette.innerDashboard servicePendaftaranPasien;
     private KasirDashboard.CustomePalette.innerDashboard servicePeriksaPasien;
     private javax.swing.JLabel servicesIcon;
     private javax.swing.JLabel subServiceIcon;
     private javax.swing.JScrollPane tableHomeScrollBar;
-    private javax.swing.JScrollPane tablePembayaranScrollBar;
-    private javax.swing.JScrollPane tablePendaftaranScrollBar;
-    private com.toedter.calendar.JDateChooser tanggalLahir;
-    private KasirDashboard.CustomePalette.TextField textField1;
-    private KasirDashboard.CustomePalette.TextField textField2;
-    private KasirDashboard.CustomePalette.TextField textField3;
     private KasirDashboard.CustomePalette.TextField totalHarga1;
     // End of variables declaration//GEN-END:variables
 
