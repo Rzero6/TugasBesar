@@ -247,7 +247,7 @@ public class TransaksiDAO {
                 + " JOIN staf as s ON t.id_dokter = s.id_staf"
                 + " JOIN customer as c ON t.id_customer = c.id_customer"
                 + " WHERE (t.id_dokter = " + idDokter + ")"
-                + " AND t.status LIKE '%" + status + "%'"
+                + " AND t.status " + status + ""
                 + " ORDER BY t.tanggal_transaksi ASC";
         System.out.println("Mengambil data Transaksi ...");
         

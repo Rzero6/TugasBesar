@@ -992,9 +992,9 @@ public class DokterView extends javax.swing.JFrame {
         
     }
     private void setTablePasien() {
-        tablePasienRawat.setModel(transaksiControl.showDataPasienPerDokter(loginData.getId(), "Menunggu"));
+        tablePasienRawat.setModel(transaksiControl.showDataPasienPerDokter(loginData.getId(), "= 'Menunggu'"));
         jumlahPasienTunggu.setText(tablePasienRawat.getRowCount()+" Pasien");
-        jumlahPasienSelesai.setText(transaksiControl.showDataPasienPerDokter(loginData.getId(), "Selesai").getRowCount()+" Pasien");
+        jumlahPasienSelesai.setText(transaksiControl.showDataPasienPerDokter(loginData.getId(), "<> 'Menunggu'").getRowCount()+" Pasien");
     }
     private void setObatTindakanDropdown() {
         listObat = obatControl.showListObat("");

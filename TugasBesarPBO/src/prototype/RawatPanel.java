@@ -404,7 +404,7 @@ public class RawatPanel extends javax.swing.JPanel implements IPanelDokter{
     }
 
     private void setTablePasien() {
-        tablePasien.setModel(transaksiControl.showDataPasienPerDokter(loginData.getId(), "Menunggu"));
+        tablePasien.setModel(transaksiControl.showDataPasienPerDokter(loginData.getId(), "= 'Menunggu'"));
         UtilTable.tableResizeColumnWidth(tablePasien);
     }
     private void setTableObat(){

@@ -74,6 +74,9 @@ public class KasirView extends javax.swing.JFrame {
         //tablePembayaranScrollBar.setVerticalScrollBar(new ScrollBarCustom());
         //tablePendaftaranScrollBar.setVerticalScrollBar(new ScrollBarCustom());
         //tablePeriksaScrollBar.setVerticalScrollBar(new ScrollBarCustom());
+        servicePembayaranPasien.setVisible(false);
+        servicePendaftaranPasien.setVisible(false);
+        servicePeriksaPasien.setVisible(false);
         HomePanel.setVisible(true);
         HomeLbl.setForeground(selectedColor);
         Icon icon = new ImageIcon(getClass().getResource("/Aset/home (1).png"));

@@ -646,7 +646,7 @@ public class RawatView extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void showPasien() {
-        tablePasien.setModel(transaksiControl.showDataPasienPerDokter(loginData.getId(), "Menunggu"));
+        tablePasien.setModel(transaksiControl.showDataPasienPerDokter(loginData.getId(), "= 'Menunggu'"));
     }
 
     private void showKeranjangObat() {
