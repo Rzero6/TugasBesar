@@ -87,6 +87,7 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
         removeBtn = new javax.swing.JButton();
         tablePeriksaScrollBar = new javax.swing.JScrollPane();
         PeriksaTable = new KasirDashboard.TableCustom();
+        refreshBtn = new javax.swing.JButton();
 
         addRawatPasien.setUndecorated(true);
 
@@ -200,7 +201,7 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
         namaLbl8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         namaLbl8.setText("Antrean Pasien");
         servicePeriksaPasien.add(namaLbl8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 570, 50));
-        servicePeriksaPasien.add(searchTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 270, -1));
+        servicePeriksaPasien.add(searchTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 202, 270, 30));
 
         addBtn.setBackground(new java.awt.Color(3, 104, 218));
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -253,6 +254,16 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
         tablePeriksaScrollBar.setViewportView(PeriksaTable);
 
         servicePeriksaPasien.add(tablePeriksaScrollBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 640, 330));
+
+        refreshBtn.setBackground(new java.awt.Color(3, 104, 218));
+        refreshBtn.setForeground(new java.awt.Color(255, 255, 255));
+        refreshBtn.setText("Refresh");
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
+        servicePeriksaPasien.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 80, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -343,6 +354,10 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_removeBtnActionPerformed
 
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        setTablePeriksa("");
+    }//GEN-LAST:event_refreshBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private KasirDashboard.TableCustom PeriksaTable;
@@ -365,6 +380,7 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
     private javax.swing.JLabel namaLbl7;
     private javax.swing.JLabel namaLbl8;
     private javax.swing.JComboBox<Customer> pasienDropdown;
+    private javax.swing.JButton refreshBtn;
     private javax.swing.JButton removeBtn;
     private javax.swing.JButton saveBtnInputPeriksa;
     private javax.swing.JTextField searchTxt;

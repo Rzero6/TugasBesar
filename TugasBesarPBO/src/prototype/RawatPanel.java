@@ -102,6 +102,11 @@ public class RawatPanel extends javax.swing.JPanel implements IPanelDokter{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablePasien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablePasienMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablePasien);
 
         tableObat.setModel(new javax.swing.table.DefaultTableModel(
@@ -361,6 +366,10 @@ public class RawatPanel extends javax.swing.JPanel implements IPanelDokter{
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
         refreshDataTable();
     }//GEN-LAST:event_refreshBtnActionPerformed
+
+    private void tablePasienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePasienMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablePasienMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

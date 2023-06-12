@@ -5,11 +5,31 @@
 package DokterDashboard;
 
 import LoginNew.LoginView;
+import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import control.DetailTransaksiControl;
+import control.ObatControl;
+import control.TindakanControl;
+import control.TransaksiControl;
 import java.awt.Color;
 import java.awt.GradientPaint;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableModel;
+import model.DetailTransaksi;
+import model.Obat;
+import model.Staf;
+import model.Tindakan;
+import model.Transaksi;
 
 /**
  *
@@ -18,13 +38,42 @@ import javax.swing.UIManager;
 public class DokterView extends javax.swing.JFrame {
 
     private Object DokterDashboard;
-
+    
+    private TransaksiControl transaksiControl;
+    private DetailTransaksiControl detailTransaksiControl;
+    private ObatControl obatControl;
+    private TindakanControl tindakanControl;
+    private List<Obat> listObat;
+    private List<Tindakan> listTindakan;
+    private int SelectedID = 0;
+    private int SelectedIDDetailTransaksi = 0;
+    
     /**
      * Creates new form DokterView
      */
-    public DokterView() {
+    private Staf loginData;
+    
+    public DokterView(Staf loginData) {
+        this.loginData = loginData;
         initComponents();
         
+        transaksiControl = new TransaksiControl();
+        detailTransaksiControl = new DetailTransaksiControl();
+        obatControl = new ObatControl();
+        tindakanControl = new TindakanControl();
+        diagnosisTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Diagnosis");
+        namaPasienTxt.putClientProperty(FlatClientProperties.STYLE, ""
+                +"borderWidth:0;"
+                + "focusWidth:0");
+        umurPasienTxt.putClientProperty(FlatClientProperties.STYLE, ""
+                +"borderWidth:0;"
+                + "focusWidth:0");
+        setProfileDokter();
+        setObatTindakanDropdown();
+        setTablePasien();
+        setTableObat();
+        setTableTindakan();
+        setListener();
     }
 
     /**
@@ -36,6 +85,25 @@ public class DokterView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        frameRawatInput = new javax.swing.JFrame();
+        jPanel2 = new javax.swing.JPanel();
+        diagnosisTxt = new javax.swing.JTextField();
+        obatDropdown = new javax.swing.JComboBox<>();
+        jumlahObatSpinner = new javax.swing.JSpinner();
+        addObatBtn = new javax.swing.JButton();
+        tindakanDropdown = new javax.swing.JComboBox<>();
+        addTindakanBtn = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableTindakan = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableObat = new javax.swing.JTable();
+        doneBtn = new javax.swing.JButton();
+        removeBtn = new javax.swing.JButton();
+        namaPasienLabel = new javax.swing.JLabel();
+        umurPasienLabel = new javax.swing.JLabel();
+        cancelBtn = new javax.swing.JButton();
+        namaPasienTxt = new javax.swing.JTextField();
+        umurPasienTxt = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         exitBtn3 = new javax.swing.JButton();
@@ -56,13 +124,13 @@ public class DokterView extends javax.swing.JFrame {
         roundedPanelDokterGradient3 = new DokterDashboard.roundedPanelDokterGradient();
         namaLbl19 = new javax.swing.JLabel();
         namaLbl6 = new javax.swing.JLabel();
-        namaLbl8 = new javax.swing.JLabel();
+        jumlahPasienSelesai = new javax.swing.JLabel();
         roundedPanelDokter1 = new DokterDashboard.roundedPanelDokter();
-        namaLbl9 = new javax.swing.JLabel();
+        namaDokterTxt = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        namaLbl11 = new javax.swing.JLabel();
-        namaLbl12 = new javax.swing.JLabel();
-        namaLbl13 = new javax.swing.JLabel();
+        helloDokterTxt = new javax.swing.JLabel();
+        notelpTxt = new javax.swing.JLabel();
+        tanggalBergabungTxt = new javax.swing.JLabel();
         namaLbl14 = new javax.swing.JLabel();
         namaLbl15 = new javax.swing.JLabel();
         namaLbl16 = new javax.swing.JLabel();
@@ -71,11 +139,183 @@ public class DokterView extends javax.swing.JFrame {
         roundedPanelDokterGradient1 = new DokterDashboard.roundedPanelDokterGradient();
         namaLbl18 = new javax.swing.JLabel();
         namaLbl3 = new javax.swing.JLabel();
-        namaLbl7 = new javax.swing.JLabel();
+        jumlahPasienTunggu = new javax.swing.JLabel();
         namaLbl4 = new javax.swing.JLabel();
         namaLbl5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableDokterCustom1 = new DokterDashboard.TableDokterCustom();
+        tablePasienRawat = new DokterDashboard.TableDokterCustom();
+        refreshBtn = new javax.swing.JButton();
+        selectBtn = new javax.swing.JButton();
+
+        frameRawatInput.setUndecorated(true);
+
+        addObatBtn.setText("Add");
+        addObatBtn.setEnabled(false);
+        addObatBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addObatBtnActionPerformed(evt);
+            }
+        });
+
+        addTindakanBtn.setText("Add");
+        addTindakanBtn.setEnabled(false);
+        addTindakanBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addTindakanBtnActionPerformed(evt);
+            }
+        });
+
+        tableTindakan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableTindakan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableTindakanMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tableTindakan);
+
+        tableObat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableObat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableObatMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tableObat);
+
+        doneBtn.setText("Done");
+        doneBtn.setEnabled(false);
+        doneBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doneBtnActionPerformed(evt);
+            }
+        });
+
+        removeBtn.setText("Remove");
+        removeBtn.setEnabled(false);
+        removeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBtnActionPerformed(evt);
+            }
+        });
+
+        namaPasienLabel.setText("Nama Pasien");
+
+        umurPasienLabel.setText("Umur Pasien");
+
+        cancelBtn.setText("Cancel");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
+        namaPasienTxt.setEditable(false);
+
+        umurPasienTxt.setEditable(false);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(doneBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(removeBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelBtn))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(umurPasienLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(namaPasienLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(namaPasienTxt)
+                                        .addComponent(umurPasienTxt)))
+                                .addComponent(diagnosisTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(obatDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jumlahObatSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(addObatBtn))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(tindakanDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(addTindakanBtn)))))
+                .addGap(20, 20, 20))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(namaPasienLabel)
+                    .addComponent(namaPasienTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(umurPasienLabel)
+                    .addComponent(umurPasienTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(diagnosisTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(obatDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jumlahObatSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addObatBtn)
+                    .addComponent(tindakanDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addTindakanBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(removeBtn)
+                    .addComponent(doneBtn)
+                    .addComponent(cancelBtn))
+                .addGap(20, 20, 20))
+        );
+
+        javax.swing.GroupLayout frameRawatInputLayout = new javax.swing.GroupLayout(frameRawatInput.getContentPane());
+        frameRawatInput.getContentPane().setLayout(frameRawatInputLayout);
+        frameRawatInputLayout.setHorizontalGroup(
+            frameRawatInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        frameRawatInputLayout.setVerticalGroup(
+            frameRawatInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -260,9 +500,9 @@ public class DokterView extends javax.swing.JFrame {
         namaLbl6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         namaLbl6.setText("Selesai Perawatan");
 
-        namaLbl8.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
-        namaLbl8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl8.setText("10 Pasien");
+        jumlahPasienSelesai.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        jumlahPasienSelesai.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jumlahPasienSelesai.setText("10 Pasien");
 
         javax.swing.GroupLayout roundedPanelDokterPutih2Layout = new javax.swing.GroupLayout(roundedPanelDokterPutih2);
         roundedPanelDokterPutih2.setLayout(roundedPanelDokterPutih2Layout);
@@ -274,7 +514,7 @@ public class DokterView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(roundedPanelDokterPutih2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(namaLbl6)
-                    .addComponent(namaLbl8))
+                    .addComponent(jumlahPasienSelesai))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         roundedPanelDokterPutih2Layout.setVerticalGroup(
@@ -283,7 +523,7 @@ public class DokterView extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(roundedPanelDokterPutih2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(roundedPanelDokterPutih2Layout.createSequentialGroup()
-                        .addComponent(namaLbl8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jumlahPasienSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(namaLbl6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(roundedPanelDokterGradient3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -294,11 +534,11 @@ public class DokterView extends javax.swing.JFrame {
 
         roundedPanelDokter1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        namaLbl9.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        namaLbl9.setForeground(new java.awt.Color(255, 255, 255));
-        namaLbl9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl9.setText("John Cena");
-        roundedPanelDokter1.add(namaLbl9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 150, 25));
+        namaDokterTxt.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        namaDokterTxt.setForeground(new java.awt.Color(255, 255, 255));
+        namaDokterTxt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        namaDokterTxt.setText("John Cena");
+        roundedPanelDokter1.add(namaDokterTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 150, 25));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -306,23 +546,23 @@ public class DokterView extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/profile putih.png"))); // NOI18N
         roundedPanelDokter1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 140, 136));
 
-        namaLbl11.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        namaLbl11.setForeground(new java.awt.Color(255, 255, 255));
-        namaLbl11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        namaLbl11.setText("Hallo Dokter");
-        roundedPanelDokter1.add(namaLbl11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 150, 25));
+        helloDokterTxt.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        helloDokterTxt.setForeground(new java.awt.Color(255, 255, 255));
+        helloDokterTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        helloDokterTxt.setText("Hallo Dokter");
+        roundedPanelDokter1.add(helloDokterTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 150, 25));
 
-        namaLbl12.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        namaLbl12.setForeground(new java.awt.Color(255, 255, 255));
-        namaLbl12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl12.setText("089 642 200 012");
-        roundedPanelDokter1.add(namaLbl12, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 180, 25));
+        notelpTxt.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        notelpTxt.setForeground(new java.awt.Color(255, 255, 255));
+        notelpTxt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        notelpTxt.setText("089 642 200 012");
+        roundedPanelDokter1.add(notelpTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 180, 25));
 
-        namaLbl13.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        namaLbl13.setForeground(new java.awt.Color(255, 255, 255));
-        namaLbl13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl13.setText("23 Juli 2020");
-        roundedPanelDokter1.add(namaLbl13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 170, 25));
+        tanggalBergabungTxt.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        tanggalBergabungTxt.setForeground(new java.awt.Color(255, 255, 255));
+        tanggalBergabungTxt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        tanggalBergabungTxt.setText("23 Juli 2020");
+        roundedPanelDokter1.add(tanggalBergabungTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 170, 25));
 
         namaLbl14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         namaLbl14.setForeground(new java.awt.Color(255, 255, 255));
@@ -375,9 +615,9 @@ public class DokterView extends javax.swing.JFrame {
         namaLbl3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         namaLbl3.setText("Menunggu Perawatan");
 
-        namaLbl7.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
-        namaLbl7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl7.setText("5 Pasien");
+        jumlahPasienTunggu.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        jumlahPasienTunggu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jumlahPasienTunggu.setText("5 Pasien");
 
         javax.swing.GroupLayout roundedPanelDokterPutih1Layout = new javax.swing.GroupLayout(roundedPanelDokterPutih1);
         roundedPanelDokterPutih1.setLayout(roundedPanelDokterPutih1Layout);
@@ -389,7 +629,7 @@ public class DokterView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(roundedPanelDokterPutih1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(namaLbl3)
-                    .addComponent(namaLbl7))
+                    .addComponent(jumlahPasienTunggu))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         roundedPanelDokterPutih1Layout.setVerticalGroup(
@@ -399,7 +639,7 @@ public class DokterView extends javax.swing.JFrame {
                 .addGroup(roundedPanelDokterPutih1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(roundedPanelDokterGradient1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(roundedPanelDokterPutih1Layout.createSequentialGroup()
-                        .addComponent(namaLbl7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jumlahPasienTunggu, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(namaLbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -419,7 +659,7 @@ public class DokterView extends javax.swing.JFrame {
         namaLbl5.setText("Home");
         jPanel1.add(namaLbl5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 92, 25));
 
-        tableDokterCustom1.setModel(new javax.swing.table.DefaultTableModel(
+        tablePasienRawat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -430,9 +670,31 @@ public class DokterView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tableDokterCustom1);
+        tablePasienRawat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablePasienRawatMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablePasienRawat);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 710, 290));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 710, 290));
+
+        refreshBtn.setText("Refresh");
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 360, -1, -1));
+
+        selectBtn.setText("Select");
+        selectBtn.setEnabled(false);
+        selectBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(selectBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 360, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 670));
 
@@ -521,6 +783,101 @@ public class DokterView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_homelblMouseExited
 
+    private void addObatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addObatBtnActionPerformed
+        Obat obat = (Obat) obatDropdown.getSelectedItem();
+        Tindakan tindakan = (Tindakan) tindakanDropdown.getItemAt(0);
+        int jumlahObat = (int) jumlahObatSpinner.getValue();
+        DetailTransaksi dt = new DetailTransaksi(SelectedID, obat, tindakan, jumlahObat);
+        int idDetailTransaksi = detailTransaksiControl.checkDetailSama(SelectedID, obat.getId(), "obat");
+        if(idDetailTransaksi==0){//cek jika belum ada detail transaksi dengan obat sama
+            detailTransaksiControl.insertDetailTransaksi(dt);
+        }else{
+            dt.setId_detail_transaksi(idDetailTransaksi);
+            detailTransaksiControl.updateDetailTransaksi(dt);
+        }
+        setTableObat();
+        doneBtn.setEnabled(!diagnosisTxt.getText().isEmpty()&&!isTableObatTindakanEmpty());
+    }//GEN-LAST:event_addObatBtnActionPerformed
+
+    private void addTindakanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTindakanBtnActionPerformed
+        Obat obat = (Obat) obatDropdown.getItemAt(0);
+        Tindakan tindakan = (Tindakan) tindakanDropdown.getSelectedItem();
+        DetailTransaksi dt = new DetailTransaksi(SelectedID, obat, tindakan, 0);
+        int idDetailTransaksi = detailTransaksiControl.checkDetailSama(SelectedID, tindakan.getId(), "tindakan");
+        if(idDetailTransaksi==0){//cek jika belum ada detail transaksi dengan obat sama
+            detailTransaksiControl.insertDetailTransaksi(dt);
+        }else{
+            dt.setId_detail_transaksi(idDetailTransaksi);
+            detailTransaksiControl.updateDetailTransaksi(dt);
+        }
+        setTableTindakan();
+        doneBtn.setEnabled(!diagnosisTxt.getText().isEmpty()&&!isTableObatTindakanEmpty());
+    }//GEN-LAST:event_addTindakanBtnActionPerformed
+
+    private void tableTindakanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTindakanMouseClicked
+        tableObat.clearSelection();
+        SelectedIDDetailTransaksi = Integer.parseInt(tableTindakan.getModel().getValueAt(tableTindakan.getSelectedRow(), 3).toString());
+    }//GEN-LAST:event_tableTindakanMouseClicked
+
+    private void tableObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableObatMouseClicked
+        tableTindakan.clearSelection();
+        SelectedIDDetailTransaksi = Integer.parseInt(tableObat.getModel().getValueAt(tableObat.getSelectedRow(), 4).toString());
+    }//GEN-LAST:event_tableObatMouseClicked
+
+    private void doneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneBtnActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(null, "Selesai merawat "+tablePasienRawat.getModel().getValueAt(tablePasienRawat.getSelectedRow(), 1).toString(),"Confirm",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        if(confirm==JOptionPane.YES_OPTION){
+            Transaksi transaksi = transaksiControl.searchTransaksi(SelectedID);
+            transaksi.setStatus("Bayar");
+            transaksi.setDiagnosis(diagnosisTxt.getText());
+            transaksi.setTanggalTransaksi(transaksi.dateTimeNowinString());
+            transaksiControl.updateStatusDataTransaksi(transaksi);
+            setTablePasien();
+            SelectedID=0;
+            setTableObat();
+            setTableTindakan();
+            tablePasienRawat.setEnabled(true);
+            doneBtn.setEnabled(false);
+            frameRawatInput.setVisible(false);
+        }
+    }//GEN-LAST:event_doneBtnActionPerformed
+
+    private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
+        detailTransaksiControl.deleteDetailTransaksi(SelectedIDDetailTransaksi);
+        setTableObat();
+        setTableTindakan();
+        doneBtn.setEnabled(tableObat.getRowCount()!=0||tableTindakan.getRowCount()!=0);
+        SelectedIDDetailTransaksi=0;
+    }//GEN-LAST:event_removeBtnActionPerformed
+
+    private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
+        SelectedID = Integer.parseInt(tablePasienRawat.getModel().getValueAt(tablePasienRawat.getSelectedRow(), 6).toString());
+        
+        Transaksi transaksi = transaksiControl.searchTransaksi(SelectedID);
+        namaPasienTxt.setText(transaksi.getPasien().getNama());
+        umurPasienTxt.setText(transaksi.getPasien().getUmur()+" Tahun");
+        tablePasienRawat.setEnabled(false);
+        setTableObat();
+        setTableTindakan();
+        
+        diagnosisTxt.putClientProperty("JComponent.outline", "error");
+        frameRawatInput.pack();
+        frameRawatInput.setLocationRelativeTo(null);
+        frameRawatInput.setVisible(true);
+    }//GEN-LAST:event_selectBtnActionPerformed
+
+    private void tablePasienRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePasienRawatMouseClicked
+        
+    }//GEN-LAST:event_tablePasienRawatMouseClicked
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        frameRawatInput.setVisible(false);
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        setTablePasien();
+    }//GEN-LAST:event_refreshBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -556,31 +913,37 @@ public class DokterView extends javax.swing.JFrame {
         UIManager.put( "TextComponent.arc", 999 );
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DokterView().setVisible(true);
+                Staf loginData = new Staf(9, "Dendy", "089643938007", "2023-05-31", "Dokter", "dendy", "dendy");
+                new DokterView(loginData).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogOut;
-    private javax.swing.JButton exitBtn;
-    private javax.swing.JButton exitBtn1;
-    private javax.swing.JButton exitBtn2;
+    private javax.swing.JButton addObatBtn;
+    private javax.swing.JButton addTindakanBtn;
+    private javax.swing.JButton cancelBtn;
+    private javax.swing.JTextField diagnosisTxt;
+    private javax.swing.JButton doneBtn;
     private javax.swing.JButton exitBtn3;
+    private javax.swing.JFrame frameRawatInput;
+    private javax.swing.JLabel helloDokterTxt;
     private javax.swing.JLabel homeIcon;
     private javax.swing.JLabel homelbl;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSpinner jumlahObatSpinner;
+    private javax.swing.JLabel jumlahPasienSelesai;
+    private javax.swing.JLabel jumlahPasienTunggu;
     private javax.swing.JLabel logOutIcon;
-    private javax.swing.JLabel namaLbl11;
-    private javax.swing.JLabel namaLbl12;
-    private javax.swing.JLabel namaLbl13;
+    private javax.swing.JLabel namaDokterTxt;
     private javax.swing.JLabel namaLbl14;
     private javax.swing.JLabel namaLbl15;
     private javax.swing.JLabel namaLbl16;
@@ -593,21 +956,166 @@ public class DokterView extends javax.swing.JFrame {
     private javax.swing.JLabel namaLbl4;
     private javax.swing.JLabel namaLbl5;
     private javax.swing.JLabel namaLbl6;
-    private javax.swing.JLabel namaLbl7;
-    private javax.swing.JLabel namaLbl8;
-    private javax.swing.JLabel namaLbl9;
+    private javax.swing.JLabel namaPasienLabel;
+    private javax.swing.JTextField namaPasienTxt;
+    private javax.swing.JLabel notelpTxt;
+    private javax.swing.JComboBox<Obat> obatDropdown;
     private DokterDashboard.roundedPanelDokterGradientTransparan panelDashboard;
     private javax.swing.JLabel rawatIcon;
     private javax.swing.JLabel rawatLbl;
+    private javax.swing.JButton refreshBtn;
+    private javax.swing.JButton removeBtn;
     private javax.swing.JLabel riwayatIcon;
     private javax.swing.JLabel riwayatLbl;
     private DokterDashboard.roundedPanelDokter roundedPanelDokter1;
     private DokterDashboard.roundedPanelDokterGradient roundedPanelDokterGradient1;
-    private DokterDashboard.roundedPanelDokterGradient roundedPanelDokterGradient2;
     private DokterDashboard.roundedPanelDokterGradient roundedPanelDokterGradient3;
     private DokterDashboard.roundedPanelDokterPutih roundedPanelDokterPutih1;
     private DokterDashboard.roundedPanelDokterPutih roundedPanelDokterPutih2;
     private DokterDashboard.roundedPanelDokterPutih roundedPanelDokterPutih3;
-    private DokterDashboard.TableDokterCustom tableDokterCustom1;
+    private javax.swing.JButton selectBtn;
+    private javax.swing.JTable tableObat;
+    private DokterDashboard.TableDokterCustom tablePasienRawat;
+    private javax.swing.JTable tableTindakan;
+    private javax.swing.JLabel tanggalBergabungTxt;
+    private javax.swing.JComboBox<Tindakan> tindakanDropdown;
+    private javax.swing.JLabel umurPasienLabel;
+    private javax.swing.JTextField umurPasienTxt;
     // End of variables declaration//GEN-END:variables
+
+
+    private void setProfileDokter(){
+        namaDokterTxt.setText(loginData.getNama());
+        helloDokterTxt.setText("Dokter "+loginData.getNama());
+        notelpTxt.setText(loginData.getNo_telepon());
+        tanggalBergabungTxt.setText(loginData.getTanggal_bergabung());
+        
+    }
+    private void setTablePasien() {
+        tablePasienRawat.setModel(transaksiControl.showDataPasienPerDokter(loginData.getId(), "Menunggu"));
+        jumlahPasienTunggu.setText(tablePasienRawat.getRowCount()+" Pasien");
+        jumlahPasienSelesai.setText(transaksiControl.showDataPasienPerDokter(loginData.getId(), "Selesai").getRowCount()+" Pasien");
+    }
+    private void setObatTindakanDropdown() {
+        listObat = obatControl.showListObat("");
+        obatDropdown.removeAllItems();
+        for(Obat o:listObat){
+            obatDropdown.addItem(o);
+        }
+        listTindakan = tindakanControl.showListTindakan("");
+        tindakanDropdown.removeAllItems();
+        for(Tindakan t : listTindakan){
+            tindakanDropdown.addItem(t);
+        }
+    }
+    private void setTableObat(){
+        tableObat.setModel(detailTransaksiControl.showDataKeranjangObat("", SelectedID));
+        
+    }
+    private void setTableTindakan(){
+        tableTindakan.setModel(detailTransaksiControl.showDataKeranjangTindakan("", SelectedID));
+        
+    }
+    private void setListener() {
+        tablePasienRawat.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    boolean isRowSelected = tablePasienRawat.getSelectedRow() != -1;
+                    boolean isColumnSelected = tablePasienRawat.getSelectedColumn() != -1;
+
+                    selectBtn.setEnabled(isRowSelected || isColumnSelected);
+                    cancelBtn.setEnabled(isRowSelected || isColumnSelected);
+                }
+            }
+        });
+        
+        tableObat.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    isTableObatTindakanSelected();
+                }
+            }
+        });
+        
+        tableTindakan.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    isTableObatTindakanSelected();
+                }
+            }
+        });
+        
+        jumlahObatSpinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                int value = (int) jumlahObatSpinner.getValue();
+                if(value<0){
+                    jumlahObatSpinner.setValue(0);
+                }else{
+                    isObatSelected();
+                }
+            }
+        });
+        
+        obatDropdown.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isObatSelected();
+            }
+        });
+        
+        tindakanDropdown.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addTindakanBtn.setEnabled(tindakanDropdown.getSelectedIndex()!=0);
+            }
+        });
+        
+        diagnosisTxt.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if(!diagnosisTxt.getText().isEmpty()){
+                    diagnosisTxt.putClientProperty("JComponent.outline", "#FF000");
+                }else{
+                    diagnosisTxt.putClientProperty("JComponent.outline", "error");
+                }
+                doneBtn.setEnabled(!diagnosisTxt.getText().isEmpty()&&!isTableObatTindakanEmpty());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if(!diagnosisTxt.getText().isEmpty()){
+                    diagnosisTxt.putClientProperty("JComponent.outline", "#FF000");
+                }else{
+                    diagnosisTxt.putClientProperty("JComponent.outline", "error");
+                }
+                doneBtn.setEnabled(!diagnosisTxt.getText().isEmpty()&&!isTableObatTindakanEmpty());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if(!diagnosisTxt.getText().isEmpty()){
+                    diagnosisTxt.putClientProperty("JComponent.outline", "#FF000");
+                    doneBtn.setEnabled(!diagnosisTxt.getText().isEmpty());
+                }else{
+                    diagnosisTxt.putClientProperty("JComponent.outline", "error");
+                }
+                doneBtn.setEnabled(!diagnosisTxt.getText().isEmpty()&&!isTableObatTindakanEmpty());
+            }
+        });
+        
+    }
+    private boolean isTableObatTindakanEmpty(){
+        return (tableObat.getRowCount()==0&&tableTindakan.getRowCount()==0);
+    }
+    private void isTableObatTindakanSelected(){
+        removeBtn.setEnabled(tableObat.getSelectedRow()!=-1 || tableTindakan.getSelectedRow()!=-1);
+    }
+    private void isObatSelected(){
+        addObatBtn.setEnabled((int)jumlahObatSpinner.getValue()>0 && obatDropdown.getSelectedIndex()!=0);
+    }
+    
 }

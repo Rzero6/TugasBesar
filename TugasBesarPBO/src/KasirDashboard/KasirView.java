@@ -7,7 +7,6 @@ package KasirDashboard;
 import KasirDashboard.CustomePalette.PanelServiceMenu;
 import KasirDashboard.CustomePalette.ScrollBarCustom;
 import KasirDashboard.CustomePalette.innerDashboard;
-import KasirDashboard.CustomePalette.panelAboutUs;
 import LoginNew.LoginView;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import control.TransaksiControl;
@@ -176,6 +175,7 @@ public class KasirView extends javax.swing.JFrame {
         namaLbl3 = new javax.swing.JLabel();
         tableHomeScrollBar = new javax.swing.JScrollPane();
         homeTable = new KasirDashboard.TableCustom();
+        refreshButton = new javax.swing.JButton();
         servicePembayaranPasien = new KasirDashboard.CustomePalette.innerDashboard();
         panelSlide = new KasirDashboard.CustomePalette.PanelSlide();
         pembayaranPanelForm1 = new KasirDashboard.PembayaranPanelForm();
@@ -540,10 +540,10 @@ public class KasirView extends javax.swing.JFrame {
                 .addComponent(roundedPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
 
-        jPanel1.add(panelSlide1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 0, 140, 740));
+        jPanel1.add(panelSlide1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, -30, 140, 770));
 
         home.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -647,7 +647,7 @@ public class KasirView extends javax.swing.JFrame {
         namaLbl3.setForeground(new java.awt.Color(3, 104, 218));
         namaLbl3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         namaLbl3.setText("Transaksi Terkini");
-        home.add(namaLbl3, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 330, 570, 50));
+        home.add(namaLbl3, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 330, 300, 50));
 
         homeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -663,6 +663,14 @@ public class KasirView extends javax.swing.JFrame {
         tableHomeScrollBar.setViewportView(homeTable);
 
         home.add(tableHomeScrollBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 710, 240));
+
+        refreshButton.setText("Refresh");
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+        home.add(refreshButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 342, -1, 30));
 
         jPanel1.add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, -10, 850, 710));
 
@@ -1145,6 +1153,10 @@ public class KasirView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        setHomeTable();
+    }//GEN-LAST:event_refreshButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1233,6 +1245,8 @@ public class KasirView extends javax.swing.JFrame {
     private KasirDashboard.PeriksaPanelForm periksaPanelForm1;
     private javax.swing.JLabel periksaPasienLbl;
     private KasirDashboard.CustomePalette.roundedPanel periksaPasienPanel;
+    private javax.swing.JButton refreshBtn;
+    private javax.swing.JButton refreshButton;
     private KasirDashboard.CustomePalette.roundedPanel roundedPanel1;
     private KasirDashboard.CustomePalette.roundedPanel roundedPanel2;
     private KasirDashboard.CustomePalette.roundedPanel roundedPanel3;
