@@ -44,6 +44,10 @@ public class TablePeriksa extends AbstractTableModel {
                 return list.get(rowIndex).getStatus();
             case 5:
                 return list.get(rowIndex).getId();
+            case 6:
+                return list.get(rowIndex).getPasien().getId();
+            case 7:
+                return list.get(rowIndex).getDokter().getId();
             default:
                 return null;
         }

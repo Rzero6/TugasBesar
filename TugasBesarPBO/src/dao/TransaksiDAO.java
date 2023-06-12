@@ -145,6 +145,28 @@ public class TransaksiDAO {
         }
         dbcon.closeConnection();
     }
+    public void updateTransaksi(Transaksi t){
+        con = dbcon.makeConnection();
+        String sql = "UPDATE transaksi SET status = '"+t.getStatus()+"', "
+                + "id_customer = '"+t.getPasien().getId()+"', "
+                + "id_dokter = '"+t.getDokter().getId()+"', "
+                + "keluhan = '"+t.getKeluhan()+"', "
+                + "biaya_klinik = '"+t.getBiaya_klinik()+"', "
+                + "diagnosis = '"+t.getDiagnosis()+"', "
+                + "tanggal_transaksi = '"+t.getTanggalTransaksi()+"' "
+                + "WHERE id_transaksi = '"+t.getId()+"'";
+        System.out.println("Editing transaksi ...");
+        try{
+            Statement statement = con.createStatement();
+            int result = statement.executeUpdate(sql);
+            System.out.println("Edited "+result+" Transaksi "+t.getId());
+            statement.close();
+        }catch(Exception e){
+            System.out.println("Error editing transaksi ...");
+            System.out.println(e);
+        }
+        dbcon.closeConnection();
+    }
     
     public Transaksi searchTransaksi(int id){
         con = dbcon.makeConnection();

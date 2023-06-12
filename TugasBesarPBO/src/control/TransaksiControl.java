@@ -23,6 +23,9 @@ public class TransaksiControl {
     public void insertDataTransaksi(Transaksi t){
         tDao.insertTransaksi(t);
     }
+    public void updateDataTransaksi(Transaksi t){
+        tDao.updateTransaksi(t);
+    }
     public void updateStatusDataTransaksi(Transaksi t){
         tDao.updateStatusTransaksi(t);
     }

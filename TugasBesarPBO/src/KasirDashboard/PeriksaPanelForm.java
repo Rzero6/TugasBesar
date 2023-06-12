@@ -10,13 +10,16 @@ import control.StafControl;
 import control.TransaksiControl;
 import java.util.List;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableModel;
 import model.Customer;
 import model.Staf;
+import model.Transaksi;
 
 /**
  *
@@ -29,6 +32,8 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
     List<Customer> listCustomer;
     List<Staf> listDokter;
     int selectedIDTransaksi=0;
+    String action = "";
+    
     /**
      * Creates new form PeriksaPanelForm
      */
@@ -38,6 +43,7 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
         addRawatPasien.pack();
         addRawatPasien.setSize(712,590);
         addRawatPasien.setLocationRelativeTo(null);
+        searchTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
         transaksiControl = new TransaksiControl();
         customerControl = new CustomerControl();
         stafControl = new StafControl();
@@ -221,6 +227,11 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
         removeBtn.setForeground(new java.awt.Color(255, 255, 255));
         removeBtn.setText("Remove");
         removeBtn.setEnabled(false);
+        removeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBtnActionPerformed(evt);
+            }
+        });
         servicePeriksaPasien.add(removeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, 30));
 
         PeriksaTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -257,6 +268,7 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
+        action = "Add";
         addRawatPasien.setVisible(true);
         
     }//GEN-LAST:event_addBtnActionPerformed
@@ -264,20 +276,71 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
     private void cancelBtnInputPeriksaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnInputPeriksaActionPerformed
         // TODO add your handling code here:
         addRawatPasien.setVisible(false);
+        clearAll();
     }//GEN-LAST:event_cancelBtnInputPeriksaActionPerformed
 
     private void saveBtnInputPeriksaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnInputPeriksaActionPerformed
         // TODO add your handling code here:
-        addRawatPasien.setVisible(false);
+        Customer pasien = (Customer) pasienDropdown.getSelectedItem();
+        Staf dokter = (Staf) dokterDropdown.getSelectedItem();
+        String cek = transaksiControl.checkTransaksiForMultipleUndoneTransaction(pasien.getId());
+        
+        if(action.equalsIgnoreCase("add")){
+            if(cek.equalsIgnoreCase("aman")){
+                Transaksi transaksi = new Transaksi(pasien, dokter, keluhanTxt.getText());
+                transaksiControl.insertDataTransaksi(transaksi);
+                addRawatPasien.setVisible(false);
+            }else{
+                JOptionPane.showConfirmDialog(addRawatPasien, cek,"Error",JOptionPane.PLAIN_MESSAGE,JOptionPane.ERROR_MESSAGE);
+            }  
+        }else{
+            
+            Transaksi transaksi = transaksiControl.searchTransaksi(selectedIDTransaksi);
+            transaksi.setDokter(dokter);
+            transaksi.setPasien(pasien);
+            transaksi.setKeluhan(keluhanTxt.getText());
+            transaksi.setTanggalTransaksi(transaksi.dateTimeNowinString());
+            transaksiControl.updateDataTransaksi(transaksi);
+            addRawatPasien.setVisible(false);
+        }
+        clearAll();
     }//GEN-LAST:event_saveBtnInputPeriksaActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        
+        action = "Edit";
+        addRawatPasien.setVisible(true);
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void PeriksaTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PeriksaTableMouseClicked
-        
+        int clickedRow = PeriksaTable.getSelectedRow();
+        TableModel tableModel = PeriksaTable.getModel();
+        selectedIDTransaksi = Integer.parseInt(tableModel.getValueAt(clickedRow, 5).toString());
+        int selectedIDPasien = Integer.parseInt(tableModel.getValueAt(clickedRow, 6).toString());
+        int selectedIDDokter = Integer.parseInt(tableModel.getValueAt(clickedRow, 7).toString());
+        keluhanTxt.setText(tableModel.getValueAt(clickedRow, 3).toString());
+        int selectedIndexPasien=-1;
+        int selectedIndexDokter=-1;
+        for(Customer customer : listCustomer){
+            if(customer.getId() == selectedIDPasien){
+                selectedIndexPasien = listCustomer.indexOf(customer);
+            }
+        }
+        pasienDropdown.setSelectedIndex(selectedIndexPasien);
+        for(Staf dokter : listDokter){
+            if(dokter.getId() == selectedIDDokter){
+                selectedIndexDokter = listDokter.indexOf(dokter);
+            }
+        }
+        dokterDropdown.setSelectedIndex(selectedIndexDokter);
     }//GEN-LAST:event_PeriksaTableMouseClicked
+
+    private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(this, "Hapus data antrian "+PeriksaTable.getModel().getValueAt(PeriksaTable.getSelectedRow(), 1).toString(),"Konfirmasi",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        if(confirm == JOptionPane.YES_OPTION){
+            transaksiControl.deleteTransaksi(selectedIDTransaksi);
+            clearAll();
+        }
+    }//GEN-LAST:event_removeBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -317,10 +380,7 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
         setupProperty(pasienDropdown);
         pasienDropdown.removeAllItems();
         for(Customer c : listCustomer){
-            String cek = transaksiControl.checkTransaksiForMultipleUndoneTransaction(c.getId());
-            if(cek.equalsIgnoreCase("aman")){
-                pasienDropdown.addItem(c);
-            }
+            pasienDropdown.addItem(c);
         }
     }
     private void setDokter() {
@@ -385,5 +445,15 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
                 setTablePeriksa(searchTxt.getText());
             }
         });
+    }
+
+    private void clearAll() {
+        setTablePeriksa("");
+        pasienDropdown.setSelectedIndex(0);
+        dokterDropdown.setSelectedIndex(0);
+        keluhanTxt.setText("");
+        PeriksaTable.clearSelection();
+        editBtn.setEnabled(false);
+        removeBtn.setEnabled(false);
     }
 }
