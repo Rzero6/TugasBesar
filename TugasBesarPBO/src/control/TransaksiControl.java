@@ -32,8 +32,8 @@ public class TransaksiControl {
     public void deleteTransaksi(int id){
         tDao.deleteTransaksi(id);
     }
-    public TablePeriksa showDataPeriksa(String query){
-        List<Transaksi> dataPeriksa = tDao.showTransaksi(query, "Menunggu");
+    public TablePeriksa showDataPeriksa(String query, String status){
+        List<Transaksi> dataPeriksa = tDao.showTransaksi(query, status);
         TablePeriksa tablePeriksa = new TablePeriksa(dataPeriksa);
         return tablePeriksa;
     }

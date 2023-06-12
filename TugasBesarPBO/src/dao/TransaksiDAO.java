@@ -80,7 +80,7 @@ public class TransaksiDAO {
                 + " OR t.diagnosis LIKE '%" + query + "%'"
                 + " OR t.biaya_klinik LIKE '%" + query + "%')"
                 + " AND t.status LIKE '%" + status + "%'"
-                + " ORDER BY t.tanggal_transaksi ASC";
+                + " ORDER BY t.tanggal_transaksi DESC";
         System.out.println("Mengambil data Transaksi ...");
         
         List<Transaksi> list = new ArrayList();

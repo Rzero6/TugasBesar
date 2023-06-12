@@ -215,7 +215,7 @@ public class PeriksaPanel extends javax.swing.JPanel implements IPanelKasir{
     }
 
     private void setWaitingTable() {
-        waitingTable.setModel(transaksiControl.showDataPeriksa(""));
+        waitingTable.setModel(transaksiControl.showDataPeriksa("","Menunggu"));
         UtilTable.tableResizeColumnWidth(waitingTable);
     }
     private void InputKosongException() throws InputKosongException{

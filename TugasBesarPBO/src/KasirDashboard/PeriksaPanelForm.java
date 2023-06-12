@@ -373,7 +373,7 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void setTablePeriksa(String query) {
-        PeriksaTable.setModel(transaksiControl.showDataPeriksa(query));
+        PeriksaTable.setModel(transaksiControl.showDataPeriksa(query,"Menunggu"));
     }
 
     private void setCustomer() {

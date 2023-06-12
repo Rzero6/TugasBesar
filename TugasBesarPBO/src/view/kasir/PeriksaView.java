@@ -240,7 +240,7 @@ public class PeriksaView extends javax.swing.JInternalFrame {
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
         try{
-            TablePeriksa periksa = transaksiControl.showDataPeriksa(searchInput.getText());
+            TablePeriksa periksa = transaksiControl.showDataPeriksa(searchInput.getText(),"Menunggu");
             if(periksa.getRowCount() == 0){
                 JOptionPane.showConfirmDialog(null, "Data tidak ditemukan","Konfirmasi",JOptionPane.DEFAULT_OPTION);
             }else{
@@ -279,7 +279,7 @@ public class PeriksaView extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void showPeriksa() {
-        TableTungguCustomer.setModel(transaksiControl.showDataPeriksa(""));
+        TableTungguCustomer.setModel(transaksiControl.showDataPeriksa("","Menunggu"));
     }
 
     private void setCustomerToDropdown() {

@@ -43,8 +43,6 @@ public class KasirView extends javax.swing.JFrame {
         transaksiControl = new TransaksiControl();
         
         init();
-        checkOut.setSize(720, 493);
-        checkOut.setLocationRelativeTo(null);
         panelSlide1.setVisible(false);
     }
     
@@ -135,17 +133,6 @@ public class KasirView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        checkOut = new javax.swing.JFrame();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        inputUang = new KasirDashboard.CustomePalette.TextField();
-        namaPasien1 = new KasirDashboard.CustomePalette.TextField();
-        totalHarga1 = new KasirDashboard.CustomePalette.TextField();
-        bayarBtn = new javax.swing.JButton();
-        cancelBtnPembayaran = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         exitBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -203,83 +190,6 @@ public class KasirView extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         panelSlide2 = new KasirDashboard.CustomePalette.PanelSlide();
-
-        checkOut.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel18.setFont(new java.awt.Font("Century Gothic", 1, 35)); // NOI18N
-        jLabel18.setText("Biaya Perawatan");
-        jPanel10.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 350, -1));
-
-        jPanel11.setBackground(new java.awt.Color(198, 231, 255));
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jPanel10.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 490));
-
-        jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 40)); // NOI18N
-        jLabel20.setText("Pembayaran");
-        jPanel10.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 310, -1));
-
-        jLabel21.setForeground(new java.awt.Color(140, 140, 140));
-        jLabel21.setText("Silahkan Input Nominal Uang");
-        jPanel10.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, 30));
-
-        inputUang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        inputUang.setLabelText("Masukkan Nominal Uang Anda");
-        inputUang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputUangActionPerformed(evt);
-            }
-        });
-        jPanel10.add(inputUang, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 290, -1));
-
-        namaPasien1.setEditable(false);
-        namaPasien1.setBackground(new java.awt.Color(255, 255, 255));
-        namaPasien1.setText("I Kadek Dendy Pramartha");
-        namaPasien1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        namaPasien1.setLabelText("Nama Pasien");
-        jPanel10.add(namaPasien1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 290, -1));
-
-        totalHarga1.setEditable(false);
-        totalHarga1.setBackground(new java.awt.Color(255, 255, 255));
-        totalHarga1.setText("Rp 200.000");
-        totalHarga1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        totalHarga1.setLabelText("Total Harga");
-        jPanel10.add(totalHarga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 290, -1));
-
-        bayarBtn.setBackground(new java.awt.Color(3, 104, 218));
-        bayarBtn.setForeground(new java.awt.Color(255, 255, 255));
-        bayarBtn.setText("Bayar");
-        bayarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bayarBtnActionPerformed(evt);
-            }
-        });
-        jPanel10.add(bayarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 390, -1, 30));
-
-        cancelBtnPembayaran.setBackground(new java.awt.Color(3, 104, 218));
-        cancelBtnPembayaran.setForeground(new java.awt.Color(255, 255, 255));
-        cancelBtnPembayaran.setText("Batal");
-        cancelBtnPembayaran.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelBtnPembayaranActionPerformed(evt);
-            }
-        });
-        jPanel10.add(cancelBtnPembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 390, -1, 30));
-
-        checkOut.getContentPane().add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 490));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1147,20 +1057,6 @@ public class KasirView extends javax.swing.JFrame {
         setMenuServicesActive(false, false, true);
     }//GEN-LAST:event_roundedPanel1MouseClicked
 
-    private void inputUangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputUangActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputUangActionPerformed
-
-    private void bayarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayarBtnActionPerformed
-        // TODO add your handling code here:
-        checkOut.setVisible(false);
-    }//GEN-LAST:event_bayarBtnActionPerformed
-
-    private void cancelBtnPembayaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnPembayaranActionPerformed
-        // TODO add your handling code here:
-        checkOut.setVisible(false);
-    }//GEN-LAST:event_cancelBtnPembayaranActionPerformed
-
     private void periksaPasienPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_periksaPasienPanelMouseClicked
         // TODO add your handling code here:
         selectHome = false;
@@ -1300,27 +1196,18 @@ public class KasirView extends javax.swing.JFrame {
     private KasirDashboard.CustomePalette.PanelBodyTransparan ServicesPanel;
     private KasirDashboard.CustomePalette.innerDashboard aboutUs;
     private javax.swing.JLabel aboutUsIcon;
-    private javax.swing.JButton bayarBtn;
-    private javax.swing.JButton cancelBtnPembayaran;
-    private javax.swing.JFrame checkOut;
     private javax.swing.JButton exitBtn;
     private KasirDashboard.CustomePalette.innerDashboard home;
     private javax.swing.JLabel homeIcon;
     private KasirDashboard.TableCustom homeTable;
-    private KasirDashboard.CustomePalette.TextField inputUang;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1334,7 +1221,6 @@ public class KasirView extends javax.swing.JFrame {
     private javax.swing.JLabel namaLbl2;
     private javax.swing.JLabel namaLbl3;
     private javax.swing.JLabel namaLbl4;
-    private KasirDashboard.CustomePalette.TextField namaPasien1;
     private KasirDashboard.CustomePalette.PanelBody panelBody2;
     private KasirDashboard.CustomePalette.PanelSlide panelSlide;
     private KasirDashboard.CustomePalette.PanelSlide panelSlide1;
@@ -1357,11 +1243,10 @@ public class KasirView extends javax.swing.JFrame {
     private javax.swing.JLabel servicesIcon;
     private javax.swing.JLabel subServiceIcon;
     private javax.swing.JScrollPane tableHomeScrollBar;
-    private KasirDashboard.CustomePalette.TextField totalHarga1;
     // End of variables declaration//GEN-END:variables
 
     private void setHomeTable() {
-        homeTable.setModel(transaksiControl.showDataPeriksa(""));
+        homeTable.setModel(transaksiControl.showDataPeriksa("", ""));
     }
 
 }
