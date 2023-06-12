@@ -39,9 +39,9 @@ public class TablePeriksa extends AbstractTableModel {
             case 2:
                 return list.get(rowIndex).getDokter().getNama();
             case 3:
-                return list.get(rowIndex).getStatus();
-            case 4:
                 return list.get(rowIndex).getKeluhan();
+            case 4:
+                return list.get(rowIndex).getStatus();
             case 5:
                 return list.get(rowIndex).getId();
             default:
@@ -57,9 +57,9 @@ public class TablePeriksa extends AbstractTableModel {
             case 2:
                 return "Dokter";
             case 3:
-                return "Status";
-            case 4: 
                 return "Keluhan";
+            case 4: 
+                return "Status";
             default:
                 return null;
         }

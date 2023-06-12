@@ -128,7 +128,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
 
-        String password = new String(this.passwordTxt.getPassword());
+        String password = new String(passwordTxt.getPassword());
         Staf s = stafControl.loginStaf(usernameTxt.getText(), password);
         if(s==null){
             JOptionPane.showConfirmDialog(rootPane, "Username atau Password salah","Error",JOptionPane.PLAIN_MESSAGE,JOptionPane.ERROR_MESSAGE);

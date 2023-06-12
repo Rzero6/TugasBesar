@@ -80,6 +80,11 @@ public class PeriksaPanel extends javax.swing.JPanel implements IPanelKasir{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        waitingTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                waitingTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(waitingTable);
 
         addBtn.setText("Add");
@@ -167,6 +172,10 @@ public class PeriksaPanel extends javax.swing.JPanel implements IPanelKasir{
         }
         
     }//GEN-LAST:event_delBtnActionPerformed
+
+    private void waitingTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_waitingTableMouseClicked
+     
+    }//GEN-LAST:event_waitingTableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
