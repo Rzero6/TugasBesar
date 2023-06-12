@@ -20,7 +20,7 @@ import utils.UtilTable;
  *
  * @author VICTUS
  */
-public class PendaftaranPasienForm extends javax.swing.JPanel {
+public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirView {
 
     /**
      * Creates new form PendaftaranPasienForm
@@ -415,5 +415,10 @@ public class PendaftaranPasienForm extends javax.swing.JPanel {
         alamatTxt.setText("");
         notelpTxt.setText("");
         tanggalLahir.setDate(new Date());
+    }
+
+    @Override
+    public void refreshDataTable() {
+        refreshBtn.doClick();
     }
 }

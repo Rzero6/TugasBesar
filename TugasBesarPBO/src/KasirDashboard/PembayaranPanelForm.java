@@ -26,7 +26,7 @@ import utils.UtilTable;
  *
  * @author VICTUS
  */
-public class PembayaranPanelForm extends javax.swing.JPanel {
+public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirView{
 
     /**
      * Creates new form PembayaranPanelForm
@@ -485,5 +485,10 @@ public class PembayaranPanelForm extends javax.swing.JPanel {
         searchTxt.setText("");
         checkOutBtn.setEnabled(false);
         selectedIDTransaksi=0;
+    }
+
+    @Override
+    public void refreshDataTable() {
+        refreshBtn.doClick();
     }
 }

@@ -26,7 +26,7 @@ import utils.UtilTable;
  *
  * @author VICTUS
  */
-public class PeriksaPanelForm extends javax.swing.JPanel {
+public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
     private TransaksiControl transaksiControl;
     private CustomerControl customerControl;
     private StafControl stafControl;
@@ -475,5 +475,10 @@ public class PeriksaPanelForm extends javax.swing.JPanel {
         editBtn.setEnabled(false);
         removeBtn.setEnabled(false);
         searchTxt.setText("");
+    }
+
+    @Override
+    public void refreshDataTable() {
+        refreshBtn.doClick();
     }
 }

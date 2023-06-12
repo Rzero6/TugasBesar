@@ -11,6 +11,8 @@ import LoginNew.LoginView;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import control.TransaksiControl;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -37,10 +39,16 @@ public class KasirView extends javax.swing.JFrame {
     
     private Staf loginData;
     private TransaksiControl transaksiControl;
+    private List<IKasirView> panelServiceList;
+    
     public KasirView(Staf loginData) {
         this.loginData = loginData;
         initComponents();
         transaksiControl = new TransaksiControl();
+        panelServiceList = new ArrayList<>();
+        panelServiceList.add(periksaPanelForm1);
+        panelServiceList.add(pembayaranPanelForm1);
+        panelServiceList.add(pendaftaranPasienForm1);
         
         init();
         panelSlide1.setVisible(false);
