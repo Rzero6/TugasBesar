@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view.admin;
+package view_old.admin;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -10,10 +10,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import view.ObatView;
-import view.StafView;
-import view.TindakanView;
-import view.TransaksiAdminView;
+import view_old.ObatView;
+import view_old.StafView;
+import view_old.TindakanView;
+import view_old.TransaksiAdminView;
 
 /**
  *

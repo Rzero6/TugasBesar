@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view.kasir;
+package view_old.kasir;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import model.Staf;
-import view.LoginView;
+import view_old.LoginView;
 
 /**
  *
