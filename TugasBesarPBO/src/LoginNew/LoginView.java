@@ -180,7 +180,7 @@ public class LoginView extends javax.swing.JFrame {
                         loading.setVisible(false);
                         persenLbl.setVisible(false);
                         startbtn.setVisible(true);
-                        
+                        startbtn.doClick();
                     }
 
                 }
@@ -655,10 +655,11 @@ public class LoginView extends javax.swing.JFrame {
 
     private void startbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startbtnActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        
         switch(loginData.getJabatan().toLowerCase()){
             case "kasir":
                 KasirView kh = new KasirView(loginData);
+                this.dispose();
                 kh.setVisible(true);
                 break;
             case "dokter":
