@@ -7,6 +7,8 @@ package prototype;
 import com.formdev.flatlaf.FlatClientProperties;
 import control.TindakanControl;
 import exception.InputKosongException;
+import java.util.List;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -23,6 +25,7 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
 
     
     private TindakanControl tindakanControl;
+    private List<Tindakan> listTindakan;
     private int selectedId=0;
     public TindakanPanel() {
         initComponents();
@@ -30,6 +33,10 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
         namaTindakanInput.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Nama tindakan");
         hargaTindakanInput.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Harga Tindakan");
         searchInput.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
+        setBorderandFocus(namaTindakanInput);
+        setBorderandFocus(hargaTindakanInput);
+        setBorderandFocus(searchInput);
+        
         try{
             inputKosongException();
         }catch(InputKosongException e){
@@ -107,6 +114,12 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
             }
         });
 
+        namaTindakanInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                namaTindakanInputActionPerformed(evt);
+            }
+        });
+
         clearBtn.setText("Clear");
         clearBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,9 +190,16 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         try{
             Tindakan tindakan = new Tindakan(namaTindakanInput.getText(), Double.parseDouble(hargaTindakanInput.getText()));
-            tindakanControl.insertTindakan(tindakan);
-            clearAll();
-            setTableTindakan("");
+            if(checkTindakanSama(tindakan)){
+                JOptionPane.showConfirmDialog(this, "Tindakan sudah terdaftar","Error",JOptionPane.PLAIN_MESSAGE,JOptionPane.ERROR_MESSAGE);
+                clearAll();
+                searchInput.setText(tindakan.getNama());
+            }else{
+                tindakanControl.insertTindakan(tindakan);
+                clearAll();
+                setTableTindakan("");
+            }
+            
         }catch(NumberFormatException e){
             System.out.println(e.getMessage());
         }
@@ -190,9 +210,16 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         try{
             Tindakan tindakan = new Tindakan(selectedId,namaTindakanInput.getText(), Double.parseDouble(hargaTindakanInput.getText()));
-            tindakanControl.updateTindakan(tindakan);
-            clearAll();
-            setTableTindakan("");
+            if(checkTindakanSama(tindakan)){
+                JOptionPane.showConfirmDialog(this, "Tindakan sudah terdaftar","Error",JOptionPane.PLAIN_MESSAGE,JOptionPane.ERROR_MESSAGE);
+                clearAll();
+                searchInput.setText(tindakan.getNama());
+            }else{
+                tindakanControl.updateTindakan(tindakan);
+                clearAll();
+                setTableTindakan("");
+            }
+            
         }catch(NumberFormatException e){
             System.out.println(e.getMessage());
         }
@@ -224,6 +251,10 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
         clearAll();
     }//GEN-LAST:event_clearBtnActionPerformed
 
+    private void namaTindakanInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaTindakanInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_namaTindakanInputActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
@@ -247,13 +278,14 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
 
     private void setTableTindakan(String query) {
         tindakanTable.setModel(tindakanControl.showDataTindakan(query));
-        
+        listTindakan = tindakanControl.showListTindakan("");
     }
 
     private void setListener() {
         DocumentListener docListener = new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
+                searchInput.setText(namaTindakanInput.getText());
                 try{
                     inputKosongException();
                     Double.parseDouble(hargaTindakanInput.getText());
@@ -269,6 +301,7 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
 
             @Override
             public void removeUpdate(DocumentEvent e) {
+                searchInput.setText(namaTindakanInput.getText());
                 try{
                     inputKosongException();
                     Double.parseDouble(hargaTindakanInput.getText());
@@ -284,6 +317,7 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
 
             @Override
             public void changedUpdate(DocumentEvent e) {
+                searchInput.setText(namaTindakanInput.getText());
                 try{
                     inputKosongException();
                     Double.parseDouble(hargaTindakanInput.getText());
@@ -339,5 +373,18 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
     public void refreshData() {
         setTableTindakan("");
         clearAll();
+    }
+    private Boolean checkTindakanSama(Tindakan tindakan){
+        for (Tindakan t : listTindakan){
+            if(t.getNama().equalsIgnoreCase(tindakan.getNama())){
+                return true;
+            }
+        }
+        return false;
+    }
+    private void setBorderandFocus(JComponent comp){
+        comp.putClientProperty(FlatClientProperties.STYLE, ""
+                +"borderWidth:1;"
+                + "focusWidth:0");
     }
 }

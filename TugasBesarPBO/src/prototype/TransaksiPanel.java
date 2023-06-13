@@ -22,6 +22,9 @@ public class TransaksiPanel extends javax.swing.JPanel implements IPanelAdmin{
         initComponents();
         transaksiControl = new TransaksiControl();
         searchTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
+        searchTxt.putClientProperty(FlatClientProperties.STYLE, ""
+                +"borderWidth:1;"
+                + "focusWidth:0");
         setTableTransaksi("");
         setListener();
     }

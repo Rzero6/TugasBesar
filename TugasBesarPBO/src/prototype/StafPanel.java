@@ -9,6 +9,7 @@ import control.StafControl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -28,13 +29,20 @@ public class StafPanel extends javax.swing.JPanel implements IPanelAdmin {
      * Creates new form StafPanel
      */
     private StafControl stafControl = new StafControl();
-    List<Staf> listStaf;
+    private List<Staf> listStaf;
     int selectedId = 0;
     
     public StafPanel() {
         initComponents();
         stafControl = new StafControl();
         searchInput.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
+        setBorderandFocus(searchInput);
+        setBorderandFocus(namaStafInput);
+        setBorderandFocus(usernameInput);
+        setBorderandFocus(passwordInput);
+        setBorderandFocus(noTeleponInput);
+        setBorderandFocus(jabatanDropDown);
+        setBorderandFocus((JTextField)tanggalMulaiKerja.getDateEditor().getUiComponent());
         setTableStaf("");
         setListener();
     }
@@ -294,18 +302,31 @@ public class StafPanel extends javax.swing.JPanel implements IPanelAdmin {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         Staf staf = new Staf(namaStafInput.getText(), noTeleponInput.getText(), (String)jabatanDropDown.getSelectedItem(), usernameInput.getText(), passwordInput.getText());
         staf.setTanggal_bergabung(dateToString(tanggalMulaiKerja.getDate()));
-        stafControl.insertDataStaf(staf);
-        JOptionPane.showConfirmDialog(null, "Berhasil menambahkan "+staf.getNama()+" sebagai "+staf.getJabatan(),"Success",JOptionPane.PLAIN_MESSAGE);
-        setTableStaf("");
-        clearAll();
+        if(checkSama(staf)){
+            JOptionPane.showConfirmDialog(this, "Staf sudah terdaftar","Error",JOptionPane.PLAIN_MESSAGE,JOptionPane.ERROR_MESSAGE);
+            
+            searchInput.setText(staf.getUsername());
+        }else{
+            stafControl.insertDataStaf(staf);
+            JOptionPane.showConfirmDialog(null, "Berhasil menambahkan "+staf.getNama()+" sebagai "+staf.getJabatan(),"Success",JOptionPane.PLAIN_MESSAGE);
+            setTableStaf("");
+            clearAll();
+        }
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         Staf staf = new Staf(selectedId, namaStafInput.getText(), noTeleponInput.getText(), dateToString(tanggalMulaiKerja.getDate()), (String) jabatanDropDown.getSelectedItem(), usernameInput.getText(), passwordInput.getText());
-        stafControl.updateDataStaf(staf);
-        JOptionPane.showConfirmDialog(null, "Berhasil memperbaharui "+staf.getNama()+" sebagai "+staf.getJabatan(),"Success",JOptionPane.PLAIN_MESSAGE);
-        setTableStaf("");
-        clearAll();
+        if(checkSama(staf)){
+            JOptionPane.showConfirmDialog(this, "Staf sudah terdaftar","Error",JOptionPane.PLAIN_MESSAGE,JOptionPane.ERROR_MESSAGE);
+            
+            searchInput.setText(staf.getUsername());
+        }else{
+            stafControl.updateDataStaf(staf);
+            JOptionPane.showConfirmDialog(null, "Berhasil memperbaharui "+staf.getNama()+" sebagai "+staf.getJabatan(),"Success",JOptionPane.PLAIN_MESSAGE);
+            setTableStaf("");
+            clearAll();
+        }
+        
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -390,6 +411,7 @@ public class StafPanel extends javax.swing.JPanel implements IPanelAdmin {
     private void setTableStaf(String query) {
         stafTable.setModel(stafControl.showDataStaf(query));
         utils.UtilTable.tableResizeColumnWidth(stafTable);
+        listStaf = stafControl.showListStaf("");
     }
     private Date stringToDate(String value){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -423,7 +445,7 @@ public class StafPanel extends javax.swing.JPanel implements IPanelAdmin {
                 checkTextField();
             }
             private void checkTextField() {
-                
+                searchInput.setText(usernameInput.getText());
                 String notelp = noTeleponInput.getText();
                 if(namaStafInput.getText().isEmpty() 
                     || tanggalMulaiKerja.getDate()==null
@@ -491,10 +513,24 @@ public class StafPanel extends javax.swing.JPanel implements IPanelAdmin {
         deleteBtn.setEnabled(b);
         editBtn.setEnabled(b);
     }
-
+    
+    private boolean checkSama(Staf staf){
+        for(Staf s : listStaf){
+            if(staf.getUsername().equals(s.getUsername())){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     @Override
     public void refreshData() {
         setTableStaf("");
         clearAll();
+    }
+    private void setBorderandFocus(JComponent comp){
+        comp.putClientProperty(FlatClientProperties.STYLE, ""
+                +"borderWidth:1;"
+                + "focusWidth:0");
     }
 }

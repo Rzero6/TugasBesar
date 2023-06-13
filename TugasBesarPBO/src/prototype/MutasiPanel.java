@@ -24,6 +24,9 @@ public class MutasiPanel extends javax.swing.JPanel implements IPanelAdmin{
         initComponents();
         mutasiControl = new MutasiControl();
         searchTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
+        searchTxt.putClientProperty(FlatClientProperties.STYLE, ""
+                +"borderWidth:1;"
+                + "focusWidth:0");
         setTableMutasi("");
         setListener();
     }
@@ -63,6 +66,7 @@ public class MutasiPanel extends javax.swing.JPanel implements IPanelAdmin{
             }
         });
 
+        saldoKlinikTxt.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         saldoKlinikTxt.setText("Saldo Klinik");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

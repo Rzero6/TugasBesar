@@ -7,6 +7,8 @@ package prototype;
 import com.formdev.flatlaf.FlatClientProperties;
 import control.SupplierControl;
 import exception.InputKosongException;
+import java.util.List;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -25,6 +27,7 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
      * Creates new form SupplierPanel
      */
     private SupplierControl supplierControl;
+    private List<Supplier> listSupplier;
     private Supplier supplier;
     private int selectedID=0;
     
@@ -36,6 +39,10 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
         noTeleponTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "No Telepon");
         emailTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Email");
         searchTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
+        setBorderandFocus(namaTxt);
+        setBorderandFocus(noTeleponTxt);
+        setBorderandFocus(emailTxt);
+        setBorderandFocus(searchTxt);
         setSupplierTable("");
         setListener();
     }
@@ -172,18 +179,29 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         supplier = new Supplier(namaTxt.getText(), noTeleponTxt.getText(), emailTxt.getText());
-        supplierControl.insertDataSupplier(supplier);
-        setSupplierTable("");
-        clearAll();
+        if(checkSama(supplier)){
+            JOptionPane.showConfirmDialog(this, "Supplier sudah terdaftar","Error",JOptionPane.PLAIN_MESSAGE,JOptionPane.ERROR_MESSAGE);
+            
+            searchTxt.setText(supplier.getNama());
+        }else{
+            supplierControl.insertDataSupplier(supplier);
+            setSupplierTable("");
+            clearAll();
+        }
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         
         supplier = new Supplier(selectedID, namaTxt.getText(), noTeleponTxt.getText(), emailTxt.getText());
-        supplierControl.updateDataSupplier(supplier);
-        setSupplierTable("");
-        clearAll();
-
+        if(checkSama(supplier)){
+            JOptionPane.showConfirmDialog(this, "Supplier sudah terdaftar","Error",JOptionPane.PLAIN_MESSAGE,JOptionPane.ERROR_MESSAGE);
+            
+            searchTxt.setText(supplier.getNama());
+        }else{
+            supplierControl.updateDataSupplier(supplier);
+            setSupplierTable("");
+            clearAll();
+        }
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed
@@ -215,6 +233,7 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
     // End of variables declaration//GEN-END:variables
     private void setSupplierTable(String query) {
         supplierTable.setModel(supplierControl.getTableSuplier(query));
+        listSupplier=supplierControl.getListSupplier("");
     }
     private void inputKosongException() throws InputKosongException{
         if(namaTxt.getText().isEmpty() || noTeleponTxt.getText().isEmpty() || emailTxt.getText().isEmpty()){
@@ -240,9 +259,10 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
         DocumentListener docListener = new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
+                searchTxt.setText(namaTxt.getText());
                 try{
                     inputKosongException();
-                    addBtn.setEnabled(true);
+                    addBtn.setEnabled(supplierTable.getSelectedRow() == -1);
                     editBtn.setEnabled(supplierTable.getSelectedRow() != -1);
                 }catch(InputKosongException ex){
                     addBtn.setEnabled(false);
@@ -252,9 +272,10 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
 
             @Override
             public void removeUpdate(DocumentEvent e) {
+                searchTxt.setText(namaTxt.getText());
                 try{
                     inputKosongException();
-                    addBtn.setEnabled(true);
+                    addBtn.setEnabled(supplierTable.getSelectedRow() == -1);
                     editBtn.setEnabled(supplierTable.getSelectedRow() != -1);
                 }catch(InputKosongException ex){
                     addBtn.setEnabled(false);
@@ -264,9 +285,10 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
 
             @Override
             public void changedUpdate(DocumentEvent e) {
+                searchTxt.setText(namaTxt.getText());
                 try{
                     inputKosongException();
-                    addBtn.setEnabled(true);
+                    addBtn.setEnabled(supplierTable.getSelectedRow() == -1);
                     editBtn.setEnabled(supplierTable.getSelectedRow() != -1);
                 }catch(InputKosongException ex){
                     addBtn.setEnabled(false);
@@ -304,5 +326,18 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
                 setSupplierTable(searchTxt.getText());
             }
         });
+    }
+    private boolean checkSama(Supplier supplier){
+        for(Supplier s: listSupplier){
+            if(supplier.getNama().equalsIgnoreCase(s.getNama())){
+                return true;
+            }
+        }
+        return false;
+    }
+    private void setBorderandFocus(JComponent comp){
+        comp.putClientProperty(FlatClientProperties.STYLE, ""
+                +"borderWidth:1;"
+                + "focusWidth:0");
     }
 }

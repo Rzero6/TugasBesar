@@ -7,6 +7,10 @@ package prototype;
 import com.formdev.flatlaf.FlatClientProperties;
 import control.ObatControl;
 import exception.InputKosongException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
@@ -14,6 +18,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
+import model.Obat;
 
 /**
  *
@@ -22,6 +27,7 @@ import javax.swing.table.TableModel;
 public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
 
     private ObatControl obatControl;
+    private List<Obat> listObat;
     private int selectedID;
     public ObatPanel() {
         initComponents();
@@ -29,6 +35,9 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
         namaObatTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Nama obat");
         hargaObatTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Harga obat");
         searchTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
+        setBorderandFocus(namaObatTxt);
+        setBorderandFocus(hargaObatTxt);
+        setBorderandFocus(searchTxt);
         try{
             inputKosongException();
         }catch(InputKosongException e){
@@ -93,6 +102,11 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
 
         editBtn.setText("Edit");
         editBtn.setEnabled(false);
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         delBtn.setText("Delete");
         delBtn.setEnabled(false);
@@ -161,15 +175,29 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
+        Obat obat = new Obat(namaObatTxt.getText(), Double.parseDouble(hargaObatTxt.getText()), (int) jumlahObatSpinner.getValue());
+        if(checkObatSama(obat)){
+            JOptionPane.showConfirmDialog(this, "Obat sudah terdaftar","Error",JOptionPane.PLAIN_MESSAGE,JOptionPane.ERROR_MESSAGE);
+            clearAll();
+            searchTxt.setText(obat.getNama());
+        }else{
+            obatControl.insertDataObat(obat);
+            setTableObat("");
+            clearAll();
+        }
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed
-        // TODO add your handling code here:
+        int confirm = JOptionPane.showConfirmDialog(this, "Yakin hapus "+tableObat.getModel().getValueAt(tableObat.getSelectedRow(), 1).toString()+"?","Warning",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        if(confirm==JOptionPane.YES_OPTION){
+            obatControl.deleteObat(selectedID);
+            setTableObat("");
+            clearAll();
+        }
     }//GEN-LAST:event_delBtnActionPerformed
 
     private void namaObatTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaObatTxtActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_namaObatTxtActionPerformed
 
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
@@ -184,6 +212,19 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
         hargaObatTxt.setText(tableModel.getValueAt(clickedRow, 2).toString());
         jumlahObatSpinner.setValue(tableModel.getValueAt(clickedRow, 3));
     }//GEN-LAST:event_tableObatMouseClicked
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        Obat obat = new Obat(selectedID,namaObatTxt.getText(), Double.parseDouble(hargaObatTxt.getText()), (int) jumlahObatSpinner.getValue());
+        if(checkObatSama(obat)){
+            JOptionPane.showConfirmDialog(this, "Obat sudah terdaftar","Error",JOptionPane.PLAIN_MESSAGE,JOptionPane.ERROR_MESSAGE);
+            clearAll();
+            searchTxt.setText(obat.getNama());
+        }else{
+            obatControl.updateDataObat(obat);
+            setTableObat("");
+            clearAll();
+        }
+    }//GEN-LAST:event_editBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -201,6 +242,7 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
 
     private void setTableObat(String query) {
         tableObat.setModel(obatControl.showDataObat(query));
+        listObat = obatControl.showListObat("");
     }
 
     private void setListener() {
@@ -269,6 +311,7 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
     }
     
     private void checkFields() {
+        searchTxt.setText(namaObatTxt.getText());
         try{
             inputKosongException();
             int jumlah = (int) jumlahObatSpinner.getValue();
@@ -296,6 +339,7 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
     }
 
     private void clearAll() {
+        tableObat.clearSelection();
         searchTxt.setText("");
         namaObatTxt.setText("");
         hargaObatTxt.setText("");
@@ -303,6 +347,19 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
         addBtn.setEnabled(false);
         editBtn.setEnabled(false);
         delBtn.setEnabled(false);
-        tableObat.clearSelection();
+    }
+    
+    private Boolean checkObatSama(Obat obat){
+        for (Obat o : listObat){
+            if(o.getNama().equalsIgnoreCase(obat.getNama())){
+                return true;
+            }
+        }
+        return false;
+    }
+    private void setBorderandFocus(JComponent comp){
+        comp.putClientProperty(FlatClientProperties.STYLE, ""
+                +"borderWidth:1;"
+                + "focusWidth:0");
     }
 }

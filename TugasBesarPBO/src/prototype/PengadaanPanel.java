@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -53,6 +54,15 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
         notelpSupplier.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "No Telepon");
         emailSupplier.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Email");
         searchTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
+        setBorderandFocus(namaObat);
+        setBorderandFocus(hargaObat);
+        setBorderandFocus(namaSupplier);
+        setBorderandFocus(notelpSupplier);
+        setBorderandFocus(emailSupplier);
+        setBorderandFocus(searchTxt);
+        setBorderandFocus(saldoKlinikTxt);
+        setBorderandFocus(totalHargaTxt);
+        
         mutasiControl = new MutasiControl();
         pengadaanControl = new PengadaanControl();
         supplierControl = new SupplierControl();
@@ -666,5 +676,9 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
         searchTxt.setText("");
         obatPanel1.refreshData();
     }
-    
+    private void setBorderandFocus(JComponent comp){
+        comp.putClientProperty(FlatClientProperties.STYLE, ""
+                +"borderWidth:1;"
+                + "focusWidth:0");
+    }
 }
