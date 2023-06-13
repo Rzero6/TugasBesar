@@ -723,12 +723,10 @@ public class DokterView extends javax.swing.JFrame {
 
     private void rawatLblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rawatLblMouseExited
         // TODO add your handling code here:
-//        panelDashboard.setVisible(false);
     }//GEN-LAST:event_rawatLblMouseExited
 
     private void riwayatLblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_riwayatLblMouseExited
         // TODO add your handling code here:
-//        panelDashboard.setVisible(false);
     }//GEN-LAST:event_riwayatLblMouseExited
 
     private void homelblMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homelblMouseExited

@@ -104,8 +104,7 @@ public class LoginView extends javax.swing.JFrame {
                 }
             }
 
-        };
-        
+        }; 
         TimingTarget targetLoading = new TimingTarget() { 
              public void timingEvent(float f) {
                 if(signIn){
