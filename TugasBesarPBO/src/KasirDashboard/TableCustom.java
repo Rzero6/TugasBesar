@@ -12,7 +12,7 @@ package KasirDashboard;
  * Ryan Pratama Wijaya     | 210711008 | C
  * I Kadek Dendy Pramartha | 210711095 | C
  */
-package KasirDashboard;
+
 
 import java.awt.Color;
 import java.awt.Component;

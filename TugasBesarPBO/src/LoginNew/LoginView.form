@@ -211,7 +211,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Container class="LoginNew.PanelLogin" name="welcomePanel">
+                <Container class="LoginNew.PanelStart" name="welcomePanel">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="99" green="ff" red="0" type="rgb"/>
@@ -484,7 +484,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Container class="LoginNew.PanelBody" name="panelBody2">
+                    <Container class="LoginNew.PanelLogin" name="panelBody2">
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
                         <Property name="useNullLayout" type="boolean" value="false"/>

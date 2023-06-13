@@ -25,9 +25,9 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class TableDokterCustom extends JTable {
+public class TableDokterCustomStatus extends JTable {
 
-    public TableDokterCustom() {
+    public TableDokterCustomStatus() {
         setShowHorizontalLines(true);
         setGridColor(new Color(230, 230, 230));
         setRowHeight(40);
@@ -46,7 +46,7 @@ public class TableDokterCustom extends JTable {
             @Override
             public Component getTableCellRendererComponent(JTable jtable, Object o, boolean selected, boolean bln1, int i, int i1) {
 //                System.out.println("column : "+(jtable.getColumnCount()-1));
-                if (i1 != jtable.getColumnCount()-1) {
+                if (i1 != 4) {
                     Component com = super.getTableCellRendererComponent(jtable, o, selected, bln1, i, i1);
                     com.setBackground(Color.WHITE);
                     setBorder(noFocusBorder);

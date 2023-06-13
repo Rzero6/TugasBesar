@@ -30,14 +30,12 @@ public class TableTindakan extends AbstractTableModel {
     
     public Object getValueAt(int rowIndex, int columnIndex){
         switch (columnIndex) {
-            case 0:
+            case 0 :
                 return list.get(rowIndex).getId();
             case 1:
                 return list.get(rowIndex).getNama();
             case 2:
                 return list.get(rowIndex).getHarga();
-//            case 3:
-//                return list.get(rowIndex).getStok();
             default:
                 return null;
         }
@@ -51,8 +49,6 @@ public class TableTindakan extends AbstractTableModel {
                 return "Nama";
             case 2:
                 return "Harga";
-//            case 3:
-//                return "Stok";
             default:
                 return null;
         }

@@ -25,6 +25,7 @@ public class Transaksi {
     private String diagnosis;
     private List<DetailTransaksi> detailTransaksiList;
     
+    
     //String stringBuilder = "";
 
     public Transaksi(Customer pasien, Staf dokter, String keluhan) {

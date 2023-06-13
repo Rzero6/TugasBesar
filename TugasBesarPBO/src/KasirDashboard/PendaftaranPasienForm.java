@@ -73,7 +73,6 @@ public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirV
         searchTxt = new javax.swing.JTextField();
         tablePendaftaranScrollBar = new javax.swing.JScrollPane();
         PendaftaranTable = new KasirDashboard.TableCustom();
-        refreshBtn = new javax.swing.JButton();
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -232,16 +231,6 @@ public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirV
 
         servicePendaftaranPasien.add(tablePendaftaranScrollBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 640, 330));
 
-        refreshBtn.setBackground(new java.awt.Color(3, 104, 218));
-        refreshBtn.setForeground(new java.awt.Color(255, 255, 255));
-        refreshBtn.setText("Refresh");
-        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshBtnActionPerformed(evt);
-            }
-        });
-        servicePendaftaranPasien.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 80, 30));
-
         add(servicePendaftaranPasien, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 710));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -295,10 +284,6 @@ public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirV
         } 
     }//GEN-LAST:event_removeBtnActionPerformed
 
-    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
-        setTableCustomer("");
-    }//GEN-LAST:event_refreshBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private KasirDashboard.TableCustom PendaftaranTable;
@@ -318,7 +303,6 @@ public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirV
     private javax.swing.JLabel namaLbl9;
     private KasirDashboard.CustomePalette.TextField namaTxt;
     private KasirDashboard.CustomePalette.TextField notelpTxt;
-    private javax.swing.JButton refreshBtn;
     private javax.swing.JButton removeBtn;
     private javax.swing.JButton saveBtnInputPasien;
     private javax.swing.JTextField searchTxt;
@@ -419,6 +403,6 @@ public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirV
 
     @Override
     public void refreshDataTable() {
-        refreshBtn.doClick();
+        setTableCustomer("");
     }
 }

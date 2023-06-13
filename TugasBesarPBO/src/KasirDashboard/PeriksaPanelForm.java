@@ -88,7 +88,6 @@ public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
         removeBtn = new javax.swing.JButton();
         tablePeriksaScrollBar = new javax.swing.JScrollPane();
         PeriksaTable = new KasirDashboard.TableCustom();
-        refreshBtn = new javax.swing.JButton();
 
         addRawatPasien.setUndecorated(true);
 
@@ -256,16 +255,6 @@ public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
 
         servicePeriksaPasien.add(tablePeriksaScrollBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 640, 330));
 
-        refreshBtn.setBackground(new java.awt.Color(3, 104, 218));
-        refreshBtn.setForeground(new java.awt.Color(255, 255, 255));
-        refreshBtn.setText("Refresh");
-        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshBtnActionPerformed(evt);
-            }
-        });
-        servicePeriksaPasien.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 80, 30));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -355,10 +344,6 @@ public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
         }
     }//GEN-LAST:event_removeBtnActionPerformed
 
-    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
-        setTablePeriksa("");
-    }//GEN-LAST:event_refreshBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private KasirDashboard.TableCustom PeriksaTable;
@@ -381,7 +366,6 @@ public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
     private javax.swing.JLabel namaLbl7;
     private javax.swing.JLabel namaLbl8;
     private javax.swing.JComboBox<Customer> pasienDropdown;
-    private javax.swing.JButton refreshBtn;
     private javax.swing.JButton removeBtn;
     private javax.swing.JButton saveBtnInputPeriksa;
     private javax.swing.JTextField searchTxt;
@@ -479,6 +463,8 @@ public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
 
     @Override
     public void refreshDataTable() {
-        refreshBtn.doClick();
+        setTablePeriksa("");
+        setCustomer();
+        setDokter();
     }
 }

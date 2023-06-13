@@ -29,14 +29,10 @@ public class DetailTransaksiControl {
     public void updateDetailTransaksi(DetailTransaksi dt) {
         dtDAO.updateDetailTransaksi(dt);
     }
-    
     public void deleteDetailTransaksi(int idDetailTransaksi){
         dtDAO.deleteDetailTransaksi(idDetailTransaksi);
     }
-    public void deleteAllDetailTransaksiFromIDTransaksi(int idTransaksi) {
-        dtDAO.deleteAllDetailTransaksiFromIDTransaksi(idTransaksi);
-    }
-
+    
     public List<DetailTransaksi> getListDetailTransaksiByTransaksiID(String query, int id) {
         List<DetailTransaksi> dataDetailTransaksi = dtDAO.getListDetailTransaksiByTransaksiID(query, id);
         return dataDetailTransaksi;

@@ -187,7 +187,6 @@ public class KasirView extends javax.swing.JFrame {
         namaLbl3 = new javax.swing.JLabel();
         tableHomeScrollBar = new javax.swing.JScrollPane();
         homeTable = new KasirDashboard.TableCustom();
-        refreshButton = new javax.swing.JButton();
         servicePembayaranPasien = new KasirDashboard.CustomePalette.innerDashboard();
         panelSlide = new KasirDashboard.CustomePalette.PanelSlide();
         pembayaranPanelForm1 = new KasirDashboard.PembayaranPanelForm();
@@ -676,14 +675,6 @@ public class KasirView extends javax.swing.JFrame {
 
         home.add(tableHomeScrollBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 710, 240));
 
-        refreshButton.setText("Refresh");
-        refreshButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshButtonActionPerformed(evt);
-            }
-        });
-        home.add(refreshButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 342, -1, 30));
-
         jPanel1.add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, -10, 850, 710));
 
         servicePembayaranPasien.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -890,7 +881,7 @@ public class KasirView extends javax.swing.JFrame {
         logOutIcon.setIcon(icon4);
         
         setDashboardPanelActive(selectHome, selectService, selectAboutUs);
-        
+        setHomeTable();
         
         
     }//GEN-LAST:event_HomeLblMouseClicked
@@ -920,6 +911,8 @@ public class KasirView extends javax.swing.JFrame {
         Icon icon4 = new ImageIcon(getClass().getResource("/Aset/logout.png"));
         logOutIcon.setIcon(icon4);
         setDashboardPanelActive(selectHome, selectService, selectAboutUs);
+        
+        periksaPanelForm1.refreshDataTable();
         
         
     }//GEN-LAST:event_ServicesLblMouseClicked
@@ -1064,16 +1057,19 @@ public class KasirView extends javax.swing.JFrame {
 
     private void roundedPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedPanel2MouseClicked
         setMenuServicesActive(true, false, false);
+        periksaPanelForm1.refreshDataTable();
     }//GEN-LAST:event_roundedPanel2MouseClicked
 
     private void roundedPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedPanel3MouseClicked
         // TODO add your handling code here:
         setMenuServicesActive(false, true, false);
+        pembayaranPanelForm1.refreshDataTable();
     }//GEN-LAST:event_roundedPanel3MouseClicked
 
     private void roundedPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedPanel1MouseClicked
         // TODO add your handling code here:
         setMenuServicesActive(false, false, true);
+        pendaftaranPasienForm1.refreshDataTable();
     }//GEN-LAST:event_roundedPanel1MouseClicked
 
     private void periksaPasienPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_periksaPasienPanelMouseClicked
@@ -1093,6 +1089,10 @@ public class KasirView extends javax.swing.JFrame {
         setDashboardPanelActive(false, true, false);
         setMenuServicesActive(true, false, false);
         
+        periksaPanelForm1.refreshDataTable();
+        
+        
+        
     }//GEN-LAST:event_periksaPasienPanelMouseClicked
 
     private void pembayaranPasienPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pembayaranPasienPanelMouseClicked
@@ -1110,6 +1110,8 @@ public class KasirView extends javax.swing.JFrame {
         
         setDashboardPanelActive(false, true, false);
         setMenuServicesActive(false, true, false);
+        
+        pembayaranPanelForm1.refreshDataTable();
     }//GEN-LAST:event_pembayaranPasienPanelMouseClicked
 
     private void pendaftaranKelasPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pendaftaranKelasPanelMouseClicked
@@ -1127,6 +1129,8 @@ public class KasirView extends javax.swing.JFrame {
         
         setDashboardPanelActive(false, true, false);
         setMenuServicesActive(false, false, true);
+        
+        pendaftaranPasienForm1.refreshDataTable();
     }//GEN-LAST:event_pendaftaranKelasPanelMouseClicked
 
     private void subServiceIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subServiceIconMouseClicked
@@ -1164,10 +1168,6 @@ public class KasirView extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
-        setHomeTable();
-    }//GEN-LAST:event_refreshButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1257,8 +1257,6 @@ public class KasirView extends javax.swing.JFrame {
     private KasirDashboard.PeriksaPanelForm periksaPanelForm1;
     private javax.swing.JLabel periksaPasienLbl;
     private KasirDashboard.CustomePalette.roundedPanel periksaPasienPanel;
-    private javax.swing.JButton refreshBtn;
-    private javax.swing.JButton refreshButton;
     private KasirDashboard.CustomePalette.roundedPanel roundedPanel1;
     private KasirDashboard.CustomePalette.roundedPanel roundedPanel2;
     private KasirDashboard.CustomePalette.roundedPanel roundedPanel3;

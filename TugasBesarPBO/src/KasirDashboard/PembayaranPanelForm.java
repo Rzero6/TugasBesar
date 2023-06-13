@@ -87,7 +87,6 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
         PembayaranTable = new KasirDashboard.TableCustom();
         checkOutBtn = new javax.swing.JButton();
         searchTxt = new javax.swing.JTextField();
-        refreshBtn = new javax.swing.JButton();
 
         checkOut.setUndecorated(true);
         checkOut.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -282,16 +281,6 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
         servicePembayaranPasien.add(checkOutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, 30));
         servicePembayaranPasien.add(searchTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 270, -1));
 
-        refreshBtn.setBackground(new java.awt.Color(3, 104, 218));
-        refreshBtn.setForeground(new java.awt.Color(255, 255, 255));
-        refreshBtn.setText("Refresh");
-        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshBtnActionPerformed(evt);
-            }
-        });
-        servicePembayaranPasien.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 100, 30));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -310,7 +299,6 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
 
     private void checkOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOutBtnActionPerformed
         // TODO add your handling code here:
-        this.setEnabled(false);
         checkOut.setVisible(true);
         
         
@@ -370,10 +358,6 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
         detailsFrame.setVisible(false);
     }//GEN-LAST:event_okBtnActionPerformed
 
-    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
-        setTableBayar("");
-    }//GEN-LAST:event_refreshBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private KasirDashboard.TableCustom PembayaranTable;
@@ -397,7 +381,6 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
     private javax.swing.JLabel namaLbl16;
     private KasirDashboard.CustomePalette.TextField namaPasien1;
     private javax.swing.JButton okBtn;
-    private javax.swing.JButton refreshBtn;
     private javax.swing.JButton rincianBtn;
     private javax.swing.JTextField searchTxt;
     private KasirDashboard.CustomePalette.innerDashboard servicePembayaranPasien;
@@ -489,6 +472,6 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
 
     @Override
     public void refreshDataTable() {
-        refreshBtn.doClick();
+        setTableBayar("");
     }
 }

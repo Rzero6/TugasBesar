@@ -13,17 +13,13 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.ActionListener;
 
-public class PanelLogin extends javax.swing.JPanel {
-
-    private ActionListener event;
+public class PanelStart extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelLogin
      */
-    
-     public PanelLogin() {
+    public PanelStart() {
         initComponents();
         setOpaque(false);
     }
@@ -34,9 +30,10 @@ public class PanelLogin extends javax.swing.JPanel {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         GradientPaint gp = new GradientPaint(0, 0, Color.decode("#B2FEFA"), 0, getHeight(), Color.decode("#0ED2F7"));
         g2.setPaint(gp);    
-        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 0, 0);
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 60, 60);
         super.paintChildren(gr);
     }
+    
     
     
     

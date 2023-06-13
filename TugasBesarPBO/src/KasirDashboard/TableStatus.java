@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
 
 public class TableStatus extends JLabel {
 
@@ -24,6 +26,8 @@ public class TableStatus extends JLabel {
         setText(type.toString());
         repaint();
     }
+    
+  
 
     @Override
     protected void paintComponent(Graphics grphcs) {
@@ -33,7 +37,7 @@ public class TableStatus extends JLabel {
             GradientPaint g;
             if (type == StatusType.MENUNGGU) {
                 g = new GradientPaint(0, 0, new Color(186, 123, 247), 0, getHeight(), new Color(167, 94, 236));
-            } else if (type == StatusType.DIPERIKSA) {
+            } else if (type == StatusType.SELESAI) {
                 g = new GradientPaint(0, 0, new Color(142, 142, 250), 0, getHeight(), new Color(123, 123, 245));
             } else {
                 g = new GradientPaint(0, 0, new Color(241, 208, 62), 0, getHeight(), new Color(211, 184, 61));

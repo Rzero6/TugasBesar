@@ -4,6 +4,7 @@
  */
 package DokterDashboard;
 
+
 import LoginNew.LoginView;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
@@ -12,10 +13,11 @@ import control.ObatControl;
 import control.TindakanControl;
 import control.TransaksiControl;
 import java.awt.Color;
-import java.awt.GradientPaint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
@@ -52,28 +54,85 @@ public class DokterView extends javax.swing.JFrame {
      * Creates new form DokterView
      */
     private Staf loginData;
-    
+//    boolean homeSelected=true,rawatSelected=false, riwayatSelected=false;
+    Color selectedColor = new Color(0,66,175);
+    Color defaultColor = new Color(255,255,255);
     public DokterView(Staf loginData) {
         this.loginData = loginData;
         initComponents();
-        
+        tableRawatPasien.setDataLogin(loginData);
+        tableRawatPasien.setTableRawatPasien();
+        riwayatTransaksiDokterForm1.setDataLogin(loginData);
+        riwayatTransaksiDokterForm1.setDataRiwayat();
+        riwayatTransaksiDokterForm1.setProfileDokter();
+       
+        setPanelSelected(true, false, false);
         transaksiControl = new TransaksiControl();
         detailTransaksiControl = new DetailTransaksiControl();
         obatControl = new ObatControl();
         tindakanControl = new TindakanControl();
-        diagnosisTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Diagnosis");
-        namaPasienTxt.putClientProperty(FlatClientProperties.STYLE, ""
-                +"borderWidth:0;"
-                + "focusWidth:0");
-        umurPasienTxt.putClientProperty(FlatClientProperties.STYLE, ""
-                +"borderWidth:0;"
-                + "focusWidth:0");
-        setProfileDokter();
-        setObatTindakanDropdown();
         setTablePasien();
-        setTableObat();
-        setTableTindakan();
-        setListener();
+        setProfileDokter();
+    }
+    
+    
+    
+    public void checkHomePanelSelected(boolean home){
+        if(home){
+            homelbl.setForeground(selectedColor);
+            Icon icon = new ImageIcon(getClass().getResource("/Aset/home(2).png"));
+            homeIcon.setIcon(icon);
+            selectedHomePanel.setLocation(selectedHomePanel.getX(), 120);
+            homePanel.setVisible(true);
+            rawatPanel.setVisible(false);
+            riwayatPanel.setVisible(false);
+        }else{
+           homelbl.setForeground(defaultColor);
+           Icon icon = new ImageIcon(getClass().getResource("/Aset/home.png"));
+           homeIcon.setIcon(icon);
+        }
+    }
+    
+    public void checkRawatPanelSelected(boolean rawat){
+        if(rawat){
+            rawatLbl.setForeground(selectedColor);
+            Icon icon = new ImageIcon(getClass().getResource("/Aset/medical-symbol(1).png"));
+            rawatIcon.setIcon(icon);
+            homePanel.setVisible(false);
+            rawatPanel.setVisible(true);
+            riwayatPanel.setVisible(false);
+        }else{
+           rawatLbl.setForeground(defaultColor);
+           Icon icon = new ImageIcon(getClass().getResource("/Aset/medical-symbol.png"));
+           rawatIcon.setIcon(icon);
+        }
+    }
+    
+    public void checkRiwayatPanelSelected(boolean riwayat){
+        if(riwayat){
+            riwayatLbl.setForeground(selectedColor);
+            Icon icon = new ImageIcon(getClass().getResource("/Aset/history(1).png"));
+            riwayatIcon.setIcon(icon);
+            homePanel.setVisible(false);
+            rawatPanel.setVisible(false);
+            riwayatPanel.setVisible(true);
+        }else{
+           riwayatLbl.setForeground(defaultColor);
+           Icon icon = new ImageIcon(getClass().getResource("/Aset/history.png"));
+           riwayatIcon.setIcon(icon);
+        }
+    }
+    
+    
+    public void setPanelSelected(boolean home, boolean rawat, boolean riwayat){
+        checkHomePanelSelected(home);
+        checkRawatPanelSelected(rawat);
+        checkRiwayatPanelSelected(riwayat);
+        selectedHomePanel.setVisible(home);
+        selectedRawatPanel.setVisible(rawat);
+        selectedRiwayatPanel.setVisible(riwayat);
+        selectedLogoutPanel.setVisible(false);
+        
     }
 
     /**
@@ -85,25 +144,6 @@ public class DokterView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        frameRawatInput = new javax.swing.JFrame();
-        jPanel2 = new javax.swing.JPanel();
-        diagnosisTxt = new javax.swing.JTextField();
-        obatDropdown = new javax.swing.JComboBox<>();
-        jumlahObatSpinner = new javax.swing.JSpinner();
-        addObatBtn = new javax.swing.JButton();
-        tindakanDropdown = new javax.swing.JComboBox<>();
-        addTindakanBtn = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tableTindakan = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableObat = new javax.swing.JTable();
-        doneBtn = new javax.swing.JButton();
-        removeBtn = new javax.swing.JButton();
-        namaPasienLabel = new javax.swing.JLabel();
-        umurPasienLabel = new javax.swing.JLabel();
-        cancelBtn = new javax.swing.JButton();
-        namaPasienTxt = new javax.swing.JTextField();
-        umurPasienTxt = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         exitBtn3 = new javax.swing.JButton();
@@ -118,8 +158,16 @@ public class DokterView extends javax.swing.JFrame {
         rawatLbl = new javax.swing.JLabel();
         LogOut = new javax.swing.JLabel();
         logOutIcon = new javax.swing.JLabel();
-        roundedPanelDokterPutih3 = new DokterDashboard.roundedPanelDokterPutih();
+        selectedLogoutPanel = new DokterDashboard.roundedPanelDokterPutih();
+        selectedRawatPanel = new DokterDashboard.roundedPanelDokterPutih();
+        selectedRiwayatPanel = new DokterDashboard.roundedPanelDokterPutih();
+        selectedHomePanel = new DokterDashboard.roundedPanelDokterPutih();
         panelDashboard = new DokterDashboard.roundedPanelDokterGradientTransparan();
+        riwayatPanel = new javax.swing.JPanel();
+        riwayatTransaksiDokterForm1 = new DokterDashboard.RiwayatTransaksiDokterForm();
+        rawatPanel = new javax.swing.JPanel();
+        tableRawatPasien = new DokterDashboard.RawatPasienForm();
+        homePanel = new javax.swing.JPanel();
         roundedPanelDokterPutih2 = new DokterDashboard.roundedPanelDokterPutih();
         roundedPanelDokterGradient3 = new DokterDashboard.roundedPanelDokterGradient();
         namaLbl19 = new javax.swing.JLabel();
@@ -142,180 +190,9 @@ public class DokterView extends javax.swing.JFrame {
         jumlahPasienTunggu = new javax.swing.JLabel();
         namaLbl4 = new javax.swing.JLabel();
         namaLbl5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablePasienRawat = new DokterDashboard.TableDokterCustom();
         refreshBtn = new javax.swing.JButton();
-        selectBtn = new javax.swing.JButton();
-
-        frameRawatInput.setUndecorated(true);
-
-        addObatBtn.setText("Add");
-        addObatBtn.setEnabled(false);
-        addObatBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addObatBtnActionPerformed(evt);
-            }
-        });
-
-        addTindakanBtn.setText("Add");
-        addTindakanBtn.setEnabled(false);
-        addTindakanBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addTindakanBtnActionPerformed(evt);
-            }
-        });
-
-        tableTindakan.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tableTindakan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableTindakanMouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(tableTindakan);
-
-        tableObat.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tableObat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableObatMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tableObat);
-
-        doneBtn.setText("Done");
-        doneBtn.setEnabled(false);
-        doneBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                doneBtnActionPerformed(evt);
-            }
-        });
-
-        removeBtn.setText("Remove");
-        removeBtn.setEnabled(false);
-        removeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeBtnActionPerformed(evt);
-            }
-        });
-
-        namaPasienLabel.setText("Nama Pasien");
-
-        umurPasienLabel.setText("Umur Pasien");
-
-        cancelBtn.setText("Cancel");
-        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelBtnActionPerformed(evt);
-            }
-        });
-
-        namaPasienTxt.setEditable(false);
-
-        umurPasienTxt.setEditable(false);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(doneBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(removeBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelBtn))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(umurPasienLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(namaPasienLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(namaPasienTxt)
-                                        .addComponent(umurPasienTxt)))
-                                .addComponent(diagnosisTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(obatDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jumlahObatSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(addObatBtn))
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(53, 53, 53)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(tindakanDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addTindakanBtn)))))
-                .addGap(20, 20, 20))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(namaPasienLabel)
-                    .addComponent(namaPasienTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(umurPasienLabel)
-                    .addComponent(umurPasienTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(diagnosisTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(obatDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jumlahObatSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addObatBtn)
-                    .addComponent(tindakanDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addTindakanBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(removeBtn)
-                    .addComponent(doneBtn)
-                    .addComponent(cancelBtn))
-                .addGap(20, 20, 20))
-        );
-
-        javax.swing.GroupLayout frameRawatInputLayout = new javax.swing.GroupLayout(frameRawatInput.getContentPane());
-        frameRawatInput.getContentPane().setLayout(frameRawatInputLayout);
-        frameRawatInputLayout.setHorizontalGroup(
-            frameRawatInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        frameRawatInputLayout.setVerticalGroup(
-            frameRawatInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablePasienRawat = new DokterDashboard.TableDokterCustomStatus();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -379,6 +256,9 @@ public class DokterView extends javax.swing.JFrame {
         riwayatLbl.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         riwayatLbl.setText("          Riwayat Periksa");
         riwayatLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                riwayatLblMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 riwayatLblMouseEntered(evt);
             }
@@ -400,6 +280,9 @@ public class DokterView extends javax.swing.JFrame {
         homelbl.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         homelbl.setText("          Home");
         homelbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                homelblMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 homelblMouseEntered(evt);
             }
@@ -415,6 +298,9 @@ public class DokterView extends javax.swing.JFrame {
         rawatLbl.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         rawatLbl.setText("          Rawat Pasien");
         rawatLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rawatLblMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 rawatLblMouseEntered(evt);
             }
@@ -445,20 +331,65 @@ public class DokterView extends javax.swing.JFrame {
         logOutIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/logout.png"))); // NOI18N
         jPanel6.add(logOutIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 590, -1, 30));
 
-        roundedPanelDokterPutih3.setBackground(new java.awt.Color(245, 246, 250));
+        selectedLogoutPanel.setBackground(new java.awt.Color(245, 246, 250));
 
-        javax.swing.GroupLayout roundedPanelDokterPutih3Layout = new javax.swing.GroupLayout(roundedPanelDokterPutih3);
-        roundedPanelDokterPutih3.setLayout(roundedPanelDokterPutih3Layout);
-        roundedPanelDokterPutih3Layout.setHorizontalGroup(
-            roundedPanelDokterPutih3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout selectedLogoutPanelLayout = new javax.swing.GroupLayout(selectedLogoutPanel);
+        selectedLogoutPanel.setLayout(selectedLogoutPanelLayout);
+        selectedLogoutPanelLayout.setHorizontalGroup(
+            selectedLogoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 250, Short.MAX_VALUE)
         );
-        roundedPanelDokterPutih3Layout.setVerticalGroup(
-            roundedPanelDokterPutih3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
+        selectedLogoutPanelLayout.setVerticalGroup(
+            selectedLogoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
-        jPanel6.add(roundedPanelDokterPutih3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 250, 60));
+        jPanel6.add(selectedLogoutPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, 250, 50));
+
+        selectedRawatPanel.setBackground(new java.awt.Color(245, 246, 250));
+
+        javax.swing.GroupLayout selectedRawatPanelLayout = new javax.swing.GroupLayout(selectedRawatPanel);
+        selectedRawatPanel.setLayout(selectedRawatPanelLayout);
+        selectedRawatPanelLayout.setHorizontalGroup(
+            selectedRawatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+        );
+        selectedRawatPanelLayout.setVerticalGroup(
+            selectedRawatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        jPanel6.add(selectedRawatPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 250, 50));
+
+        selectedRiwayatPanel.setBackground(new java.awt.Color(245, 246, 250));
+
+        javax.swing.GroupLayout selectedRiwayatPanelLayout = new javax.swing.GroupLayout(selectedRiwayatPanel);
+        selectedRiwayatPanel.setLayout(selectedRiwayatPanelLayout);
+        selectedRiwayatPanelLayout.setHorizontalGroup(
+            selectedRiwayatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+        );
+        selectedRiwayatPanelLayout.setVerticalGroup(
+            selectedRiwayatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        jPanel6.add(selectedRiwayatPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 250, 50));
+
+        selectedHomePanel.setBackground(new java.awt.Color(245, 246, 250));
+
+        javax.swing.GroupLayout selectedHomePanelLayout = new javax.swing.GroupLayout(selectedHomePanel);
+        selectedHomePanel.setLayout(selectedHomePanelLayout);
+        selectedHomePanelLayout.setHorizontalGroup(
+            selectedHomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+        );
+        selectedHomePanelLayout.setVerticalGroup(
+            selectedHomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        jPanel6.add(selectedHomePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 250, 50));
 
         javax.swing.GroupLayout panelDashboardLayout = new javax.swing.GroupLayout(panelDashboard);
         panelDashboard.setLayout(panelDashboardLayout);
@@ -474,6 +405,43 @@ public class DokterView extends javax.swing.JFrame {
         jPanel6.add(panelDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 250, 50));
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 31, 250, 639));
+
+        riwayatPanel.setBackground(new java.awt.Color(245, 246, 250));
+
+        javax.swing.GroupLayout riwayatPanelLayout = new javax.swing.GroupLayout(riwayatPanel);
+        riwayatPanel.setLayout(riwayatPanelLayout);
+        riwayatPanelLayout.setHorizontalGroup(
+            riwayatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, riwayatPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(riwayatTransaksiDokterForm1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        riwayatPanelLayout.setVerticalGroup(
+            riwayatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, riwayatPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(riwayatTransaksiDokterForm1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel1.add(riwayatPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 810, 640));
+
+        rawatPanel.setBackground(new java.awt.Color(245, 246, 250));
+
+        javax.swing.GroupLayout rawatPanelLayout = new javax.swing.GroupLayout(rawatPanel);
+        rawatPanel.setLayout(rawatPanelLayout);
+        rawatPanelLayout.setHorizontalGroup(
+            rawatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tableRawatPasien, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+        );
+        rawatPanelLayout.setVerticalGroup(
+            rawatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tableRawatPasien, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(rawatPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 810, 640));
+
+        homePanel.setBackground(new java.awt.Color(245, 246, 250));
+        homePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         namaLbl19.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         namaLbl19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -520,7 +488,7 @@ public class DokterView extends javax.swing.JFrame {
         roundedPanelDokterPutih2Layout.setVerticalGroup(
             roundedPanelDokterPutih2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanelDokterPutih2Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(roundedPanelDokterPutih2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(roundedPanelDokterPutih2Layout.createSequentialGroup()
                         .addComponent(jumlahPasienSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -530,7 +498,7 @@ public class DokterView extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        jPanel1.add(roundedPanelDokterPutih2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, 300, -1));
+        homePanel.add(roundedPanelDokterPutih2, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 192, -1, -1));
 
         roundedPanelDokter1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -588,7 +556,7 @@ public class DokterView extends javax.swing.JFrame {
         namaLbl17.setText("Profile Dokter");
         roundedPanelDokter1.add(namaLbl17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 170, 25));
 
-        jPanel1.add(roundedPanelDokter1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 380, 250));
+        homePanel.add(roundedPanelDokter1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 52, 380, 250));
 
         namaLbl18.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         namaLbl18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -630,7 +598,7 @@ public class DokterView extends javax.swing.JFrame {
                 .addGroup(roundedPanelDokterPutih1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(namaLbl3)
                     .addComponent(jumlahPasienTunggu))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         roundedPanelDokterPutih1Layout.setVerticalGroup(
             roundedPanelDokterPutih1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -642,42 +610,22 @@ public class DokterView extends javax.swing.JFrame {
                         .addComponent(jumlahPasienTunggu, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(namaLbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jPanel1.add(roundedPanelDokterPutih1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 120, 300, 100));
+        homePanel.add(roundedPanelDokterPutih1, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 82, 300, -1));
 
         namaLbl4.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         namaLbl4.setForeground(new java.awt.Color(3, 104, 218));
         namaLbl4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         namaLbl4.setText("Dashboard> ");
-        jPanel1.add(namaLbl4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, 25));
+        homePanel.add(namaLbl4, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 15, -1, 25));
 
         namaLbl5.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         namaLbl5.setForeground(new java.awt.Color(3, 104, 218));
         namaLbl5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         namaLbl5.setText("Home");
-        jPanel1.add(namaLbl5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 92, 25));
-
-        tablePasienRawat.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tablePasienRawat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablePasienRawatMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tablePasienRawat);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 710, 290));
+        homePanel.add(namaLbl5, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 15, 92, 25));
 
         refreshBtn.setText("Refresh");
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -685,16 +633,26 @@ public class DokterView extends javax.swing.JFrame {
                 refreshBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 360, -1, -1));
+        homePanel.add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(654, 316, -1, -1));
 
-        selectBtn.setText("Select");
-        selectBtn.setEnabled(false);
-        selectBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectBtnActionPerformed(evt);
+        tablePasienRawat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"1", "2", "3", "Selesai", "Selesai"}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+            }
+        ));
+        tablePasienRawat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablePasienRawatMouseClicked(evt);
             }
         });
-        jPanel1.add(selectBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 360, -1, -1));
+        jScrollPane2.setViewportView(tablePasienRawat);
+
+        homePanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 710, 280));
+
+        jPanel1.add(homePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 810, 640));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 670));
 
@@ -711,61 +669,55 @@ public class DokterView extends javax.swing.JFrame {
     private void LogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseClicked
         // TODO add your handling code here:
         
+        
+        setPanelSelected(false, false, false);
+        LogOut.setForeground(selectedColor);
+        Icon icon = new ImageIcon(getClass().getResource("/Aset/logout (1).png"));
+        logOutIcon.setIcon(icon);
+        selectedLogoutPanel.setVisible(true);
+        
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Yakin ingin Log Out ? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        switch(getAnswer){
+            case 0:
+                LoginView mp = new LoginView();
+                mp.setVisible(true);
+                this.setVisible(false);
+            break;
 
-//        int getAnswer = JOptionPane.showConfirmDialog(rootPane,"Yakin ingin Log Out ? ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-//        switch(getAnswer){
-//            case 0:
-//            LoginView mp = new LoginView();
-//            mp.setVisible(true);
-//            this.setVisible(false);
-//            break;
-//
-//            case 1:
-////            LogoutPanel.setVisible(false);
-//            LogOut.setForeground(defaultColor);
-//            Icon icon5 = new ImageIcon(getClass().getResource("/Aset/logout.png"));
-//            logOutIcon.setIcon(icon5);
-//            HomeLblMouseClicked(evt);
-//            break;
-//        }
+            case 1:
+                LogOut.setForeground(defaultColor);
+                Icon icon5 = new ImageIcon(getClass().getResource("/Aset/logout.png"));
+                logOutIcon.setIcon(icon5);
+                homelblMouseClicked(evt);
+            break;
+        }
 
     }//GEN-LAST:event_LogOutMouseClicked
 
     private void LogOutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseEntered
         // TODO add your handling code here:
-//        LogoutPanel.setVisible(true);
-//        LogOut.setForeground(selectedColor);
-//        Icon icon = new ImageIcon(getClass().getResource("/Aset/logout (1).png"));
-//        logOutIcon.setIcon(icon);
+        panelDashboard.setVisible(true);
+        panelDashboard.setLocation(panelDashboard.getX(), 580);
+        
     }//GEN-LAST:event_LogOutMouseEntered
 
     private void LogOutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogOutMouseExited
-        // TODO add your handling code here:
-//        if(!selectLogout){
-//            LogoutPanel.setVisible(false);
-//            LogOut.setForeground(defaultColor);
-//            Icon icon = new ImageIcon(getClass().getResource("/Aset/logout.png"));
-//            logOutIcon.setIcon(icon);
-//        }
 
     }//GEN-LAST:event_LogOutMouseExited
 
     private void homelblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homelblMouseEntered
         // TODO add your handling code here:
-        panelDashboard.setVisible(true);
         panelDashboard.setLocation(panelDashboard.getX(), 120);
         
     }//GEN-LAST:event_homelblMouseEntered
 
     private void rawatLblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rawatLblMouseEntered
         // TODO add your handling code here:
-        panelDashboard.setVisible(true);
         panelDashboard.setLocation(panelDashboard.getX(), 180);
     }//GEN-LAST:event_rawatLblMouseEntered
 
     private void riwayatLblMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_riwayatLblMouseEntered
         // TODO add your handling code here:
-        panelDashboard.setVisible(true);
         panelDashboard.setLocation(panelDashboard.getX(), 240);
     }//GEN-LAST:event_riwayatLblMouseEntered
 
@@ -783,100 +735,31 @@ public class DokterView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_homelblMouseExited
 
-    private void addObatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addObatBtnActionPerformed
-        Obat obat = (Obat) obatDropdown.getSelectedItem();
-        Tindakan tindakan = (Tindakan) tindakanDropdown.getItemAt(0);
-        int jumlahObat = (int) jumlahObatSpinner.getValue();
-        DetailTransaksi dt = new DetailTransaksi(SelectedID, obat, tindakan, jumlahObat);
-        int idDetailTransaksi = detailTransaksiControl.checkDetailSama(SelectedID, obat.getId(), "obat");
-        if(idDetailTransaksi==0){//cek jika belum ada detail transaksi dengan obat sama
-            detailTransaksiControl.insertDetailTransaksi(dt);
-        }else{
-            dt.setId_detail_transaksi(idDetailTransaksi);
-            detailTransaksiControl.updateDetailTransaksi(dt);
-        }
-        setTableObat();
-        doneBtn.setEnabled(!diagnosisTxt.getText().isEmpty()&&!isTableObatTindakanEmpty());
-    }//GEN-LAST:event_addObatBtnActionPerformed
+    private void rawatLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rawatLblMouseClicked
+        // TODO add your handling code here:
+        setPanelSelected(false, true, false);
+        homePanel.setVisible(false);
+        rawatPanel.setVisible(true);
+        riwayatPanel.setVisible(false);
+    }//GEN-LAST:event_rawatLblMouseClicked
 
-    private void addTindakanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTindakanBtnActionPerformed
-        Obat obat = (Obat) obatDropdown.getItemAt(0);
-        Tindakan tindakan = (Tindakan) tindakanDropdown.getSelectedItem();
-        DetailTransaksi dt = new DetailTransaksi(SelectedID, obat, tindakan, 0);
-        int idDetailTransaksi = detailTransaksiControl.checkDetailSama(SelectedID, tindakan.getId(), "tindakan");
-        if(idDetailTransaksi==0){//cek jika belum ada detail transaksi dengan obat sama
-            detailTransaksiControl.insertDetailTransaksi(dt);
-        }else{
-            dt.setId_detail_transaksi(idDetailTransaksi);
-            detailTransaksiControl.updateDetailTransaksi(dt);
-        }
-        setTableTindakan();
-        doneBtn.setEnabled(!diagnosisTxt.getText().isEmpty()&&!isTableObatTindakanEmpty());
-    }//GEN-LAST:event_addTindakanBtnActionPerformed
+    private void riwayatLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_riwayatLblMouseClicked
+        // TODO add your handling code here:
+        setPanelSelected(false, false, true);
+    }//GEN-LAST:event_riwayatLblMouseClicked
 
-    private void tableTindakanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTindakanMouseClicked
-        tableObat.clearSelection();
-        SelectedIDDetailTransaksi = Integer.parseInt(tableTindakan.getModel().getValueAt(tableTindakan.getSelectedRow(), 3).toString());
-    }//GEN-LAST:event_tableTindakanMouseClicked
-
-    private void tableObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableObatMouseClicked
-        tableTindakan.clearSelection();
-        SelectedIDDetailTransaksi = Integer.parseInt(tableObat.getModel().getValueAt(tableObat.getSelectedRow(), 4).toString());
-    }//GEN-LAST:event_tableObatMouseClicked
-
-    private void doneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneBtnActionPerformed
-        int confirm = JOptionPane.showConfirmDialog(null, "Selesai merawat "+tablePasienRawat.getModel().getValueAt(tablePasienRawat.getSelectedRow(), 1).toString(),"Confirm",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(confirm==JOptionPane.YES_OPTION){
-            Transaksi transaksi = transaksiControl.searchTransaksi(SelectedID);
-            transaksi.setStatus("Bayar");
-            transaksi.setDiagnosis(diagnosisTxt.getText());
-            transaksi.setTanggalTransaksi(transaksi.dateTimeNowinString());
-            transaksiControl.updateStatusDataTransaksi(transaksi);
-            setTablePasien();
-            SelectedID=0;
-            setTableObat();
-            setTableTindakan();
-            tablePasienRawat.setEnabled(true);
-            doneBtn.setEnabled(false);
-            frameRawatInput.setVisible(false);
-        }
-    }//GEN-LAST:event_doneBtnActionPerformed
-
-    private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-        detailTransaksiControl.deleteDetailTransaksi(SelectedIDDetailTransaksi);
-        setTableObat();
-        setTableTindakan();
-        doneBtn.setEnabled(tableObat.getRowCount()!=0||tableTindakan.getRowCount()!=0);
-        SelectedIDDetailTransaksi=0;
-    }//GEN-LAST:event_removeBtnActionPerformed
-
-    private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
-        SelectedID = Integer.parseInt(tablePasienRawat.getModel().getValueAt(tablePasienRawat.getSelectedRow(), 6).toString());
-        
-        Transaksi transaksi = transaksiControl.searchTransaksi(SelectedID);
-        namaPasienTxt.setText(transaksi.getPasien().getNama());
-        umurPasienTxt.setText(transaksi.getPasien().getUmur()+" Tahun");
-        tablePasienRawat.setEnabled(false);
-        setTableObat();
-        setTableTindakan();
-        
-        diagnosisTxt.putClientProperty("JComponent.outline", "error");
-        frameRawatInput.pack();
-        frameRawatInput.setLocationRelativeTo(null);
-        frameRawatInput.setVisible(true);
-    }//GEN-LAST:event_selectBtnActionPerformed
-
-    private void tablePasienRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePasienRawatMouseClicked
-        
-    }//GEN-LAST:event_tablePasienRawatMouseClicked
-
-    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-        frameRawatInput.setVisible(false);
-    }//GEN-LAST:event_cancelBtnActionPerformed
+    private void homelblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homelblMouseClicked
+        // TODO add your handling code here:
+        setPanelSelected(true, false, false);
+    }//GEN-LAST:event_homelblMouseClicked
 
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
         setTablePasien();
     }//GEN-LAST:event_refreshBtnActionPerformed
+
+    private void tablePasienRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePasienRawatMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablePasienRawatMouseClicked
 
     /**
      * @param args the command line arguments
@@ -921,25 +804,16 @@ public class DokterView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogOut;
-    private javax.swing.JButton addObatBtn;
-    private javax.swing.JButton addTindakanBtn;
-    private javax.swing.JButton cancelBtn;
-    private javax.swing.JTextField diagnosisTxt;
-    private javax.swing.JButton doneBtn;
     private javax.swing.JButton exitBtn3;
-    private javax.swing.JFrame frameRawatInput;
     private javax.swing.JLabel helloDokterTxt;
     private javax.swing.JLabel homeIcon;
+    private javax.swing.JPanel homePanel;
     private javax.swing.JLabel homelbl;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSpinner jumlahObatSpinner;
     private javax.swing.JLabel jumlahPasienSelesai;
     private javax.swing.JLabel jumlahPasienTunggu;
     private javax.swing.JLabel logOutIcon;
@@ -956,166 +830,43 @@ public class DokterView extends javax.swing.JFrame {
     private javax.swing.JLabel namaLbl4;
     private javax.swing.JLabel namaLbl5;
     private javax.swing.JLabel namaLbl6;
-    private javax.swing.JLabel namaPasienLabel;
-    private javax.swing.JTextField namaPasienTxt;
     private javax.swing.JLabel notelpTxt;
-    private javax.swing.JComboBox<Obat> obatDropdown;
     private DokterDashboard.roundedPanelDokterGradientTransparan panelDashboard;
     private javax.swing.JLabel rawatIcon;
     private javax.swing.JLabel rawatLbl;
+    private javax.swing.JPanel rawatPanel;
     private javax.swing.JButton refreshBtn;
-    private javax.swing.JButton removeBtn;
     private javax.swing.JLabel riwayatIcon;
     private javax.swing.JLabel riwayatLbl;
+    private javax.swing.JPanel riwayatPanel;
+    private DokterDashboard.RiwayatTransaksiDokterForm riwayatTransaksiDokterForm1;
     private DokterDashboard.roundedPanelDokter roundedPanelDokter1;
     private DokterDashboard.roundedPanelDokterGradient roundedPanelDokterGradient1;
     private DokterDashboard.roundedPanelDokterGradient roundedPanelDokterGradient3;
     private DokterDashboard.roundedPanelDokterPutih roundedPanelDokterPutih1;
     private DokterDashboard.roundedPanelDokterPutih roundedPanelDokterPutih2;
-    private DokterDashboard.roundedPanelDokterPutih roundedPanelDokterPutih3;
-    private javax.swing.JButton selectBtn;
-    private javax.swing.JTable tableObat;
-    private DokterDashboard.TableDokterCustom tablePasienRawat;
-    private javax.swing.JTable tableTindakan;
+    private DokterDashboard.roundedPanelDokterPutih selectedHomePanel;
+    private DokterDashboard.roundedPanelDokterPutih selectedLogoutPanel;
+    private DokterDashboard.roundedPanelDokterPutih selectedRawatPanel;
+    private DokterDashboard.roundedPanelDokterPutih selectedRiwayatPanel;
+    private DokterDashboard.TableDokterCustomStatus tablePasienRawat;
+    private DokterDashboard.RawatPasienForm tableRawatPasien;
     private javax.swing.JLabel tanggalBergabungTxt;
-    private javax.swing.JComboBox<Tindakan> tindakanDropdown;
-    private javax.swing.JLabel umurPasienLabel;
-    private javax.swing.JTextField umurPasienTxt;
     // End of variables declaration//GEN-END:variables
 
 
-    private void setProfileDokter(){
+    public void setProfileDokter(){
         namaDokterTxt.setText(loginData.getNama());
         helloDokterTxt.setText("Dokter "+loginData.getNama());
         notelpTxt.setText(loginData.getNo_telepon());
         tanggalBergabungTxt.setText(loginData.getTanggal_bergabung());
         
     }
-    private void setTablePasien() {
-        tablePasienRawat.setModel(transaksiControl.showDataPasienPerDokter(loginData.getId(), "= 'Menunggu'"));
-        jumlahPasienTunggu.setText(tablePasienRawat.getRowCount()+" Pasien");
-        jumlahPasienSelesai.setText(transaksiControl.showDataPasienPerDokter(loginData.getId(), "<> 'Menunggu'").getRowCount()+" Pasien");
-    }
-    private void setObatTindakanDropdown() {
-        listObat = obatControl.showListObat("");
-        obatDropdown.removeAllItems();
-        for(Obat o:listObat){
-            obatDropdown.addItem(o);
-        }
-        listTindakan = tindakanControl.showListTindakan("");
-        tindakanDropdown.removeAllItems();
-        for(Tindakan t : listTindakan){
-            tindakanDropdown.addItem(t);
-        }
-    }
-    private void setTableObat(){
-        tableObat.setModel(detailTransaksiControl.showDataKeranjangObat("", SelectedID));
-        
-    }
-    private void setTableTindakan(){
-        tableTindakan.setModel(detailTransaksiControl.showDataKeranjangTindakan("", SelectedID));
-        
-    }
-    private void setListener() {
-        tablePasienRawat.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    boolean isRowSelected = tablePasienRawat.getSelectedRow() != -1;
-                    boolean isColumnSelected = tablePasienRawat.getSelectedColumn() != -1;
-
-                    selectBtn.setEnabled(isRowSelected || isColumnSelected);
-                    cancelBtn.setEnabled(isRowSelected || isColumnSelected);
-                }
-            }
-        });
-        
-        tableObat.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    isTableObatTindakanSelected();
-                }
-            }
-        });
-        
-        tableTindakan.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    isTableObatTindakanSelected();
-                }
-            }
-        });
-        
-        jumlahObatSpinner.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                int value = (int) jumlahObatSpinner.getValue();
-                if(value<0){
-                    jumlahObatSpinner.setValue(0);
-                }else{
-                    isObatSelected();
-                }
-            }
-        });
-        
-        obatDropdown.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                isObatSelected();
-            }
-        });
-        
-        tindakanDropdown.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addTindakanBtn.setEnabled(tindakanDropdown.getSelectedIndex()!=0);
-            }
-        });
-        
-        diagnosisTxt.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                if(!diagnosisTxt.getText().isEmpty()){
-                    diagnosisTxt.putClientProperty("JComponent.outline", "#FF000");
-                }else{
-                    diagnosisTxt.putClientProperty("JComponent.outline", "error");
-                }
-                doneBtn.setEnabled(!diagnosisTxt.getText().isEmpty()&&!isTableObatTindakanEmpty());
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                if(!diagnosisTxt.getText().isEmpty()){
-                    diagnosisTxt.putClientProperty("JComponent.outline", "#FF000");
-                }else{
-                    diagnosisTxt.putClientProperty("JComponent.outline", "error");
-                }
-                doneBtn.setEnabled(!diagnosisTxt.getText().isEmpty()&&!isTableObatTindakanEmpty());
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                if(!diagnosisTxt.getText().isEmpty()){
-                    diagnosisTxt.putClientProperty("JComponent.outline", "#FF000");
-                    doneBtn.setEnabled(!diagnosisTxt.getText().isEmpty());
-                }else{
-                    diagnosisTxt.putClientProperty("JComponent.outline", "error");
-                }
-                doneBtn.setEnabled(!diagnosisTxt.getText().isEmpty()&&!isTableObatTindakanEmpty());
-            }
-        });
-        
-    }
-    private boolean isTableObatTindakanEmpty(){
-        return (tableObat.getRowCount()==0&&tableTindakan.getRowCount()==0);
-    }
-    private void isTableObatTindakanSelected(){
-        removeBtn.setEnabled(tableObat.getSelectedRow()!=-1 || tableTindakan.getSelectedRow()!=-1);
-    }
-    private void isObatSelected(){
-        addObatBtn.setEnabled((int)jumlahObatSpinner.getValue()>0 && obatDropdown.getSelectedIndex()!=0);
-    }
     
+    private void setTablePasien() {
+        tablePasienRawat.setModel(transaksiControl.showDataPasienPerDokter(loginData.getId(), "<> 'Menunggu'"));
+        jumlahPasienSelesai.setText(transaksiControl.showDataPasienPerDokter(loginData.getId(), "= 'Selesai'").getRowCount()+" Pasien");
+        jumlahPasienTunggu.setText(transaksiControl.showDataPasienPerDokter(loginData.getId(), "= 'Menunggu'").getRowCount()+" Pasien");
+    }
+
 }

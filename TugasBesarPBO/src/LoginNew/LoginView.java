@@ -15,14 +15,6 @@ import control.StafControl;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-//import java.awt.Graphics;
-//import java.awt.Graphics2D;
-//import java.awt.Insets;
-//import java.awt.RenderingHints;
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//import java.awt.event.MouseAdapter;
-//import java.awt.event.MouseEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -31,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.UIManager;
 import model.Staf;
+import AdminDashboard.AdminView;
 
 /**
  *
@@ -87,9 +80,6 @@ public class LoginView extends javax.swing.JFrame {
                     panelBody.setAlpha(0);
                     panelBody.setVisible(true);
                     animatorBody.start();
-                } else {
-//                    enableLogin(true);
-//                    jTextField1.grabFocus();
                 }
             }
  
@@ -188,7 +178,7 @@ public class LoginView extends javax.swing.JFrame {
                 for (int i = 0; i <= 100; i++) {
                     loading.setValue(i);
                     persenLbl.setText(i+"%");
-                    sleep(50);
+                    sleep(20);
                     if(i==10){
                         loadingLbl.setText("Turning On Modules...");
                     }else if (i==20){
@@ -233,7 +223,7 @@ public class LoginView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        welcomePanel = new LoginNew.PanelLogin();
+        welcomePanel = new LoginNew.PanelStart();
         jLabel4 = new javax.swing.JLabel();
         panelBody = new LoginNew.PanelTransparent();
         bg = new javax.swing.JPanel();
@@ -246,7 +236,7 @@ public class LoginView extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         usernameInput = new KasirDashboard.CustomePalette.TextField();
         passwordInput = new KasirDashboard.CustomePalette.PasswordField();
-        panelBody2 = new LoginNew.PanelBody();
+        panelBody2 = new LoginNew.PanelLogin();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -692,6 +682,9 @@ public class LoginView extends javax.swing.JFrame {
                 dv.setVisible(true);
                 break;
             case "admin":
+                AdminView af = new AdminView(loginData);
+                this.dispose();
+                af.setVisible(true);
                 break;
         }
     }//GEN-LAST:event_startbtnActionPerformed
@@ -815,7 +808,7 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JButton loginBtn;
     private javax.swing.JLabel openingLbl;
     private LoginNew.PanelTransparent panelBody;
-    private LoginNew.PanelBody panelBody2;
+    private LoginNew.PanelLogin panelBody2;
     private LoginNew.PanelTransparent panelLoading;
     private javax.swing.JPanel panelLogin;
     private KasirDashboard.CustomePalette.PasswordField passwordInput;
@@ -823,6 +816,6 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JLabel showPass;
     private javax.swing.JButton startbtn;
     private KasirDashboard.CustomePalette.TextField usernameInput;
-    private LoginNew.PanelLogin welcomePanel;
+    private LoginNew.PanelStart welcomePanel;
     // End of variables declaration//GEN-END:variables
 }

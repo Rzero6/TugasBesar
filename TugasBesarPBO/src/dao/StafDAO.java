@@ -138,8 +138,8 @@ public class StafDAO {
     public Staf loginStaf(String username, String password){
         con = dbcon.makeConnection();
         Staf dataStaf = null;
-        String sql = "SELECT * FROM staf WHERE "
-                + "username_staf = '"+username+"' AND "
+        String sql = "SELECT * FROM staf WHERE BINARY "
+                + "username_staf = '"+username+"' AND BINARY "
                 + "password_staf = '"+password+"'";
         System.out.println("Mencari data staf ...");
         try{
