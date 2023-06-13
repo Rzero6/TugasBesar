@@ -25,6 +25,7 @@ import model.Mutasi;
 import model.Obat;
 import model.Pengadaan;
 import model.Supplier;
+import utils.UtilTable;
 
 /**
  *
@@ -57,10 +58,18 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
         supplierControl = new SupplierControl();
         obatControl = new ObatControl();
         saldoKlinikTxt.setText("Rp. "+mutasiControl.getSaldo());
-        setTablePengadaan("");
-        setObatDropdown();
-        setSupplierDropdown();
-        setListener();
+        try{
+            inputKosongException();
+            
+        }catch(InputKosongException e){
+            System.out.println(e.message());
+        }finally{
+            setTablePengadaan("");
+            setObatDropdown();
+            setSupplierDropdown();
+            setListener();
+        }
+        
     }
 
     /**
@@ -73,6 +82,7 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
     private void initComponents() {
 
         pengadaanTab = new javax.swing.JTabbedPane();
+        obatPanel1 = new prototype.ObatPanel();
         inputTab = new javax.swing.JPanel();
         supplierTab = new javax.swing.JTabbedPane();
         oldSupplierTab = new javax.swing.JPanel();
@@ -96,12 +106,13 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         saldoKlinikTxt = new javax.swing.JTextField();
-        tableTab = new javax.swing.JPanel();
+        riwayatTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePengadaan = new javax.swing.JTable();
         searchTxt = new javax.swing.JTextField();
 
         pengadaanTab.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        pengadaanTab.addTab("Obat", obatPanel1);
 
         javax.swing.GroupLayout oldSupplierTabLayout = new javax.swing.GroupLayout(oldSupplierTab);
         oldSupplierTab.setLayout(oldSupplierTabLayout);
@@ -272,16 +283,17 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
                     .addComponent(supplierTab)
                     .addComponent(ObatTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                .addGroup(inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addBtn)
-                    .addComponent(jumlahObat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(totalHargaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addContainerGap(66, Short.MAX_VALUE))
+                    .addGroup(inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jumlahObat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(totalHargaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
-        pengadaanTab.addTab("Input", inputTab);
+        pengadaanTab.addTab("Pengadaan", inputTab);
 
         tablePengadaan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -296,20 +308,20 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
         ));
         jScrollPane1.setViewportView(tablePengadaan);
 
-        javax.swing.GroupLayout tableTabLayout = new javax.swing.GroupLayout(tableTab);
-        tableTab.setLayout(tableTabLayout);
-        tableTabLayout.setHorizontalGroup(
-            tableTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableTabLayout.createSequentialGroup()
+        javax.swing.GroupLayout riwayatTabLayout = new javax.swing.GroupLayout(riwayatTab);
+        riwayatTab.setLayout(riwayatTabLayout);
+        riwayatTabLayout.setHorizontalGroup(
+            riwayatTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, riwayatTabLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(tableTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(riwayatTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
-        tableTabLayout.setVerticalGroup(
-            tableTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableTabLayout.createSequentialGroup()
+        riwayatTabLayout.setVerticalGroup(
+            riwayatTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, riwayatTabLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -317,19 +329,19 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
                 .addGap(20, 20, 20))
         );
 
-        pengadaanTab.addTab("Table", tableTab);
+        pengadaanTab.addTab("Riwayat", riwayatTab);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 970, Short.MAX_VALUE)
+            .addGap(0, 999, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pengadaanTab))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 368, Short.MAX_VALUE)
+            .addGap(0, 382, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(pengadaanTab, javax.swing.GroupLayout.Alignment.TRAILING))
         );
@@ -365,6 +377,9 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
                         sqlDateTime);
                     mutasiControl.insertDataMutasi(m);
                     clearAll();
+                    setObatDropdown();
+                    setSupplierDropdown();
+                    setTablePengadaan("");
                 }else{
                     JOptionPane.showConfirmDialog(this, "Jumlah obat harus angka diatas 0","Error",JOptionPane.DEFAULT_OPTION);
                 }
@@ -400,19 +415,21 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
     private javax.swing.JPanel newObatTab;
     private javax.swing.JPanel newSupplierTab;
     private javax.swing.JTextField notelpSupplier;
+    private prototype.ObatPanel obatPanel1;
     private javax.swing.JPanel oldObatTab;
     private javax.swing.JPanel oldSupplierTab;
     private javax.swing.JTabbedPane pengadaanTab;
+    private javax.swing.JPanel riwayatTab;
     private javax.swing.JTextField saldoKlinikTxt;
     private javax.swing.JTextField searchTxt;
     private javax.swing.JComboBox<Supplier> supplierDropDown;
     private javax.swing.JTabbedPane supplierTab;
     private javax.swing.JTable tablePengadaan;
-    private javax.swing.JPanel tableTab;
     private javax.swing.JTextField totalHargaTxt;
     // End of variables declaration//GEN-END:variables
     private void setTablePengadaan(String query) {
         tablePengadaan.setModel(pengadaanControl.getTableSuplier(query));
+        UtilTable.tableResizeColumnWidth(tablePengadaan);
     }
 
     private void setObatDropdown() {
@@ -570,6 +587,12 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
                 updateTotalHarga();
             }
         });
+        pengadaanTab.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                refreshData();
+            }
+        });
     }
     
     private void updateTotalHarga(){
@@ -626,9 +649,6 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
     }
 
     private void clearAll() {
-        setObatDropdown();
-        setSupplierDropdown();
-        setTablePengadaan("");
         jumlahObat.setValue(0);
         namaSupplier.setText("");
         notelpSupplier.setText("");
@@ -643,5 +663,8 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
         setTablePengadaan("");
         setObatDropdown();
         setSupplierDropdown();
+        searchTxt.setText("");
+        obatPanel1.refreshData();
     }
+    
 }

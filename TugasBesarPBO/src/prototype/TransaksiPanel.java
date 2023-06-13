@@ -5,7 +5,7 @@
 package prototype;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import control.MutasiControl;
+import control.TransaksiControl;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -13,18 +13,16 @@ import javax.swing.event.DocumentListener;
  *
  * @author VICTUS
  */
-public class MutasiPanel extends javax.swing.JPanel implements IPanelAdmin{
+public class TransaksiPanel extends javax.swing.JPanel implements IPanelAdmin{
 
-    /**
-     * Creates new form MutasiPanel
-     */
-    MutasiControl mutasiControl;
+    private TransaksiControl transaksiControl;
     
-    public MutasiPanel() {
+    public TransaksiPanel() {
+        
         initComponents();
-        mutasiControl = new MutasiControl();
+        transaksiControl = new TransaksiControl();
         searchTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
-        setTableMutasi("");
+        setTableTransaksi("");
         setListener();
     }
 
@@ -38,12 +36,10 @@ public class MutasiPanel extends javax.swing.JPanel implements IPanelAdmin{
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableMutasi = new javax.swing.JTable();
-        refreshBtn = new javax.swing.JButton();
+        tableTransaksi = new javax.swing.JTable();
         searchTxt = new javax.swing.JTextField();
-        saldoKlinikTxt = new javax.swing.JLabel();
 
-        tableMutasi.setModel(new javax.swing.table.DefaultTableModel(
+        tableTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -54,88 +50,78 @@ public class MutasiPanel extends javax.swing.JPanel implements IPanelAdmin{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tableMutasi);
+        jScrollPane1.setViewportView(tableTransaksi);
 
-        refreshBtn.setText("Refresh");
-        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+        searchTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshBtnActionPerformed(evt);
+                searchTxtActionPerformed(evt);
             }
         });
-
-        saldoKlinikTxt.setText("Saldo Klinik");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(refreshBtn)
-                        .addGap(31, 31, 31)
-                        .addComponent(saldoKlinikTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                        .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(refreshBtn)
-                    .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(saldoKlinikTxt))
-                .addGap(10, 10, 10)
+                .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
-        setTableMutasi("");
-        searchTxt.setText("");
-    }//GEN-LAST:event_refreshBtnActionPerformed
+    private void searchTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTxtActionPerformed
+        
+    }//GEN-LAST:event_searchTxtActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton refreshBtn;
-    private javax.swing.JLabel saldoKlinikTxt;
     private javax.swing.JTextField searchTxt;
-    private javax.swing.JTable tableMutasi;
+    private javax.swing.JTable tableTransaksi;
     // End of variables declaration//GEN-END:variables
 
-    private void setTableMutasi(String query) {
-        tableMutasi.setModel(mutasiControl.getTableMutasi(query));
-        saldoKlinikTxt.setText("Saldo Klinik : Rp. "+mutasiControl.getSaldo());
+    private void setTableTransaksi(String query) {
+        tableTransaksi.setModel(transaksiControl.showRiwayatTransaksiDokter(query, ""));
+        
     }
 
     private void setListener() {
         searchTxt.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                setTableMutasi(searchTxt.getText());
+                setTableTransaksi(searchTxt.getText());
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                setTableMutasi(searchTxt.getText());
+                 setTableTransaksi(searchTxt.getText());
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                setTableMutasi(searchTxt.getText());
+                 setTableTransaksi(searchTxt.getText());
             }
         });
     }
 
     @Override
     public void refreshData() {
-        setTableMutasi("");
+        setTableTransaksi("");
+        clearAll();
+    }
+
+    private void clearAll() {
         searchTxt.setText("");
     }
 }

@@ -225,6 +225,7 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
         namaTxt.setText("");
         noTeleponTxt.setText("");
         emailTxt.setText("");
+        searchTxt.setText("");
         supplierTable.clearSelection();
         addBtn.setEnabled(false);
     }
@@ -232,6 +233,7 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
     @Override
     public void refreshData() {
         setSupplierTable("");
+        clearAll();
     }
 
     private void setListener() {
@@ -283,6 +285,23 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
                     editBtn.setEnabled(supplierTable.getSelectedRow() != -1);
                     addBtn.setEnabled(supplierTable.getSelectedRow() == -1);
                 }
+            }
+        });
+        
+        searchTxt.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                setSupplierTable(searchTxt.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                setSupplierTable(searchTxt.getText());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                setSupplierTable(searchTxt.getText());
             }
         });
     }

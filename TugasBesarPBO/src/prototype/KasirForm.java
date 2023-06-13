@@ -32,14 +32,14 @@ public class KasirForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         containerTab.putClientProperty(TABBED_PANE_TAB_WIDTH_MODE, TABBED_PANE_TAB_WIDTH_MODE_COMPACT);
         containerTab.putClientProperty(TABBED_PANE_TAB_ALIGNMENT, SwingConstants.LEADING);
-        containerTab.setIconAt(0, new FlatSVGIcon("assets/people-fill-svgrepo-com.svg",16,16));
-        containerTab.setIconAt(1, new FlatSVGIcon("assets/people-fill-svgrepo-com.svg",16,16));
-        containerTab.setIconAt(2, new FlatSVGIcon("assets/people-fill-svgrepo-com.svg",16,16));
+        
+        containerTab.setIconAt(0, new FlatSVGIcon("assets_old/people-fill-svgrepo-com.svg",16,16));
+        containerTab.setIconAt(1, new FlatSVGIcon("assets_old/people-fill-svgrepo-com.svg",16,16));
+        containerTab.setIconAt(2, new FlatSVGIcon("assets_old/people-fill-svgrepo-com.svg",16,16));
         panelList = new ArrayList<>();
         panelList.add(periksaPanel);
         panelList.add(bayarPanel);
-//        panelList.add(customerPanel);
-        
+        //panelList.add(customerPanel);
         setListener();
     }
 
@@ -150,7 +150,7 @@ public class KasirForm extends javax.swing.JFrame {
         containerTab.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                refreshData();
+                //refreshData();
             }
         });
     }

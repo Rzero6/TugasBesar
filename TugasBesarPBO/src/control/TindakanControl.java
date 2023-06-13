@@ -33,7 +33,11 @@ public class TindakanControl {
     
     public TableTindakan showDataTindakan(String query) {
         List<Tindakan> dataTindakan = tDao.showTindakanBySearch(query);
-        dataTindakan.remove(0);
+        if(!dataTindakan.isEmpty()){
+            if(dataTindakan.get(0).getId()==1){
+                dataTindakan.remove(0);
+            }
+        }
         TableTindakan tableTindakan = new TableTindakan(dataTindakan);
         return tableTindakan;
     }

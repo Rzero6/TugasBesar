@@ -21,16 +21,16 @@ public class AdminForm extends javax.swing.JFrame {
      */
     private List<IPanelAdmin> panelList;
     
-    
     public AdminForm() {
         initComponents();
         panelList = new ArrayList<>();
         panelList.add(stafPanel1);
-        panelList.add(pengadaanPanel1);
         panelList.add(mutasiPanel1);
-        panelList.add(customerPanel1);
         panelList.add(supplierPanel1);
+        panelList.add(pengadaanPanel1);
         panelList.add(tindakanPanel1);
+        panelList.add(customerPanel1);
+        panelList.add(transaksiPanel1);
         setListener();
     }
 
@@ -46,19 +46,21 @@ public class AdminForm extends javax.swing.JFrame {
         containerTab = new javax.swing.JTabbedPane();
         stafPanel1 = new prototype.StafPanel();
         mutasiPanel1 = new prototype.MutasiPanel();
-        pengadaanPanel1 = new prototype.PengadaanPanel();
-        customerPanel1 = new prototype.CustomerPanel();
         supplierPanel1 = new prototype.SupplierPanel();
+        pengadaanPanel1 = new prototype.PengadaanPanel();
         tindakanPanel1 = new prototype.TindakanPanel();
+        customerPanel1 = new prototype.CustomerPanel();
+        transaksiPanel1 = new prototype.TransaksiPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         containerTab.addTab("Staff", stafPanel1);
         containerTab.addTab("Mutasi", mutasiPanel1);
-        containerTab.addTab("Pengadaan", pengadaanPanel1);
-        containerTab.addTab("Customer", customerPanel1);
         containerTab.addTab("Supplier", supplierPanel1);
+        containerTab.addTab("Obat", pengadaanPanel1);
         containerTab.addTab("Tindakan", tindakanPanel1);
+        containerTab.addTab("Customer", customerPanel1);
+        containerTab.addTab("Transaksi", transaksiPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,6 +97,7 @@ public class AdminForm extends javax.swing.JFrame {
     private prototype.StafPanel stafPanel1;
     private prototype.SupplierPanel supplierPanel1;
     private prototype.TindakanPanel tindakanPanel1;
+    private prototype.TransaksiPanel transaksiPanel1;
     // End of variables declaration//GEN-END:variables
     private void refreshData() {
         int selectedIndex = containerTab.getSelectedIndex();
@@ -110,4 +113,5 @@ public class AdminForm extends javax.swing.JFrame {
             }
         });
     }
+    
 }

@@ -78,6 +78,7 @@ public class TransaksiDAO {
                 + " OR t.tanggal_transaksi LIKE '%" + query + "%'"
                 + " OR t.keluhan LIKE '%" + query + "%'"
                 + " OR t.diagnosis LIKE '%" + query + "%'"
+                + " OR t.status LIKE '%" + query + "%'"
                 + " OR t.biaya_klinik LIKE '%" + query + "%')"
                 + " AND t.status LIKE '%" + status + "%'"
                 + " ORDER BY t.tanggal_transaksi DESC";

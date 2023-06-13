@@ -43,6 +43,11 @@ public class ObatControl {
 
     public TableObat showDataObat(String query) {
         List<Obat> dataObat = oDao.showObatBySearch(query);
+        if(!dataObat.isEmpty()){
+            if(dataObat.get(0).getId()==1){
+                dataObat.remove(0);
+            }
+        }
         TableObat tableObat = new TableObat(dataObat);
         return tableObat;
     }

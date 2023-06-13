@@ -389,6 +389,7 @@ public class StafPanel extends javax.swing.JPanel implements IPanelAdmin {
 
     private void setTableStaf(String query) {
         stafTable.setModel(stafControl.showDataStaf(query));
+        utils.UtilTable.tableResizeColumnWidth(stafTable);
     }
     private Date stringToDate(String value){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -481,6 +482,7 @@ public class StafPanel extends javax.swing.JPanel implements IPanelAdmin {
         passwordInput.setText("");
         noTeleponInput.setText("");
         tanggalMulaiKerja.setDate(null);
+        searchInput.setText("");
         stafTable.clearSelection();
         selectedId=0;
         setEditDeleteBtn(false);
@@ -493,5 +495,6 @@ public class StafPanel extends javax.swing.JPanel implements IPanelAdmin {
     @Override
     public void refreshData() {
         setTableStaf("");
+        clearAll();
     }
 }

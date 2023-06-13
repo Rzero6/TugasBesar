@@ -342,6 +342,7 @@ public class CustomerPanel extends javax.swing.JPanel implements IPanelAdmin{
         namaTxt.setText("");
         alamatTxt.setText("");
         noTelpTxt.setText("");
+        searchTxt.setText("");
         dateChooser.setDate(null);
         tableCustomer.clearSelection();
         selectedID=0;
@@ -350,5 +351,11 @@ public class CustomerPanel extends javax.swing.JPanel implements IPanelAdmin{
     @Override
     public void refreshData() {
         setTableCustomer("");
+        clearAll();
     }
+
+//    @Override
+//    public void refreshDataTable() {
+//        setTableCustomer("");
+//    }
 }

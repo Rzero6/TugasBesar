@@ -21,9 +21,7 @@ import model.Tindakan;
  */
 public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
 
-    /**
-     * Creates new form TindakanPanel
-     */
+    
     private TindakanControl tindakanControl;
     private int selectedId=0;
     public TindakanPanel() {
@@ -32,8 +30,14 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
         namaTindakanInput.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Nama tindakan");
         hargaTindakanInput.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Harga Tindakan");
         searchInput.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
-        setTableTindakan("");
-        setListener();
+        try{
+            inputKosongException();
+        }catch(InputKosongException e){
+            System.out.println(e.message());
+        }finally{
+            setTableTindakan("");
+            setListener();
+        }
     }
 
     /**
@@ -236,12 +240,14 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
     private void clearAll() {
         namaTindakanInput.setText("");
         hargaTindakanInput.setText("");
+        searchInput.setText("");
         tindakanTable.clearSelection();
         deleteBtn.setEnabled(false);
     }
 
     private void setTableTindakan(String query) {
         tindakanTable.setModel(tindakanControl.showDataTindakan(query));
+        
     }
 
     private void setListener() {
@@ -323,7 +329,7 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
         });
     }
     
-    private void inputKosongException()throws InputKosongException{
+    public void inputKosongException()throws InputKosongException{
         if(namaTindakanInput.getText().isEmpty() || hargaTindakanInput.getText().isEmpty()){
             throw new InputKosongException();
         }
@@ -332,5 +338,6 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
     @Override
     public void refreshData() {
         setTableTindakan("");
+        clearAll();
     }
 }
