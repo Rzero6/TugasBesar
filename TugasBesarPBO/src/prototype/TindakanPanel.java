@@ -285,7 +285,6 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
         DocumentListener docListener = new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                searchInput.setText(namaTindakanInput.getText());
                 try{
                     inputKosongException();
                     Double.parseDouble(hargaTindakanInput.getText());
@@ -301,7 +300,6 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                searchInput.setText(namaTindakanInput.getText());
                 try{
                     inputKosongException();
                     Double.parseDouble(hargaTindakanInput.getText());
@@ -317,7 +315,6 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                searchInput.setText(namaTindakanInput.getText());
                 try{
                     inputKosongException();
                     Double.parseDouble(hargaTindakanInput.getText());

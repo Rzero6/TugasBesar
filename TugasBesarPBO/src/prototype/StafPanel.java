@@ -445,7 +445,6 @@ public class StafPanel extends javax.swing.JPanel implements IPanelAdmin {
                 checkTextField();
             }
             private void checkTextField() {
-                searchInput.setText(usernameInput.getText());
                 String notelp = noTeleponInput.getText();
                 if(namaStafInput.getText().isEmpty() 
                     || tanggalMulaiKerja.getDate()==null

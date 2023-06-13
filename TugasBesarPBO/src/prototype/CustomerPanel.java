@@ -288,7 +288,6 @@ public class CustomerPanel extends javax.swing.JPanel implements IPanelAdmin{
             }
 
             private void checkTextField() {
-                searchTxt.setText(namaTxt.getText());
                 String notelp = noTelpTxt.getText();
                 if(namaTxt.getText().isEmpty() 
                     || alamatTxt.getText().isEmpty()

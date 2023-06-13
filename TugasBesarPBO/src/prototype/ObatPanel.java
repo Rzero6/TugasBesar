@@ -314,7 +314,6 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
     }
     
     private void checkFields() {
-        searchTxt.setText(namaObatTxt.getText());
         try{
             inputKosongException();
             int jumlah = (int) jumlahObatSpinner.getValue();

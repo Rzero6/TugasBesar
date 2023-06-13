@@ -261,7 +261,6 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
         DocumentListener docListener = new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                searchTxt.setText(namaTxt.getText());
                 try{
                     inputKosongException();
                     addBtn.setEnabled(supplierTable.getSelectedRow() == -1);
@@ -274,7 +273,6 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                searchTxt.setText(namaTxt.getText());
                 try{
                     inputKosongException();
                     addBtn.setEnabled(supplierTable.getSelectedRow() == -1);
@@ -287,7 +285,6 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                searchTxt.setText(namaTxt.getText());
                 try{
                     inputKosongException();
                     addBtn.setEnabled(supplierTable.getSelectedRow() == -1);
