@@ -8,7 +8,6 @@ import dao.Detail_TransaksiDAO;
 import java.util.ArrayList;
 import java.util.List;
 import model.DetailTransaksi;
-import table.TableDetailTransaksi;
 import table.TableKeranjangObat;
 import table.TableKeranjangTindakan;
 
@@ -36,12 +35,6 @@ public class DetailTransaksiControl {
     public List<DetailTransaksi> getListDetailTransaksiByTransaksiID(String query, int id) {
         List<DetailTransaksi> dataDetailTransaksi = dtDAO.getListDetailTransaksiByTransaksiID(query, id);
         return dataDetailTransaksi;
-    }
-
-    public TableDetailTransaksi getTableDetailTransaksiByTransaksiID(String query, int id) {
-        List<DetailTransaksi> dataDetailTransaksi = dtDAO.getListDetailTransaksiByTransaksiID(query, id);
-        TableDetailTransaksi tableDetailTransaksi = new TableDetailTransaksi(dataDetailTransaksi);
-        return tableDetailTransaksi;
     }
     
     public TableKeranjangObat showDataKeranjangObat(String query, int id){

@@ -107,24 +107,32 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
         newObatTab = new javax.swing.JPanel();
         namaObat = new javax.swing.JTextField();
         hargaObat = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jumlahObat = new javax.swing.JSpinner();
-        jLabel3 = new javax.swing.JLabel();
-        addBtn = new javax.swing.JButton();
         totalHargaTxt = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        addBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         saldoKlinikTxt = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jumlahObat = new javax.swing.JSpinner();
         riwayatTab = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablePengadaan = new javax.swing.JTable();
         searchTxt = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablePengadaan = new KasirDashboard.TableCustom();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pengadaanTab.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         pengadaanTab.addTab("Obat", obatPanel1);
+
+        inputTab.setBackground(new java.awt.Color(255, 255, 255));
+        inputTab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        supplierTab.setBackground(new java.awt.Color(255, 255, 255));
+
+        oldSupplierTab.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout oldSupplierTabLayout = new javax.swing.GroupLayout(oldSupplierTab);
         oldSupplierTab.setLayout(oldSupplierTabLayout);
@@ -140,10 +148,12 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
             .addGroup(oldSupplierTabLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(supplierDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         supplierTab.addTab("Old", oldSupplierTab);
+
+        newSupplierTab.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout newSupplierTabLayout = new javax.swing.GroupLayout(newSupplierTab);
         newSupplierTab.setLayout(newSupplierTabLayout);
@@ -166,10 +176,16 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
                 .addComponent(notelpSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(emailSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         supplierTab.addTab("New", newSupplierTab);
+
+        inputTab.add(supplierTab, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, 170));
+
+        ObatTab.setBackground(new java.awt.Color(255, 255, 255));
+
+        oldObatTab.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout oldObatTabLayout = new javax.swing.GroupLayout(oldObatTab);
         oldObatTab.setLayout(oldObatTabLayout);
@@ -178,7 +194,7 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
             .addGroup(oldObatTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ObatDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         oldObatTabLayout.setVerticalGroup(
             oldObatTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,6 +206,8 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
 
         ObatTab.addTab("Old", oldObatTab);
 
+        newObatTab.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout newObatTabLayout = new javax.swing.GroupLayout(newObatTab);
         newObatTab.setLayout(newObatTabLayout);
         newObatTabLayout.setHorizontalGroup(
@@ -199,7 +217,7 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
                 .addGroup(newObatTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(namaObat)
                     .addComponent(hargaObat, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         newObatTabLayout.setVerticalGroup(
             newObatTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,11 +231,17 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
 
         ObatTab.addTab("New", newObatTab);
 
-        jLabel1.setText("Supplier");
+        inputTab.add(ObatTab, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, -1, -1));
 
-        jLabel2.setText("Obat");
-
-        jLabel3.setText("Jumlah");
+        totalHargaTxt.setEditable(false);
+        totalHargaTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        totalHargaTxt.setText("Rp 0.0");
+        totalHargaTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalHargaTxtActionPerformed(evt);
+            }
+        });
+        inputTab.add(totalHargaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, 160, 30));
 
         addBtn.setText("Add");
         addBtn.setEnabled(false);
@@ -226,84 +250,73 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
                 addBtnActionPerformed(evt);
             }
         });
+        inputTab.add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 380, -1, 30));
 
-        totalHargaTxt.setEditable(false);
-        totalHargaTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        totalHargaTxt.setText("Rp. 0.0");
-        totalHargaTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                totalHargaTxtActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Total");
-
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Saldo Klinik");
+        inputTab.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 120, 30));
 
         saldoKlinikTxt.setEditable(false);
+        saldoKlinikTxt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         saldoKlinikTxt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        saldoKlinikTxt.setText("Rp. 0");
+        saldoKlinikTxt.setText("Rp 0");
+        saldoKlinikTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saldoKlinikTxtActionPerformed(evt);
+            }
+        });
+        inputTab.add(saldoKlinikTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 200, 30));
 
-        javax.swing.GroupLayout inputTabLayout = new javax.swing.GroupLayout(inputTab);
-        inputTab.setLayout(inputTabLayout);
-        inputTabLayout.setHorizontalGroup(
-            inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inputTabLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(inputTabLayout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(jLabel1)
-                        .addGap(330, 330, 330)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(inputTabLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(saldoKlinikTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(inputTabLayout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jumlahObat, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(totalHargaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(addBtn))
-                        .addGroup(inputTabLayout.createSequentialGroup()
-                            .addComponent(supplierTab, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(50, 50, 50)
-                            .addComponent(ObatTab, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(115, Short.MAX_VALUE))
+        jPanel2.setBackground(new java.awt.Color(3, 104, 218));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Supplier");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Obat");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
-        inputTabLayout.setVerticalGroup(
-            inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inputTabLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(saldoKlinikTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(supplierTab)
-                    .addComponent(ObatTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addBtn)
-                    .addGroup(inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jumlahObat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(totalHargaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)))
-                .addContainerGap(246, Short.MAX_VALUE))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        inputTab.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 780, 40));
+
+        jLabel6.setText("Total Harga");
+        inputTab.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, 70, 20));
+
+        jLabel3.setText("Jumlah");
+        inputTab.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, -1, -1));
+        inputTab.add(jumlahObat, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 70, 30));
 
         pengadaanTab.addTab("Pengadaan", inputTab);
+
+        riwayatTab.setBackground(new java.awt.Color(255, 255, 255));
+        riwayatTab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        riwayatTab.add(searchTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 20, 290, -1));
 
         tablePengadaan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -316,28 +329,9 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tablePengadaan);
+        jScrollPane2.setViewportView(tablePengadaan);
 
-        javax.swing.GroupLayout riwayatTabLayout = new javax.swing.GroupLayout(riwayatTab);
-        riwayatTab.setLayout(riwayatTabLayout);
-        riwayatTabLayout.setHorizontalGroup(
-            riwayatTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(riwayatTabLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(riwayatTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(147, 147, 147))
-        );
-        riwayatTabLayout.setVerticalGroup(
-            riwayatTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, riwayatTabLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
+        riwayatTab.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 740, 360));
 
         pengadaanTab.addTab("Riwayat", riwayatTab);
 
@@ -392,6 +386,10 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
         // TODO add your handling code here:
     }//GEN-LAST:event_totalHargaTxtActionPerformed
 
+    private void saldoKlinikTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saldoKlinikTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saldoKlinikTxtActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Obat> ObatDropdown;
@@ -403,9 +401,10 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jumlahObat;
     private javax.swing.JTextField namaObat;
     private javax.swing.JTextField namaSupplier;
@@ -421,7 +420,7 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
     private javax.swing.JTextField searchTxt;
     private javax.swing.JComboBox<Supplier> supplierDropDown;
     private javax.swing.JTabbedPane supplierTab;
-    private javax.swing.JTable tablePengadaan;
+    private KasirDashboard.TableCustom tablePengadaan;
     private javax.swing.JTextField totalHargaTxt;
     // End of variables declaration//GEN-END:variables
     private void setTablePengadaan(String query) {

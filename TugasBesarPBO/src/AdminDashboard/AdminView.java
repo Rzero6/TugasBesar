@@ -63,10 +63,12 @@ public class AdminView extends javax.swing.JFrame {
         transaksiPanel1 = new AdminDashboard.TransaksiPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
-        loginIDTxt = new javax.swing.JLabel();
-        namaTxt = new javax.swing.JLabel();
-        logoutBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        loginIDTxt1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        logoutBtn = new javax.swing.JButton();
+        namaTxt = new javax.swing.JLabel();
+        loginIDTxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,15 +86,14 @@ public class AdminView extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(51, 153, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        loginIDTxt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        loginIDTxt.setForeground(new java.awt.Color(255, 255, 255));
-        loginIDTxt.setText("LOGIN ID");
-        jPanel1.add(loginIDTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 18, 150, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/AUC LOGO biru muda.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 370, 70));
 
-        namaTxt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        namaTxt.setForeground(new java.awt.Color(255, 255, 255));
-        namaTxt.setText("Nama");
-        jPanel1.add(namaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 61, 290, -1));
+        loginIDTxt1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        loginIDTxt1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/bannerAdmin.jpg"))); // NOI18N
+        jPanel1.add(loginIDTxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 100));
+
+        jPanel2.setBackground(new java.awt.Color(3, 104, 218));
 
         logoutBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         logoutBtn.setForeground(new java.awt.Color(51, 153, 255));
@@ -102,26 +103,46 @@ public class AdminView extends javax.swing.JFrame {
                 logoutBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(logoutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(901, 18, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(3, 104, 218));
+        namaTxt.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        namaTxt.setForeground(new java.awt.Color(255, 255, 255));
+        namaTxt.setText("Nama");
+
+        loginIDTxt.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        loginIDTxt.setForeground(new java.awt.Color(255, 255, 255));
+        loginIDTxt.setText("LOGIN ID");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(logoutBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(namaTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loginIDTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(loginIDTxt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(namaTxt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logoutBtn)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
@@ -171,10 +192,12 @@ public class AdminView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane containerTab;
     private AdminDashboard.CustomerPanel customerPanel1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel loginIDTxt;
+    private javax.swing.JLabel loginIDTxt1;
     private javax.swing.JButton logoutBtn;
     private AdminDashboard.MutasiPanelNew mutasiPanelNew1;
     private javax.swing.JLabel namaTxt;

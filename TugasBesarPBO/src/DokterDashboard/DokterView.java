@@ -863,7 +863,7 @@ public class DokterView extends javax.swing.JFrame {
     
     private void setTablePasien() {
         tablePasienRawat.setModel(transaksiControl.showDataPasienPerDokter(loginData.getId(), "<> 'Menunggu'"));
-        jumlahPasienSelesai.setText(transaksiControl.showDataPasienPerDokter(loginData.getId(), "= 'Selesai'").getRowCount()+" Pasien");
+        jumlahPasienSelesai.setText(transaksiControl.showDataPasienPerDokter(loginData.getId(), "<> 'Menunggu'").getRowCount()+" Pasien");
         jumlahPasienTunggu.setText(transaksiControl.showDataPasienPerDokter(loginData.getId(), "= 'Menunggu'").getRowCount()+" Pasien");
     }
 

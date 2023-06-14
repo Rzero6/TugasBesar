@@ -16,20 +16,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="344" max="-2" attributes="0"/>
-              <EmptySpace pref="75" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jLabel1" alignment="1" pref="441" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="246" max="-2" attributes="0"/>
-              <EmptySpace pref="57" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jLabel1" alignment="1" pref="325" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -39,7 +31,6 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="asdasdasdasdasdasdasdasdasdasds"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -65,6 +65,7 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
         jPanel10 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         inputUang = new KasirDashboard.CustomePalette.TextField();
@@ -78,6 +79,7 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
         jScrollPane4 = new javax.swing.JScrollPane();
         detailsTxt = new javax.swing.JTextArea();
         okBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         servicePembayaranPasien = new KasirDashboard.CustomePalette.innerDashboard();
         namaLbl13 = new javax.swing.JLabel();
         namaLbl14 = new javax.swing.JLabel();
@@ -87,6 +89,7 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
         PembayaranTable = new KasirDashboard.TableCustom();
         checkOutBtn = new javax.swing.JButton();
         searchTxt = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         checkOut.setUndecorated(true);
         checkOut.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -95,25 +98,20 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel18.setFont(new java.awt.Font("Century Gothic", 1, 35)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(65, 169, 192));
         jLabel18.setText("Biaya Perawatan");
         jPanel10.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 350, -1));
 
         jPanel11.setBackground(new java.awt.Color(198, 231, 255));
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/bannerPayment.jpg"))); // NOI18N
+        jPanel11.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 490));
 
         jPanel10.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 490));
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 40)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(65, 169, 192));
         jLabel20.setText("Pembayaran");
         jPanel10.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 310, -1));
 
@@ -179,10 +177,15 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
 
         detailsFrame.setUndecorated(true);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         detailsTxt.setEditable(false);
         detailsTxt.setColumns(20);
         detailsTxt.setRows(5);
         jScrollPane4.setViewportView(detailsTxt);
+
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 502, 370));
 
         okBtn.setText("OK");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -190,27 +193,10 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
                 okBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(okBtn)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(okBtn)
-                .addGap(20, 20, 20))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/bgDetail.jpg"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 450));
 
         javax.swing.GroupLayout detailsFrameLayout = new javax.swing.GroupLayout(detailsFrame.getContentPane());
         detailsFrame.getContentPane().setLayout(detailsFrameLayout);
@@ -233,9 +219,9 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
 
         namaLbl14.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         namaLbl14.setForeground(new java.awt.Color(3, 104, 218));
-        namaLbl14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl14.setText("Pembayaran Biaya Rawat");
-        servicePembayaranPasien.add(namaLbl14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 630, 50));
+        namaLbl14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        namaLbl14.setText("Pembayaran");
+        servicePembayaranPasien.add(namaLbl14, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 350, 50));
 
         namaLbl15.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         namaLbl15.setForeground(new java.awt.Color(3, 104, 218));
@@ -243,7 +229,7 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
         namaLbl15.setText("Pembayaran Pasien");
         servicePembayaranPasien.add(namaLbl15, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 30, 210, 25));
 
-        namaLbl16.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        namaLbl16.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
         namaLbl16.setForeground(new java.awt.Color(3, 104, 218));
         namaLbl16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         namaLbl16.setText("Daftar Transaksi Pasien");
@@ -280,6 +266,9 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
         });
         servicePembayaranPasien.add(checkOutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, 30));
         servicePembayaranPasien.add(searchTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 270, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/banner.jpg"))); // NOI18N
+        servicePembayaranPasien.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 907, 180));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -368,9 +357,12 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
     private javax.swing.JFrame detailsFrame;
     private javax.swing.JTextArea detailsTxt;
     private KasirDashboard.CustomePalette.TextField inputUang;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;

@@ -42,7 +42,7 @@ public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
         
         initComponents();
         addRawatPasien.pack();
-        addRawatPasien.setSize(712,590);
+        addRawatPasien.setSize(720, 550);
         addRawatPasien.setLocationRelativeTo(null);
         searchTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
         transaksiControl = new TransaksiControl();
@@ -66,6 +66,7 @@ public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
         addRawatPasien = new javax.swing.JFrame();
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         pasienDropdown = new javax.swing.JComboBox<>();
@@ -88,6 +89,19 @@ public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
         removeBtn = new javax.swing.JButton();
         tablePeriksaScrollBar = new javax.swing.JScrollPane();
         PeriksaTable = new KasirDashboard.TableCustom();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        servicePeriksaPasien1 = new KasirDashboard.CustomePalette.innerDashboard();
+        namaLbl9 = new javax.swing.JLabel();
+        namaLbl10 = new javax.swing.JLabel();
+        namaLbl11 = new javax.swing.JLabel();
+        namaLbl12 = new javax.swing.JLabel();
+        searchTxt1 = new javax.swing.JTextField();
+        addBtn1 = new javax.swing.JButton();
+        editBtn1 = new javax.swing.JButton();
+        removeBtn1 = new javax.swing.JButton();
+        tablePeriksaScrollBar1 = new javax.swing.JScrollPane();
+        PeriksaTable1 = new KasirDashboard.TableCustom();
 
         addRawatPasien.setUndecorated(true);
 
@@ -96,25 +110,37 @@ public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
 
         jPanel7.setBackground(new java.awt.Color(198, 231, 255));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/bannerRawat.jpg"))); // NOI18N
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 313, Short.MAX_VALUE)
+            .addGap(0, 320, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jPanel5.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 590));
+        jPanel5.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 550));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(140, 140, 140));
         jLabel1.setText("Nama Pasien");
         jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 154, 30));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(65, 169, 192));
         jLabel10.setText("Periksa Pasien");
         jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 360, 70));
 
@@ -123,12 +149,10 @@ public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
         jPanel5.add(dokterDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 320, 30));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(140, 140, 140));
         jLabel12.setText("Keluhan");
         jPanel5.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 154, 30));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(140, 140, 140));
         jLabel13.setText("Nama Dokter");
         jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 154, 30));
 
@@ -187,8 +211,8 @@ public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
         namaLbl6.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         namaLbl6.setForeground(new java.awt.Color(3, 104, 218));
         namaLbl6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl6.setText("Pemeriksaan Pasien");
-        servicePeriksaPasien.add(namaLbl6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 514, 50));
+        namaLbl6.setText("Periksa Pasien");
+        servicePeriksaPasien.add(namaLbl6, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 70, 350, 50));
 
         namaLbl7.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         namaLbl7.setForeground(new java.awt.Color(3, 104, 218));
@@ -196,7 +220,7 @@ public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
         namaLbl7.setText("Periksa Pasien");
         servicePeriksaPasien.add(namaLbl7, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 30, 157, 25));
 
-        namaLbl8.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        namaLbl8.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
         namaLbl8.setForeground(new java.awt.Color(3, 104, 218));
         namaLbl8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         namaLbl8.setText("Antrean Pasien");
@@ -255,15 +279,118 @@ public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
 
         servicePeriksaPasien.add(tablePeriksaScrollBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 640, 330));
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/banner.jpg"))); // NOI18N
+        servicePeriksaPasien.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 907, 180));
+
+        servicePeriksaPasien1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        namaLbl9.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
+        namaLbl9.setForeground(new java.awt.Color(3, 104, 218));
+        namaLbl9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        namaLbl9.setText("Dashboard> Services> ");
+        servicePeriksaPasien1.add(namaLbl9, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 30, -1, 25));
+
+        namaLbl10.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
+        namaLbl10.setForeground(new java.awt.Color(3, 104, 218));
+        namaLbl10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        namaLbl10.setText("Periksa Pasien");
+        servicePeriksaPasien1.add(namaLbl10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 340, 50));
+
+        namaLbl11.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        namaLbl11.setForeground(new java.awt.Color(3, 104, 218));
+        namaLbl11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        namaLbl11.setText("Periksa Pasien");
+        servicePeriksaPasien1.add(namaLbl11, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 30, 157, 25));
+
+        namaLbl12.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
+        namaLbl12.setForeground(new java.awt.Color(3, 104, 218));
+        namaLbl12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        namaLbl12.setText("Antrean Pasien");
+        servicePeriksaPasien1.add(namaLbl12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 570, 50));
+        servicePeriksaPasien1.add(searchTxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 202, 270, 30));
+
+        addBtn1.setBackground(new java.awt.Color(3, 104, 218));
+        addBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        addBtn1.setText("+ Add New");
+        addBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtn1ActionPerformed(evt);
+            }
+        });
+        servicePeriksaPasien1.add(addBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, 30));
+
+        editBtn1.setBackground(new java.awt.Color(3, 104, 218));
+        editBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        editBtn1.setText("Edit");
+        editBtn1.setEnabled(false);
+        editBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtn1ActionPerformed(evt);
+            }
+        });
+        servicePeriksaPasien1.add(editBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, -1, 30));
+
+        removeBtn1.setBackground(new java.awt.Color(3, 104, 218));
+        removeBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        removeBtn1.setText("Remove");
+        removeBtn1.setEnabled(false);
+        removeBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBtn1ActionPerformed(evt);
+            }
+        });
+        servicePeriksaPasien1.add(removeBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, 30));
+
+        PeriksaTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"a", "b", "c", "d", "f", "g", "h", null, "Menunggu"},
+                {"b", "c", "da", "f", "g", "g", "a", null, "Diperiksa"},
+                {"a", "s", "w", "r", "f", "a", "w", null, "Selesai"},
+                {"a", "f", "s", "FG", "G", "qw", "f", null, "Bayar"}
+            },
+            new String [] {
+                "1", "2", "Title 33", "4", "5", "6", "7", "9", "8"
+            }
+        ));
+        PeriksaTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PeriksaTable1MouseClicked(evt);
+            }
+        });
+        tablePeriksaScrollBar1.setViewportView(PeriksaTable1);
+
+        servicePeriksaPasien1.add(tablePeriksaScrollBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 640, 330));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(servicePeriksaPasien1, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(servicePeriksaPasien1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(servicePeriksaPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(servicePeriksaPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -344,33 +471,63 @@ public class PeriksaPanelForm extends javax.swing.JPanel implements IKasirView{
         }
     }//GEN-LAST:event_removeBtnActionPerformed
 
+    private void addBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addBtn1ActionPerformed
+
+    private void editBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editBtn1ActionPerformed
+
+    private void removeBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeBtn1ActionPerformed
+
+    private void PeriksaTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PeriksaTable1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PeriksaTable1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private KasirDashboard.TableCustom PeriksaTable;
+    private KasirDashboard.TableCustom PeriksaTable1;
     private javax.swing.JButton addBtn;
+    private javax.swing.JButton addBtn1;
     private javax.swing.JFrame addRawatPasien;
     private javax.swing.JButton cancelBtnInputPeriksa;
     private javax.swing.JComboBox<Staf> dokterDropdown;
     private javax.swing.JButton editBtn;
+    private javax.swing.JButton editBtn1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea keluhanTxt;
+    private javax.swing.JLabel namaLbl10;
+    private javax.swing.JLabel namaLbl11;
+    private javax.swing.JLabel namaLbl12;
     private javax.swing.JLabel namaLbl5;
     private javax.swing.JLabel namaLbl6;
     private javax.swing.JLabel namaLbl7;
     private javax.swing.JLabel namaLbl8;
+    private javax.swing.JLabel namaLbl9;
     private javax.swing.JComboBox<Customer> pasienDropdown;
     private javax.swing.JButton removeBtn;
+    private javax.swing.JButton removeBtn1;
     private javax.swing.JButton saveBtnInputPeriksa;
     private javax.swing.JTextField searchTxt;
+    private javax.swing.JTextField searchTxt1;
     private KasirDashboard.CustomePalette.innerDashboard servicePeriksaPasien;
+    private KasirDashboard.CustomePalette.innerDashboard servicePeriksaPasien1;
     private javax.swing.JScrollPane tablePeriksaScrollBar;
+    private javax.swing.JScrollPane tablePeriksaScrollBar1;
     // End of variables declaration//GEN-END:variables
 
     private void setTablePeriksa(String query) {

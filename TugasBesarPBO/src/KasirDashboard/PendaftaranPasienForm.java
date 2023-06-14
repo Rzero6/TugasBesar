@@ -31,7 +31,7 @@ public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirV
     public PendaftaranPasienForm() {
         initComponents();
         addPasien.pack();
-        addPasien.setSize(712,590);
+        addPasien.setSize(720, 550);
         addPasien.setLocationRelativeTo(null);
         searchTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
         customerControl = new CustomerControl();
@@ -53,6 +53,7 @@ public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirV
         addPasien = new javax.swing.JFrame();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         cancelBtnInputPasien = new javax.swing.JButton();
         saveBtnInputPasien = new javax.swing.JButton();
@@ -73,26 +74,23 @@ public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirV
         searchTxt = new javax.swing.JTextField();
         tablePendaftaranScrollBar = new javax.swing.JScrollPane();
         PendaftaranTable = new KasirDashboard.TableCustom();
+        jLabel3 = new javax.swing.JLabel();
+
+        addPasien.setUndecorated(true);
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel9.setBackground(new java.awt.Color(198, 231, 255));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 313, Short.MAX_VALUE)
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/BannerRegist.jpg"))); // NOI18N
+        jPanel9.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 550));
 
-        jPanel8.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 590));
+        jPanel8.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, -1));
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 1, 40)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(65, 169, 192));
         jLabel15.setText("Registrasi Pasien");
         jPanel8.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 380, -1));
 
@@ -133,7 +131,6 @@ public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirV
         jLabel14.setText("Silahkan Input Data Diri Pasien");
         jPanel8.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 86, -1, 30));
 
-        jLabel16.setForeground(new java.awt.Color(140, 140, 140));
         jLabel16.setText("Tanggal Lahir");
         jPanel8.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, -1, -1));
 
@@ -147,7 +144,9 @@ public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirV
         );
         addPasienLayout.setVerticalGroup(
             addPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(addPasienLayout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -162,9 +161,9 @@ public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirV
 
         namaLbl10.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         namaLbl10.setForeground(new java.awt.Color(3, 104, 218));
-        namaLbl10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl10.setText("Pendaftaran Pasien");
-        servicePendaftaranPasien.add(namaLbl10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 514, 50));
+        namaLbl10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        namaLbl10.setText("Daftar Pasien");
+        servicePendaftaranPasien.add(namaLbl10, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 70, 370, 50));
 
         namaLbl11.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         namaLbl11.setForeground(new java.awt.Color(3, 104, 218));
@@ -172,10 +171,10 @@ public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirV
         namaLbl11.setText("Pendaftaran Pasien");
         servicePendaftaranPasien.add(namaLbl11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 222, 25));
 
-        namaLbl12.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        namaLbl12.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
         namaLbl12.setForeground(new java.awt.Color(3, 104, 218));
         namaLbl12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl12.setText("Daftar Pasien");
+        namaLbl12.setText("Pasien");
         servicePendaftaranPasien.add(namaLbl12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 570, 50));
 
         addBtn.setBackground(new java.awt.Color(3, 104, 218));
@@ -230,6 +229,9 @@ public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirV
         tablePendaftaranScrollBar.setViewportView(PendaftaranTable);
 
         servicePendaftaranPasien.add(tablePendaftaranScrollBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 640, 330));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/banner.jpg"))); // NOI18N
+        servicePendaftaranPasien.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 907, 180));
 
         add(servicePendaftaranPasien, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 710));
     }// </editor-fold>//GEN-END:initComponents
@@ -292,9 +294,11 @@ public class PendaftaranPasienForm extends javax.swing.JPanel implements IKasirV
     private KasirDashboard.CustomePalette.TextField alamatTxt;
     private javax.swing.JButton cancelBtnInputPasien;
     private javax.swing.JButton editBtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel namaLbl10;

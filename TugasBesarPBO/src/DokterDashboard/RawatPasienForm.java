@@ -98,6 +98,13 @@ public class RawatPasienForm extends javax.swing.JPanel {
         umurPasienTxt = new javax.swing.JTextField();
         showTableObat = new javax.swing.JFrame();
         jPanel3 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        roundedPanelDokterGradient6 = new DokterDashboard.roundedPanelDokterGradient();
+        namaLbl29 = new javax.swing.JLabel();
+        back3 = new javax.swing.JLabel();
+        namaLbl14 = new javax.swing.JLabel();
+        jumlahPasienSelesai6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableObatAll = new DokterDashboard.TableDokterCustom();
         jPanel1 = new javax.swing.JPanel();
@@ -111,11 +118,12 @@ public class RawatPasienForm extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         tableTindakanAll = new DokterDashboard.TableDokterCustom();
         jPanel5 = new javax.swing.JPanel();
+        roundedPanelDokterGradient5 = new DokterDashboard.roundedPanelDokterGradient();
+        namaLbl28 = new javax.swing.JLabel();
         back2 = new javax.swing.JLabel();
         namaLbl13 = new javax.swing.JLabel();
         jumlahPasienSelesai5 = new javax.swing.JLabel();
-        roundedPanelDokterGradient5 = new DokterDashboard.roundedPanelDokterGradient();
-        namaLbl28 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         refreshBtn1 = new javax.swing.JButton();
         roundedPanelDokterPutih3 = new DokterDashboard.roundedPanelDokterPutih();
         roundedPanelDokterGradient4 = new DokterDashboard.roundedPanelDokterGradient();
@@ -309,7 +317,62 @@ public class RawatPasienForm extends javax.swing.JPanel {
         showTableObat.setUndecorated(true);
         showTableObat.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel7.setBackground(new java.awt.Color(14, 210, 247));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        namaLbl29.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        namaLbl29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        namaLbl29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/injection.png"))); // NOI18N
+
+        javax.swing.GroupLayout roundedPanelDokterGradient6Layout = new javax.swing.GroupLayout(roundedPanelDokterGradient6);
+        roundedPanelDokterGradient6.setLayout(roundedPanelDokterGradient6Layout);
+        roundedPanelDokterGradient6Layout.setHorizontalGroup(
+            roundedPanelDokterGradient6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanelDokterGradient6Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(namaLbl29, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+        );
+        roundedPanelDokterGradient6Layout.setVerticalGroup(
+            roundedPanelDokterGradient6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanelDokterGradient6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(namaLbl29, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel7.add(roundedPanelDokterGradient6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+
+        back3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        back3.setForeground(new java.awt.Color(255, 255, 255));
+        back3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/next.png"))); // NOI18N
+        back3.setText("Back");
+        back3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        back3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                back3MouseClicked(evt);
+            }
+        });
+        jPanel7.add(back3, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 0, 80, 40));
+
+        namaLbl14.setForeground(new java.awt.Color(204, 204, 204));
+        namaLbl14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        namaLbl14.setText("Daftar Obat Atma Universal Clinic");
+        jPanel7.add(namaLbl14, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 108, 380, 25));
+
+        jumlahPasienSelesai6.setFont(new java.awt.Font("Century Gothic", 1, 32)); // NOI18N
+        jumlahPasienSelesai6.setForeground(new java.awt.Color(14, 210, 247));
+        jumlahPasienSelesai6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jumlahPasienSelesai6.setText("Daftar Obat Tersedia");
+        jPanel7.add(jumlahPasienSelesai6, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 68, 540, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/banner.jpg"))); // NOI18N
+        jPanel7.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 30, 830, 140));
+
+        jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 150));
 
         tableObatAll.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -324,7 +387,7 @@ public class RawatPasienForm extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tableObatAll);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 692, 377));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 692, 360));
 
         jPanel1.setBackground(new java.awt.Color(14, 210, 247));
 
@@ -403,11 +466,12 @@ public class RawatPasienForm extends javax.swing.JPanel {
 
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 150));
 
-        showTableObat.getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        showTableObat.getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 550));
 
         showTableTindakan.setUndecorated(true);
         showTableTindakan.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tableTindakanAll.setModel(new javax.swing.table.DefaultTableModel(
@@ -423,29 +487,10 @@ public class RawatPasienForm extends javax.swing.JPanel {
         ));
         jScrollPane5.setViewportView(tableTindakanAll);
 
-        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 692, 377));
+        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 692, 360));
 
         jPanel5.setBackground(new java.awt.Color(14, 210, 247));
-
-        back2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        back2.setForeground(new java.awt.Color(255, 255, 255));
-        back2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/next.png"))); // NOI18N
-        back2.setText("Back");
-        back2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        back2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                back2MouseClicked(evt);
-            }
-        });
-
-        namaLbl13.setForeground(new java.awt.Color(255, 255, 255));
-        namaLbl13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl13.setText("Daftar Tindakan Atma Universal Clinic");
-
-        jumlahPasienSelesai5.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
-        jumlahPasienSelesai5.setForeground(new java.awt.Color(255, 255, 255));
-        jumlahPasienSelesai5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jumlahPasienSelesai5.setText("Daftar Tindakan yang tersedia");
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         namaLbl28.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         namaLbl28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -468,37 +513,33 @@ public class RawatPasienForm extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(back2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(roundedPanelDokterGradient5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(namaLbl13, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jumlahPasienSelesai5, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(87, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(back2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(roundedPanelDokterGradient5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(namaLbl13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jumlahPasienSelesai5))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
+        jPanel5.add(roundedPanelDokterGradient5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+
+        back2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        back2.setForeground(new java.awt.Color(255, 255, 255));
+        back2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/next.png"))); // NOI18N
+        back2.setText("Back");
+        back2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        back2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                back2MouseClicked(evt);
+            }
+        });
+        jPanel5.add(back2, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 0, 80, 40));
+
+        namaLbl13.setForeground(new java.awt.Color(204, 204, 204));
+        namaLbl13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        namaLbl13.setText("Daftar Tindakan Atma Universal Clinic");
+        jPanel5.add(namaLbl13, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 108, 380, 25));
+
+        jumlahPasienSelesai5.setFont(new java.awt.Font("Century Gothic", 1, 32)); // NOI18N
+        jumlahPasienSelesai5.setForeground(new java.awt.Color(14, 210, 247));
+        jumlahPasienSelesai5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jumlahPasienSelesai5.setText("Daftar Tindakan Tersedia");
+        jPanel5.add(jumlahPasienSelesai5, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 68, 540, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/banner.jpg"))); // NOI18N
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 30, 830, 140));
 
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 150));
 
@@ -719,7 +760,7 @@ public class RawatPasienForm extends javax.swing.JPanel {
     }//GEN-LAST:event_tablePasienRawatMouseClicked
 
     private void refreshBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtn1ActionPerformed
-//      setTablePasien();
+      setTableRawatPasien();
         
     }//GEN-LAST:event_refreshBtn1ActionPerformed
 
@@ -808,6 +849,12 @@ public class RawatPasienForm extends javax.swing.JPanel {
             transaksi.setDiagnosis(diagnosisTxt.getText());
             transaksi.setTanggalTransaksi(transaksi.dateTimeNowinString());
             transaksiControl.updateStatusDataTransaksi(transaksi);
+            transaksi.setDetailTransaksiList(detailTransaksiControl.getListDetailTransaksiByTransaksiID("", transaksi.getId()));
+            for(DetailTransaksi dt : transaksi.getDetailTransaksiList()){
+                if(dt.getObat().getId()!=1 && dt.getJumlah_obat()>0){
+                    obatControl.updateJumlahObat(dt.getObat().getId(), dt.getJumlah_obat(), "-");
+                }
+            }
             setTableRawatPasien();
             SelectedID=0;
             setTableObat();
@@ -837,13 +884,9 @@ public class RawatPasienForm extends javax.swing.JPanel {
         showTableObat.setSize(762, 578);
         showTableObat.setLocationRelativeTo(null);
         showTableObat.setVisible(true);
+        setTableObatAll();
 
     }//GEN-LAST:event_seeMoreObatMouseClicked
-
-    private void back1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back1MouseClicked
-        // TODO add your handling code here:
-        showTableObat.setVisible(false);
-    }//GEN-LAST:event_back1MouseClicked
 
     private void back2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back2MouseClicked
         // TODO add your handling code here:
@@ -858,21 +901,34 @@ public class RawatPasienForm extends javax.swing.JPanel {
         showTableTindakan.setVisible(true);
     }//GEN-LAST:event_seeMoreTindakanMouseClicked
 
+    private void back3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back3MouseClicked
+        // TODO add your handling code here:
+                showTableObat.setVisible(false);
+    }//GEN-LAST:event_back3MouseClicked
+
+    private void back1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_back1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addObatBtn;
     private javax.swing.JButton addTindakanBtn;
     private javax.swing.JLabel back1;
     private javax.swing.JLabel back2;
+    private javax.swing.JLabel back3;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JTextField diagnosisTxt;
     private javax.swing.JButton doneBtn;
     private javax.swing.JFrame frameRawatInput;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -884,15 +940,18 @@ public class RawatPasienForm extends javax.swing.JPanel {
     private javax.swing.JLabel jumlahPasienSelesai3;
     private javax.swing.JLabel jumlahPasienSelesai4;
     private javax.swing.JLabel jumlahPasienSelesai5;
+    private javax.swing.JLabel jumlahPasienSelesai6;
     private javax.swing.JLabel jumlahPasienTunggu1;
     private javax.swing.JLabel namaLbl10;
     private javax.swing.JLabel namaLbl11;
     private javax.swing.JLabel namaLbl12;
     private javax.swing.JLabel namaLbl13;
+    private javax.swing.JLabel namaLbl14;
     private javax.swing.JLabel namaLbl21;
     private javax.swing.JLabel namaLbl26;
     private javax.swing.JLabel namaLbl27;
     private javax.swing.JLabel namaLbl28;
+    private javax.swing.JLabel namaLbl29;
     private javax.swing.JLabel namaLbl9;
     private javax.swing.JLabel namaPasienLabel;
     private javax.swing.JTextField namaPasienTxt;
@@ -903,6 +962,7 @@ public class RawatPasienForm extends javax.swing.JPanel {
     private DokterDashboard.roundedPanelDokterGradient roundedPanelDokterGradient3;
     private DokterDashboard.roundedPanelDokterGradient roundedPanelDokterGradient4;
     private DokterDashboard.roundedPanelDokterGradient roundedPanelDokterGradient5;
+    private DokterDashboard.roundedPanelDokterGradient roundedPanelDokterGradient6;
     private DokterDashboard.roundedPanelDokterPutih roundedPanelDokterPutih3;
     private DokterDashboard.roundedPanelDokterPutih roundedPanelDokterPutih4;
     private javax.swing.JLabel seeMoreObat;
@@ -934,6 +994,8 @@ public class RawatPasienForm extends javax.swing.JPanel {
     }
     private void setTableObatAll(){
         tableObatAll.setModel(obatControl.showDataObat(""));
+        
+        
     }
     private void setTableObat(){
         tableObat.setModel(detailTransaksiControl.showDataKeranjangObat("", SelectedID));

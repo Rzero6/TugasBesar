@@ -96,11 +96,11 @@ public class KasirView extends javax.swing.JFrame {
         LogoutPanel.setVisible(false);
         
         panelSlide1.init(new innerDashboard(),new PanelServiceMenu(selectedColor));
-        panelSlide2.init(new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/home (1).png"))),
-                         new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/home.png"))),
-                         new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/services.png"))),
-                         new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/services.png"))),
-        new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/services.png"))));
+        panelSlide2.init(new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/reynold.jpg"))),
+                         new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/Dendy.jpg"))),
+                         new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/Lala.jpg"))),
+                         new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/gea.jpg"))),
+        new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/jean.jpg"))));
         
         panelSlide1.setAnimate(10);
         roundedPanel1.setVisible(false);
@@ -223,6 +223,9 @@ public class KasirView extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         panelSlide2 = new KasirDashboard.CustomePalette.PanelSlide();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -799,20 +802,25 @@ public class KasirView extends javax.swing.JFrame {
 
         jPanel1.add(servicePeriksaPasien, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, -10, 850, 710));
 
+        aboutUs.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         namaLbl17.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         namaLbl17.setForeground(new java.awt.Color(3, 104, 218));
         namaLbl17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         namaLbl17.setText("Dashboard> ");
+        aboutUs.add(namaLbl17, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 30, -1, 25));
 
         namaLbl18.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         namaLbl18.setForeground(new java.awt.Color(3, 104, 218));
-        namaLbl18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        namaLbl18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         namaLbl18.setText("About Us");
+        aboutUs.add(namaLbl18, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 282, 50));
 
         namaLbl19.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         namaLbl19.setForeground(new java.awt.Color(3, 104, 218));
         namaLbl19.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         namaLbl19.setText("About Us");
+        aboutUs.add(namaLbl19, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 30, 92, 25));
 
         jButton1.setText("Next >>");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -820,6 +828,7 @@ public class KasirView extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        aboutUs.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(714, 260, 80, -1));
 
         jButton2.setText("<< Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -827,60 +836,37 @@ public class KasirView extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        aboutUs.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 80, -1));
 
         javax.swing.GroupLayout panelSlide2Layout = new javax.swing.GroupLayout(panelSlide2);
         panelSlide2.setLayout(panelSlide2Layout);
         panelSlide2Layout.setHorizontalGroup(
             panelSlide2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGap(0, 580, Short.MAX_VALUE)
         );
         panelSlide2Layout.setVerticalGroup(
             panelSlide2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 305, Short.MAX_VALUE)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout aboutUsLayout = new javax.swing.GroupLayout(aboutUs);
-        aboutUs.setLayout(aboutUsLayout);
-        aboutUsLayout.setHorizontalGroup(
-            aboutUsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(aboutUsLayout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
-                .addGroup(aboutUsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutUsLayout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(336, 336, 336))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutUsLayout.createSequentialGroup()
-                        .addGroup(aboutUsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(aboutUsLayout.createSequentialGroup()
-                                .addComponent(namaLbl17)
-                                .addGap(2, 2, 2)
-                                .addComponent(namaLbl19, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(namaLbl18, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(517, 517, 517))))
-            .addGroup(aboutUsLayout.createSequentialGroup()
-                .addGap(215, 215, 215)
-                .addComponent(panelSlide2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        aboutUsLayout.setVerticalGroup(
-            aboutUsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(aboutUsLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(aboutUsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(namaLbl17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(namaLbl19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(namaLbl18, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelSlide2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(aboutUsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(242, Short.MAX_VALUE))
-        );
+        aboutUs.add(panelSlide2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 580, 290));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/banner.jpg"))); // NOI18N
+        aboutUs.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, 907, 130));
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(3, 104, 218));
+        jTextArea1.setRows(5);
+        jTextArea1.setText("                                                         DESKRIPSI SISTEM :\n\n       Atma Universal Clinic (AUC) adalah sebuah sistem klinik kesehatan yang dirancang\n    untuk memudahkan pasien dalam mengakses layanan kesehatan secara online. Sistem\n        ini bertujuan untuk memberikan solusi bagi masyarakat yang ingin memperoleh\n               perawatan medis berkualitas dengan mudah, efisien dan terjangkau.");
+        jTextArea1.setCaretColor(new java.awt.Color(255, 255, 255));
+        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextArea1.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(jTextArea1);
+
+        aboutUs.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, 710, 170));
 
         jPanel1.add(aboutUs, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, -10, 850, 710));
 
@@ -1357,6 +1343,7 @@ public class KasirView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -1365,6 +1352,8 @@ public class KasirView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel logOutIcon;
     private javax.swing.JLabel namaLbl;
     private javax.swing.JLabel namaLbl1;

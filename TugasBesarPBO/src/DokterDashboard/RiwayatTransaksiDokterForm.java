@@ -45,6 +45,7 @@ public class RiwayatTransaksiDokterForm extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         detailsTxt = new javax.swing.JTextArea();
         okBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         refreshBtn1 = new javax.swing.JButton();
         namaLbl9 = new javax.swing.JLabel();
@@ -68,10 +69,14 @@ public class RiwayatTransaksiDokterForm extends javax.swing.JPanel {
 
         detailsFrame.setUndecorated(true);
 
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         detailsTxt.setEditable(false);
         detailsTxt.setColumns(20);
         detailsTxt.setRows(5);
         jScrollPane4.setViewportView(detailsTxt);
+
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 502, 370));
 
         okBtn.setText("OK");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -79,33 +84,18 @@ public class RiwayatTransaksiDokterForm extends javax.swing.JPanel {
                 okBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, -1, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(okBtn)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(okBtn)
-                .addGap(20, 20, 20))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/bgDetail.jpg"))); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, -1, 450));
 
         javax.swing.GroupLayout detailsFrameLayout = new javax.swing.GroupLayout(detailsFrame.getContentPane());
         detailsFrame.getContentPane().setLayout(detailsFrameLayout);
         detailsFrameLayout.setHorizontalGroup(
             detailsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(detailsFrameLayout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         detailsFrameLayout.setVerticalGroup(
             detailsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,7 +246,7 @@ public class RiwayatTransaksiDokterForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtn1ActionPerformed
-        //      setTablePasien();
+        setDataRiwayat();
 
     }//GEN-LAST:event_refreshBtn1ActionPerformed
 
@@ -288,6 +278,7 @@ public class RiwayatTransaksiDokterForm extends javax.swing.JPanel {
     private javax.swing.JFrame detailsFrame;
     private javax.swing.JTextArea detailsTxt;
     private javax.swing.JLabel helloDokterTxt;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
