@@ -67,8 +67,6 @@ public class RiwayatTransaksiDokterForm extends javax.swing.JPanel {
         riwayatTransaksiLbl = new javax.swing.JLabel();
         jumlahPasienSelesai4 = new javax.swing.JLabel();
 
-        detailsFrame.setUndecorated(true);
-
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         detailsTxt.setEditable(false);

@@ -877,6 +877,7 @@ public class RawatPasienForm extends javax.swing.JPanel {
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         frameRawatInput.setVisible(false);
         tablePasienRawat.setEnabled(true);
+        clearAll();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void seeMoreObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seeMoreObatMouseClicked

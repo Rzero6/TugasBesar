@@ -289,6 +289,7 @@ public class PembayaranPanelForm extends javax.swing.JPanel implements IKasirVie
     private void checkOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOutBtnActionPerformed
         // TODO add your handling code here:
         checkOut.setVisible(true);
+        inputUang.setText("");
         
         
     }//GEN-LAST:event_checkOutBtnActionPerformed
