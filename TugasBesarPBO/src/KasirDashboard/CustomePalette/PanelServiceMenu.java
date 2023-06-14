@@ -99,7 +99,7 @@ public class PanelServiceMenu extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Services");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 480, 100, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 110, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void roundedPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedPanel2MouseClicked

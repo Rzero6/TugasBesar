@@ -46,11 +46,12 @@ public class CustomerPanel extends javax.swing.JPanel implements IPanelAdmin{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableCustomer = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableCustomer = new KasirDashboard.TableCustom();
         searchTxt = new javax.swing.JTextField();
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 402));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tableCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,45 +64,17 @@ public class CustomerPanel extends javax.swing.JPanel implements IPanelAdmin{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableCustomerMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tableCustomer);
+        jScrollPane2.setViewportView(tableCustomer);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
-        );
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 60, 820, 400));
+        add(searchTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 360, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tableCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCustomerMouseClicked
-    }//GEN-LAST:event_tableCustomerMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField searchTxt;
-    private javax.swing.JTable tableCustomer;
+    private KasirDashboard.TableCustom tableCustomer;
     // End of variables declaration//GEN-END:variables
 
     private void setBorderandFocus(JComponent comp){

@@ -32,11 +32,11 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
     public ObatPanel() {
         initComponents();
         obatControl = new ObatControl();
-        namaObatTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Nama obat");
-        hargaObatTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Harga obat");
+//        namaObatTxt1.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Nama obat");
+//        hargaObatTxt1.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Harga obat");
         searchTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
-        setBorderandFocus(namaObatTxt);
-        setBorderandFocus(hargaObatTxt);
+//        setBorderandFocus(namaObatTxt1);
+//        setBorderandFocus(hargaObatTxt1);
         setBorderandFocus(searchTxt);
         try{
             inputKosongException();
@@ -57,16 +57,20 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableObat = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableObat = new KasirDashboard.TableCustom();
         searchTxt = new javax.swing.JTextField();
-        namaObatTxt = new javax.swing.JTextField();
-        hargaObatTxt = new javax.swing.JTextField();
         jumlahObatSpinner = new javax.swing.JSpinner();
         addBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         delBtn = new javax.swing.JButton();
         clearBtn = new javax.swing.JButton();
+        hargaObatTxt = new KasirDashboard.CustomePalette.TextField();
+        namaObatTxt = new KasirDashboard.CustomePalette.TextField();
+        tanggalMulaiKerjaLabel = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tableObat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,13 +88,11 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
                 tableObatMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tableObat);
+        jScrollPane1.setViewportView(tableObat);
 
-        namaObatTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                namaObatTxtActionPerformed(evt);
-            }
-        });
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 60, 470, 300));
+        add(searchTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 270, -1));
+        add(jumlahObatSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 161, -1));
 
         addBtn.setText("Add");
         addBtn.setEnabled(false);
@@ -99,6 +101,7 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
                 addBtnActionPerformed(evt);
             }
         });
+        add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 22, -1, 30));
 
         editBtn.setText("Edit");
         editBtn.setEnabled(false);
@@ -107,6 +110,7 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
                 editBtnActionPerformed(evt);
             }
         });
+        add(editBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 22, -1, 30));
 
         delBtn.setText("Delete");
         delBtn.setEnabled(false);
@@ -115,6 +119,7 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
                 delBtnActionPerformed(evt);
             }
         });
+        add(delBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 22, -1, 30));
 
         clearBtn.setText("Clear");
         clearBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -122,59 +127,17 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
                 clearBtnActionPerformed(evt);
             }
         });
+        add(clearBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(addBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(editBtn)
-                        .addGap(12, 12, 12)
-                        .addComponent(delBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jumlahObatSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(clearBtn))
-                            .addComponent(namaObatTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hargaObatTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane2)))
-                .addGap(20, 20, 20))
-        );
+        hargaObatTxt.setLabelText("Harga Obat");
+        add(hargaObatTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 240, -1));
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {hargaObatTxt, namaObatTxt});
+        namaObatTxt.setLabelText("Nama Obat");
+        add(namaObatTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 240, -1));
 
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(delBtn)
-                    .addComponent(addBtn)
-                    .addComponent(editBtn)
-                    .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(namaObatTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hargaObatTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jumlahObatSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(clearBtn)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
-        );
+        tanggalMulaiKerjaLabel.setForeground(new java.awt.Color(51, 51, 51));
+        tanggalMulaiKerjaLabel.setText(" Stok Obat");
+        add(tanggalMulaiKerjaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 230, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
@@ -199,22 +162,9 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
         }
     }//GEN-LAST:event_delBtnActionPerformed
 
-    private void namaObatTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaObatTxtActionPerformed
-        
-    }//GEN-LAST:event_namaObatTxtActionPerformed
-
     private void clearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearBtnActionPerformed
         clearAll();
     }//GEN-LAST:event_clearBtnActionPerformed
-
-    private void tableObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableObatMouseClicked
-        int clickedRow = tableObat.getSelectedRow();
-        TableModel tableModel = tableObat.getModel();
-        selectedID = Integer.parseInt(tableModel.getValueAt(clickedRow, 0).toString());
-        namaObatTxt.setText(tableModel.getValueAt(clickedRow, 1).toString());
-        hargaObatTxt.setText(tableModel.getValueAt(clickedRow, 2).toString());
-        jumlahObatSpinner.setValue(tableModel.getValueAt(clickedRow, 3));
-    }//GEN-LAST:event_tableObatMouseClicked
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         Obat obat = new Obat(selectedID,namaObatTxt.getText(), Double.parseDouble(hargaObatTxt.getText()), (int) jumlahObatSpinner.getValue());
@@ -223,18 +173,29 @@ public class ObatPanel extends javax.swing.JPanel implements IPanelAdmin{
         clearAll();
     }//GEN-LAST:event_editBtnActionPerformed
 
+    private void tableObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableObatMouseClicked
+        // TODO add your handling code here:
+        int clickedRow = tableObat.getSelectedRow();
+        TableModel tableModel = tableObat.getModel();
+        selectedID = Integer.parseInt(tableModel.getValueAt(clickedRow, 0).toString());
+        namaObatTxt.setText(tableModel.getValueAt(clickedRow, 1).toString());
+        hargaObatTxt.setText(tableModel.getValueAt(clickedRow, 2).toString());
+        jumlahObatSpinner.setValue(tableModel.getValueAt(clickedRow, 3));
+    }//GEN-LAST:event_tableObatMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JButton clearBtn;
     private javax.swing.JButton delBtn;
     private javax.swing.JButton editBtn;
-    private javax.swing.JTextField hargaObatTxt;
-    private javax.swing.JScrollPane jScrollPane2;
+    private KasirDashboard.CustomePalette.TextField hargaObatTxt;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jumlahObatSpinner;
-    private javax.swing.JTextField namaObatTxt;
+    private KasirDashboard.CustomePalette.TextField namaObatTxt;
     private javax.swing.JTextField searchTxt;
-    private javax.swing.JTable tableObat;
+    private KasirDashboard.TableCustom tableObat;
+    private javax.swing.JLabel tanggalMulaiKerjaLabel;
     // End of variables declaration//GEN-END:variables
 
     private void setTableObat(String query) {

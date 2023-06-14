@@ -35,7 +35,7 @@ public class innerDashboard extends javax.swing.JPanel {
         Graphics2D g2 = (Graphics2D) gr;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 //        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
-        GradientPaint gp = new GradientPaint(0, 90, Color.decode("#c6e7ff"), 0, getHeight(), Color.decode("#ffffff"));
+        GradientPaint gp = new GradientPaint(0, 90, Color.decode("#ffffff"), 0, getHeight(), Color.decode("#ffffff"));
         g2.setPaint(gp);    
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 50, 50);
         super.paintChildren(gr);

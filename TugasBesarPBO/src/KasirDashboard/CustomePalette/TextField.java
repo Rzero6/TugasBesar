@@ -122,7 +122,7 @@ public class TextField extends JTextField {
 
     private void createHintText(Graphics2D g2) {
         Insets in = getInsets();
-        g2.setColor(new Color(150, 150, 150));
+        g2.setColor(new Color(0,0,0));
         FontMetrics ft = g2.getFontMetrics();
         Rectangle2D r2 = ft.getStringBounds(labelText, g2);
         double height = getHeight() - in.top - in.bottom;

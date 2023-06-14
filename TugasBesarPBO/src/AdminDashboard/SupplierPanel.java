@@ -35,13 +35,13 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
     public SupplierPanel() {
         initComponents();
         supplierControl = new SupplierControl();
-        namaTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Nama Supplier");
-        noTeleponTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "No Telepon");
-        emailTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Email");
+//        namaTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Nama Supplier");
+//        noTeleponTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "No Telepon");
+//        emailTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Email");
         searchTxt.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
-        setBorderandFocus(namaTxt);
-        setBorderandFocus(noTeleponTxt);
-        setBorderandFocus(emailTxt);
+//        setBorderandFocus(namaTxt1);
+//        setBorderandFocus(noTeleponTxt1);
+//        setBorderandFocus(emailTxt1);
         setBorderandFocus(searchTxt);
         setSupplierTable("");
         setListener();
@@ -56,18 +56,64 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        supplierTable = new javax.swing.JTable();
         addBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         delBtn = new javax.swing.JButton();
-        namaTxt = new javax.swing.JTextField();
-        noTeleponTxt = new javax.swing.JTextField();
-        emailTxt = new javax.swing.JTextField();
         clearBtn = new javax.swing.JButton();
         searchTxt = new javax.swing.JTextField();
+        emailTxt = new KasirDashboard.CustomePalette.TextField();
+        noTeleponTxt = new KasirDashboard.CustomePalette.TextField();
+        namaTxt = new KasirDashboard.CustomePalette.TextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        supplierTable = new KasirDashboard.TableCustom();
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(450, 402));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        addBtn.setText("Add");
+        addBtn.setEnabled(false);
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
+        add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 20, -1, 30));
+
+        editBtn.setText("Edit");
+        editBtn.setEnabled(false);
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
+        add(editBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 20, -1, 30));
+
+        delBtn.setText("Delete");
+        delBtn.setEnabled(false);
+        delBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delBtnActionPerformed(evt);
+            }
+        });
+        add(delBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 20, -1, 30));
+
+        clearBtn.setText("Clear");
+        clearBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearBtnActionPerformed(evt);
+            }
+        });
+        add(clearBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, -1, -1));
+        add(searchTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 20, 390, -1));
+
+        emailTxt.setLabelText("Email");
+        add(emailTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 290, -1));
+
+        noTeleponTxt.setLabelText("Nomor Telepon");
+        add(noTeleponTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 290, -1));
+
+        namaTxt.setLabelText("Nama");
+        add(namaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 290, -1));
 
         supplierTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,99 +131,10 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
                 supplierTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(supplierTable);
+        jScrollPane2.setViewportView(supplierTable);
 
-        addBtn.setText("Add");
-        addBtn.setEnabled(false);
-        addBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBtnActionPerformed(evt);
-            }
-        });
-
-        editBtn.setText("Edit");
-        editBtn.setEnabled(false);
-        editBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editBtnActionPerformed(evt);
-            }
-        });
-
-        delBtn.setText("Delete");
-        delBtn.setEnabled(false);
-        delBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                delBtnActionPerformed(evt);
-            }
-        });
-
-        clearBtn.setText("Clear");
-        clearBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearBtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(addBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(editBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(delBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(emailTxt)
-                                .addComponent(namaTxt)
-                                .addComponent(noTeleponTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(clearBtn, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(20, 20, 20))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(addBtn)
-                        .addComponent(editBtn)
-                        .addComponent(delBtn))
-                    .addComponent(searchTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(namaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(noTeleponTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(clearBtn))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
-        );
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 500, 420));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void supplierTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supplierTableMouseClicked
-        int clickedRow = supplierTable.getSelectedRow();
-        TableModel tableModel = supplierTable.getModel();
-        selectedID = Integer.parseInt(tableModel.getValueAt(clickedRow, 3).toString());
-        namaTxt.setText(tableModel.getValueAt(clickedRow, 0).toString());
-        noTeleponTxt.setText(tableModel.getValueAt(clickedRow, 1).toString());
-        emailTxt.setText(tableModel.getValueAt(clickedRow, 2).toString());
-    }//GEN-LAST:event_supplierTableMouseClicked
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         supplier = new Supplier(namaTxt.getText(), noTeleponTxt.getText(), emailTxt.getText());
@@ -215,18 +172,28 @@ public class SupplierPanel extends javax.swing.JPanel implements IPanelAdmin{
         clearAll();
     }//GEN-LAST:event_clearBtnActionPerformed
 
+    private void supplierTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supplierTableMouseClicked
+        // TODO add your handling code here:
+        int clickedRow = supplierTable.getSelectedRow();
+        TableModel tableModel = supplierTable.getModel();
+        selectedID = Integer.parseInt(tableModel.getValueAt(clickedRow, 3).toString());
+        namaTxt.setText(tableModel.getValueAt(clickedRow, 0).toString());
+        noTeleponTxt.setText(tableModel.getValueAt(clickedRow, 1).toString());
+        emailTxt.setText(tableModel.getValueAt(clickedRow, 2).toString());
+    }//GEN-LAST:event_supplierTableMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JButton clearBtn;
     private javax.swing.JButton delBtn;
     private javax.swing.JButton editBtn;
-    private javax.swing.JTextField emailTxt;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField namaTxt;
-    private javax.swing.JTextField noTeleponTxt;
+    private KasirDashboard.CustomePalette.TextField emailTxt;
+    private javax.swing.JScrollPane jScrollPane2;
+    private KasirDashboard.CustomePalette.TextField namaTxt;
+    private KasirDashboard.CustomePalette.TextField noTeleponTxt;
     private javax.swing.JTextField searchTxt;
-    private javax.swing.JTable supplierTable;
+    private KasirDashboard.TableCustom supplierTable;
     // End of variables declaration//GEN-END:variables
     private void setSupplierTable(String query) {
         supplierTable.setModel(supplierControl.getTableSuplier(query));

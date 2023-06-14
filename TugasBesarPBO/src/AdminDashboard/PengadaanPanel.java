@@ -121,6 +121,8 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
         tablePengadaan = new javax.swing.JTable();
         searchTxt = new javax.swing.JTextField();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         pengadaanTab.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         pengadaanTab.addTab("Obat", obatPanel1);
 
@@ -275,12 +277,12 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
                                     .addComponent(supplierTab, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(50, 50, 50)
                                     .addComponent(ObatTab, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(20, 20, 20))
+                .addGap(60, 60, 60))
         );
         inputTabLayout.setVerticalGroup(
             inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inputTabLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(571, 571, 571)
                 .addGroup(inputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(saldoKlinikTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -300,7 +302,7 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
                         .addComponent(jumlahObat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(totalHargaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(275, Short.MAX_VALUE))
         );
 
         pengadaanTab.addTab("Pengadaan", inputTab);
@@ -322,12 +324,12 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
         riwayatTab.setLayout(riwayatTabLayout);
         riwayatTabLayout.setHorizontalGroup(
             riwayatTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, riwayatTabLayout.createSequentialGroup()
+            .addGroup(riwayatTabLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(riwayatTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addGroup(riwayatTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(searchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(147, 147, 147))
         );
         riwayatTabLayout.setVerticalGroup(
             riwayatTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,20 +343,7 @@ public class PengadaanPanel extends javax.swing.JPanel implements IPanelAdmin {
 
         pengadaanTab.addTab("Riwayat", riwayatTab);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 999, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pengadaanTab))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pengadaanTab, javax.swing.GroupLayout.Alignment.TRAILING))
-        );
+        add(pengadaanTab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed

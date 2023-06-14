@@ -7,6 +7,7 @@ package KasirDashboard;
 import KasirDashboard.CustomePalette.PanelServiceMenu;
 import KasirDashboard.CustomePalette.ScrollBarCustom;
 import KasirDashboard.CustomePalette.innerDashboard;
+import KasirDashboard.CustomePalette.panelAboutUs;
 import LoginNew.LoginView;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import control.TransaksiControl;
@@ -95,13 +96,24 @@ public class KasirView extends javax.swing.JFrame {
         LogoutPanel.setVisible(false);
         
         panelSlide1.init(new innerDashboard(),new PanelServiceMenu(selectedColor));
-//        panelSlide2.init(new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/home (1).png"))),
-//                         new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/home.png"))),
-//                         new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/services.png"))));
+        panelSlide2.init(new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/home (1).png"))),
+                         new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/home.png"))),
+                         new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/services.png"))),
+                         new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/services.png"))),
+        new panelAboutUs(new ImageIcon(getClass().getResource("/Aset/services.png"))));
+        
         panelSlide1.setAnimate(10);
         roundedPanel1.setVisible(false);
         roundedPanel3.setVisible(false);
         roundedPanel2.setVisible(false);
+        periksaIcon.setVisible(false);
+        pembayaranIcon.setVisible(false);
+        pendaftaranIcon.setVisible(false);
+        periksaSubLbl.setVisible(false);
+        pembayaranSubLbl.setVisible(false);
+        pendaftaranLbl2.setVisible(false);
+        pendaftaranSubLbl.setVisible(false);
+            
         
         namaLbl.setText(loginData.getNama());
         setHomeTable();
@@ -168,9 +180,16 @@ public class KasirView extends javax.swing.JFrame {
         AboutUsPanel = new KasirDashboard.CustomePalette.PanelBodyTransparan();
         panelSlide1 = new KasirDashboard.CustomePalette.PanelSlide();
         roundedPanel2 = new KasirDashboard.CustomePalette.roundedPanel();
+        periksaIcon = new javax.swing.JLabel();
         roundedPanel3 = new KasirDashboard.CustomePalette.roundedPanel();
+        pembayaranIcon = new javax.swing.JLabel();
         roundedPanel1 = new KasirDashboard.CustomePalette.roundedPanel();
+        pendaftaranIcon = new javax.swing.JLabel();
         subServiceIcon = new javax.swing.JLabel();
+        pendaftaranLbl2 = new javax.swing.JLabel();
+        periksaSubLbl = new javax.swing.JLabel();
+        pembayaranSubLbl = new javax.swing.JLabel();
+        pendaftaranSubLbl = new javax.swing.JLabel();
         home = new KasirDashboard.CustomePalette.innerDashboard();
         periksaPasienPanel = new KasirDashboard.CustomePalette.roundedPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -182,11 +201,14 @@ public class KasirView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         pendaftaranPasienLbl = new javax.swing.JLabel();
         namaLbl4 = new javax.swing.JLabel();
-        namaLbl1 = new javax.swing.JLabel();
         namaLbl2 = new javax.swing.JLabel();
         namaLbl3 = new javax.swing.JLabel();
         tableHomeScrollBar = new javax.swing.JScrollPane();
         homeTable = new KasirDashboard.TableCustom();
+        jPanel5 = new javax.swing.JPanel();
+        namaLbl1 = new javax.swing.JLabel();
+        namaLbl5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         servicePembayaranPasien = new KasirDashboard.CustomePalette.innerDashboard();
         panelSlide = new KasirDashboard.CustomePalette.PanelSlide();
         pembayaranPanelForm1 = new KasirDashboard.PembayaranPanelForm();
@@ -470,15 +492,24 @@ public class KasirView extends javax.swing.JFrame {
             }
         });
 
+        periksaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/syringe.png"))); // NOI18N
+        periksaIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout roundedPanel2Layout = new javax.swing.GroupLayout(roundedPanel2);
         roundedPanel2.setLayout(roundedPanel2Layout);
         roundedPanel2Layout.setHorizontalGroup(
             roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 83, Short.MAX_VALUE)
+            .addGroup(roundedPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(periksaIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         roundedPanel2Layout.setVerticalGroup(
             roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 82, Short.MAX_VALUE)
+            .addGroup(roundedPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(periksaIcon)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         roundedPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -487,15 +518,24 @@ public class KasirView extends javax.swing.JFrame {
             }
         });
 
+        pembayaranIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/payment.png"))); // NOI18N
+        pembayaranIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout roundedPanel3Layout = new javax.swing.GroupLayout(roundedPanel3);
         roundedPanel3.setLayout(roundedPanel3Layout);
         roundedPanel3Layout.setHorizontalGroup(
             roundedPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 83, Short.MAX_VALUE)
+            .addGroup(roundedPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pembayaranIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         roundedPanel3Layout.setVerticalGroup(
             roundedPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 82, Short.MAX_VALUE)
+            .addGroup(roundedPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pembayaranIcon)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         roundedPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -504,15 +544,24 @@ public class KasirView extends javax.swing.JFrame {
             }
         });
 
+        pendaftaranIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/registration.png"))); // NOI18N
+        pendaftaranIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout roundedPanel1Layout = new javax.swing.GroupLayout(roundedPanel1);
         roundedPanel1.setLayout(roundedPanel1Layout);
         roundedPanel1Layout.setHorizontalGroup(
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 83, Short.MAX_VALUE)
+            .addGroup(roundedPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pendaftaranIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         roundedPanel1Layout.setVerticalGroup(
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 82, Short.MAX_VALUE)
+            .addGroup(roundedPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pendaftaranIcon)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         subServiceIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/garis3 (1).png"))); // NOI18N
@@ -523,6 +572,26 @@ public class KasirView extends javax.swing.JFrame {
             }
         });
 
+        pendaftaranLbl2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        pendaftaranLbl2.setForeground(new java.awt.Color(255, 255, 255));
+        pendaftaranLbl2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pendaftaranLbl2.setText(" Pasien");
+
+        periksaSubLbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        periksaSubLbl.setForeground(new java.awt.Color(255, 255, 255));
+        periksaSubLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        periksaSubLbl.setText("Periksa Pasien");
+
+        pembayaranSubLbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        pembayaranSubLbl.setForeground(new java.awt.Color(255, 255, 255));
+        pembayaranSubLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pembayaranSubLbl.setText("Pembayaran");
+
+        pendaftaranSubLbl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        pendaftaranSubLbl.setForeground(new java.awt.Color(255, 255, 255));
+        pendaftaranSubLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pendaftaranSubLbl.setText("Pendaftaran");
+
         javax.swing.GroupLayout panelSlide1Layout = new javax.swing.GroupLayout(panelSlide1);
         panelSlide1.setLayout(panelSlide1Layout);
         panelSlide1Layout.setHorizontalGroup(
@@ -530,15 +599,22 @@ public class KasirView extends javax.swing.JFrame {
             .addGroup(panelSlide1Layout.createSequentialGroup()
                 .addGroup(panelSlide1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSlide1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(panelSlide1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(roundedPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roundedPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelSlide1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(subServiceIcon)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addComponent(subServiceIcon))
+                    .addComponent(periksaSubLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pembayaranSubLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pendaftaranSubLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelSlide1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(pendaftaranLbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSlide1Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(panelSlide1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(roundedPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roundedPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roundedPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44))
         );
         panelSlide1Layout.setVerticalGroup(
             panelSlide1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,12 +622,25 @@ public class KasirView extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(subServiceIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(roundedPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(roundedPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGroup(panelSlide1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelSlide1Layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(periksaSubLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(roundedPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(panelSlide1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(roundedPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelSlide1Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(pembayaranSubLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(13, 13, 13)
                 .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(309, Short.MAX_VALUE))
+                .addGap(9, 9, 9)
+                .addGroup(panelSlide1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pendaftaranSubLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelSlide1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(pendaftaranLbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         jPanel1.add(panelSlide1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, -30, 140, 770));
@@ -583,7 +672,7 @@ public class KasirView extends javax.swing.JFrame {
         periksaPasienLbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         periksaPasienPanel.add(periksaPasienLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 243, 170));
 
-        home.add(periksaPasienPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 143, -1, 169));
+        home.add(periksaPasienPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, 169));
 
         pembayaranPasienPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -609,7 +698,7 @@ public class KasirView extends javax.swing.JFrame {
         pembayaranLbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pembayaranPasienPanel.add(pembayaranLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 160));
 
-        home.add(pembayaranPasienPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(308, 143, -1, 169));
+        home.add(pembayaranPasienPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, -1, 169));
 
         pendaftaranKelasPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -634,19 +723,13 @@ public class KasirView extends javax.swing.JFrame {
         pendaftaranPasienLbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pendaftaranKelasPanel.add(pendaftaranPasienLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 160));
 
-        home.add(pendaftaranKelasPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(561, 143, 243, 169));
+        home.add(pendaftaranKelasPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 243, 169));
 
         namaLbl4.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
         namaLbl4.setForeground(new java.awt.Color(3, 104, 218));
         namaLbl4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         namaLbl4.setText("Dashboard> ");
         home.add(namaLbl4, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 30, -1, 25));
-
-        namaLbl1.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
-        namaLbl1.setForeground(new java.awt.Color(3, 104, 218));
-        namaLbl1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        namaLbl1.setText("Kasir");
-        home.add(namaLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 67, 134, 50));
 
         namaLbl2.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         namaLbl2.setForeground(new java.awt.Color(3, 104, 218));
@@ -674,6 +757,26 @@ public class KasirView extends javax.swing.JFrame {
         tableHomeScrollBar.setViewportView(homeTable);
 
         home.add(tableHomeScrollBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 710, 240));
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        namaLbl1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        namaLbl1.setForeground(new java.awt.Color(3, 104, 218));
+        namaLbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        namaLbl1.setText("\"Selalu melayani dengan senyuman\"");
+        jPanel5.add(namaLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 460, 30));
+
+        namaLbl5.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        namaLbl5.setForeground(new java.awt.Color(3, 104, 218));
+        namaLbl5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        namaLbl5.setText("Menu Kasir");
+        jPanel5.add(namaLbl5, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 50, 440, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Aset/banner.jpg"))); // NOI18N
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, 907, -1));
+
+        home.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 820, 120));
 
         jPanel1.add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, -10, 850, 710));
 
@@ -725,7 +828,16 @@ public class KasirView extends javax.swing.JFrame {
             }
         });
 
-        panelSlide2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        javax.swing.GroupLayout panelSlide2Layout = new javax.swing.GroupLayout(panelSlide2);
+        panelSlide2.setLayout(panelSlide2Layout);
+        panelSlide2Layout.setHorizontalGroup(
+            panelSlide2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 420, Short.MAX_VALUE)
+        );
+        panelSlide2Layout.setVerticalGroup(
+            panelSlide2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 305, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout aboutUsLayout = new javax.swing.GroupLayout(aboutUs);
         aboutUs.setLayout(aboutUsLayout);
@@ -749,7 +861,7 @@ public class KasirView extends javax.swing.JFrame {
                         .addGap(517, 517, 517))))
             .addGroup(aboutUsLayout.createSequentialGroup()
                 .addGap(215, 215, 215)
-                .addComponent(panelSlide2, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelSlide2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         aboutUsLayout.setVerticalGroup(
@@ -762,7 +874,7 @@ public class KasirView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(namaLbl18, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelSlide2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelSlide2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(aboutUsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -1139,6 +1251,14 @@ public class KasirView extends javax.swing.JFrame {
             roundedPanel1.setVisible(false);
             roundedPanel3.setVisible(false);
             roundedPanel2.setVisible(false);
+            periksaIcon.setVisible(false);
+            pembayaranIcon.setVisible(false);
+            pendaftaranIcon.setVisible(false);
+            periksaSubLbl.setVisible(false);
+            pembayaranSubLbl.setVisible(false);
+            pendaftaranLbl2.setVisible(false);
+            pendaftaranSubLbl.setVisible(false);
+            
             panelSlide1.show(0);
             Icon icon = new ImageIcon(getClass().getResource("/Aset/garis3 (1).png"));
             subServiceIcon.setIcon(icon);
@@ -1147,6 +1267,14 @@ public class KasirView extends javax.swing.JFrame {
             roundedPanel1.setVisible(true);
             roundedPanel3.setVisible(true);
             roundedPanel2.setVisible(true);
+            
+            periksaIcon.setVisible(true);
+            pembayaranIcon.setVisible(true);
+            pendaftaranIcon.setVisible(true);
+            periksaSubLbl.setVisible(true);
+            pembayaranSubLbl.setVisible(true);
+            pendaftaranLbl2.setVisible(true);
+            pendaftaranSubLbl.setVisible(true);
             Icon icon = new ImageIcon(getClass().getResource("/Aset/garis_3.png"));
             subServiceIcon.setIcon(icon);
         }
@@ -1225,6 +1353,7 @@ public class KasirView extends javax.swing.JFrame {
     private KasirDashboard.TableCustom homeTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1234,6 +1363,7 @@ public class KasirView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel logOutIcon;
     private javax.swing.JLabel namaLbl;
@@ -1244,19 +1374,27 @@ public class KasirView extends javax.swing.JFrame {
     private javax.swing.JLabel namaLbl2;
     private javax.swing.JLabel namaLbl3;
     private javax.swing.JLabel namaLbl4;
+    private javax.swing.JLabel namaLbl5;
     private KasirDashboard.CustomePalette.PanelBody panelBody2;
     private KasirDashboard.CustomePalette.PanelSlide panelSlide;
     private KasirDashboard.CustomePalette.PanelSlide panelSlide1;
     private KasirDashboard.CustomePalette.PanelSlide panelSlide2;
+    private javax.swing.JLabel pembayaranIcon;
     private javax.swing.JLabel pembayaranLbl;
     private KasirDashboard.PembayaranPanelForm pembayaranPanelForm1;
     private KasirDashboard.CustomePalette.roundedPanel pembayaranPasienPanel;
+    private javax.swing.JLabel pembayaranSubLbl;
+    private javax.swing.JLabel pendaftaranIcon;
     private KasirDashboard.CustomePalette.roundedPanel pendaftaranKelasPanel;
+    private javax.swing.JLabel pendaftaranLbl2;
     private KasirDashboard.PendaftaranPasienForm pendaftaranPasienForm1;
     private javax.swing.JLabel pendaftaranPasienLbl;
+    private javax.swing.JLabel pendaftaranSubLbl;
+    private javax.swing.JLabel periksaIcon;
     private KasirDashboard.PeriksaPanelForm periksaPanelForm1;
     private javax.swing.JLabel periksaPasienLbl;
     private KasirDashboard.CustomePalette.roundedPanel periksaPasienPanel;
+    private javax.swing.JLabel periksaSubLbl;
     private KasirDashboard.CustomePalette.roundedPanel roundedPanel1;
     private KasirDashboard.CustomePalette.roundedPanel roundedPanel2;
     private KasirDashboard.CustomePalette.roundedPanel roundedPanel3;

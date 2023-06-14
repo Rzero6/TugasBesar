@@ -30,11 +30,11 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
     public TindakanPanel() {
         initComponents();
         tindakanControl = new TindakanControl();
-        namaTindakanInput.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Nama tindakan");
-        hargaTindakanInput.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Harga Tindakan");
+//        namaTindakanInput1.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Nama tindakan");
+//        hargaTindakanInput1.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Harga Tindakan");
         searchInput.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Cari");
-        setBorderandFocus(namaTindakanInput);
-        setBorderandFocus(hargaTindakanInput);
+//        setBorderandFocus(namaTindakanInput1);
+//        setBorderandFocus(hargaTindakanInput1);
         setBorderandFocus(searchInput);
         
         try{
@@ -56,15 +56,18 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tindakanTable = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tindakanTable = new KasirDashboard.TableCustom();
         addBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         searchInput = new javax.swing.JTextField();
-        namaTindakanInput = new javax.swing.JTextField();
-        hargaTindakanInput = new javax.swing.JTextField();
         clearBtn = new javax.swing.JButton();
+        hargaTindakanInput = new KasirDashboard.CustomePalette.TextField();
+        namaTindakanInput = new KasirDashboard.CustomePalette.TextField();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tindakanTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,7 +85,9 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
                 tindakanTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tindakanTable);
+        jScrollPane2.setViewportView(tindakanTable);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 520, 270));
 
         addBtn.setText("Tambah");
         addBtn.setEnabled(false);
@@ -91,6 +96,7 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
                 addBtnActionPerformed(evt);
             }
         });
+        add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 30));
 
         editBtn.setText("Ubah");
         editBtn.setEnabled(false);
@@ -99,6 +105,7 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
                 editBtnActionPerformed(evt);
             }
         });
+        add(editBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 20, -1, 30));
 
         deleteBtn.setText("Hapus");
         deleteBtn.setEnabled(false);
@@ -107,18 +114,14 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
                 deleteBtnActionPerformed(evt);
             }
         });
+        add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 20, -1, 30));
 
         searchInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchInputActionPerformed(evt);
             }
         });
-
-        namaTindakanInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                namaTindakanInputActionPerformed(evt);
-            }
-        });
+        add(searchInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 350, -1));
 
         clearBtn.setText("Clear");
         clearBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -126,66 +129,14 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
                 clearBtnActionPerformed(evt);
             }
         });
+        add(clearBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 70, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(addBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(editBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteBtn))
-                    .addComponent(hargaTindakanInput)
-                    .addComponent(namaTindakanInput)
-                    .addComponent(clearBtn, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(236, 236, 236)
-                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteBtn)
-                    .addComponent(addBtn)
-                    .addComponent(editBtn)
-                    .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(namaTindakanInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hargaTindakanInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(clearBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
-        );
+        hargaTindakanInput.setLabelText("Harga Tindakan");
+        add(hargaTindakanInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 250, -1));
+
+        namaTindakanInput.setLabelText("Nama Tindakan");
+        add(namaTindakanInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 250, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tindakanTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tindakanTableMouseClicked
-        // TODO add your handling code here:
-        int clickRow = tindakanTable.getSelectedRow();
-        TableModel tableModel = tindakanTable.getModel();
-
-        selectedId= Integer.parseInt(tableModel.getValueAt(clickRow, 0).toString());
-        namaTindakanInput.setText(tableModel.getValueAt(clickRow, 1).toString());
-        hargaTindakanInput.setText(tableModel.getValueAt(clickRow, 2).toString());
-
-    }//GEN-LAST:event_tindakanTableMouseClicked
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         try{
@@ -244,9 +195,16 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
         clearAll();
     }//GEN-LAST:event_clearBtnActionPerformed
 
-    private void namaTindakanInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaTindakanInputActionPerformed
+    private void tindakanTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tindakanTableMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_namaTindakanInputActionPerformed
+        
+        int clickRow = tindakanTable.getSelectedRow();
+        TableModel tableModel = tindakanTable.getModel();
+
+        selectedId= Integer.parseInt(tableModel.getValueAt(clickRow, 0).toString());
+        namaTindakanInput.setText(tableModel.getValueAt(clickRow, 1).toString());
+        hargaTindakanInput.setText(tableModel.getValueAt(clickRow, 2).toString());
+    }//GEN-LAST:event_tindakanTableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -254,11 +212,11 @@ public class TindakanPanel extends javax.swing.JPanel implements IPanelAdmin {
     private javax.swing.JButton clearBtn;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
-    private javax.swing.JTextField hargaTindakanInput;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField namaTindakanInput;
+    private KasirDashboard.CustomePalette.TextField hargaTindakanInput;
+    private javax.swing.JScrollPane jScrollPane2;
+    private KasirDashboard.CustomePalette.TextField namaTindakanInput;
     private javax.swing.JTextField searchInput;
-    private javax.swing.JTable tindakanTable;
+    private KasirDashboard.TableCustom tindakanTable;
     // End of variables declaration//GEN-END:variables
 
     private void clearAll() {
