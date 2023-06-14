@@ -862,6 +862,7 @@ public class RawatPasienForm extends javax.swing.JPanel {
             tablePasienRawat.setEnabled(true);
             doneBtn.setEnabled(false);
             frameRawatInput.setVisible(false);
+            clearAll();
         }
     }//GEN-LAST:event_doneBtnActionPerformed
 
@@ -1119,6 +1120,14 @@ public class RawatPasienForm extends javax.swing.JPanel {
     public void setTableRawatPasien() {
         tablePasienRawat.setModel(transaksiControl.showDataPasienPerDokter(dataLogin.getId(), "= 'Menunggu'"));
         
+    }
+    
+    public void clearAll(){
+        setTableObat();
+        setTableTindakan();
+        setObatTindakanDropdown();
+        diagnosisTxt.setText("");
+        jumlahObatSpinner.setValue(0);
     }
     
 
