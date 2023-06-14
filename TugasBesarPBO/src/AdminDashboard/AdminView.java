@@ -35,7 +35,7 @@ public class AdminView extends javax.swing.JFrame {
             + "focusWidth:0");
         panelList = new ArrayList<>();
         panelList.add(stafPanel1);
-        panelList.add(mutasiPanel1);
+        panelList.add(mutasiPanelNew1);
         panelList.add(supplierPanel1);
         panelList.add(pengadaanPanel1);
         panelList.add(tindakanPanel1);
@@ -55,7 +55,7 @@ public class AdminView extends javax.swing.JFrame {
 
         containerTab = new javax.swing.JTabbedPane();
         stafPanel1 = new AdminDashboard.StafPanel();
-        mutasiPanel1 = new AdminDashboard.MutasiPanel();
+        mutasiPanelNew1 = new AdminDashboard.MutasiPanelNew();
         supplierPanel1 = new AdminDashboard.SupplierPanel();
         pengadaanPanel1 = new AdminDashboard.PengadaanPanel();
         tindakanPanel1 = new AdminDashboard.TindakanPanel();
@@ -73,7 +73,7 @@ public class AdminView extends javax.swing.JFrame {
         containerTab.setBackground(new java.awt.Color(51, 153, 255));
         containerTab.setForeground(new java.awt.Color(255, 255, 255));
         containerTab.addTab("Staff", stafPanel1);
-        containerTab.addTab("Mutasi", mutasiPanel1);
+        containerTab.addTab("Mutasi", mutasiPanelNew1);
         containerTab.addTab("Supplier", supplierPanel1);
         containerTab.addTab("Obat", pengadaanPanel1);
         containerTab.addTab("Tindakan", tindakanPanel1);
@@ -176,7 +176,7 @@ public class AdminView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel loginIDTxt;
     private javax.swing.JButton logoutBtn;
-    private AdminDashboard.MutasiPanel mutasiPanel1;
+    private AdminDashboard.MutasiPanelNew mutasiPanelNew1;
     private javax.swing.JLabel namaTxt;
     private AdminDashboard.PengadaanPanel pengadaanPanel1;
     private AdminDashboard.StafPanel stafPanel1;
